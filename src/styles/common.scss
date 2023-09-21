@@ -1,0 +1,88 @@
+@import './variables.scss';
+@import './childrenStyle/index.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  outline: none;
+  image-rendering: -moz-crisp-edges;
+  /* Firefox */
+  image-rendering: -o-crisp-edges;
+  /* Opera */
+  image-rendering: -webkit-optimize-contrast;
+  /* Webkit (non-standard naming) */
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+  /* IE (non-standard property) */
+}
+
+img {
+  -webkit-user-drag: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+.hide {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/*滚动条样式*/
+div::-webkit-scrollbar {
+  width: 4px;
+}
+
+// 滚轮样式
+div::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background-color: rgba($color: #fff, $alpha: .6) !important;
+}
+
+// 滚轮背景
+div::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.1);
+
+}
+
+// 滚动条样式
+.scrollStyle {
+  &::-webkit-scrollbar
+  {
+    width:10px!important;
+    height:12px!important;
+    background-color:rgba($color: #000000, $alpha: 0);
+  }
+  /* scroll轨道背景 */
+  &::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0) !important;
+    border-radius: 12px;
+    background-color:rgba($color: #000000, $alpha: 0) !important;
+  }
+
+  /* 滚动条中能上下移动的小块 */
+  &::-webkit-scrollbar-thumb
+  {
+    border-radius: 12px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0);
+    background-color: #453293!important;
+  }
+}
+
