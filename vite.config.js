@@ -5,12 +5,18 @@ import path from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-
-export default  defineConfig((mode)=>{
+import vueSetupExtend from 'vite-plugin-vue-setup-extend'
+export default defineConfig((mode) => {
   const env = loadEnv(mode.mode, process.cwd())
   return {
     plugins: [
-      vue(),
+      vue({
+        // props结构
+        reactivityTransform: true,
+      }),
+
+      // 配置name
+      vueSetupExtend(),
       AutoImport({
         resolvers: [ElementPlusResolver()],
       }),
@@ -21,7 +27,7 @@ export default  defineConfig((mode)=>{
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: "@import 'src/styles/variables.scss';"
+          additionalData: `@import "@/styles/variables.scss";`
         }
       },
 
@@ -68,7 +74,7 @@ export default  defineConfig((mode)=>{
           chunkFileNames: 'static/js/[name]-[hash].js',
           entryFileNames: 'static/js/[name]-[hash].js',
           assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
-          manualChunks(id) {
+          manualChunks (id) {
             // 分包
             if (id.includes('node_modules')) {
               return id.toString().split('node_modules/')[1].split('/')[0].toString()

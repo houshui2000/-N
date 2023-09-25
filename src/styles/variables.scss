@@ -1,3 +1,9 @@
 @import './childrenStyle/config.scss';
 $test-color: red;
 
+/** scss 混入 flex*/
+@mixin Myflex($justify-content: center, $align-items: center) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
