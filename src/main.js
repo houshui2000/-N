@@ -5,6 +5,7 @@ import '@/styles/index.scss' // global css
 import router from './router/index.js'
 import { createPinia } from 'pinia'
 import './permission'
+import './utils/rem'
 const app = createApp(App);
 const pinia = createPinia()
 app.config.globalProperties.$config = Config // 公共过滤器方法

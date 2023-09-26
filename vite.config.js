@@ -5,16 +5,23 @@ import path from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+// 配置name
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
+//  // props 解构
+import ReactivityTransform from '@vue-macros/reactivity-transform/vite'
+import px2rem from 'postcss-px2rem'
+const postcss = px2rem({
+  // 基准大小 baseSize，需要和rem.js中相同
+  remUnit: 10,
+});
+
 export default defineConfig((mode) => {
   const env = loadEnv(mode.mode, process.cwd())
   return {
     plugins: [
-      vue({
-        // props结构
-        reactivityTransform: true,
-      }),
-
+      vue(),
+      // props 解构
+      ReactivityTransform(),
       // 配置name
       vueSetupExtend(),
       AutoImport({
@@ -25,6 +32,12 @@ export default defineConfig((mode) => {
       })
     ],
     css: {
+      // loaderOptions: {
+      postcss: {
+        plugins: [postcss],
+      },
+
+      // },
       preprocessorOptions: {
         scss: {
           additionalData: `@import "@/styles/variables.scss";`

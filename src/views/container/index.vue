@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div @click="asds">
     <router-view />
     <p>{{ useUsersStore.ammoBalance }}sda{{ as }}s</p>
-    <img @click="asds" :src="$config.$hktest" alt="" />
+    <!-- <img @click="asds" :src="$config.$hktest" alt="" /> -->
     <asVVV :as="as" />
   </div>
 </template>
@@ -30,6 +30,8 @@ gettest()
 <style scoped lang="scss">
 p {
   color: rebeccapurple;
+  width: 1920px;
+  background-color: saddlebrown;
   @include Myflex();
 }
 </style>
