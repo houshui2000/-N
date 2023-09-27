@@ -9,11 +9,9 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 //  // props 解构
 import ReactivityTransform from '@vue-macros/reactivity-transform/vite'
-import px2rem from 'postcss-px2rem'
-const postcss = px2rem({
-  // 基准大小 baseSize，需要和rem.js中相同
-  remUnit: 10,
-});
+
+import postCssPxToRem from 'postcss-pxtorem'
+
 
 export default defineConfig((mode) => {
   const env = loadEnv(mode.mode, process.cwd())
@@ -34,7 +32,12 @@ export default defineConfig((mode) => {
     css: {
       // loaderOptions: {
       postcss: {
-        plugins: [postcss],
+        plugins: [
+          postCssPxToRem({
+            rootValue: 10,
+            propList: ['*'],
+          })
+        ],
       },
 
       // },
