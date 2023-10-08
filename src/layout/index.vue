@@ -1,6 +1,7 @@
 <template>
   <div>
     <NavVue />
+    <TopShiShiVue v-if="route.meta.gundong !== false" />
     <div class="center">
       <router-view />
     </div>
@@ -10,6 +11,9 @@
 <script setup lang="ts">
 import NavVue from './components/top/index.vue'
 import FooterVue from './components/footer/index.vue'
+import TopShiShiVue from './components/Topshishi/index.vue'
+import { useRoute } from 'vue-router'
+const route = useRoute()
 </script>
 <style lang="scss" scoped>
 .center {
