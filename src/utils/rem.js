@@ -4,9 +4,13 @@ const baseSize = 10;
 // 设置 rem 函数
 function setRem () {
   // 当前页面宽度相对于 1920宽的缩放比例，可根据自己需要修改。
-  let scale = document.querySelector("body").clientWidth
+  let body = document.querySelector("body")
+  let scale = body.clientWidth
   if (scale <= 1200) {
     scale = 1200
+    body.style.overflowX = 'auto'
+  } else {
+    body.style.overflowX = 'hidden'
   }
   const shiji = scale / 1920;
   console.log(scale)
