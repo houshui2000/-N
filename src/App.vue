@@ -9,11 +9,12 @@
 <style scoped lang="scss"></style>
 <style lang="scss">
 body {
-  overflow-x: hidden;
-  width: 100vw;
+  // overflow-x: hidden;
+  // width: 100vw;
 }
 body::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
 // 滚轮样式

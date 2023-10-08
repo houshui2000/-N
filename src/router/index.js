@@ -3,7 +3,8 @@ import childrenCase from './modules/case/index.js'
 const routes = [{
   path: '/',
   name: 'container',
-  component: () => import('@/views/container/index.vue'),
+  // component: () => import('@/views/container/index.vue'),
+  component: () => import('@/layout/index.vue'),
   props: true,
   // redirect: '/',
   children: [
