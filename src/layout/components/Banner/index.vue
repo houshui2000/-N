@@ -15,7 +15,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 
-let leftcc = ref(0) //定位位置
+let left = ref(0) //定位位置
 let list = ref([]) //无缝轮播列表
 let bannerScroll = ref(null) //获取bannerScroll的dom
 let count = ref(10) // 显示几个轮播页面
@@ -53,11 +53,12 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 #banner-s {
-  width: 100%;
+  width: 1920px;
   height: 300px;
   background-color: silver;
   display: flex;
   justify-content: center;
+
   .contain {
     width: 1800px;
     background-color: #008aff;
