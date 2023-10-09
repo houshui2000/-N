@@ -15,14 +15,12 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 
-console.log('修sdadasX')
-
-let lefts = ref(1433250) //定位位置
+let left= ref(0) //定位位置
 let list = ref([]) //无缝轮播列表
 let bannerScroll = ref(null) //获取bannerScroll的dom
 let count = ref(10) // 显示几个轮播页面
 const handleScroll = () => {
-  left.value -= 2
+  left.value -= 1
   let computedStyle = getComputedStyle(
     document.querySelectorAll('.bannerListDom')[0],
     null
@@ -49,7 +47,7 @@ onMounted(() => {
   }
   setInterval(() => {
     handleScroll()
-  }, 30)
+  }, 10)
 })
 </script>
 
