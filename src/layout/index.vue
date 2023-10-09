@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavVue />
-    <TopShiShiVue v-if="route.meta.gundong !== false" />
+    <!-- <TopShiShiVue v-if="route.meta.gundong !== false" /> -->
     <Banner v-if="route.meta.gundong !== false" />
     <div class="center">
       <router-view />
@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import NavVue from './components/top/index.vue'
 import FooterVue from './components/footer/index.vue'
-import TopShiShiVue from './components/Topshishi/index.vue'
+// import TopShiShiVue from './components/Topshishi/index.vue'
 import Banner from './components/Banner/index.vue'
 
 import { useRoute } from 'vue-router'
