@@ -3,7 +3,7 @@
     <div class="contain">
       <div class="bannerListBox">
         <div class="bannerListContent" ref="bannerScroll">
-          <div class="bannerListDom" v-for="(item,index) in list">
+          <div class="bannerListDom" v-for="(item, index) in list">
             <div class="bannerListDomActive">{{ item }}---{{ index }}</div>
           </div>
         </div>
@@ -13,23 +13,28 @@
 </template>
 
 <script setup>
-import {onMounted, ref, reactive} from "vue";
+import { onMounted, ref } from 'vue'
+console.log('修改XXX')
 
-let left = ref(0) //定位位置
+let left = ref(20) //定位位置
 let list = ref([]) //无缝轮播列表
 let bannerScroll = ref(null) //获取bannerScroll的dom
 let count = ref(10) // 显示几个轮播页面
 const handleScroll = () => {
   left.value -= 2
   let computedStyle = getComputedStyle(
-      document.querySelectorAll('.bannerListDom')[0],
-      null
+    document.querySelectorAll('.bannerListDom')[0],
+    null
   )
   let FanmianRight = computedStyle.marginRight.slice(0, -2)
   let FanmianWidth = computedStyle.width.slice(0, -2)
-  if (left.value <= -((parseFloat(FanmianRight) + parseFloat(FanmianWidth)) * count.value)) {
+  if (
+    left.value <=
+    -((parseFloat(FanmianRight) + parseFloat(FanmianWidth)) * count.value)
+  ) {
     list.value.splice(0, 10)
-    left.value += (parseFloat(FanmianRight) + parseFloat(FanmianWidth)) * count.value
+    left.value +=
+      (parseFloat(FanmianRight) + parseFloat(FanmianWidth)) * count.value
     for (let i = 0; i < 10; i++) {
       list.value.push(Math.random() * 10)
     }
@@ -45,7 +50,6 @@ onMounted(() => {
     handleScroll()
   }, 30)
 })
-
 </script>
 
 <style lang="scss" scoped>
@@ -59,7 +63,6 @@ onMounted(() => {
   .contain {
     width: 1800px;
     background-color: #008aff;
-
   }
 
   .bannerListBox {
@@ -99,9 +102,6 @@ onMounted(() => {
         }
       }
     }
-
-
   }
 }
-
 </style>
