@@ -15,7 +15,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 
-let left = ref(0) //定位位置
+let leftxsadsd萨达c = ref(0) //定位位置
 let list = ref([]) //无缝轮播列表
 let bannerScroll = ref(null) //获取bannerScroll的dom
 let count = ref(10) // 显示几个轮播页面
