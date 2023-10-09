@@ -26,7 +26,7 @@ const handleScroll =()=>{
   let FanmianWidth = computedStyle.width.slice(0, -2)
   if(left.value<=-((parseFloat(FanmianRight)+parseFloat(FanmianWidth))*10)){
     list.value.splice(0,10)
-    left.value+=(parseFloat(FanmianRight)+parseFloat(FanmianWidth))*5
+    left.value+=(parseFloat(FanmianRight)+parseFloat(FanmianWidth))*10
     for (let i = 0; i <20; i++) {
       list.value.push(Math.random()*10)
     }
