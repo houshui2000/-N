@@ -31,8 +31,6 @@ const handleScroll = () => {
     left.value <= -((parseFloat(FanmianRight) + parseFloat(FanmianWidth)) * 10)
   ) {
     list.value.splice(0, 10)
-    console.log(list.value)
-
     left.value += (parseFloat(FanmianRight) + parseFloat(FanmianWidth)) * 10
     for (let i = 0; i < 20; i++) {
       list.value.push(Math.random() * 10)
