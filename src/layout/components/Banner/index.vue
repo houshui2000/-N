@@ -3,7 +3,7 @@
     <div class="contain">
       <div class="bannerListBox">
         <div class="bannerListContent" ref="bannerScroll">
-          <div class="bannerListDom" v-for="(item, index) in list">
+          <div class="bannerListDom" v-for="(item,index) in list">
             <div class="bannerListDomActive">{{ item }}---{{ index }}</div>
           </div>
         </div>
@@ -13,7 +13,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref, reactive } from 'vue'
+import {onMounted, ref, reactive} from "vue";
+
 let left = ref(0)
 let list = ref([])
 let bannerScroll = ref(null)
@@ -21,18 +22,15 @@ let bannerScroll = ref(null)
 const handleScroll = () => {
   left.value -= 2
   let computedStyle = getComputedStyle(
-    document.querySelectorAll('.bannerListDom')[0],
-    null
+      document.querySelectorAll('.bannerListDom')[0],
+      null
   )
   let FanmianRight = computedStyle.marginRight.slice(0, -2)
   let FanmianWidth = computedStyle.width.slice(0, -2)
-
-  if (
-    left.value <= -((parseFloat(FanmianRight) + parseFloat(FanmianWidth)) * 10)
-  ) {
+  if (left.value <= -((parseFloat(FanmianRight) + parseFloat(FanmianWidth)) * 10)) {
     list.value.splice(0, 10)
     left.value += (parseFloat(FanmianRight) + parseFloat(FanmianWidth)) * 10
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10; i++) {
       list.value.push(Math.random() * 10)
     }
   }
@@ -45,21 +43,25 @@ onMounted(() => {
   }
   setInterval(() => {
     handleScroll()
-  }, 25)
+  }, 30)
 })
+
 </script>
 
 <style lang="scss" scoped>
 #banner-s {
   width: 1920px;
-  height: 200px;
+  height: 300px;
   background-color: silver;
   display: flex;
   justify-content: center;
+
   .contain {
     width: 1800px;
     background-color: #008aff;
+
   }
+
   .bannerListBox {
     width: 1680px;
     height: 200px;
@@ -67,8 +69,9 @@ onMounted(() => {
     overflow: hidden;
     background: #453293;
     position: relative;
+
     .bannerListContent {
-      min-width: 1680px;
+      width: 1680px;
       height: 200px;
       display: flex;
       position: absolute;
@@ -83,17 +86,22 @@ onMounted(() => {
 
         cursor: pointer;
         position: relative;
+
         &:hover .bannerListDomActive {
           transform: rotate3d(0, 1, 0, 180deg);
         }
+
         .bannerListDomActive {
           width: 150px;
           height: 200px;
-          transition: all 0.3s;
+          transition: transform 1s;
           background: yellow;
         }
       }
     }
+
+
   }
 }
+
 </style>
