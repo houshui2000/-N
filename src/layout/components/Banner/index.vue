@@ -18,9 +18,15 @@ let bannerScroll=ref(null)
 
 const handleScroll =()=>{
   left.value-=2
-  if(left.value<=-1700){
+  let computedStyle = getComputedStyle(
+      document.querySelectorAll('.bannerListDom')[0],
+      null
+  )
+  let FanmianRight = computedStyle.marginRight.slice(0, -2)
+  let FanmianWidth = computedStyle.width.slice(0, -2)
+  if(left.value<=-((parseFloat(FanmianRight)+parseFloat(FanmianWidth))*10)){
     list.value.splice(0,10)
-    left.value=0
+    left.value+=(parseFloat(FanmianRight)+parseFloat(FanmianWidth))*5
     for (let i = 0; i <20; i++) {
       list.value.push(Math.random()*10)
     }
@@ -74,6 +80,7 @@ onMounted(()=>{
         flex-shrink:0;
         transition: all .3s;
         cursor: pointer;
+        position: relative;
         &:hover{
           transform: rotate3d(0, 1, 0, 180deg);
         }
