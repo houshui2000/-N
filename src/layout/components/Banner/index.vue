@@ -16,7 +16,8 @@
 import { onMounted, ref } from 'vue'
 console.log('修改XXX')
 
-let left = ref(20) //定位位置
+let left = ref(0) //定位位置
+
 let list = ref([]) //无缝轮播列表
 let bannerScroll = ref(null) //获取bannerScroll的dom
 let count = ref(10) // 显示几个轮播页面
