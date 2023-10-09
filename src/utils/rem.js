@@ -13,7 +13,6 @@ function setRem () {
     body.style.overflowX = 'hidden'
   }
   const shiji = scale / 1920;
-  console.log(scale)
   // 设置页面根节点字体大小（“Math.min(scale, 2)” 指最高放大比例为2，可根据实际业务需求调整）
   document.documentElement.style.fontSize =
     baseSize * Math.min(shiji, 2) + "px";
