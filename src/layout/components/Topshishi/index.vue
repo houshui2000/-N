@@ -6,7 +6,7 @@
     </div>
     <div ref="sectionRight" class="section_right">
       <aside @mousemove="Mymousemove" @mouseleave="Mymouseleave" ref="asideMy">
-        <div v-for="(item, index) in createDAte" :key="index" class="fanmian">
+        <div v-for="(item, index) in createDate" :key="index" class="fanmian">
           <div class="fan_two">
             <div class="zheng">
               <img src="@/assets/images/test.png" alt="" />
@@ -26,7 +26,7 @@
 import { onMounted, ref } from 'vue'
 
 const asideMy = ref()
-const createDAte = ref([])
+const createDate = ref([])
 const sectionRight = ref()
 let time = null
 const scroll = () => {
@@ -38,7 +38,7 @@ const scroll = () => {
     cancelAnimationFrame(scroll)
     return
   }
-  const ZhongLeft = asideMyBIan - 1
+  const ZhongLeft = asideMyBIan - 2
   asideMy.value.style.left = `${ZhongLeft}px`
   time = requestAnimationFrame(scroll)
 }
@@ -46,13 +46,13 @@ const Mymousemove = () => {
   cancelAnimationFrame(time)
 }
 const Mymouseleave = () => {
-  // time = requestAnimationFrame(scroll)
+  time = requestAnimationFrame(scroll)
 }
 onMounted(() => {
   for (let i = 0; i < 10; i++) {
-    createDAte.value.push(i)
+    createDate.value.push(i)
   }
-  createDAte.value = [...createDAte.value, ...createDAte.value]
+  createDate.value = [...createDate.value, ...createDate.value]
   time = requestAnimationFrame(scroll)
 })
 </script>
