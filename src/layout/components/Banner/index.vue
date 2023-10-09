@@ -3,7 +3,9 @@
     <div class="contain">
         <div class="bannerListBox">
           <div class="bannerListContent" ref="bannerScroll">
-            <div class="bannerListDom active" v-for="(item,index) in list">{{ item }}---{{index}}</div>
+            <div class="bannerListDom" v-for="(item,index) in list">
+              <div class="bannerListDomActive">{{ item }}---{{index}}</div>
+            </div>
           </div>
         </div>
     </div>
@@ -75,14 +77,19 @@ onMounted(()=>{
       .bannerListDom{
         width:150px;
         height: 200px;
-        background: yellow;
         margin-right: 20px;
         flex-shrink:0;
-        transition: all .3s;
+
         cursor: pointer;
         position: relative;
-        &:hover{
+        &:hover .bannerListDomActive{
           transform: rotate3d(0, 1, 0, 180deg);
+        }
+        .bannerListDomActive{
+          width:150px;
+          height: 200px;
+          transition: all .3s;
+          background: yellow;
         }
       }
     }
