@@ -14,11 +14,8 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 
-<<<<<<< .mine
-let lexxx= ref(0) //定位位置
-=======
 let left = ref(0) //定位位置
->>>>>>> .theirs
+
 let list = ref([]) //无缝轮播列表
 let bannerScroll = ref(null) //获取bannerScroll的dom
 const asd = 'xxx'
