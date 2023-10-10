@@ -3,7 +3,7 @@
     <div class="contain">
       <div class="bannerListBox">
         <div class="bannerListContent" ref="bannerScroll">
-          <div class="bannerListDom" v-for="(item, index) in list">
+          <div class="bannerListDom" v-for="(item, index) in list" :key="index">
             <div class="bannerListDomActive">{{ item }}---{{ index }}</div>
           </div>
         </div>
@@ -11,13 +11,18 @@
     </div>
   </div>
 </template>
-
 <script setup>
 import { onMounted, ref } from 'vue'
 
+<<<<<<< .mine
 let lexxx= ref(0) //定位位置
+=======
+let left = ref(0) //定位位置
+>>>>>>> .theirs
 let list = ref([]) //无缝轮播列表
 let bannerScroll = ref(null) //获取bannerScroll的dom
+const asd = 'xxx'
+debugger
 let count = ref(10) // 显示几个轮播页面
 const handleScroll = () => {
   left.value -= 1

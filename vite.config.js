@@ -2,6 +2,7 @@
 import { defineConfig, loadEnv } from 'vite' // 帮手函数
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
+// element
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
@@ -11,8 +12,6 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import ReactivityTransform from '@vue-macros/reactivity-transform/vite'
 
 import postCssPxToRem from 'postcss-pxtorem'
-
-
 export default defineConfig((mode) => {
   const env = loadEnv(mode.mode, process.cwd())
   return {
