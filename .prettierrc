@@ -1,0 +1,29 @@
+{
+  "printWidth": 120,
+  "semi": false,
+  "endOfLine": "auto",
+  "singleQuote": true,
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "no-use-before-define": "off",
+  "vueIndentScriptAndStyle": false,
+  "jsxBracketSameLine:": true,
+  "htmlWhitespaceSensitivity": "ignore",
+  "wrapAttributes": true,
+  "per-const": "off",
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "parser": "html"
+      }
+    }
+  ],
+  "max-len": [
+    "error",
+    {
+      "code": 600
+    }
+  ]
+}

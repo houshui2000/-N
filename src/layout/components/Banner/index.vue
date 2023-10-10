@@ -13,28 +13,19 @@
 </template>
 <script setup>
 import { onMounted, ref } from 'vue'
-
 let left = ref(0) //定位位置
 let list = ref([]) //无缝轮播列表
 let bannerScroll = ref(null) //获取bannerScroll的dom
-const asd = 'xxx'
-debugger
 let count = ref(10) // 显示几个轮播页面
+
 const handleScroll = () => {
   left.value -= 1
-  let computedStyle = getComputedStyle(
-    document.querySelectorAll('.bannerListDom')[0],
-    null
-  )
+  let computedStyle = getComputedStyle(document.querySelectorAll('.bannerListDom')[0], null)
   let FanmianRight = computedStyle.marginRight.slice(0, -2)
   let FanmianWidth = computedStyle.width.slice(0, -2)
-  if (
-    left.value <=
-    -((parseFloat(FanmianRight) + parseFloat(FanmianWidth)) * count.value)
-  ) {
+  if (left.value <= -((parseFloat(FanmianRight) + parseFloat(FanmianWidth)) * count.value)) {
     list.value.splice(0, 10)
-    left.value +=
-      (parseFloat(FanmianRight) + parseFloat(FanmianWidth)) * count.value
+    left.value += (parseFloat(FanmianRight) + parseFloat(FanmianWidth)) * count.value
     for (let i = 0; i < 10; i++) {
       list.value.push(Math.random() * 10)
     }
