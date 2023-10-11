@@ -7,9 +7,16 @@ const childrenCase = [
     meta: {}
   },
   {
-    path: '/cardGO',
-    name: 'cardGO',
+    path: '/cardgo',
+    name: 'cardgo',
     component: () => import('@/views/cardGO/index.vue'),
+    props: true,
+    meta: {}
+  },
+  {
+    path: '/unboxing',
+    name: 'unboxing',
+    component: () => import('@/views/unboxing/index.vue'),
     props: true,
     meta: {}
   },

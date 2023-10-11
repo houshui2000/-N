@@ -8,17 +8,14 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // 配置name
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
-//  // props 解构
-import ReactivityTransform from '@vue-macros/reactivity-transform/vite'
 
 import postCssPxToRem from 'postcss-pxtorem'
 export default defineConfig((mode) => {
+  // eslint-disable-next-line no-undef
   const env = loadEnv(mode.mode, process.cwd())
   return {
     plugins: [
       vue(),
-      // props 解构
-      ReactivityTransform(),
       // 配置name
       vueSetupExtend(),
       AutoImport({
@@ -52,6 +49,7 @@ export default defineConfig((mode) => {
     resolve: {
       // 设置路径别名
       alias: {
+        // eslint-disable-next-line no-undef
         '@': path.resolve(__dirname, './src'),
         '*': path.resolve('')
       }
@@ -59,6 +57,7 @@ export default defineConfig((mode) => {
 
     server: {
       host: '0.0.0.0',
+
       port: env.VITE_PORT,
       open: env.VITE_OPEN,
       proxy: {
