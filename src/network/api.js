@@ -6,3 +6,10 @@ export function test() {
         method: 'post'
     })
 }
+
+export function weixinLogin() {
+    return axios({
+        url: '/login/wx',
+        method: 'post'
+    })
+}

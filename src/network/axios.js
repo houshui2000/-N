@@ -3,7 +3,8 @@ import originAxios from 'axios'
 export default function axios(option) {
 	return new Promise((resolve, reject) => {
 		const instance = originAxios.create({
-			baseURL: import.meta.env.VITE_APP_API_URL,
+			// baseURL: import.meta.env.VITE_APP_API_URL,
+			baseURL: 'http://172.16.1.137:8081',
 			timeout: 5000
 		});
 		instance.interceptors.request.use(config => {
