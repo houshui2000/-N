@@ -7,9 +7,10 @@ export function test() {
     })
 }
 
-export function weixinLogin() {
+export function weixinLogin(data) {
     return axios({
         url: '/login/wx',
-        method: 'post'
+        method: 'post',
+        data
     })
 }
