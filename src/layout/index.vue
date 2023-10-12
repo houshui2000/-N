@@ -32,7 +32,7 @@ const route = useRoute()
 watchEffect(() => {
   if (route.query.code) {
     console.log('dayin', route.query.code)
-    weixinLogin({ code: route.query.code }).then((res) => {
+    weixinLogin({ tencentCode: route.query.code }).then((res) => {
       console.log('接口參數', res)
     })
   }
