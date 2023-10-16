@@ -1,20 +1,40 @@
 <template>
   <div id="login" v-if="loginStore.loginWX">
     <div class="weixinBtn" @click="handleWinxinLogin">微信登录</div>
+    <div class="wxBox">
+      <wxlogin
+          v-if="appid && redirect_uri"
+          :appid="appid"
+          scope="snsapi_login"
+          :redirect_uri="redirect_uri"
+          :href="href"
+          :state="state"
+      ></wxlogin>
+    </div>
   </div>
 </template>
 
 <script setup>
 // import { useRouter } from 'vue-router'
-import { useStore } from '@/pinia'
-const { loginStore } = useStore()
+import wxlogin from 'vue-wxlogin'
+import {useStore} from '@/pinia'
+
+const {loginStore} = useStore()
 // const router = useRouter()
+
+let appid = 'wx9cb4b4cccc022d9e&redirect'
+let redirect_uri = `${encodeURI('https://www.95skins.com')}`
+let state = 'STATE#wechat_redirect'
+let href = '' // 自定义样式链接
+
 const handleWinxinLogin = () => {
-  window.open(
-    `https://open.weixin.qq.com/connect/qrconnect?appid=wx9cb4b4cccc022d9e&redirect_uri=${encodeURI(
-      'https://www.95skins.com'
-    )}&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect`
-  )
+  // window.open(
+  //   `https://open.weixin.qq.com/connect/qrconnect?appid=wx9cb4b4cccc022d9e&redirect_uri=${encodeURI(
+  //     'https://www.95skins.com'
+  //   )}&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect`
+  // )
+
+
 }
 </script>
 
@@ -33,6 +53,11 @@ const handleWinxinLogin = () => {
     padding: 20px;
     background: #453293;
     color: white;
+  }
+
+  .wxBox {
+    width: 500px;
+    height: 500px;
   }
 }
 </style>
