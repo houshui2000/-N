@@ -16,7 +16,7 @@
   height: 1110px;
   position: absolute;
   background: #018ef8;
-  top: 40px;
+  top: 110px;
   left: 0px;
   z-index: 1000;
 

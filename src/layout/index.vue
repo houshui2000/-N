@@ -43,7 +43,6 @@ watchEffect(() => {
 #homePC {
   background: black;
   .center {
-    // margin-top: 70px;
     min-height: 3000px;
     // background-color: sandybrown;
     background-color: rgb(15, 12, 16);

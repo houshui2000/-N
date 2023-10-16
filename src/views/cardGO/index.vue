@@ -8,6 +8,8 @@
 <script setup>
 import lunboVue from './components/LunBo/index.vue'
 import sectionVue from './section.vue'
+
+console.log('ddd')
 // import { loginmobile } from '@/network/api'
 // const as = async () => {
 //   const res = await loginmobile({

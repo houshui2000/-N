@@ -77,7 +77,7 @@ const scroll = () => {
   position: relative;
   position: absolute;
   left: 0px;
-  top: 70px;
+  top: 71px;
   z-index: 50;
   width: 100%;
   overflow: hidden;

@@ -34,7 +34,7 @@
         <div class="fontsize">4235345</div>
       </div>
       <div class="fen"></div>
-      <div class="nickName">昵称是七个字码</div>
+      <div class="nickName">昵称是七34个字码</div>
       <div class="upload"></div>
     </div>
     <!-- <div class="searchBox"></div> -->
