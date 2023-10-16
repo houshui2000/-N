@@ -2,7 +2,7 @@
   <div>
     <NavVue />
     <article class="layout_article">
-      <Banner v-if="route.meta.gundong !== false" />
+      <!-- <Banner v-if="route.meta.gundong !== false" /> -->
       <div class="center">
         <router-view />
       </div>
@@ -15,7 +15,7 @@
 import { watchEffect } from 'vue'
 import NavVue from './components/top/index.vue'
 import FooterVue from './components/footer/index.vue'
-import Banner from './components/Banner/index.vue'
+// import Banner from './components/Banner/index.vue'
 import { useRoute } from 'vue-router'
 import Login from '@/components/Login/index.vue'
 import { weixinLogin } from '@/network/api.js'
