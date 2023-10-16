@@ -41,11 +41,15 @@ watchEffect(() => {
 <style lang="scss" scoped>
 .center {
   min-height: 1000px;
-  background-color: sandybrown;
+  // background-color: black;
+  // background:
+  //   url(<path-to-image>),
+  //   lightgray 50% / cover no-repeat;
+  // background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 20%, black 80%);
+  background-color: rgb(15, 12, 16);
 }
+// background-image: linear-gradient(to top, #fad0c4 0%, #fad0c4 1%, #ffd1ff 100%);
 .layout_article {
-  padding: 0 20px;
   overflow: hidden;
-  background-color: cadetblue;
 }
 </style>

@@ -32,7 +32,6 @@
 <script setup></script>
 <style lang="scss" scoped>
 footer {
-  background-color: cadetblue;
   padding: 50px 0;
   width: 1920px;
   .footer_top {
