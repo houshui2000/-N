@@ -5,7 +5,7 @@ export const loginDataInfo = defineStore('loginDataInfo', {
   state: () => {
     return {
       code: '12344',
-      loginWX: true
+      loginWX: false
     }
   },
 })

@@ -1,20 +1,21 @@
 <template>
-  <div>
+  <div  id="homePC">
     <NavVue />
-    <article class="layout_article">
-      <Banner v-if="route.meta.gundong !== false" />
+<!--      <Banner v-if="route.meta.gundong !== false" />-->
       <div class="center">
+        <Carousel/>
         <router-view />
       </div>
-    </article>
     <FooterVue />
     <Login />
+
   </div>
 </template>
 <script setup>
 import { watchEffect } from 'vue'
 import NavVue from './components/top/index.vue'
 import FooterVue from './components/footer/index.vue'
+import Carousel from '@/components/Carousel/index.vue'
 import Banner from './components/Banner/index.vue'
 import { useRoute } from 'vue-router'
 import Login from '@/components/Login/index.vue'
@@ -39,13 +40,14 @@ watchEffect(() => {
 })
 </script>
 <style lang="scss" scoped>
-.center {
-  min-height: 1000px;
+#homePC{
+  background: black;
+  .center {
+  margin-top: 70px;
+  min-height: 3000px;
   background-color: sandybrown;
+    position: relative;
 }
-.layout_article {
-  padding: 0 20px;
-  overflow: hidden;
-  background-color: cadetblue;
 }
+
 </style>

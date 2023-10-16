@@ -10,6 +10,7 @@ export default function axios(option) {
 		instance.interceptors.request.use(config => {
 			//token
 			config.headers.Authorization = sessionStorage.getItem('token')
+			config.headers['Client-Type'] = 'PC'
 			return config
 		}, error => {
 			return error
