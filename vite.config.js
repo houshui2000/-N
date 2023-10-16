@@ -8,8 +8,14 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // 配置name
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
+//  svg
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 import postCssPxToRem from 'postcss-pxtorem'
+
+// eslint-disable-next-line no-undef
+// const pathSrc = path.resolve(__dirname, 'src');
+
 export default defineConfig((mode) => {
   // eslint-disable-next-line no-undef
   const env = loadEnv(mode.mode, process.cwd())
@@ -23,6 +29,12 @@ export default defineConfig((mode) => {
       }),
       Components({
         resolvers: [ElementPlusResolver()],
+      }),
+
+      createSvgIconsPlugin({
+        // eslint-disable-next-line no-undef
+        iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')],
+        symbolId: 'icon-[dir]-[name]'
       })
     ],
     css: {
@@ -57,9 +69,9 @@ export default defineConfig((mode) => {
 
     server: {
       host: '0.0.0.0',
-
       port: env.VITE_PORT,
       open: env.VITE_OPEN,
+      cors: true,
       proxy: {
         [env.VITE_API_PREFIX]: {
           target: env.VITE_APP_API_URL,

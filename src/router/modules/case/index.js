@@ -11,14 +11,18 @@ const childrenCase = [
     name: 'cardgo',
     component: () => import('@/views/cardGO/index.vue'),
     props: true,
-    meta: {}
+    meta: {
+      immediate: true // 路由显示
+    }
   },
   {
     path: '/unboxing',
     name: 'unboxing',
     component: () => import('@/views/unboxing/index.vue'),
     props: true,
-    meta: {}
+    meta: {
+      immediate: true // 路由显示
+    }
   },
   {
     path: '/helpCenter',

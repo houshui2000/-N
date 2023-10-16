@@ -6,10 +6,15 @@
         <div class="logoImg"></div>
       </div>
       <div class="navContent">
-        <div class="navContent-box" :class="{active:navIndex===index}" v-for="(item,index) in navList" :key="item.name"
-             @click="handleNavOpen(item,index)">
+        <div
+          class="navContent-box"
+          :class="{ active: navIndex === index }"
+          v-for="(item, index) in navList"
+          :key="item.name"
+          @click="handleNavOpen(item, index)"
+        >
           {{ item.name }}
-          <div class="navContent-bottom" v-show="navIndex===index" ref="navBorder"></div>
+          <div class="navContent-bottom" v-show="navIndex === index" ref="navBorder"></div>
         </div>
       </div>
     </div>
@@ -23,24 +28,29 @@
         <div class="pay"></div>
       </div>
       <div class="dMoneyBox">
-        <div class="dMoney"></div>
+        <div class="dMoney">
+          <SvgIcon size="18px" icon-class="DBi" />
+        </div>
         <div class="fontsize">4235345</div>
       </div>
       <div class="fen"></div>
       <div class="nickName">昵称是七个字码</div>
-      <div class="upload">
-
-      </div>
+      <div class="upload"></div>
     </div>
-    <div class="searchBox"></div>
+    <!-- <div class="searchBox"></div> -->
   </div>
 </template>
 <script setup>
-import {ref, onMounted, reactive} from "vue";
+import { ref, onMounted, reactive } from 'vue'
+import SvgIcon from '@/components/SvgIcon/index.vue'
 
-let navList = reactive([{name: "卡GO", push: ''}, {name: "飞升计划", push: ''}, {name: "啦啦啦计划", push: ''}]);
-let navIndex = ref(0);
-let navBorder = ref(null);
+let navList = reactive([
+  { name: '卡GO', push: '' },
+  { name: '飞升计划', push: '' },
+  { name: '啦啦啦计划', push: '' }
+])
+let navIndex = ref(0)
+let navBorder = ref(null)
 const handleNavOpen = (item, index) => {
   navIndex.value = index
   // let dom=document.querySelectorAll('.navContent-box')[navIndex.value].getBoundingClientRect()
@@ -49,17 +59,14 @@ const handleNavOpen = (item, index) => {
   // let navBottom=(dom.x+dom.width/2-navBorderWidth.width/2-logo)
   // navBorder.value.style.left=34+'px'
 }
-const handleSeachShow=()=>{
-
-}
-onMounted(() => {
-})
+const handleSeachShow = () => {}
+onMounted(() => {})
 </script>
 <style lang="scss" scoped>
 #navTop {
   width: 1920px;
   height: 70px;
-  background: rgba(#000,0.6);
+  background: rgba(#000, 0.6);
   background-size: contain;
   display: flex;
   justify-content: space-between;
@@ -85,7 +92,6 @@ onMounted(() => {
         background-size: contain;
         margin-left: 58px;
       }
-
     }
 
     .navContent {
@@ -102,12 +108,12 @@ onMounted(() => {
         color: white;
         font-size: 16px;
         font-weight: 400;
-        font-family: "Alibaba PuHuiTi";
+        font-family: 'Alibaba PuHuiTi';
         cursor: pointer;
         display: flex;
         flex-direction: column;
         position: relative;
-        transition: all .3s;
+        transition: all 0.3s;
 
         &.active {
           font-weight: 700;
@@ -123,9 +129,7 @@ onMounted(() => {
           left: 50%;
           margin-left: -16px;
         }
-
       }
-
     }
   }
 
@@ -202,8 +206,9 @@ onMounted(() => {
       .dMoney {
         width: 24px;
         height: 24px;
-        background: url($gxsDMoney) no-repeat center;
-        background-size: contain;
+        @include Myflex();
+        // background: url($gxsDMoney) no-repeat center;
+        // background-size: contain;
         margin-left: 11px;
       }
 
@@ -213,15 +218,14 @@ onMounted(() => {
         font-family: 'PingFang SC';
         color: white;
         margin-left: 10px;
-        font-weight: 600
+        font-weight: 600;
       }
-
     }
 
     .fen {
       margin: 0 30px;
       height: 18px;
-      border-right: 1px solid #343B65;
+      border-right: 1px solid #343b65;
     }
 
     .nickName {
@@ -243,18 +247,18 @@ onMounted(() => {
       overflow: hidden;
       border-radius: 50%;
       background: #453293;
-      margin-left: 14px;;
-
+      margin-left: 14px;
     }
   }
 
-  .searchBox{
+  .searchBox {
     width: 1920px;
     height: 70px;
     position: absolute;
     top: 0;
     left: 0;
-    background: rgba(#000,.8);
+    // background: rgba(#000, 0.6);
+
     z-index: 100;
   }
 }
