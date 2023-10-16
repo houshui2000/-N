@@ -98,29 +98,32 @@ const props = defineProps({
         height: 28px;
         background: linear-gradient(90deg, #2d42ff 0%, #df00c9 96.64%);
         border-radius: 6px;
+        @include Myflex();
       }
       .left_bott {
         padding: 2px 10px;
         @include Myflex();
-      }
-      .D_bi {
-        display: inline-block;
-        height: 28px;
-        width: 18px;
-        margin-right: 15px;
-      }
-      .jin {
-        line-height: 28px;
-        height: 100%;
-        height: 28px;
-        display: inline-block;
-        color: white;
-        > i {
-          opacity: 0.6;
-          color: white;
-          text-decoration: line-through;
 
-          margin-right: 6px;
+        .D_bi {
+          display: inline-block;
+          height: 28px;
+          width: 18px;
+          margin-right: 15px;
+          @include Myflex();
+        }
+        .jin {
+          line-height: 28px;
+          height: 100%;
+          height: 28px;
+          display: inline-block;
+          color: white;
+          > i {
+            opacity: 0.6;
+            color: white;
+            text-decoration: line-through;
+
+            margin-right: 6px;
+          }
         }
       }
       .jian {

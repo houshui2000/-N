@@ -29,7 +29,7 @@
       </div>
       <div class="dMoneyBox">
         <div class="dMoney">
-          <SvgIcon size="18px" icon-class="DBi" />
+          <SvgIcon size="22px" icon-class="DBi" />
         </div>
         <div class="fontsize">4235345</div>
       </div>
