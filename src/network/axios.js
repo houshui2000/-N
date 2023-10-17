@@ -14,7 +14,7 @@
 //     })
 //     // 接口错误拦截
 //     instance.interceptors.response.use(res => {
-//       console.log(res)
+//       console.log(res, 'res')
 //       if (res.data.status == 200) {
 //         return res.data
 //       }
@@ -25,7 +25,7 @@
 //       //   return Promise.reject(res)
 //       // }
 //     }, (err) => {
-//       console.log(err.response)
+//       console.log(err.response, 'err.response')
 //       return Promise.reject(err)
 //     })
 //     //传入对象进行网络请求
@@ -40,12 +40,16 @@
 import axios from 'axios'
 const service = axios.create({
   baseURL: import.meta.env.VITE_APP_API_URL,
+  // baseURL: 'http://172.16.1.137:8081',
   timeout: 5000 // request timeout
 })
 
 // request interceptor 请求拦截器
 service.interceptors.request.use((config) => {
-  config.headers.Authorization = sessionStorage.getItem('token')
+  // config.headers.Authorization = sessionStorage.getItem('token')
+  config.headers.Authorization = 'f22bdc5e-178a-485e-82b6-5b89a3650ac7'
+
+  config.headers['Client-Type'] = 'pc'
   return config
 }, function (error) {
   return Promise.reject(error)

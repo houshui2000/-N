@@ -29,7 +29,7 @@
       </div>
       <div class="dMoneyBox">
         <div class="dMoney">
-          <SvgIcon size="18px" icon-class="DBi" />
+          <!-- <SvgIcon size="18px" icon-class="DBi" /> -->
         </div>
         <div class="fontsize">4235345</div>
       </div>
@@ -42,7 +42,7 @@
 </template>
 <script setup>
 import { ref, onMounted, reactive } from 'vue'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+// import SvgIcon from '@/components/SvgIcon/index.vue'
 
 let navList = reactive([
   { name: '卡GO', push: '' },
@@ -207,8 +207,8 @@ onMounted(() => {})
         width: 24px;
         height: 24px;
         @include Myflex();
-        // background: url($gxsDMoney) no-repeat center;
-        // background-size: contain;
+        background: url($gxsDMoney) no-repeat center;
+        background-size: contain;
         margin-left: 11px;
       }
 

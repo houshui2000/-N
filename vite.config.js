@@ -71,15 +71,17 @@ export default defineConfig((mode) => {
       host: '0.0.0.0',
       port: env.VITE_PORT,
       open: env.VITE_OPEN,
-      cors: true,
+      // cors: true,
       proxy: {
-        [env.VITE_API_PREFIX]: {
+        '/api': {
           target: env.VITE_APP_API_URL,
           ws: true,
           changeOrigin: true,
-          rewrite: (path) => path.replace(new RegExp(env.VITE_API_PREFIX, 'i'), '')
+          // rewrite: (path) => path.replace(new RegExp(env.VITE_API_PREFIX, 'i'), '')
+          rewrite: (path) => path.replace(/^\/api/, ''),
         }
       }
+
     },
     build: {
       chunkSizeWarningLimit: 10240,
