@@ -1,12 +1,13 @@
 <template>
   <div>
     <div class="block text-center">
-      <el-carousel height="800px">
+      <el-carousel>
         <el-carousel-item v-for="item in carouselUtem" :key="item">
           <!-- <h3 class="small justify-center" text="2xl">{{ item }}</h3> -->
           <div class="lunbo">
-            {{ item }}
+            <!-- {{ item }} -->
             <img :src="item.url" alt="" />
+            <!-- <img src="@/assets/images/carggo/lunbo_one.png" alt="" /> -->
           </div>
         </el-carousel-item>
       </el-carousel>
@@ -14,7 +15,7 @@
   </div>
 </template>
 <script setup>
-import ScrollZiMuVue from '../scrollZiMu/index.vue'
+// import ScrollZiMuVue from '../scrollZiMu/index.vue'
 import { indexbanner } from '@/network/api'
 import { ref } from 'vue'
 const carouselUtem = ref([])
@@ -27,6 +28,9 @@ creat()
 <style lang="scss" scoped>
 :deep(.el-carousel__indicators) {
   bottom: 250px;
+}
+:deep(.el-carousel__container) {
+  height: 800px !important;
 }
 .block {
   position: relative;

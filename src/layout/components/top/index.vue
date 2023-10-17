@@ -65,7 +65,9 @@ onMounted(() => {})
 </script>
 <style lang="scss" scoped>
 #navTop {
-  width: 1920px;
+  // width: 1920px;
+  width: 100%;
+
   height: 70px;
   background: rgba(#000, 0.6);
   background-size: contain;

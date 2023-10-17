@@ -106,8 +106,8 @@ const props = defineProps({
 
         .D_bi {
           display: inline-block;
-          height: 28px;
-          width: 28px;
+          height: 18px;
+          width: 18px;
           margin-right: 15px;
           @include Myflex();
         }
