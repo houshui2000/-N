@@ -7,11 +7,11 @@
       </div>
       <div class="navContent">
         <div
-          class="navContent-box"
-          :class="{ active: navIndex === index }"
-          v-for="(item, index) in navList"
-          :key="item.name"
-          @click="handleNavOpen(item, index)"
+            class="navContent-box"
+            :class="{ active: navIndex === index }"
+            v-for="(item, index) in navList"
+            :key="item.name"
+            @click="handleNavOpen(item, index)"
         >
           {{ item.name }}
           <div class="navContent-bottom" v-show="navIndex === index" ref="navBorder"></div>
@@ -29,7 +29,7 @@
       </div>
       <div class="dMoneyBox">
         <div class="dMoney">
-          <SvgIcon size="22px" icon-class="DBi" />
+          <SvgIcon size="22px" icon-class="DBi"/>
         </div>
         <div class="fontsize">4235345</div>
       </div>
@@ -41,13 +41,13 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, reactive } from 'vue'
+import {ref, onMounted, reactive} from 'vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 
 let navList = reactive([
-  { name: '卡GO', push: '' },
-  { name: '飞升计划', push: '' },
-  { name: '啦啦啦计划', push: '' }
+  {name: '卡GO', push: ''},
+  {name: '飞升计划', push: ''},
+  {name: '啦啦啦计划', push: ''}
 ])
 let navIndex = ref(0)
 let navBorder = ref(null)
@@ -59,8 +59,10 @@ const handleNavOpen = (item, index) => {
   // let navBottom=(dom.x+dom.width/2-navBorderWidth.width/2-logo)
   // navBorder.value.style.left=34+'px'
 }
-const handleSeachShow = () => {}
-onMounted(() => {})
+const handleSeachShow = () => {
+}
+onMounted(() => {
+})
 </script>
 <style lang="scss" scoped>
 #navTop {
