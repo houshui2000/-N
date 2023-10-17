@@ -8,7 +8,7 @@
         <div class="D_bi_bott">
           <div class="left_bott">
             <div class="D_bi">
-              <SvgIcon size="18px" icon-class="DBi" />
+              <SvgIcon size="28px" icon-class="DBi" />
             </div>
             <div class="jin">
               <i v-show="props.price !== ''">{{ props.price }}</i>
@@ -107,7 +107,7 @@ const props = defineProps({
         .D_bi {
           display: inline-block;
           height: 28px;
-          width: 18px;
+          width: 28px;
           margin-right: 15px;
           @include Myflex();
         }

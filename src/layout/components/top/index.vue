@@ -34,7 +34,7 @@
         <div class="fontsize">4235345</div>
       </div>
       <div class="fen"></div>
-      <div class="nickName">昵称是七个字码</div>
+      <div class="nickName">昵称是七34个字码</div>
       <div class="upload"></div>
     </div>
     <!-- <div class="searchBox"></div> -->
@@ -59,6 +59,7 @@ const handleNavOpen = (item, index) => {
   // let navBottom=(dom.x+dom.width/2-navBorderWidth.width/2-logo)
   // navBorder.value.style.left=34+'px'
 }
+
 const handleSeachShow = () => {}
 onMounted(() => {})
 </script>
@@ -206,7 +207,7 @@ onMounted(() => {})
       .dMoney {
         width: 24px;
         height: 24px;
-        @include Myflex();
+        // @include Myflex();
         background: url($gxsDMoney) no-repeat center;
         background-size: contain;
         margin-left: 11px;

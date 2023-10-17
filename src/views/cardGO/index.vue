@@ -9,6 +9,7 @@
 import lunboVue from './components/LunBo/index.vue'
 import sectionVue from './section.vue'
 // import { registernormal } from '@/network/api'
+
 // const as = async () => {
 //   // await code('13075300312')
 //   // const res = await registernormal({
