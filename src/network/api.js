@@ -22,3 +22,11 @@ export const loginmobile = (data) => {
     data
   })
 }
+
+export const getBannner = (params) => {
+  return service({
+    url: 'index/banner',
+    method: 'get',
+    params
+  })
+}

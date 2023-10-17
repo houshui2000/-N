@@ -40,12 +40,14 @@
 import axios from 'axios'
 const service = axios.create({
   baseURL: import.meta.env.VITE_APP_API_URL,
+  baseURL: 'http://172.16.1.137:8081',
   timeout: 5000 // request timeout
 })
 
 // request interceptor 请求拦截器
 service.interceptors.request.use((config) => {
   config.headers.Authorization = sessionStorage.getItem('token')
+  config.headers['Client-Type'] = 'pc'
   return config
 }, function (error) {
   return Promise.reject(error)

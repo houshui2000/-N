@@ -74,8 +74,7 @@ const scroll = () => {
 <style lang="scss" scoped>
 .zuiwai {
   $LunBo_height: 40px;
-  position: relative;
-  position: absolute;
+  position: fixed;
   left: 0px;
   top: 71px;
   z-index: 50;
