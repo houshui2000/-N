@@ -47,8 +47,7 @@ const handleBannerShow = () => {
 
 const handleCarouselScroll = () => {
   let offsetTop = Number(boxRef.value.offsetTop - 1)
-  let height=Number(document.querySelector('.content').getBoundingClientRect().height)
-  console.log(offsetTop)
+  // let height=Number(document.querySelector('.content').getBoundingClientRect().height)
   if(offsetTop<=-2520){
     for (let i = 0; i < 20; i++) {
       list.value.push(i)
