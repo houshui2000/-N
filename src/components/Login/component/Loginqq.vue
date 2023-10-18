@@ -1,5 +1,5 @@
 <template>
-  <div id="LoginQQ"  v-if="loginStore.loginState==='qq'">
+  <div id="LoginQQ">
       qq登录详情
   </div>
 </template>

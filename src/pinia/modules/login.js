@@ -7,6 +7,7 @@ export const loginDataInfo = defineStore('loginDataInfo', {
       code: '12344',
       login:false,
       loginState: 'phone',
+      registerState:'other'
     }
   },
   // getters:{

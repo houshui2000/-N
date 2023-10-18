@@ -39,25 +39,45 @@
           <div @click='handleLogin'>登录</div>
           <div>昵称是七个字吗</div>
         </div>
-        <div class='uploadImg'></div>
+        <div class='uploadImg'>
+          <div class='dian'></div>
+          <div class='uploadPhoto'>
+            <uploadAvatar/>
+          </div>
+        </div>
         <div class='uploadContent'>
-
+          <div class='uploadBox'>
+            <div class='uploadBox-img'></div>
+            <div class='nickName'>昵称是七个字吗</div>
+          </div>
+          <div class='promotionBtn'></div>
+          <div class='IconBox'>
+            <div class='iconDiv'>
+              <div class='icon'></div>
+              <div class='text'>掌上卡竞</div>
+            </div>
+            <div class='iconDiv'>
+              <div class='icon'></div>
+              <div class='text'>退出登录</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-<!--  登录组件  -->
-    <Login/>
+    <!--  登录组件  -->
+    <Login />
 
   </div>
 </template>
 <script setup>
 import { ref, onMounted, reactive } from 'vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
-import Login from  '@/components/Login/index.vue'
-import {useStore} from '@/pinia'
+import Login from '@/components/Login/index.vue'
+import { useStore } from '@/pinia'
+import uploadAvatar from '../uploadAvatar/index.vue'
 
-const {loginStore} = useStore()
+const { loginStore } = useStore()
 
 let navList = reactive([
   { name: '卡GO', push: '' },
@@ -77,8 +97,8 @@ const handleNavOpen = (item, index) => {
 const handleSeachShow = () => {
 }
 
-const handleLogin=()=>{
-  loginStore.login=true
+const handleLogin = () => {
+  loginStore.login = true
 }
 onMounted(() => {
 })
@@ -256,9 +276,11 @@ onMounted(() => {
       align-items: center;
       position: relative;
       cursor: pointer;
-      &:hover .uploadContent{
-        height: 100px;
+
+      &:hover .uploadContent {
+        height: 240px;
       }
+
       .uploadText {
         width: 101px;
         height: 70px;
@@ -273,23 +295,127 @@ onMounted(() => {
       }
 
       .uploadImg {
-        width: 31px;
-        height: 31px;
-        overflow: hidden;
+        width: 34px;
+        height: 34px;
+        //overflow: hidden;
         border-radius: 50%;
-        background: #453293;
+        background: url($gxsavatar) no-repeat center;
+        background-size: contain;
         margin-left: 14px;
+        position: relative;
+
+        .dian {
+          width: 7px;
+          height: 7px;
+          background: url($gxsdian) no-repeat center;
+          background-size: contain;
+          position: absolute;
+          top: 2px;
+          right: 2px;
+          z-index: 9;
+        }
+
+        .uploadPhoto {
+          width: 30px;
+          height: 30px;
+          overflow: hidden;
+          border-radius: 50%;
+          background: yellow;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          margin-top: -15px;
+          margin-left: -15px;
+        }
       }
-      .uploadContent{
-        width: 200px;
+
+      .uploadContent {
+        width: 280px;
         height: 0px;
         position: absolute;
         background: yellow;
         top: 70px;
-        right: -27px;
+        right: 0px;
         overflow: hidden;
-        transition: all .3s;
+        transition: height .3s;
+        background: url($gxsuploadContent) no-repeat center;
+        background-size: 280px 240px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
+        .uploadBox {
+          width: 280px;
+          height: 44px;
+          display: flex;
+          margin-top: 23px;
+
+          .uploadBox-img {
+            width: 44px;
+            height: 44px;
+            background: url($gxsavatar) no-repeat center;
+            background-size: contain;
+            background: yellow;
+            border-radius: 50%;
+            margin-left: 20px;
+          }
+
+          .nickName {
+            width: 198px;
+            height: 44px;
+            line-height: 44px;
+            color: white;
+            font-size: 16px;
+            font-weight: 400;
+            font-family: 'Alibaba PuHuiTi';
+            margin-left: 18px;
+          }
+        }
+
+        .promotionBtn {
+          width: 123px;
+          height: 38px;
+          background: url($gxspromotionBtn) no-repeat center;
+          background-size: 100% 100%;
+          margin-top: 29px;
+        }
+
+        .IconBox {
+          width: 242px;
+          height: 40px;
+          display: flex;
+          justify-content: center;
+          margin-top: 49px;
+          .iconDiv {
+            width: 118px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 40px;
+            font-family: 'PingFang SC';
+            font-size: 14px;
+            font-weight: 400;
+            text-align: left;
+            color: #999;
+            &:nth-child(2){
+              margin-left: 8px;
+            }
+            &:nth-child(2) .icon{
+              background: url($gxsexitIcon) no-repeat center;
+              background-size: contain;
+            }
+            .icon {
+              width: 20px;
+              height: 20px;
+              background: url($gxsqrcardIcon) no-repeat center;
+              background-size: contain;
+            }
+            .text{
+              margin-left: 12px;
+            }
+          }
+        }
       }
     }
 
