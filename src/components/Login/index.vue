@@ -29,18 +29,9 @@ import LoginQQ from '@/components/Login/component/Loginqq.vue'
 const { loginStore } = useStore()
 
 const handleLoginBtn =(res)=>{
-  console.log(res)
   loginStore.loginState=res
-  // if(res==='phone'){
-  //
-  // }else if(res==='password'){
-  //
-  // }else if(res==='wx'){
-  //   loginStore.loginWX=true
-  // }else if(res==='qq'){
-  //
-  // }
 }
+
 
 </script>
 

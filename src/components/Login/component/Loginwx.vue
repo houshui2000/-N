@@ -5,7 +5,7 @@
       <wxlogin
         v-if="appid && redirect_uri"
         :appid="appid"
-        scope="swap_login"
+        scope="snsapi_login"
         :redirect_uri="redirect_uri"
         :href="href"
         :state="state"
