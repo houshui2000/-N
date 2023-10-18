@@ -1,11 +1,10 @@
 <template>
-  <div id="homePC">
+  <div id='homePC'>
     <NavVue />
     <Carousel />
     <ScrollZiMuVue
-        title="党政干部队伍建设的《三大纪律》分别为：一切从实际出发、正确执行党的政策、实行民主集中制。《八项注意》分别为：同劳动同食堂、待人和气、办事公道、买卖公平、如实反映情况、提高政治水平、工作要同群众商量、没有调查没有发言权。"
-    />
-    <div class="center">
+      title='党政干部队伍建设的《三大纪律》分别为：一切从实际出发、正确执行党的政策、实行民主集中制。《八项注意》分别为：同劳动同食堂、待人和气、办事公道、买卖公平、如实反映情况、提高政治水平、工作要同群众商量、没有调查没有发言权。' />
+    <div class='center'>
       <router-view />
     </div>
     <FooterVue />
@@ -22,7 +21,8 @@ import Carousel from '@/components/Carousel/index.vue'
 import { useRoute } from 'vue-router'
 import Login from '@/components/Login/index.vue'
 import { weixinLogin } from '@/network/api.js'
-import ScrollZiMuVue from "@/views/cardGO/components/scrollZiMu/index.vue";
+import ScrollZiMuVue from '@/views/cardGO/components/scrollZiMu/index.vue'
+
 const route = useRoute()
 
 // watch(()=>route.query.code,(value)=>{
@@ -42,9 +42,13 @@ watchEffect(() => {
   }
 })
 </script>
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 #homePC {
   background: black;
+  width: 1920px;
+  margin: auto;
+  overflow: hidden;
+
   .center {
     min-height: 3000px;
     // background-color: sandybrown;

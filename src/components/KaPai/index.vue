@@ -8,7 +8,7 @@
         <div class="D_bi_bott">
           <div class="left_bott">
             <div class="D_bi">
-              <SvgIcon size="18px" icon-class="DBi" />
+              <SvgIcon size="28px" icon-class="DBi" />
             </div>
             <div class="jin">
               <i v-show="props.price !== ''">{{ props.price }}</i>
@@ -35,7 +35,7 @@ const props = defineProps({
   munch: {
     type: String,
     default: ''
-  }, //前
+  }, //钱哦
   title: {
     type: String,
     default: 'adasd'
@@ -106,7 +106,7 @@ const props = defineProps({
 
         .D_bi {
           display: inline-block;
-          height: 28px;
+          height: 18px;
           width: 18px;
           margin-right: 15px;
           @include Myflex();
@@ -129,7 +129,6 @@ const props = defineProps({
       .jian {
         padding: 5px;
         margin-left: 7px;
-        width: 43px;
         height: 28px;
         border-radius: 4px;
         color: white;

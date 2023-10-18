@@ -16,7 +16,6 @@ const { useUsersStore } = useStore()
 const as = ref('5555')
 
 const gettest = () => {
-  console.log(useUsersStore.ammoBalance)
   test().then(result => {
     console.log(result)
   })

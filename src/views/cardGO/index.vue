@@ -8,16 +8,24 @@
 <script setup>
 import lunboVue from './components/LunBo/index.vue'
 import sectionVue from './section.vue'
+// import { registernormal } from '@/network/api'
 
-console.log('ddd')
-// import { loginmobile } from '@/network/api'
 // const as = async () => {
-//   const res = await loginmobile({
-//     mobile: '17686742621',
+//   // await code('13075300312')
+//   // const res = await registernormal({
+//   //   mobile: '13075300312',
+//   //   password: '111111',
+//   //   code: '123456'
+//   // })
+//   // console.log(res)
+//   // const res = await loginmobile()
+//   // console.log(res, 'xx')
+//   const res = await registernormal({
+//     mobile: '13075300312',
 //     password: '111111',
 //     code: '123456'
 //   })
-//   console.log(res, 'xx')
+//   console.log(res)
 // }
 // as()
 </script>

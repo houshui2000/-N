@@ -1,53 +1,53 @@
 <template>
-  <div id="navTop">
+  <div id='navTop'>
     <!--  左边  -->
-    <div class="left">
-      <div class="logo">
-        <div class="logoImg"></div>
+    <div class='left'>
+      <div class='logo'>
+        <div class='logoImg'></div>
       </div>
-      <div class="navContent">
+      <div class='navContent'>
         <div
-            class="navContent-box"
-            :class="{ active: navIndex === index }"
-            v-for="(item, index) in navList"
-            :key="item.name"
-            @click="handleNavOpen(item, index)"
+          class='navContent-box'
+          :class='{ active: navIndex === index }'
+          v-for='(item, index) in navList'
+          :key='item.name'
+          @click='handleNavOpen(item, index)'
         >
           {{ item.name }}
-          <div class="navContent-bottom" v-show="navIndex === index" ref="navBorder"></div>
+          <div class='navContent-bottom' v-show='navIndex === index' ref='navBorder'></div>
         </div>
       </div>
     </div>
     <!--  右边  -->
-    <div class="right">
-      <div class="search" @click="handleSeachShow"></div>
-      <div class="download"></div>
-      <div class="cardMoneyBox">
-        <div class="cardMoney"></div>
-        <div class="fontsize">4235345</div>
-        <div class="pay"></div>
+    <div class='right'>
+      <div class='search' @click='handleSeachShow'></div>
+      <div class='download'></div>
+      <div class='cardMoneyBox'>
+        <div class='cardMoney'></div>
+        <div class='fontsize'>4235345</div>
+        <div class='pay'></div>
       </div>
-      <div class="dMoneyBox">
-        <div class="dMoney">
-          <SvgIcon size="22px" icon-class="DBi"/>
+      <div class='dMoneyBox'>
+        <div class='dMoney'>
+          <SvgIcon size='22px' icon-class='DBi' />
         </div>
-        <div class="fontsize">4235345</div>
+        <div class='fontsize'>4235345</div>
       </div>
-      <div class="fen"></div>
-      <div class="nickName">昵称是七34个字码</div>
-      <div class="upload"></div>
+      <div class='fen'></div>
+      <div class='nickName'>昵称是七34个字码</div>
+      <div class='upload'></div>
     </div>
     <!-- <div class="searchBox"></div> -->
   </div>
 </template>
 <script setup>
-import {ref, onMounted, reactive} from 'vue'
+import { ref, onMounted, reactive } from 'vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 
 let navList = reactive([
-  {name: '卡GO', push: ''},
-  {name: '飞升计划', push: ''},
-  {name: '啦啦啦计划', push: ''}
+  { name: '卡GO', push: '' },
+  { name: '飞升计划', push: '' },
+  { name: '啦啦啦计划', push: '' }
 ])
 let navIndex = ref(0)
 let navBorder = ref(null)
@@ -64,7 +64,7 @@ const handleSeachShow = () => {
 onMounted(() => {
 })
 </script>
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 #navTop {
   width: 1920px;
   height: 70px;

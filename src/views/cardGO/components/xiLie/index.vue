@@ -36,14 +36,14 @@ const { xilie } = defineProps({
     margin-top: 33px;
     flex-wrap: wrap;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 274px);
     grid-row-gap: 31px;
     grid-column-gap: 25px;
     .kapin_wai {
       position: relative;
-      width: 274px;
+      // width: 274px;
       height: 420px;
-      margin-right: 20px;
+      // margin-right: 20px;
       .hot {
         background-color: #ea3a52;
         position: absolute;
