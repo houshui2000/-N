@@ -34,15 +34,30 @@
         <div class='fontsize'>4235345</div>
       </div>
       <div class='fen'></div>
-      <div class='nickName'>昵称是七34个字码</div>
-      <div class='upload'></div>
+      <div class='adminUser'>
+        <div class='uploadText'>
+          <div @click='handleLogin'>登录</div>
+          <div>昵称是七个字吗</div>
+        </div>
+        <div class='uploadImg'></div>
+        <div class='uploadContent'>
+
+        </div>
+      </div>
     </div>
-    <!-- <div class="searchBox"></div> -->
+
+<!--  登录组件  -->
+    <Login/>
+
   </div>
 </template>
 <script setup>
 import { ref, onMounted, reactive } from 'vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
+import Login from  '@/components/Login/index.vue'
+import {useStore} from '@/pinia'
+
+const {loginStore} = useStore()
 
 let navList = reactive([
   { name: '卡GO', push: '' },
@@ -60,6 +75,10 @@ const handleNavOpen = (item, index) => {
   // navBorder.value.style.left=34+'px'
 }
 const handleSeachShow = () => {
+}
+
+const handleLogin=()=>{
+  loginStore.login=true
 }
 onMounted(() => {
 })
@@ -230,27 +249,50 @@ onMounted(() => {
       border-right: 1px solid #343b65;
     }
 
-    .nickName {
-      width: 101px;
-      height: 70px;
-      line-height: 70px;
-      font-weight: 600;
-      font-size: 14px;
-      text-align: center;
-      color: white;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+    .adminUser {
+      width: 146px;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      cursor: pointer;
+      &:hover .uploadContent{
+        height: 100px;
+      }
+      .uploadText {
+        width: 101px;
+        height: 70px;
+        line-height: 70px;
+        font-weight: 600;
+        font-size: 14px;
+        text-align: center;
+        color: white;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .uploadImg {
+        width: 31px;
+        height: 31px;
+        overflow: hidden;
+        border-radius: 50%;
+        background: #453293;
+        margin-left: 14px;
+      }
+      .uploadContent{
+        width: 200px;
+        height: 0px;
+        position: absolute;
+        background: yellow;
+        top: 70px;
+        right: -27px;
+        overflow: hidden;
+        transition: all .3s;
+
+      }
     }
 
-    .upload {
-      width: 31px;
-      height: 31px;
-      overflow: hidden;
-      border-radius: 50%;
-      background: #453293;
-      margin-left: 14px;
-    }
   }
 
   .searchBox {
