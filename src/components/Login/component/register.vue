@@ -23,6 +23,7 @@
       </div>
       <div class='registerBtn' v-if='loginStore.registerState==="register"'>注册</div>
       <div class='registerBtn' v-if='loginStore.registerState==="retrievePassword"'>确认</div>
+      <div></div>
     </div>
 
 
