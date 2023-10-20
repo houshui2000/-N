@@ -9,17 +9,12 @@
 
 <script setup>
 import { ref } from 'vue'
-import { test } from '../../network/api'
 // import asVVV from './as.vue'
 import { useStore } from '@/pinia'
 const { useUsersStore } = useStore()
 const as = ref('5555')
 
-const gettest = () => {
-  test().then(result => {
-    console.log(result)
-  })
-}
+const gettest = () => {}
 const asds = () => {
   as.value = 'asdsad'
 }

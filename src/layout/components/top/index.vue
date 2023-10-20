@@ -1,64 +1,64 @@
 <template>
-  <div id='navTop'>
+  <div id="navTop">
     <!--  左边  -->
-    <div class='left'>
-      <div class='logo'>
-        <div class='logoImg'></div>
+    <div class="left">
+      <div class="logo">
+        <div class="logoImg"></div>
       </div>
-      <div class='navContent'>
+      <div class="navContent">
         <div
-          class='navContent-box'
-          :class='{ active: navIndex === index }'
-          v-for='(item, index) in navList'
-          :key='item.name'
-          @click='handleNavOpen(item, index)'
+          class="navContent-box"
+          :class="{ active: navIndex === index }"
+          v-for="(item, index) in navList"
+          :key="item.name"
+          @click="handleNavOpen(item, index)"
         >
           {{ item.name }}
-          <div class='navContent-bottom' v-show='navIndex === index' ref='navBorder'></div>
+          <div class="navContent-bottom" v-show="navIndex === index" ref="navBorder"></div>
         </div>
       </div>
     </div>
     <!--  右边  -->
-    <div class='right'>
-      <div class='search' @click='handleSeachShow'></div>
-      <div class='download'></div>
-      <div class='cardMoneyBox'>
-        <div class='cardMoney'></div>
-        <div class='fontsize'>4235345</div>
-        <div class='pay'></div>
+    <div class="right">
+      <div class="search" @click="handleSeachShow"></div>
+      <div class="download"></div>
+      <div class="cardMoneyBox">
+        <div class="cardMoney"></div>
+        <div class="fontsize">4235345</div>
+        <div class="pay"></div>
       </div>
-      <div class='dMoneyBox'>
-        <div class='dMoney'>
-          <SvgIcon size='22px' icon-class='DBi' />
+      <div class="dMoneyBox">
+        <div class="dMoney">
+          <SvgIcon size="22px" icon-class="DBi" />
         </div>
-        <div class='fontsize'>4235345</div>
+        <div class="fontsize">4235345</div>
       </div>
-      <div class='fen'></div>
-      <div class='adminUser'>
-        <div class='uploadText'>
-          <div @click='handleLogin'>登录</div>
+      <div class="fen"></div>
+      <div class="adminUser">
+        <div class="uploadText">
+          <div @click="handleLogin">登录</div>
           <div>昵称是七个字吗</div>
         </div>
-        <div class='uploadImg'>
-          <div class='dian'></div>
-          <div class='uploadPhoto'>
-            <uploadAvatar/>
+        <div class="uploadImg">
+          <div class="dian"></div>
+          <div class="uploadPhoto">
+            <uploadAvatar />
           </div>
         </div>
-        <div class='uploadContent'>
-          <div class='uploadBox'>
-            <div class='uploadBox-img'></div>
-            <div class='nickName'>昵称是七个字吗</div>
+        <div class="uploadContent">
+          <div class="uploadBox">
+            <div class="uploadBox-img"></div>
+            <div class="nickName">昵称是七个字吗</div>
           </div>
-          <div class='promotionBtn'></div>
-          <div class='IconBox'>
-            <div class='iconDiv'>
-              <div class='icon'></div>
-              <div class='text'>掌上卡竞</div>
+          <div class="promotionBtn"></div>
+          <div class="IconBox">
+            <div class="iconDiv">
+              <div class="icon"></div>
+              <div class="text">掌上卡竞</div>
             </div>
-            <div class='iconDiv'>
-              <div class='icon'></div>
-              <div class='text'>退出登录</div>
+            <div class="iconDiv">
+              <div class="icon"></div>
+              <div class="text">退出登录</div>
             </div>
           </div>
         </div>
@@ -67,7 +67,6 @@
 
     <!--  登录组件  -->
     <Login />
-
   </div>
 </template>
 <script setup>
@@ -94,16 +93,14 @@ const handleNavOpen = (item, index) => {
   // let navBottom=(dom.x+dom.width/2-navBorderWidth.width/2-logo)
   // navBorder.value.style.left=34+'px'
 }
-const handleSeachShow = () => {
-}
+const handleSeachShow = () => {}
 
 const handleLogin = () => {
   loginStore.login = true
 }
-onMounted(() => {
-})
+onMounted(() => {})
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #navTop {
   width: 1920px;
   height: 70px;
@@ -299,8 +296,9 @@ onMounted(() => {
         height: 34px;
         //overflow: hidden;
         border-radius: 50%;
-        background: url($gxsavatar) no-repeat center;
-        background-size: contain;
+        // background: url($gxsavatar) no-repeat center;
+        background-color: saddlebrown;
+        // background-size: contain;
         margin-left: 14px;
         position: relative;
 
@@ -337,7 +335,7 @@ onMounted(() => {
         top: 70px;
         right: 0px;
         overflow: hidden;
-        transition: height .3s;
+        transition: height 0.3s;
         background: url($gxsuploadContent) no-repeat center;
         background-size: 280px 240px;
         display: flex;
@@ -398,10 +396,10 @@ onMounted(() => {
             font-weight: 400;
             text-align: left;
             color: #999;
-            &:nth-child(2){
+            &:nth-child(2) {
               margin-left: 8px;
             }
-            &:nth-child(2) .icon{
+            &:nth-child(2) .icon {
               background: url($gxsexitIcon) no-repeat center;
               background-size: contain;
             }
@@ -411,14 +409,13 @@ onMounted(() => {
               background: url($gxsqrcardIcon) no-repeat center;
               background-size: contain;
             }
-            .text{
+            .text {
               margin-left: 12px;
             }
           }
         }
       }
     }
-
   }
 
   .searchBox {

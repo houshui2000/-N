@@ -1,13 +1,15 @@
 <template>
-  <div id="Carousel" :class="{active:!btnActive}">
-    <div class="content" >
+  <div id="Carousel" :class="{ active: !btnActive }">
+    <div class="content">
       <div class="CarouselBoxs" ref="boxRef">
-        <div class="box" v-for="(item,index) in list" @click="handleBannerShow">
+        <div class="box" v-for="(item, index) in list" @click="handleBannerShow">
           <!--    正面      -->
           <div class="frontBox">
             <div class="cardImg">
-              <img src="https://img0.baidu.com/it/u=2200133816,1938200688&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=667"
-                   alt="">
+              <img
+                src="https://img0.baidu.com/it/u=2200133816,1938200688&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=667"
+                alt=""
+              />
             </div>
             <div class="frontText">一直小蜜蜂飞亚服一直小蜜蜂飞亚服</div>
           </div>
@@ -15,53 +17,53 @@
           <div class="oppositeBox">
             <div class="userImg">
               <img
-                  src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2F89e0676b-c0c3-4959-bbed-bc1cf0470250%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1700119396&t=2ed784bd3180983a8a60b50a22fd161c"
-                  alt="">
+                src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2F89e0676b-c0c3-4959-bbed-bc1cf0470250%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1700119396&t=2ed784bd3180983a8a60b50a22fd161c"
+                alt=""
+              />
             </div>
             <div class="frontText">一直</div>
           </div>
         </div>
       </div>
-      <div class="Submit" :class="{active:!btnActive}" @click="handleBtnShow"></div>
+      <div class="Submit" :class="{ active: !btnActive }" @click="handleBtnShow"></div>
     </div>
   </div>
 </template>
 
 <script setup>
-import {ref,onMounted} from "vue";
-import {getBannner} from "@/network/api.js";
+import { ref, onMounted } from 'vue'
+// import {getBannner} from "@/network/api.js";
 
 let btnActive = ref(true)
-let boxRef=ref(null)
-let list=ref([...Array(40).keys()])
+let boxRef = ref(null)
+let list = ref([...Array(40).keys()])
 
 const handleBtnShow = () => {
   btnActive.value = !btnActive.value
 }
 
 const handleBannerShow = () => {
-  getBannner().then(res=>{
-    console.log(res)
-  })
+  // getBannner().then(res=>{
+  //   console.log(res)
+  // })
 }
 
 const handleCarouselScroll = () => {
   let offsetTop = Number(boxRef.value.offsetTop - 1)
   // let height=Number(document.querySelector('.content').getBoundingClientRect().height)
-  if(offsetTop<=-2520){
+  if (offsetTop <= -2520) {
     for (let i = 0; i < 20; i++) {
       list.value.push(i)
     }
     list.value.splice(0, 20)
     boxRef.value.style.top = `0px`
-  }else{
+  } else {
     boxRef.value.style.top = `${offsetTop}px`
   }
 
   requestAnimationFrame(handleCarouselScroll)
-
 }
-onMounted(()=>{
+onMounted(() => {
   requestAnimationFrame(handleCarouselScroll)
 })
 </script>
@@ -83,7 +85,7 @@ onMounted(()=>{
   top: 111px;
   left: 0;
   z-index: 1000;
-  transition: left .3s;
+  transition: left 0.3s;
 
   &.active {
     left: -159px;
@@ -105,7 +107,7 @@ onMounted(()=>{
       align-items: center;
       position: absolute;
       left: 0;
-      top:0;
+      top: 0;
 
       .box {
         width: 130px;
@@ -123,7 +125,7 @@ onMounted(()=>{
         }
 
         &:hover .oppositeBox .frontText {
-          animation: fontsizeAmin linear .3s;
+          animation: fontsizeAmin linear 0.3s;
           animation-fill-mode: forwards;
         }
 
@@ -136,7 +138,7 @@ onMounted(()=>{
           opacity: 1;
           z-index: 2;
           background: url($gxsbannerBoxs) no-repeat center;
-          transition: opacity .3s;
+          transition: opacity 0.3s;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -145,7 +147,7 @@ onMounted(()=>{
             width: 57px;
             height: 74px;
             margin: 9px auto 4px;
-            transition: all .3s;
+            transition: all 0.3s;
             flex-shrink: 0;
 
             img {
@@ -161,7 +163,7 @@ onMounted(()=>{
             font-size: 12px;
             line-height: 16.8px;
             text-align: center;
-            transition: all .3s;
+            transition: all 0.3s;
             position: relative;
             overflow: hidden;
           }
@@ -201,7 +203,7 @@ onMounted(()=>{
             color: white;
             font-size: 12px;
             text-align: center;
-            transition: all .3s;
+            transition: all 0.3s;
             overflow: hidden;
           }
         }
@@ -217,15 +219,13 @@ onMounted(()=>{
       right: 0;
       top: 50%;
       margin-top: -37px;
-      transition: all .3s;
+      transition: all 0.3s;
 
       &.active {
         background: url($gxsopenBtn) no-repeat center;
         background-size: contain;
       }
     }
-
-
   }
 }
 </style>
