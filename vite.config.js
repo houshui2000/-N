@@ -2,7 +2,7 @@
 import { defineConfig, loadEnv } from 'vite' // 帮手函数
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
-// element
+// elementc
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
