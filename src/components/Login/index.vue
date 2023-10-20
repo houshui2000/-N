@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class='registerBox'>
-            <div v-if='state' @click="handleLoginBtn('register')">忘记密码</div>
+            <div v-if='state' @click="handleLoginBtn('retrievePassword')">忘记密码</div>
             <div v-if='state' @click="handleLoginBtn('register')">没账号？去注册</div>
           </div>
           <div class='loginBtn' v-if='!state' @click="handleLoginBtn('phone')">立即登录</div>
