@@ -22,7 +22,7 @@
         <div class='text'>我已满18周岁，并同意《<span>用户协议</span>》《<span>隐私协议</span>》</div>
       </div>
       <div class='registerBtn' v-if='loginStore.registerState==="register"' @click='handleRegisterBtn'>注册</div>
-      <div class='registerBtn' v-if='loginStore.registerState==="retrievePassword"'>确认</div>
+      <div class='registerBtn' v-if='loginStore.registerState==="retrievePassword"' @click='handleRetrievePassword'>确认</div>
       <div class=''></div>
     </div>
 
@@ -33,7 +33,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useStore } from '@/pinia'
-import { registermobile, registernormal } from '@/network/user.js'
+import { registermobile, registernormal, resetpassword, userresepassword } from '@/network/user.js'
 
 const { loginStore } = useStore()
 let agreement = ref(false) //用户协议选择
@@ -61,7 +61,13 @@ const handleCodeTime = async () => {
     if (codeTime.value >= 0) {
       return
     }
-    let result = await registermobile({ mobile: phone.value })
+    if(loginStore.registerState==='register'){
+      let result = await registermobile({ mobile: phone.value })
+    }
+    if(loginStore.registerState==='retrievePassword'){
+      let result = await resetpassword({ mobile: phone.value })
+    }
+
     codeTime.value = 60
     setTimeout(handleCodeTime60, 1000)
   } else {
@@ -86,6 +92,20 @@ const handleRegisterBtn = async () => {
     loginStore.registerState="other"
   }
 
+}
+
+const handleRetrievePassword = async () =>{
+  const result= await userresepassword({
+    "code":phoneCode.value ,
+    "password": password.value,
+    "mobile": phone.value
+  })
+  console.log(result)
+  if(result.code===200){
+    loginStore.registerState="other"
+  }else{
+    alert(result.msg)
+  }
 }
 </script>
 
