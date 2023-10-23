@@ -37,7 +37,7 @@
       <div class="adminUser">
         <div class="uploadText">
           <div @click="handleLogin" v-if='!loginStore.token'>登录</div>
-          <div @click="handleLogin" v-if='loginStore.token'>{{ useUsersStore.userInfo.nickname }}后端默认值</div>
+          <div v-if='loginStore.token'>{{ useUsersStore.userInfo.nickname }}后端默认值</div>
         </div>
         <div class="uploadImg" v-if='loginStore.token'>
           <div class="dian"></div>
@@ -107,6 +107,8 @@ const handleLoginExit=async ()=>{
   loginStore.token=""
   loginStore.userId=""
   removeItem('userId')
+  useUsersStore.handleUserInfoInit()
+  loginStore.login=true
   console.log("退出登录")
 
 }

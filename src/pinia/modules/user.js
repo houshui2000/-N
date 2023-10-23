@@ -32,14 +32,36 @@ export const userDataInfo = defineStore('userData', {
       }
     }
   },
-  actions:{
-    async handleUserInfo(){
-      let result= await registermobile()
-      console.log(result)
-      this.userInfo=result
+  actions: {
+    //获取用户信息
+    async handleUserInfo() {
+      let result = await registermobile()
+      if (result.code === 200) {
+        console.log('userInfo', result)
+        this.userInfo = result.data
+      } else {
+        alert(result.msg)
+      }
     },
-    handleUserInfoInit(){
-
+    //初始化userinfo
+    handleUserInfoInit() {
+      this.userInfo = {
+        avatar: null,
+        boundQQ: false,
+        boundWx: false,
+        cbalance: '0.00',
+        dbalance: '0.00',
+        invitationCode: '',
+        mobile: '',
+        nickname: '',
+        ownerInvitationCode: '',
+        qqNickname: '',
+        realAuthentication: false,
+        steamUrl: '',
+        transformPlatformCode: null,
+        username: null,
+        wxNickname: ''
+      }
     }
   }
 })

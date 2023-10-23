@@ -20,7 +20,7 @@ service.interceptors.response.use((res) => {
     const { status, data } = res
 
     if (status >= 200 && status < 300) {
-      return data.data
+      return data
     } else {
       alert(data.msg)
       return Promise.reject(new Error(data.msg))

@@ -46,28 +46,48 @@ import { useStore } from '@/pinia'
 import LoginQQ from '@/components/Login/component/Loginqq.vue'
 import registerPopup from '@/components/Login/component/registerPopup.vue'
 import { ref } from 'vue'
-import { codeloginmobile, logincode } from '@/network/user.js'
+import { codeloginmobile, logincode, loginmobile } from '@/network/user.js'
 import { setItem } from '@/utils/storage.js'
 import { registermobile } from '@/network/userInterface.js'
 
 const { loginStore,useUsersStore } = useStore()
 let state = ref(false) //切换按钮 false手机号 、true密码账号
 let phone = ref('15650053503')
-let code = ref('')
+let code = ref('123456')
 let admin = ref('')
 let password = ref('')
 let codeTime = ref(-1)
 
 const handleLoginBtn = async (res) => {
-  if(res==='wx' || res==='qq') loginStore.registerState = res
+  if(res==='wx' || res==='qq' || res==='register' || res==='retrievePassword') loginStore.registerState = res
   if(res==='phone'){
     let result = await logincode({mobile:phone.value,code:code.value})
-    setItem('token',result.token)
-    loginStore.token=result.token
-    setItem('userId',result.userId)
-    loginStore.userId=result.userId
-    loginStore.login=false
-    await useUsersStore.handleUserInfo()
+    console.log("token",result)
+    if (result.code===200){
+      setItem('token',result.data.token)
+      loginStore.token=result.data.token
+      setItem('userId',result.data.userId)
+      loginStore.userId=result.data.userId
+      loginStore.login=false
+      await useUsersStore.handleUserInfo()
+    }else{
+      alert(result.msg)
+    }
+
+  }
+  if(res==='password'){
+    let result =await loginmobile({mobile:admin.value,password:password.value})
+    console.log("token",result)
+    if (result.code===200){
+      setItem('token',result.data.token)
+      loginStore.token=result.data.token
+      setItem('userId',result.data.userId)
+      loginStore.userId=result.data.userId
+      loginStore.login=false
+      await useUsersStore.handleUserInfo()
+    }else{
+      alert(result.msg)
+    }
   }
 }
 //切换按钮
