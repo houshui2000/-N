@@ -21,7 +21,7 @@
         <el-checkbox v-model='agreement'></el-checkbox>
         <div class='text'>我已满18周岁，并同意《<span>用户协议</span>》《<span>隐私协议</span>》</div>
       </div>
-      <div class='registerBtn' v-if='loginStore.registerState==="register"'>注册</div>
+      <div class='registerBtn' v-if='loginStore.registerState==="register"' @click='handleRegisterBtn'>注册</div>
       <div class='registerBtn' v-if='loginStore.registerState==="retrievePassword"'>确认</div>
       <div></div>
     </div>
@@ -37,11 +37,11 @@ import { useStore } from '@/pinia'
 const { loginStore } = useStore()
 let agreement = ref(false)
 
-let phone =ref("")
-let phoneCode=ref("")
-let password=ref("")
-let nickName=ref("")
-let recommendCode=ref("")
+let phone = ref('')
+let phoneCode = ref('')
+let password = ref('')
+let nickName = ref('')
+let recommendCode = ref('')
 let codeTime = ref(-1)
 
 // 倒计时
@@ -53,18 +53,22 @@ const handleCodeTime60 = () => {
 }
 //验证码组件
 const handleCodeTime = () => {
-    //手机号登录
-    const phoneRegex = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
-    if (phoneRegex.test(phone.value)) {
-      console.log('手机号码格式正确')
-      if (codeTime.value >= 0) {
-        return
-      }
-      codeTime.value = 60
-      setTimeout(handleCodeTime60, 1000)
-    } else {
-      console.log('手机号码格式不正确')
+  //手机号登录
+  const phoneRegex = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
+  if (phoneRegex.test(phone.value)) {
+    console.log('手机号码格式正确')
+    if (codeTime.value >= 0) {
+      return
     }
+    codeTime.value = 60
+    setTimeout(handleCodeTime60, 1000)
+  } else {
+    console.log('手机号码格式不正确')
+  }
+}
+
+const handleRegisterBtn = () => {
+
 }
 </script>
 

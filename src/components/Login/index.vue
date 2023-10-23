@@ -1,6 +1,6 @@
 <template>
   <div id='login' v-if='loginStore.login'>
-    <div class='content' style='width: 800px;height: 400px'>
+    <div class='content'>
       <div class='close' @click='()=>loginStore.login=false'>X</div>
       <div class='contentLogin'>
         <div class='left'>
@@ -112,7 +112,7 @@ const handleCodeTime = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  @media screen and (min-width: 100px) {
+  @media screen and (min-width: 1px) {
     .content {
       width: 800px;
       height: 400px;
