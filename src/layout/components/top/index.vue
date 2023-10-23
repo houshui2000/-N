@@ -24,31 +24,31 @@
       <div class="download"></div>
       <div class="cardMoneyBox">
         <div class="cardMoney"></div>
-        <div class="fontsize">4235345</div>
+        <div class="fontsize">{{ useUsersStore.userInfo.dbalance }}</div>
         <div class="pay"></div>
       </div>
       <div class="dMoneyBox">
         <div class="dMoney">
           <SvgIcon size="22px" icon-class="DBi" />
         </div>
-        <div class="fontsize">4235345</div>
+        <div class="fontsize">{{ useUsersStore.userInfo.dbalance }}</div>
       </div>
       <div class="fen"></div>
       <div class="adminUser">
         <div class="uploadText">
-          <div @click="handleLogin">登录</div>
-          <div>昵称是七个字吗</div>
+          <div @click="handleLogin" v-if='!loginStore.token'>登录</div>
+          <div @click="handleLogin" v-if='loginStore.token'>{{ useUsersStore.userInfo.nickname }}后端默认值</div>
         </div>
-        <div class="uploadImg">
+        <div class="uploadImg" v-if='loginStore.token'>
           <div class="dian"></div>
           <div class="uploadPhoto">
-            <uploadAvatar />
+            <img :src='useUsersStore.userInfo.avatar'>
           </div>
         </div>
-        <div class="uploadContent">
+        <div class="uploadContent" v-if='loginStore.token'>
           <div class="uploadBox">
             <div class="uploadBox-img"></div>
-            <div class="nickName">昵称是七个字吗</div>
+            <div class="nickName">{{ useUsersStore.userInfo.nickname }}</div>
           </div>
           <div class="promotionBtn"></div>
           <div class="IconBox">
@@ -58,7 +58,7 @@
             </div>
             <div class="iconDiv">
               <div class="icon"></div>
-              <div class="text">退出登录</div>
+              <div class="text" @click='handleLoginExit()'>退出登录</div>
             </div>
           </div>
         </div>
@@ -75,8 +75,10 @@ import SvgIcon from '@/components/SvgIcon/index.vue'
 import Login from '@/components/Login/index.vue'
 import { useStore } from '@/pinia'
 import uploadAvatar from '../uploadAvatar/index.vue'
+import { removeItem } from '@/utils/storage.js'
+import { userlogout } from '@/network/userInterface.js'
 
-const { loginStore } = useStore()
+const { loginStore,useUsersStore } = useStore()
 
 let navList = reactive([
   { name: '卡GO', push: '' },
@@ -97,6 +99,16 @@ const handleSeachShow = () => {}
 
 const handleLogin = () => {
   loginStore.login = true
+}
+//退出登录
+const handleLoginExit=async ()=>{
+  let result = await userlogout()
+  removeItem('token')
+  loginStore.token=""
+  loginStore.userId=""
+  removeItem('userId')
+  console.log("退出登录")
+
 }
 onMounted(() => {})
 </script>
@@ -318,12 +330,15 @@ onMounted(() => {})
           height: 30px;
           overflow: hidden;
           border-radius: 50%;
-          background: yellow;
           position: absolute;
           top: 50%;
           left: 50%;
           margin-top: -15px;
           margin-left: -15px;
+          img{
+            width: 100%;
+            height: 100%;
+          }
         }
       }
 

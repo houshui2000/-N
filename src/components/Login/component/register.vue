@@ -12,10 +12,10 @@
         <el-input v-model='password' placeholder='请输入不超过16位密码' type='number' />
       </div>
       <div class='inputs' v-if='loginStore.registerState==="register"'>
-        <el-input v-model='nickName' placeholder='请输入昵称（选填）' type='number' />
+        <el-input v-model='nickName' placeholder='请输入昵称（选填）' />
       </div>
       <div class='inputs' v-if='loginStore.registerState==="register"'>
-        <el-input v-model='recommendCode' placeholder='请输入推荐码（选填）' type='number' />
+        <el-input v-model='recommendCode' placeholder='请输入推荐码（选填）' />
       </div>
       <div class='agreementBox' v-if='loginStore.registerState==="register"'>
         <el-checkbox v-model='agreement'></el-checkbox>
@@ -23,7 +23,7 @@
       </div>
       <div class='registerBtn' v-if='loginStore.registerState==="register"' @click='handleRegisterBtn'>注册</div>
       <div class='registerBtn' v-if='loginStore.registerState==="retrievePassword"'>确认</div>
-      <div></div>
+      <div class=''></div>
     </div>
 
 
@@ -33,16 +33,17 @@
 <script setup>
 import { ref } from 'vue'
 import { useStore } from '@/pinia'
+import { registermobile, registernormal } from '@/network/user.js'
 
 const { loginStore } = useStore()
-let agreement = ref(false)
+let agreement = ref(false) //用户协议选择
 
-let phone = ref('')
-let phoneCode = ref('')
-let password = ref('')
-let nickName = ref('')
-let recommendCode = ref('')
-let codeTime = ref(-1)
+let phone = ref('') //手机号
+let phoneCode = ref('') //手机验证码
+let password = ref('') //密码
+let nickName = ref('') //昵称
+let recommendCode = ref('') //推荐码
+let codeTime = ref(-1) //倒计时
 
 // 倒计时
 const handleCodeTime60 = () => {
@@ -52,7 +53,7 @@ const handleCodeTime60 = () => {
   }
 }
 //验证码组件
-const handleCodeTime = () => {
+const handleCodeTime = async () => {
   //手机号登录
   const phoneRegex = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
   if (phoneRegex.test(phone.value)) {
@@ -60,6 +61,7 @@ const handleCodeTime = () => {
     if (codeTime.value >= 0) {
       return
     }
+    let result = await registermobile({ mobile: phone.value })
     codeTime.value = 60
     setTimeout(handleCodeTime60, 1000)
   } else {
@@ -67,7 +69,22 @@ const handleCodeTime = () => {
   }
 }
 
-const handleRegisterBtn = () => {
+const handleRegisterBtn = async () => {
+  if (!agreement.value) {
+    return
+  }
+  const result = await registernormal({
+    'mobile': phone.value,
+    'password': password.value,
+    'code': phoneCode.value,
+    'nickname': nickName.value,
+    'invitationCode': recommendCode.value
+  })
+  console.log('接口', result)
+  if (result.code === 200) {
+    console.log('注册成功')
+    loginStore.registerState="other"
+  }
 
 }
 </script>

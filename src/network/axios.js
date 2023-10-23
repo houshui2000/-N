@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import { getItem } from '@/utils/storage.js'
 const service = axios.create({
   // baseURL: import.meta.env.VITE_APP_API_URL,
   // baseURL: 'http://172.16.1.137:8081',
@@ -9,7 +9,7 @@ const service = axios.create({
 
 // request interceptor 请求拦截器
 service.interceptors.request.use((config) => {
-  config.headers.Authorization = sessionStorage.getItem('token')
+  config.headers.Authorization =getItem('token')
   config.headers['Client-Type'] = 'pc'
   return config
 }, function(error) {
@@ -18,7 +18,8 @@ service.interceptors.request.use((config) => {
 
 service.interceptors.response.use((res) => {
     const { status, data } = res
-    if (status == 200) {
+
+    if (status >= 200 && status < 300) {
       return data.data
     } else {
       alert(data.msg)

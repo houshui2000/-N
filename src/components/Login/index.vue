@@ -46,17 +46,29 @@ import { useStore } from '@/pinia'
 import LoginQQ from '@/components/Login/component/Loginqq.vue'
 import registerPopup from '@/components/Login/component/registerPopup.vue'
 import { ref } from 'vue'
+import { codeloginmobile, logincode } from '@/network/user.js'
+import { setItem } from '@/utils/storage.js'
+import { registermobile } from '@/network/userInterface.js'
 
-const { loginStore } = useStore()
+const { loginStore,useUsersStore } = useStore()
 let state = ref(false) //切换按钮 false手机号 、true密码账号
-let phone = ref('')
+let phone = ref('15650053503')
 let code = ref('')
 let admin = ref('')
 let password = ref('')
 let codeTime = ref(-1)
 
-const handleLoginBtn = (res) => {
-  loginStore.registerState = res
+const handleLoginBtn = async (res) => {
+  if(res==='wx' || res==='qq') loginStore.registerState = res
+  if(res==='phone'){
+    let result = await logincode({mobile:phone.value,code:code.value})
+    setItem('token',result.token)
+    loginStore.token=result.token
+    setItem('userId',result.userId)
+    loginStore.userId=result.userId
+    loginStore.login=false
+    await useUsersStore.handleUserInfo()
+  }
 }
 //切换按钮
 const handleSwitchBtn = () => {
@@ -75,7 +87,7 @@ const handleCodeTime60 = () => {
   }
 }
 //验证码组件
-const handleCodeTime = () => {
+const handleCodeTime = async() => {
   if (!state.value) {
     //手机号登录
     const phoneRegex = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
@@ -84,8 +96,10 @@ const handleCodeTime = () => {
       if (codeTime.value >= 0) {
         return
       }
+      const result =await codeloginmobile({mobile:phone.value})
       codeTime.value = 60
       setTimeout(handleCodeTime60, 1000)
+
     } else {
       console.log('手机号码格式不正确')
     }

@@ -85,9 +85,9 @@ export const loginqq = (data) => {
 */
 export const bindwx = (params) => {
   return service({
-    url: `/verification-code/bind-wx?mobile=${params}`,
+    url: `/verification-code/bind-wx`,
     method: 'get',
-
+    params
   })
 }
 
@@ -97,8 +97,9 @@ export const bindwx = (params) => {
 */
 export const registermobile = (params) => {
   return service({
-    url: `/verification-code/register?mobile=${params}`,
+    url: `/verification-code/register`,
     method: 'get',
+    params
   })
 }
 
@@ -109,9 +110,9 @@ export const registermobile = (params) => {
 */
 export const codeloginmobile = (params) => {
   return service({
-    url: `/verification-code/login?mobile=${params}`,
+    url: `/verification-code/login`,
     method: 'get',
-
+    params
   })
 }
 
@@ -137,8 +138,9 @@ export const codepassword = (params) => {
 */
 export const resetpassword = (params) => {
   return service({
-    url: `/verification-code/reset-password?mobile=${params}`,
+    url: `/verification-code/reset-password`,
     method: 'get',
+    params
   })
 }
 
