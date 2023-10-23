@@ -10,7 +10,12 @@ const routes = [{
   children: [
     ...childrenCase
   ]
-}]
+},
+  {
+    path: "/lalala",
+    component: () => import('@/views/indexss.vue'),
+  }
+]
 
 const router = createRouter({
   history: createWebHistory(),

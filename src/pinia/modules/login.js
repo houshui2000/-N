@@ -7,7 +7,7 @@ export const loginDataInfo = defineStore('loginDataInfo', {
   state: () => {
     return {
       code: '12344',
-      login:false,
+      login:true,
       loginState: 'phone',
       registerState:'other',
       token:getItem('token'),

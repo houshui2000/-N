@@ -14,9 +14,7 @@
       <div class='inputs' v-if='loginStore.registerState==="register"'>
         <el-input v-model='nickName' placeholder='请输入昵称（选填）' />
       </div>
-      <div class='inputs' v-if='loginStore.registerState==="register"'>
-        <el-input v-model='recommendCode' placeholder='请输入推荐码（选填）' />
-      </div>
+
       <div class='agreementBox' v-if='loginStore.registerState==="register"'>
         <el-checkbox v-model='agreement'></el-checkbox>
         <div class='text'>我已满18周岁，并同意《<span>用户协议</span>》《<span>隐私协议</span>》</div>
@@ -76,9 +74,7 @@ const handleCodeTime = async () => {
 }
 
 const handleRegisterBtn = async () => {
-  if (!agreement.value) {
-    return
-  }
+  if (!agreement.value) return
   const result = await registernormal({
     'mobile': phone.value,
     'password': password.value,

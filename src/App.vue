@@ -22,6 +22,7 @@ const VxLogin = async (newValue) => {
   await weixinLogin({ tencentCode: newValue })
   // console.log(userresepassword)
 }
+
 </script>
 
 <style scoped lang="scss"></style>
