@@ -67,7 +67,6 @@ const scroll = () => {
         position: relative;
         width: 17px;
         height: 17px;
-        margin-top: -5px;
         margin-right: 13px;
       }
       .wenzi {

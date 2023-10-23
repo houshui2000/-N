@@ -33,14 +33,14 @@ const route = useRoute()
 //     console.log(useUsersStore.code)
 //   }
 // })
-watchEffect(() => {
-  if (route.query.code) {
-    console.log('dayin', route.query.code)
-    weixinLogin({ tencentCode: route.query.code }).then((res) => {
-      console.log('接口參數', res)
-    })
-  }
-})
+// watchEffect(() => {
+//   if (route.query.code) {
+//     console.log('dayin', route.query.code)
+//     weixinLogin({ tencentCode: route.query.code }).then((res) => {
+//       console.log('接口參數', res)
+//     })
+//   }
+// })
 </script>
 <style lang='scss' scoped>
 #homePC {

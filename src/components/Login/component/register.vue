@@ -33,7 +33,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useStore } from '@/pinia'
-import { registermobile, registernormal, resetpassword, userresepassword } from '@/network/user.js'
+import { registermobile, registernormal, resetpassword } from '@/network/user.js'
 
 const { loginStore } = useStore()
 let agreement = ref(false) //用户协议选择
@@ -95,17 +95,17 @@ const handleRegisterBtn = async () => {
 }
 
 const handleRetrievePassword = async () =>{
-  const result= await userresepassword({
-    "code":phoneCode.value ,
-    "password": password.value,
-    "mobile": phone.value
-  })
-  console.log(result)
-  if(result.code===200){
-    loginStore.registerState="other"
-  }else{
-    alert(result.msg)
-  }
+  // const result= await userresepassword({
+  //   "code":phoneCode.value ,
+  //   "password": password.value,
+  //   "mobile": phone.value
+  // })
+  // console.log(result)
+  // if(result.code===200){
+  //   loginStore.registerState="other"
+  // }else{
+  //   alert(result.msg)
+  // }
 }
 </script>
 

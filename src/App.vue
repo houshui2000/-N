@@ -1,10 +1,28 @@
-<script setup></script>
-
 <template>
   <div class="CIjing">
     <router-view />
   </div>
 </template>
+<script setup>
+
+import { useRoute } from 'vue-router'
+import { watch } from 'vue'
+import { weixinLogin } from '@/network/api'
+const route = useRoute()
+
+watch(
+  () => route.query,
+  (newValue) => {
+    if (!newValue.code) return
+
+    VxLogin(newValue.code)
+  }
+)
+const VxLogin = async (newValue) => {
+  await weixinLogin({ tencentCode: newValue })
+  // console.log(userresepassword)
+}
+</script>
 
 <style scoped lang="scss"></style>
 <style lang="scss">
