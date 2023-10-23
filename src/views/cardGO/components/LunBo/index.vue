@@ -21,7 +21,9 @@ import { ref } from 'vue'
 const carouselUtem = ref([])
 const creat = async () => {
   const res = await indexbanner()
-  carouselUtem.value = res
+  if(res.code===200){
+    carouselUtem.value = res.data
+  }
 }
 creat()
 </script>
