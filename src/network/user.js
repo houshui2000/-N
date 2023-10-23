@@ -46,22 +46,6 @@ export const logincode = (data) => {
     data
   })
 }
-/**
- * 微信登陆
- *
- * {
-  "code": "123456",
-  "password": "123456",
-  "mobile": "17686742621"
- }
-*/
-export const userresepassword = (data) => {
-  return service({
-    url: '/user/reset-password',
-    method: 'post',
-    data
-  })
-}
 
 /**
  * qq登陆
