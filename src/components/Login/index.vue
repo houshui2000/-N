@@ -112,7 +112,7 @@ const handleCodeTime = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 100px) {
     .content {
       width: 800px;
       height: 400px;

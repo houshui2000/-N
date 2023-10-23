@@ -12,6 +12,12 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 import postCssPxToRem from 'postcss-pxtorem'
+import pxtovw from 'postcss-px-to-viewport'
+const loder_pxtovw = pxtovw({
+//这里是设计稿宽度 自己修改
+  viewportWidth: 1920,
+  viewportUnit: 'vw'
+})
 
 // eslint-disable-next-line no-undef
 // const pathSrc = path.resolve(__dirname, 'src');
@@ -40,12 +46,13 @@ export default defineConfig((mode) => {
     css: {
       // loaderOptions: {
       postcss: {
-        plugins: [
-          postCssPxToRem({
-            rootValue: 10,
-            propList: ['*'],
-          })
-        ],
+        // plugins: [
+        //   postCssPxToRem({
+        //     rootValue: 10,
+        //     propList: ['*'],
+        //   })
+        // ],
+        plugins: [loder_pxtovw]
       },
 
       // },
