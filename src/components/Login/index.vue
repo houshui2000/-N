@@ -1,13 +1,13 @@
 <template>
   <div id='login' v-if='loginStore.login'>
-    <div class='content'>
+    <div class='content' style='width: 800px;height: 400px'>
       <div class='close' @click='()=>loginStore.login=false'>X</div>
       <div class='contentLogin'>
         <div class='left'>
           <div class='title'>{{ state ? '账号密码登录' : '手机号验证码登录' }}</div>
           <div class='switch' @click='handleSwitchBtn'>切换</div>
           <div class='inputBox'>
-            <div class='inputs' v-if='!state'>
+            <div class='inputs' v-if='!state' >
               <el-input v-model='phone' placeholder='请输入手机号' oninput="if(value.length > 11) value=value.slice(0, 11)" type='number' />
             </div>
             <div class=''></div>
@@ -112,135 +112,139 @@ const handleCodeTime = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  .content {
-    width: 800px;
-    height: 400px;
-    background: white;
-    position: relative;
-
-    .close {
-      width: 40px;
-      height: 40px;
-      background: yellow;
-      font-size: 40px;
-      font-weight: 900;
-      position: absolute;
-      right: 10px;
-      top: 5px;
-      cursor: pointer;
-      text-align: center;
-      line-height: 40px;
-    }
-
-    .contentLogin {
+  @media screen and (min-width: 1200px) {
+    .content {
       width: 800px;
-      height: 360px;
-      position: absolute;
-      top: 40px;
-      left: 0;
-      display: flex;
+      height: 400px;
+      background: white;
+      position: relative;
 
-      .left {
-        width: 450px;
+      .close {
+        width: 40px;
+        height: 40px;
+        background: yellow;
+        font-size: 40px;
+        font-weight: 900;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        cursor: pointer;
+        text-align: center;
+        line-height: 40px;
+      }
+
+      .contentLogin {
+        width: 800px;
         height: 360px;
-        background: #8d5cc7;
-        position: relative;
+        position: absolute;
+        top: 40px;
+        left: 0;
         display: flex;
-        flex-direction: column;
-        align-items: center;
 
-        .title {
-          font-size: 20px;
-          font-weight: bold;
-          text-align: center;
-          margin-top: 30px;
-        }
-
-        .switch {
-          position: absolute;
-          right: 20px;
-          top: 20px;
-          font-size: 20px;
-          background: #cccccc;
-        }
-
-        .inputBox {
+        .left {
           width: 450px;
-          height: 100px;
+          height: 360px;
+          background: #8d5cc7;
+          position: relative;
           display: flex;
-          justify-content: center;
+          flex-direction: column;
           align-items: center;
-          flex-wrap: wrap;
 
-          .inputs {
+          .title {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 30px;
+          }
+
+          .switch {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 20px;
+            background: #cccccc;
+          }
+
+          .inputBox {
+            width: 450px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+
+            .inputs {
+              width: 300px;
+              position: relative;
+
+              .text {
+                width: 100px;
+                color: #018ef8;
+                position: absolute;
+                top: 3px;
+                right: 10px;
+                font-size: 20px;
+                cursor: pointer;
+                text-align: right;
+              }
+            }
+
+          }
+
+          .registerBox {
             width: 300px;
-            position: relative;
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            cursor: pointer;
+          }
 
-            .text {
+          .loginBtn {
+            width: 160px;
+            height: 40px;
+            background: #018ef8;
+            border-radius: 10px;
+            line-height: 40px;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            margin: 20px auto 40px;
+          }
+
+          .otherLoginBox {
+            width: 100%;
+            height: 50px;
+            background: yellow;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .wxLogin, .qqLogin {
               width: 100px;
-              color: #018ef8;
-              position: absolute;
-              top: 3px;
-              right: 10px;
+              height: 40px;
+              border: 1px solid #ccc;
+              margin: 0 20px;
               font-size: 20px;
-              cursor: pointer;
-              text-align: right;
+              font-weight: bold;
+              text-align: center;
+              line-height: 40px;
             }
           }
 
         }
 
-        .registerBox {
-          width: 300px;
-          height: 40px;
-          display: flex;
-          justify-content: space-between;
-          margin-top: 10px;
-          cursor: pointer;
+        .right {
+          width: 350px;
+          height: 360px;
+          background: green;
+
         }
-
-        .loginBtn {
-          width: 160px;
-          height: 40px;
-          background: #018ef8;
-          border-radius: 10px;
-          line-height: 40px;
-          color: white;
-          font-size: 16px;
-          text-align: center;
-          margin: 20px auto 40px;
-        }
-
-        .otherLoginBox {
-          width: 100%;
-          height: 50px;
-          background: yellow;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-          .wxLogin, .qqLogin {
-            width: 100px;
-            height: 40px;
-            border: 1px solid #ccc;
-            margin: 0 20px;
-            font-size: 20px;
-            font-weight: bold;
-            text-align: center;
-            line-height: 40px;
-          }
-        }
-
-      }
-
-      .right {
-        width: 350px;
-        height: 360px;
-        background: green;
-
       }
     }
   }
+
+
+
 }
 </style>
