@@ -4,9 +4,9 @@
       <div class='titleBox'>
         <div class='close' @click='()=>loginStore.registerState="other"'></div>
         <div class='text'>
-          <span  v-if='loginStore.registerState==="wx" || loginStore.registerState==="qq"'>第三方扫描登录</span>
-          <span  v-if='loginStore.registerState==="register"'>注册</span>
-          <span  v-if='loginStore.registerState==="retrievePassword"'>找回密码</span>
+          <span v-if='loginStore.registerState==="wx" || loginStore.registerState==="qq"'>第三方扫描登录</span>
+          <span v-if='loginStore.registerState==="register"'>注册</span>
+          <span v-if='loginStore.registerState==="retrievePassword"'>找回密码</span>
         </div>
       </div>
       <div class='codeBox'>
@@ -20,8 +20,9 @@
             <LoginQQ v-if='loginStore.registerState==="qq"'></LoginQQ>
           </div>
           <!--    注册      -->
-          <div class='registerOff' v-if='loginStore.registerState==="register" || loginStore.registerState==="retrievePassword" '>
-            <Register/>
+          <div class='registerOff'
+               v-if='loginStore.registerState==="register" || loginStore.registerState==="retrievePassword" '>
+            <Register />
           </div>
         </div>
         <div class='right'></div>
@@ -56,85 +57,85 @@ const { loginStore } = useStore()
   align-items: center;
 }
 
-//
-//@media mediaType and (min-width: 800px) {
-.registerPopup {
-  width: 800px;
-  height: 600px;
-  background: white;
-  position: relative;
+@media screen and (min-width: 1px) {
+  .registerPopup {
+    width: 800px;
+    height: 600px;
+    background: white;
+    position: relative;
 
-  .titleBox {
-    display: flex;
-    align-items: center;
-    margin-left: 40px;
-    margin-top: 50px;
+    .titleBox {
+      display: flex;
+      align-items: center;
+      margin-left: 40px;
+      margin-top: 50px;
 
-    .close {
-      width: 40px;
-      height: 40px;
-      background: yellow;
-      font-size: 40px;
-      font-weight: 900;
-      cursor: pointer;
-      text-align: center;
-      line-height: 40px;
+      .close {
+        width: 40px;
+        height: 40px;
+        background: yellow;
+        font-size: 40px;
+        font-weight: 900;
+        cursor: pointer;
+        text-align: center;
+        line-height: 40px;
+      }
+
+      .text {
+        height: 40px;
+        line-height: 40px;
+        font-size: 24px;
+        font-weight: bold;
+        margin-left: 20px;
+      }
     }
 
-    .text {
+    .codeBox {
+      width: 800px;
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+
+
+      .left {
+        width: 400px;
+        height: 400px;
+        background: yellow;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .BoxOff {
+          width: 300px;
+          height: 400px;
+        }
+
+        .registerOff {
+          width: 400px;
+          height: 400px;
+
+        }
+      }
+
+      .right {
+        width: 300px;
+        height: 300px;
+        background: black;
+        margin-left: 20px;
+      }
+    }
+
+    .loginText {
+      margin-left: 50px;
       height: 40px;
       line-height: 40px;
       font-size: 24px;
       font-weight: bold;
-      margin-left: 20px;
+      margin-top: 40px;
+
     }
   }
 
-  .codeBox {
-    width: 800px;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-
-
-    .left {
-      width: 400px;
-      height: 400px;
-      background: yellow;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      .BoxOff {
-        width: 300px;
-        height: 400px;
-      }
-      .registerOff{
-        width: 400px;
-        height: 400px;
-
-      }
-    }
-
-    .right {
-      width: 300px;
-      height: 300px;
-      background: black;
-      margin-left: 20px;
-    }
-  }
-
-  .loginText {
-    margin-left: 50px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 40px;
-
-  }
 }
-
-//}
 
 </style>

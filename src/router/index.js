@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import childrenCase from './modules/case/index.js'
+
 const routes = [{
   path: '/',
   name: 'container',
@@ -10,16 +11,12 @@ const routes = [{
   children: [
     ...childrenCase
   ]
-},
-  {
-    path: "/lalala",
-    component: () => import('@/views/indexss.vue'),
-  }
+}
 ]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 })
 
 export default router

@@ -45,7 +45,7 @@
 import { useStore } from '@/pinia'
 import LoginQQ from '@/components/Login/component/Loginqq.vue'
 import registerPopup from '@/components/Login/component/registerPopup.vue'
-import { ref } from 'vue'
+import { ref,reactive } from 'vue'
 import { codeloginmobile, logincode, loginmobile } from '@/network/user.js'
 import { setItem } from '@/utils/storage.js'
 import { registermobile } from '@/network/userInterface.js'
@@ -57,7 +57,8 @@ let code = ref('123456')
 let admin = ref('')
 let password = ref('')
 let codeTime = ref(-1)
-
+// let list=reactive([{},{}])
+//登录按钮
 const handleLoginBtn = async (res) => {
   if(res==='wx' || res==='qq' || res==='register' || res==='retrievePassword') loginStore.registerState = res
   if(res==='phone'){

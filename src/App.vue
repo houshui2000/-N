@@ -1,6 +1,6 @@
 <template>
   <div class="CIjing">
-    <router-view />
+    <router-view />8<Login/>
   </div>
 </template>
 <script setup>
@@ -8,13 +8,13 @@
 import { useRoute } from 'vue-router'
 import { watch } from 'vue'
 import { weixinLogin } from '@/network/api'
+import Login from '@/components/Login/index.vue'
 const route = useRoute()
 
 watch(
   () => route.query,
   (newValue) => {
     if (!newValue.code) return
-
     VxLogin(newValue.code)
   }
 )

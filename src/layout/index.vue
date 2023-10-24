@@ -8,19 +8,14 @@
       <router-view />
     </div>
     <FooterVue />
-    <Login />
   </div>
 </template>
 <script setup>
-import { watchEffect } from 'vue'
 import NavVue from './components/top/index.vue'
 import FooterVue from './components/footer/index.vue'
 import Carousel from '@/components/Carousel/index.vue'
-// import Banner from './components/Banner/index.vue'
 
 import { useRoute } from 'vue-router'
-import Login from '@/components/Login/index.vue'
-import { weixinLogin } from '@/network/api.js'
 import ScrollZiMuVue from '@/views/cardGO/components/scrollZiMu/index.vue'
 
 const route = useRoute()
