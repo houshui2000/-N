@@ -4,7 +4,7 @@
     <div class="dundong">
       <div v-for="(item, index) in 20" :key="index" class="gundong">
         <span>
-          <img src="@/assets/images/test.png" alt="" />
+<!--          <img src="@/assets/images/test.png" alt="" />-->
         </span>
         <span>价格</span>
         <span>卡名称</span>

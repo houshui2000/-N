@@ -1,9 +1,6 @@
 <template>
   <div @click="asds">
     <router-view />
-    <p>{{ useUsersStore.ammoBalance }}sda{{ as }}s</p>
-    <!-- <img @click="asds" :src="$config.$hktest" alt="" /> -->
-    <!-- <asVVV :as="as" /> -->
   </div>
 </template>
 
