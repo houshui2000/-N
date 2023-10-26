@@ -1,6 +1,15 @@
 @import './variables.scss';
 @import './childrenStyle/index.scss';
 @import './all.scss';
+.transition05s-enter-active,
+.transition05s-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.transition05s-enter-from,
+.transition05s-leave-to {
+  opacity: 0;
+}
 
 .hide {
   overflow: hidden;

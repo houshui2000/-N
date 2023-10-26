@@ -47,6 +47,23 @@ export const logincode = (data) => {
   })
 }
 
+/**手机号密码登陆
+ *
+ * {
+  "mobile": "17686742621",
+  "code": "123456"
+ }
+*/
+export const resetpasswordBtn = (data) => {
+  return service({
+    url: 'user/reset-password',
+    method: 'post',
+    data
+  })
+}
+
+
+
 /**
  * qq登陆
  *

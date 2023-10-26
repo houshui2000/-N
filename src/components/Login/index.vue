@@ -1,9 +1,12 @@
 <template>
-  <div id='login' v-if='loginStore.login'>
+  <div id='login' v-if='loginStore.login==="32424"'>
     <div class='content'>
       <div class='close' @click='()=>loginStore.login=false'>X</div>
       <div class='contentLogin'>
         <div class='left'>
+
+        </div>
+        <div class='right'>
           <div class='title'>{{ state ? '账号密码登录' : '手机号验证码登录' }}</div>
           <div class='switch' @click='handleSwitchBtn'>切换</div>
           <div class='inputBox'>
@@ -28,14 +31,14 @@
           </div>
           <div class='loginBtn' v-if='!state' @click="handleLoginBtn('phone')">立即登录</div>
           <div class='loginBtn' v-if='state' @click="handleLoginBtn('password')">立即登录</div>
-          <div class='otherLoginBox'>
-            <div class='wxLogin' @click="handleLoginBtn('wx')">微信登录</div>
-            <div class='qqLogin' @click="handleLoginBtn('qq')">QQ登录</div>
-          </div>
+<!--          <div class='otherLoginBox'>-->
+<!--            <div class='wxLogin' @click="handleLoginBtn('wx')">微信登录</div>-->
+<!--            <div class='qqLogin' @click="handleLoginBtn('qq')">QQ登录</div>-->
+<!--          </div>-->
         </div>
-        <div class='right'>
-          <registerPopup/>
-        </div>
+<!--        <div class='right'>-->
+<!--          <registerPopup/>-->
+<!--        </div>-->
       </div>
     </div>
   </div>
@@ -44,7 +47,7 @@
 <script setup>
 import { useStore } from '@/pinia'
 import LoginQQ from '@/components/Login/component/Loginqq.vue'
-import registerPopup from '@/components/Login/component/registerPopup.vue'
+// import registerPopup from '@/components/Login/component/registerPopup.vue'
 import { ref,reactive } from 'vue'
 import { codeloginmobile, logincode, loginmobile } from '@/network/user.js'
 import { setItem } from '@/utils/storage.js'
@@ -175,8 +178,13 @@ const handleCodeTime = async() => {
         top: 40px;
         left: 0;
         display: flex;
-
         .left {
+          width: 350px;
+          height: 360px;
+          background: green;
+
+        }
+        .right {
           width: 450px;
           height: 360px;
           background: #8d5cc7;
@@ -269,12 +277,7 @@ const handleCodeTime = async() => {
 
         }
 
-        .right {
-          width: 350px;
-          height: 360px;
-          background: green;
 
-        }
       }
     }
   }

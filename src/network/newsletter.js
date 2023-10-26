@@ -64,16 +64,3 @@ export const userpromotiodetail = () => {
     method: 'get',
   })
 }
-
-/**
- * 收益详情-推广明细
- * 	"code": "123456",
-  "password": "123456",
-  "mobile": "17686742621"
-*/
-export const resetpassword = (data) => {
-  return service({
-    url: `user/reset-password`,
-    method: 'get', data
-  })
-}

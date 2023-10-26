@@ -110,30 +110,7 @@ export const balancedetail = (params) => {
     method: 'get',
   })
 }
-// /**
-//  * 发送修改密码验证码
-//  *
-// */
-// export const codepassword = (params) => {
-//   return service({
-//     url: `verification-code/password`,
-//     method: 'get',
-//     params
-//   })
-// }
 
-
-
-// /**
-//  * 发送重置密码验证码
-//  *mobile
-// */
-// export const resetpassword = (params) => {
-//   return service({
-//     url: `verification-code/reset-password?mobile=${params}`,
-//     method: 'get',
-//   })
-// }
 
 
 
