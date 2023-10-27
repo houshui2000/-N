@@ -215,9 +215,9 @@ const handleLoginBtn = async () => {
   // 手机密码登录
   if (stateBtn.value === 1 && otherBtn.value === 'other') {
     if(passwordInfo.mobile==='' || passwordInfo.password==='') {
-
       return
     }
+    if(handleAgreement()) return
     let result = await loginmobile(passwordInfo)
     if (result.code === 200) {
       setItem('token', result.data.token)
@@ -232,6 +232,10 @@ const handleLoginBtn = async () => {
   }
   // 手机验证码登录
   if (stateBtn.value === 2 && otherBtn.value === 'other') {
+    if(mobileInfo.mobile==='' || mobileInfo.code==='') {
+      return
+    }
+    if(handleAgreement()) return
     let result = await logincode(mobileInfo)
     if (result.code === 200) {
       setItem('token', result.data.token)
@@ -246,6 +250,12 @@ const handleLoginBtn = async () => {
   }
   // 注册账号
   if (otherBtn.value === 'register') {
+    for (let key in registerInfo) {
+      console.log(registerInfo.hasOwnProperty(key))
+      if(registerInfo.hasOwnProperty(key)==='') return
+    }
+    console.log("我执行了")
+    if(handleAgreement()) return
     const result = await registernormal(registerInfo)
     if (result.code === 200) {
       console.log('注册成功')
