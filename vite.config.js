@@ -10,11 +10,14 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 //  svg
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+// 解决 vite + element 警告
+import fs from 'fs';
+import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
 
-import postCssPxToRem from 'postcss-pxtorem'
+// import postCssPxToRem from 'postcss-pxtorem'
 import pxtovw from 'postcss-px-to-viewport'
 const loder_pxtovw = pxtovw({
-//这里是设计稿宽度 自己修改
+  //这里是设计稿宽度 自己修改
   viewportWidth: 1920,
   viewportUnit: 'vw'
 })
@@ -23,6 +26,22 @@ const loder_pxtovw = pxtovw({
 // const pathSrc = path.resolve(__dirname, 'src');
 
 export default defineConfig((mode) => {
+  // 解决 vite + element 警告
+  const optimizeDepsElementPlusIncludes = ["element-plus/es", '@vuemap/vue-amap/es']
+  fs.readdirSync("node_modules/element-plus/es/components").map((dirname) => {
+    fs.access(
+      `node_modules/element-plus/es/components/${dirname}/style/css.mjs`,
+      (err) => {
+        if (!err) {
+          optimizeDepsElementPlusIncludes.push(
+            `element-plus/es/components/${dirname}/style/css`
+          )
+        }
+      }
+    )
+  })
+  // 解决 vite + element 警告 end
+
   // eslint-disable-next-line no-undef
   const env = loadEnv(mode.mode, process.cwd())
   return {
@@ -33,8 +52,10 @@ export default defineConfig((mode) => {
       AutoImport({
         resolvers: [ElementPlusResolver()],
       }),
+      // unplugin-vue-components 警告解决
       Components({
-        resolvers: [ElementPlusResolver()],
+        directoryAsNamespace: true,
+        resolvers: [ElementPlusResolver(), AntDesignVueResolver()],
       }),
 
       createSvgIconsPlugin({
