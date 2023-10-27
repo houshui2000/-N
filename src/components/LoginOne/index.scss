@@ -17,6 +17,39 @@
     border-color: #ffffff;
   }
 }
+@keyframes shake {
+  10%,
+
+  90% {
+    transform: translate3d(-1px, 0 0);
+
+  }
+
+  20%,
+
+  80% {
+    transform: translate3d(2px, 0, 0);
+
+  }
+
+  30%,
+
+  50%,
+
+  70% {
+    transform: translate3d(-4px, 0, 0);
+
+  }
+
+  40%,
+
+  60% {
+    transform: translate3d(4px, 0, 0);
+
+  }
+
+}
+
 
 #login {
   position: fixed;
@@ -140,6 +173,7 @@
             height: 46px;
             background: url($gxsLoginInput) no-repeat center;
             background-size: contain;
+            position: relative;
 
             input {
               width: 350px;
@@ -154,6 +188,18 @@
                 opacity: 0.6;
               }
             }
+
+            .verification {
+              width: 200px;
+              height: 46px;
+              position: absolute;
+              top: 0;
+              right: 20px;
+              line-height: 46px;
+              color: #c45656;
+              text-align: right;
+            }
+
           }
 
           //验证码公共样式
@@ -184,7 +230,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            cursor: pointer;
           }
+
           .registerBtn {
             width: 350px;
             height: 48px;
@@ -194,7 +242,9 @@
             justify-content: center;
             align-items: center;
             margin-top: 31px;
+            cursor: pointer;
           }
+
           .resettingBtn {
             width: 350px;
             height: 48px;
@@ -204,6 +254,7 @@
             justify-content: center;
             align-items: center;
             margin-top: 90px;
+            cursor: pointer;
           }
 
           .loginBox {
@@ -228,6 +279,7 @@
                 text-decoration: none;
               }
             }
+
             .registerBtnBox {
               width: 350px;
               height: 16px;
@@ -246,6 +298,7 @@
                 text-decoration: none;
               }
             }
+
             .resettingBtnBox {
               width: 350px;
               height: 16px;
@@ -259,6 +312,7 @@
                 cursor: pointer;
               }
             }
+
             .loginBtnBox {
               margin-top: 44px;
             }
@@ -273,6 +327,10 @@
 
               .checkboxBox-checkbox {
                 margin-right: 10px;
+              }
+              &.apply-shake {
+                animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+
               }
 
               span {
@@ -302,24 +360,29 @@
                 flex-direction: column;
                 align-items: center;
                 margin-top: 14px;
-                .border{
+
+                .border {
                   width: 50px;
                   height: 2px;
-                  background:url($gxsLoginActiveIcon) no-repeat center;
-                  background-size:contain;
+                  background: url($gxsLoginActiveIcon) no-repeat center;
+                  background-size: contain;
                   margin-top: 5px;
                 }
-                .inputBox:nth-child(1){
+
+                .inputBox:nth-child(1) {
                   margin-top: 21px;
                 }
               }
+
               .marginTop21 {
                 margin-top: 21px;
               }
+
               .marginTop18 {
                 margin-top: 18px;
               }
-              .marginTop31{
+
+              .marginTop31 {
                 margin-top: 31px;
               }
             }
