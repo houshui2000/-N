@@ -250,9 +250,11 @@ const handleLoginBtn = async () => {
   }
   // 注册账号
   if (otherBtn.value === 'register') {
-    for (let key in registerInfo) {
-      console.log(registerInfo.hasOwnProperty(key))
-      if(registerInfo.hasOwnProperty(key)==='') return
+    for (let val of Object.values(registerInfo)) {
+      if(val==='') {
+        handleRegisterInfoBlur()
+        return
+      }
     }
     console.log("我执行了")
     if(handleAgreement()) return

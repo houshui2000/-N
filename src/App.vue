@@ -28,6 +28,23 @@ const route = useRoute()
 
 <style scoped lang="scss"></style>
 <style lang="scss">
+  /* 禁止复制代码 */
+pre {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* 禁止选择文字 */
+body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 body {
   overflow-x: hidden;
   width: 100vw;
