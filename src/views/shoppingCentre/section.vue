@@ -41,7 +41,6 @@ const init = async () => {
     asc: true,
     name: LeftData.value.name
   })
-  // console.log(res)creatData
   creatData.value = res.data
 }
 init()

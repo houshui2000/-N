@@ -88,7 +88,6 @@ const init = async () => {
   })
   // const shopcarddetailRes =await shopcarddetail({
   // })
-  console.log(res)
   creatData.value = res.data
 }
 init()
