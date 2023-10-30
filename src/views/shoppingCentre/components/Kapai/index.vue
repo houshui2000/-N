@@ -1,0 +1,149 @@
+<template>
+  <div class="kapai">
+    <div v-if="props.KaParVueitem.hotPushStatus" class="hot">hot</div>
+    <div class="xiaoxingxing"></div>
+    <div class="chinaKexo">中国可信NFT</div>
+    <img :src="props.KaParVueitem.productUrl" alt="" />
+    <div class="kapai_bottom">
+      <p class="txt_cut">{{ props.KaParVueitem.productName }}</p>
+      <!-- 商城卡片 -->
+      <div class="shoppingCentre">
+        <div
+          class="left_bott"
+          :class="{
+            none: props.KaParVueitem.onSellingCount === 0
+          }"
+        >
+          <span>￥</span>
+          <span class="mounch">{{ props.KaParVueitem.minPrice }}</span>
+          <span>起</span>
+        </div>
+        <div
+          v-html="
+            props.KaParVueitem.onSellingCount > 0
+              ? `在售<span style='margin-left: 5px;' >${props.KaParVueitem.onSellingCount}</span>`
+              : ` 已售罄`
+          "
+          class="right_bott"
+        ></div>
+      </div>
+      <!-- 商城卡片 end-->
+    </div>
+  </div>
+</template>
+<script setup>
+const props = defineProps({
+  title: {
+    type: String,
+    default: '啊大叔大叔大大爱上打爱上打打打萨达爱上打打打多少撒大厦多少'
+  },
+  KaParVueitem: {
+    type: Object,
+    required: true
+  },
+  shoppingCentre: {
+    type: Object,
+    default: () => {
+      return {}
+    }
+  }
+})
+</script>
+<style lang="scss" scoped>
+.kapai {
+  position: relative;
+  width: 100%;
+  border-radius: 6px;
+  height: 100%;
+  background: linear-gradient(149deg, #200924 45.99%, #0e1045 69.44%, #000a2c 85.48%);
+  border: 1px solid #303a66;
+
+  transition: all 0.5s;
+  &:hover {
+    // border: 11px solid #303a66;
+    transform: translateY(-12px);
+    background-color: saddlebrown !important;
+    .xiaoxingxing {
+      z-index: 0;
+      background: url('@/assets/images/carggo/xingxing.png') no-repeat scroll left bottom/ 100% 100%;
+    }
+  }
+  .chinaKexo {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 87px;
+    height: 28px;
+    @include Myflex();
+
+    font: normal normal 600 12px 'PingFang SC';
+    background: linear-gradient(96deg, #c4fbfe 0%, #99d2ff 31.55%, #fff 63.3%, #f295ff 103.92%);
+  }
+  .xiaoxingxing {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: none;
+  }
+
+  img {
+    border-bottom: 1px solid #303a66;
+    height: 220px;
+  }
+  .kapai_bottom {
+    padding: 15px 14px;
+    > p {
+      color: white;
+      height: 46px;
+      width: 100%;
+      &:first-child {
+        text-align: left;
+        font: normal normal 600 16px 'PingFang SC';
+      }
+    }
+    .none {
+      background: #4e4e4e !important;
+      color: #a7a7a7;
+    }
+    .shoppingCentre {
+      @include Myflex(space-between);
+      color: white;
+      height: 28px;
+      margin-top: 11px;
+      .left_bott {
+        padding: 6px 19px;
+        height: 100%;
+        background: linear-gradient(90deg, #2d42ff 0%, #df00c9 96.64%);
+        // fill: linear-gradient(270deg, rgba(220, 158, 0, 0.00) 0.09%, rgba(220, 158, 0, 0.54) 77.46%, #EFAD02 96.55%);
+
+        border-radius: 6px;
+        @include Myflex(space-between);
+        span {
+          font: normal normal 800 16px 'HYYakuHei';
+        }
+        .mounch {
+          margin: 0 9px 0 1px;
+        }
+      }
+      .right_bott {
+        font: normal normal 500 14px 'HYYakuHei';
+      }
+    }
+  }
+  .hot {
+    background-color: #ea3a52;
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    width: 38px;
+    height: 38px;
+    font: normal normal 600 12px 'PingFang SC';
+    color: white;
+    @include Myflex();
+    -webkit-clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  }
+}
+</style>

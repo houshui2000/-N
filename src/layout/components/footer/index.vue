@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div class="footer_top">
+    <!-- <div class="footer_top">
       <Router-link to="/"><div class="Top_div">1</div></Router-link>
       <Router-link to="/"><div class="Top_div">2</div></Router-link>
       <Router-link to="/"><div class="Top_div">3</div></Router-link>
@@ -10,7 +10,7 @@
         <div style="border-right: none" class="Top_div">6</div>
       </Router-link>
     </div>
-    <!-- 备案号 -->
+    <!~~ 备案号 ~~>
     <p>
       <span>备案号:</span>
       <span>XXXXXXXXXXXXXXXX</span>
@@ -18,7 +18,7 @@
     <p>
       <span>版权萨达:</span>
       <span>XXXXXXXXXXXXXXXX</span>
-    </p>
+    </p>-->
     <!--  -->
     <div class="footer_borrom">
       <Router-link to="/"><div class="tiaozhuan">测试1</div></Router-link>
@@ -34,6 +34,7 @@
 footer {
   padding: 50px 0;
   width: 1920px;
+  background: #16191f;
   .footer_top {
     // width: ;
     @include Myflex();

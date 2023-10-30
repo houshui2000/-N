@@ -25,9 +25,7 @@ import xilieVue from './components/xiLie/index.vue'
     top: 0;
     right: -193px;
     z-index: -1;
-    // background-color: saddlebrown;
     background: url('@/assets/images/carggo/aside.png') no-repeat scroll left top/ 100% 100%;
-    // @include Myflex();
     width: 358px;
     height: 889px;
   }

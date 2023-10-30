@@ -1,16 +1,16 @@
 <template>
   <div class="CIjing">
     <router-view />
-    <LoginOne/>
+    <LoginOne />
   </div>
+  <!-- <img src="@/assets/images/all/bei.png" alt=""> -->
 </template>
 <script setup>
-
-import { useRoute } from 'vue-router'
-import { watch } from 'vue'
-import { weixinLogin } from '@/network/api'
+// import { useRoute } from 'vue-router'
+// import { watch } from 'vue'
+// import { weixinLogin } from '@/network/api'
 import LoginOne from '@/components/LoginOne/index.vue'
-const route = useRoute()
+// const route = useRoute()
 
 // watch(
 //   () => route.query,
@@ -23,12 +23,16 @@ const route = useRoute()
 //   await weixinLogin({ tencentCode: newValue })
 //   // console.log(userresepassword)
 // }
-
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.CIjing {
+  // background-color: cadetblue;
+  background: url('@/assets/images/all/bei.png') no-repeat;
+}
+</style>
 <style lang="scss">
-  /* 禁止复制代码 */
+/* 禁止复制代码 */
 pre {
   -webkit-user-select: none;
   -moz-user-select: none;

@@ -1,8 +1,5 @@
 const childrenCase = [
-  {
-    path: '/',
-    redirect:'cardgo'
-  },
+
   {
     path: '/home',
     name: 'home',
@@ -15,7 +12,6 @@ const childrenCase = [
     name: 'cardgo',
     component: () => import('@/views/cardGO/index.vue'),
     props: true,
-
     meta: {
       immediate: true // 路由显示
     }
