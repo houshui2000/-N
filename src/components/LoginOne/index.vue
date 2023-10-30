@@ -250,12 +250,14 @@ const handleLoginBtn = async () => {
   }
   // 注册账号
   if (otherBtn.value === 'register') {
-    for (let val of Object.values(registerInfo)) {
-      if(val==='') {
-        handleRegisterInfoBlur()
-        return
-      }
-    }
+    // for (let val of Object.values(registerInfo)) {
+    //   console.log(val)
+    //   if(val==='') {
+    //     handleRegisterInfoBlur()
+    //     return
+    //   }
+    // }
+    // if(registerInfo.mobile===)
     console.log("我执行了")
     if(handleAgreement()) return
     const result = await registernormal(registerInfo)

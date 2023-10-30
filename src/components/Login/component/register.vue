@@ -74,6 +74,7 @@ const handleCodeTime = async () => {
 }
 
 const handleRegisterBtn = async () => {
+  console.log("34234")
   if (!agreement.value) return
   const result = await registernormal({
     'mobile': phone.value,
