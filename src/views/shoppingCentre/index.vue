@@ -1,3 +1,14 @@
-<template><div>asdad</div></template>
-<script setup lang="ts"></script>
-<style lang="scss" scoped></style>
+<template>
+  <div class="section">
+    <LunBoVue />
+    <sectionVue />
+  </div>
+</template>
+<script setup>
+import LunBoVue from './components/LunBo/index.vue'
+import sectionVue from './section.vue'
+</script>
+<style lang="scss" scoped>
+.section {
+}
+</style>

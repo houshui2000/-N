@@ -1,8 +1,5 @@
 const childrenCase = [
-  {
-    path: '/',
-    redirect: 'shoppingCentre'
-  },
+
   {
     path: '/home',
     name: 'home',
@@ -26,16 +23,6 @@ const childrenCase = [
     props: true,
     meta: {
       immediate: true // 路由显示
-    }
-  },
-  {
-    path: '/shoppingCentre',
-    name: 'shoppingCentre',
-    component: () => import('@/views/shoppingCentre/index.vue'),
-    props: true,
-    meta: {
-      name: '商城首页',
-      gundong: false // 实时滚动组件关闭
     }
   },
   {

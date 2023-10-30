@@ -1,7 +1,7 @@
 <template>
   <div class="zuiwai">
     <div ref="lunbo" class="lunbo">
-      <div ref="spanRef">
+      <div style="display: flex; justify-content: center; align-items: center" ref="spanRef">
         <!-- <span class="img"> -->
         <img class="img" src="@/assets/images/carggo/Gongao.png" alt="" />
         <!-- </span> -->
@@ -19,7 +19,7 @@ const { title } = defineProps({
 })
 const lunbo = ref()
 onMounted(() => {
-  // spanRef.value.style.width = `${spanRef.value.offsetWidth + 50}px`
+  spanRef.value.style.width = `${spanRef.value.offsetWidth + 50}px`
   requestAnimationFrame(scroll)
 })
 const spanRef = ref()
@@ -67,6 +67,7 @@ const scroll = () => {
         position: relative;
         width: 17px;
         height: 17px;
+        // margin-top: 3px;
         margin-right: 13px;
       }
       .wenzi {

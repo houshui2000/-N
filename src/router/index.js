@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import childrenCase from './modules/case/index.js'
-
+import shoppingCentrechildren from './modules/shoppingCentre/index.js'
 const routes = [{
   path: '/',
   name: 'container',
@@ -9,7 +9,12 @@ const routes = [{
   props: true,
   // redirect: '/',
   children: [
-    ...childrenCase
+    {
+      path: '/',
+      redirect: 'shoppingCentre'
+    },
+    ...childrenCase,
+    ...shoppingCentrechildren
   ]
 }
 ]
