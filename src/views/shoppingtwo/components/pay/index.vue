@@ -286,7 +286,7 @@ section {
 }
 .footer {
   cursor: pointer;
-  transform: translateY(-19px);
+  transform: translateY(-29px);
   border-radius: 6.54px;
   background: linear-gradient(90deg, #2d42ff 0%, #df00c9 96.64%);
   width: 156px;

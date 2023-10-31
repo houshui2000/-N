@@ -36,6 +36,7 @@ provide('creatData', creatData)
 .kapai {
   padding-top: 84px;
   width: 1470px;
+  
   margin: auto;
   .crumbs {
     font: normal normal 400 14px 'PingFang SC';
