@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import childrenCase from './modules/case/index.js'
 import shoppingCentrechildren from './modules/shoppingCentre/index.js'
+import gxsChildrenRouter from './modules/gxsChildrenRouter/index.js'
 const routes = [{
   path: '/',
   name: 'container',
@@ -14,7 +15,8 @@ const routes = [{
       redirect: 'shoppingCentre'
     },
     ...childrenCase,
-    ...shoppingCentrechildren
+    ...shoppingCentrechildren,
+    ...gxsChildrenRouter
   ]
 }
 ]

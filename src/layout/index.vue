@@ -49,11 +49,12 @@ watch(
   overflow: hidden;
 
   .center {
-    min-height: 1500px;
+    //min-height: 1500px;
     // background-color: sandybrown;
     background-color: rgba(15, 12, 16, 0.7);
     position: relative;
     padding-bottom: 102px;
+    margin-top: 70px;
   }
 }
 </style>

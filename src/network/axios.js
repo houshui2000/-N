@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { getItem } from '@/utils/storage.js'
 const service = axios.create({
-  baseURL: import.meta.env.VITE_APP_API_URL,
+  // baseURL: import.meta.env.VITE_APP_API_URL,
   // baseURL: 'http://172.16.1.137:8081',
-  // baseURL: 'http://8.140.20.79/api',
+  baseURL: 'http://8.140.20.79/api',
   timeout: 5000 // request timeout
 })
 
