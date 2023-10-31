@@ -9,14 +9,28 @@
       <span>卡牌详情</span>
     </div>
     <section>
-      <TopVue />
-      <BOttomVue />
+      <TopVue :creatData="creatData" />
+      <!-- <BOttomVue /> -->
     </section>
   </div>
 </template>
 <script setup>
 import TopVue from './top.vue'
 import BOttomVue from './bottom.vue'
+import { useRoute } from 'vue-router'
+import { ref, provide } from 'vue'
+import { shopcardxdetail } from '@/network/shoppingCentre/shoppingtwo.js'
+const route = useRoute()
+// 系列的数据
+const creatData = ref({})
+const init = async () => {
+  const res = await shopcardxdetail({
+    vaultId: route.params.vaultId
+  })
+  creatData.value = res.data
+}
+init()
+provide('creatData', creatData)
 </script>
 <style lang="scss" scoped>
 .kapai {

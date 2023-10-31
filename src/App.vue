@@ -3,32 +3,16 @@
     <router-view />
     <LoginOne />
   </div>
-  <!-- <img src="@/assets/images/all/bei.png" alt=""> -->
 </template>
 <script setup>
-// import { useRoute } from 'vue-router'
-// import { watch } from 'vue'
-// import { weixinLogin } from '@/network/api'
 import LoginOne from '@/components/LoginOne/index.vue'
-// const route = useRoute()
-
-// watch(
-//   () => route.query,
-//   (newValue) => {
-//     if (!newValue.code) return
-//     VxLogin(newValue.code)
-//   }
-// )
-// const VxLogin = async (newValue) => {
-//   await weixinLogin({ tencentCode: newValue })
-//   // console.log(userresepassword)
-// }
 </script>
 
 <style scoped lang="scss">
 .CIjing {
   // background-color: cadetblue;
   background: url('@/assets/images/all/bei.png') no-repeat;
+  background-size: 100% 100%;
 }
 </style>
 <style lang="scss">

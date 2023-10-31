@@ -24,6 +24,8 @@ onMounted(() => {
 })
 const spanRef = ref()
 const scroll = () => {
+  if (!spanRef.value) return
+
   let offsetLeft = Number(spanRef.value.offsetLeft - 2)
   const xin = Math.abs(spanRef.value.offsetLeft) > lunbo.value.offsetWidth
   if (xin) {

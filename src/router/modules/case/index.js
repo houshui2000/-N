@@ -31,7 +31,7 @@ const childrenCase = [
     component: () => import('@/views/helpCenter/index.vue'),
     props: true,
     meta: {
-      gundong: false // 实时滚动组件关闭
+      gundong: false // 实时左侧滚动组件false 开启，true关闭
     }
   },
   {
@@ -40,7 +40,7 @@ const childrenCase = [
     component: () => import('@/views/app/index.vue'),
     props: true,
     meta: {
-      gundong: false // 实时滚动组件关闭
+      gundong: false // 实时左侧滚动组件false 开启，true关闭
     }
   },
 ];

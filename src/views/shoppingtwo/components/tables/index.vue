@@ -10,11 +10,11 @@
           <td>操作</td>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-if="drops.records?.length > 0">
         <tr v-for="(item, index) in drops.records" :key="index">
           <td>
             <div class="img">
-              <img :src="item.s" alt="" />
+              <img :src="item.productUrl" alt="" />
             </div>
           </td>
           <td>
@@ -28,7 +28,7 @@
           </td>
           <td>
             <p style="padding-left: 70px" class="kapaiming_bina">
-              <span>{{ item.price ? item.price : '---' }}</span>
+              <span style="color: white">{{ item.price ? item.price : '---' }}</span>
             </p>
           </td>
           <td>
@@ -44,6 +44,7 @@
       </tbody>
     </table>
   </div>
+  
 </template>
 <script setup>
 import SvgIcon from '@/components/SvgIcon/index.vue'
@@ -141,18 +142,36 @@ table {
           }
 
           .zhiFU_one {
-            border-radius: 2px;
-            background: var(--6, linear-gradient(90deg, #2d42ff 0%, #df00c9 96.64%));
-          }
-          .zhiFU_one_mai {
-            border-radius: 2px;
-            // border: 1px solid var(--6, #2d42ff);
             border-radius: 6px;
-            // border: 1px solid #9f62db;
+            background: linear-gradient(90deg, #2d42ff 0%, #df00c9 96.64%);
+          }
 
-            border: 1.213px solid #8720e3;
-            // background: ;
-            box-shadow: linear-gradient(180deg, rgba(46, 65, 255, 0.59) 0%, rgba(223, 1, 201, 0.59) 100%);
+          .zhiFU_one_mai {
+            position: relative;
+            &::after {
+              position: absolute;
+              left: 0;
+              top: 0;
+              content: '';
+              background: linear-gradient(90deg, rgba(47, 65, 254, 1) 0%, rgba(224, 1, 201, 1) 100%);
+              width: 100%;
+              height: 100%;
+              z-index: 0;
+              border-radius: 8px;
+              -webkit-clip-path: polygon(
+                4% 1%,
+                1% 100%,
+                6% 100%,
+                9% 8%,
+                93% 8%,
+                93% 94%,
+                0% 93%,
+                0% 100%,
+                97% 100%,
+                97% 2%
+              );
+              clip-path: polygon(4% 1%, 1% 100%, 6% 100%, 9% 8%, 93% 8%, 93% 94%, 0% 93%, 0% 100%, 97% 100%, 97% 2%);
+            }
           }
         }
       }

@@ -5,40 +5,48 @@
         class="S_L_Left"
         :style="{
           color: 'red',
-          background: `url(${creatData.productUrl}) no-repeat scroll left top/ 100% 100%`
+          background: `url(${props.creatData.productUrl}) no-repeat scroll left top/ 100% 100%`
         }"
       >
-        <div class="fenxiang"><SvgIcon size="45px" icon-class="fenxiang" /></div>
-        <img :src="creatData.effectFrontUrl" alt="" />
+        <div style="cursor: pointer" class="fenxiang"><SvgIcon size="45px" icon-class="fenxiang" /></div>
+        <div class="img">
+          <img class="equalProportions" :src="props.creatData.effectFrontUrl" alt="" />
+        </div>
         <div class="di_guang"></div>
       </div>
       <div class="S_L_right">
         <div class="S_L_Top">
-          <p>{{ creatData.productName }}</p>
+          <p>{{ props.creatData.authorName }}</p>
           <div class="S_l_center">
-            <p>发行方：{{ creatData.issueName }}</p>
-            <p>发行方：{{ creatData.buyRestrict }}</p>
+            <p>发行方：{{ props.creatData.issueName }}</p>
+            <p>发行方：{{ props.creatData.buyRestrict }}</p>
 
-            <p>发行价：￥{{ creatData.buyRestrict }}</p>
+            <p>发行价：￥{{ props.creatData.buyRestrict }}</p>
           </div>
         </div>
         <!-- 支付 -->
         <div class="S_L_Zhi">
           <p>
             * 该系列每人限购
-            <span>{{ creatData.buyRestrict }}</span>
+            <span>{{ props.creatData.buyRestrict }}</span>
             份
           </p>
-          <div class="maifu">一键买入</div>
+          <div @click="dialogVisiblePay = true" class="maifu">一键买入</div>
         </div>
       </div>
     </div>
     <div class="section_right">
       <p>其他系列</p>
       <div class="S_R_XIlie">
-        <div v-for="(item, index) in 6" :class="{ Xilie_da: index === 1 }" :key="index" class="XIlie_one">
+        <div
+          v-for="(item, index) in 6"
+          @click="series.index = index"
+          :class="{ Xilie_da: index === series.index }"
+          :key="index"
+          class="XIlie_one"
+        >
           <div class="left_one">
-            <img src="@/assets/images/carggo/ceshi.png" alt="" />
+            <img class="equalProportions" src="@/assets/images/carggo/ceshi.png" alt="" />
           </div>
           <div class="right_one">
             <p>赛博朋克2077-边缘行者</p>
@@ -54,24 +62,21 @@
         </div>
       </div>
     </div>
+    <payVue v-model:dialogVisiblePay="dialogVisiblePay" />
   </div>
 </template>
 <script setup>
+import payVue from './components/pay/index.vue'
+// import errDialoVue from './components/errdialo/index.vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
-import { useRoute } from 'vue-router'
 import { ref } from 'vue'
-import { shopcardxdetail } from '@/network/shoppingCentre/shoppingtwo.js'
-const route = useRoute()
-const creatData = ref({})
-const init = async () => {
-  const res = await shopcardxdetail({
-    vaultId: route.params.vaultId
-  })
-  // const shopcarddetailRes =await shopcarddetail({
-  // })
-  creatData.value = res.data
-}
-init()
+const props = defineProps({
+  creatData: { type: Object, required: true }
+})
+const dialogVisiblePay = ref(true) //支付弹框
+const series = ref({
+  index: 0
+})
 </script>
 <style lang="scss" scoped>
 .top_nav {
@@ -100,13 +105,37 @@ init()
       right: 23px;
       top: 19px;
     }
-    > img {
+    .img {
       position: absolute;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      width: 120px;
-      height: 253px;
+      width: 420px;
+      height: 353px;
+      transform-style: preserve-3d;
+      // perspective: 200px;
+      perspective: 1000px;
+
+      > img {
+        animation: infinite shiver 5s linear;
+        @keyframes shiver {
+          0% {
+            transform: rotateY(0);
+          }
+          30% {
+            transform: rotateY(35deg);
+          }
+          55% {
+            transform: rotateY(0);
+          }
+          75% {
+            transform: rotateY(-35deg);
+          }
+          100% {
+            transform: rotateY(0);
+          }
+        }
+      }
     }
     .di_guang {
       width: 414px;
@@ -135,18 +164,40 @@ init()
         @include Myflex(flex-start);
         flex-wrap: wrap;
         > p {
+          position: relative;
           font: normal normal 400 14px 'Microsoft YaHei';
-          color: rgba(235, 235, 235, 18);
+          color: rgba(235, 235, 235, 1);
           margin-right: 12px;
           margin-top: 21px;
           line-height: 55px;
           height: 55px;
-          display: inline-block;
-          padding: 0 18px;
-          border-radius: 6px;
-          border: 1.213px solid #9f62db;
-          background: linear-gradient(180deg, rgba(18, 39, 67, 0.59) 0%, rgba(3, 13, 21, 0.59) 100%);
-          box-shadow: 0px 4.85072px 15.76483px 0px rgba(0, 0, 0, 0.43);
+          padding: 0 12px;
+          &::after {
+            position: absolute;
+            left: 0;
+            top: 0;
+            content: '';
+            background: linear-gradient(180deg, rgba(148, 96, 2071, 1) 0%, rgba(99, 149, 231, 1) 100%);
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            border-radius: 8px;
+            -webkit-clip-path: polygon(
+              2% 0%,
+              2% 100%,
+              6% 96%,
+              6% 7%,
+              95% 9%,
+              96% 91%,
+              0% 92%,
+              1% 100%,
+              100% 100%,
+              100% 0%
+            );
+            clip-path: polygon(2% 0%, 2% 100%, 6% 96%, 6% 7%, 95% 9%, 96% 91%, 0% 92%, 1% 100%, 100% 100%, 100% 0%);
+            -webkit-clip-path: polygon(25% 40% at 50% 50%);
+            clip-path: border-box;
+          }
         }
       }
     }
@@ -160,6 +211,7 @@ init()
         }
       }
       .maifu {
+        cursor: pointer;
         margin-top: 17px;
         width: 100%;
         height: 38px;
@@ -224,6 +276,7 @@ init()
       transform: scale(1.1) translateX(-10px);
     }
     .XIlie_one {
+      cursor: pointer;
       margin-top: 15px;
       border-radius: 5px;
       border: 0.96px solid #9f64db;

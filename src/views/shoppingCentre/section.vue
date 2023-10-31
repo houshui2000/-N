@@ -15,11 +15,13 @@ import section_right from './components/sectionRight/index.vue'
 import MYIntersectionObserver from '@/utils/IntersectionObserver.js'
 import { ref, onMounted } from 'vue'
 import { shopliscard } from '@/network/shoppingCentre/shoppingCentre'
+import { mallHomepage } from '@/enumerate/index.js'
 
 const xianshi_geng = ref(null)
 const LeftData = ref({
   name: '',
-  orderColumn: 'sort'
+  orderColumn: '1',
+  categoryIds: []
 })
 const FenYe = {
   size: 10,
@@ -27,20 +29,25 @@ const FenYe = {
 }
 onMounted(() => {
   MYIntersectionObserver(xianshi_geng.value, () => {
-    // INterOb.value.push('xasdasda')
     FenYe.size += 10
     init()
   })
 })
 const creatData = ref({})
 const init = async () => {
+  // 排序方式 修改
+  const sort = mallHomepage.find((item) => item.value === LeftData.value.orderColumn)
+  // 排序方式 修改end
+
   const res = await shopliscard({
     current: FenYe.current,
     size: FenYe.size,
-    orderColumn: LeftData.value.orderColumn,
-    asc: true,
-    name: LeftData.value.name
+    orderColumn: sort.name,
+    asc: sort.sort,
+    name: LeftData.value.name,
+    categoryIds: LeftData.value.categoryIds.join(',')
   })
+
   creatData.value = res.data
 }
 init()
@@ -48,6 +55,8 @@ let time = null
 /**子组件改动更新接口 */
 const LeftDataFuncation = (e) => {
   LeftData.value = e
+  // LeftData.value.categoryIds = LeftData.value.categoryIds.join(',')
+
   if (time) clearTimeout(time)
   time = setTimeout(() => {
     init()

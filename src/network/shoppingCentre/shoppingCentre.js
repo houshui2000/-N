@@ -14,13 +14,12 @@ export function shopliscard (params) {
     method: 'GET', params
   })
 }
-// /**
-//  * 首页商品列表
-//  *current=1&size=1&orderColumn=sort&asc=true&name=123123123
-// */
-// export function exchangecards (params) {
-//   return service({
-//     url: '/exchange/cards',
-//     method: 'GET', params
-//   })
-// }
+/**
+ * 首页获取分类
+*/
+export function shopcardcategories () {
+  return service({
+    url: '/shop/card-categories',
+    method: 'GET',
+  })
+}

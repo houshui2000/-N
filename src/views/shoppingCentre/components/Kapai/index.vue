@@ -3,7 +3,9 @@
     <div v-if="props.KaParVueitem.hotPushStatus" class="hot">hot</div>
     <div class="xiaoxingxing"></div>
     <div class="chinaKexo">中国可信NFT</div>
-    <img :src="props.KaParVueitem.productUrl" alt="" />
+    <div class="img">
+      <img class="equalProportions" :src="props.KaParVueitem.productUrl" alt="" />
+    </div>
     <div class="kapai_bottom">
       <p class="txt_cut">{{ props.KaParVueitem.productName }}</p>
       <!-- 商城卡片 -->
@@ -88,7 +90,8 @@ const props = defineProps({
     background: none;
   }
 
-  img {
+  .img {
+    width: 100%;
     border-bottom: 1px solid #303a66;
     height: 220px;
   }

@@ -52,6 +52,7 @@
       //     "devDependencies": true
       //   }
       // ],
+      "vue/no-mutating-props": "off",
       "no-debugger":"warn",
       "prettier/prettier":"off",
       "import/no-extraneous-dependencies": "off",

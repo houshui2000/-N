@@ -10,7 +10,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import 'virtual:svg-icons-register'
 // import './utils/rem'
-
+import './utils/forbid.js'
 // 引入字体样式文件
 import './assets/fonts/font.css'
 

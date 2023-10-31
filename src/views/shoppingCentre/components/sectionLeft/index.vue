@@ -3,7 +3,7 @@
     <div class="S_L_top">
       <p>搜索</p>
       <div class="input">
-        <el-input v-model="search.name" class="w-50 m-2" placeholder="找寻理想的卡牌" />
+        <el-input v-model.trim="search.name" class="w-50 m-2" placeholder="找寻理想的卡牌" />
         <div class="icon">
           <SvgIcon icon-class="sousuo" />
         </div>
@@ -13,8 +13,14 @@
     <div class="S_L_Par">
       <p>排序方式</p>
       <div class="input">
-        <el-select v-model="search.orderColumn" class="m-2" placeholder="价格由低到高" size="large">
-          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+        <el-select
+          popper-class="blueBack"
+          v-model="search.orderColumn"
+          class="m-2"
+          placeholder="价格由低到高"
+          size="large"
+        >
+          <!-- <el-option v-for="item in mallHomepage" :key="item.value" :label="item.label" :value="item.value" /> -->
         </el-select>
       </div>
     </div>
@@ -30,10 +36,12 @@
         </span>
       </p>
       <div ref="LeiBie_xia" class="LeiBie_xia">
-        <div ref="lei" v-for="item in 10" :key="item" class="lei">
-          <el-checkbox></el-checkbox>
-          <span class="wenzi">xxx</span>
-          <span class="shu">215</span>
+        <div ref="lei" v-for="item in categoryData" :key="item" class="lei">
+          <el-checkbox-group v-model="search.categoryIds">
+            <el-checkbox :label="item.id"></el-checkbox>
+            <span class="wenzi">{{ item.name }}</span>
+            <span class="shu">{{ item.count }}</span>
+          </el-checkbox-group>
         </div>
       </div>
     </div>
@@ -43,31 +51,32 @@
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import { ref, watch, nextTick } from 'vue'
 import { ArrowDownBold, ArrowUpBold } from '@element-plus/icons-vue'
+import { shopcardcategories } from '@/network/shoppingCentre/shoppingCentre'
+// import { mallHomepage } from '@/enumerate/index.js'
 const props = defineProps({
   LeftData: { type: Object, required: true }
 })
-
 const search = ref({
   name: '',
-  orderColumn: 'sort'
+  orderColumn: '1',
+  categoryIds: []
 })
 const inputFuncation = () => {
   search.value.name = props.LeftData.name
 }
+
+// const checkList = ref([]) // 多选框里面的数量
 inputFuncation()
 const showhide = ref(false) // 显示隐藏 -- 类别
 const LeiBie_xia = ref(null)
 const lei = ref(null)
-const options = [
-  {
-    value: 'update_time',
-    label: '时间'
-  },
-  {
-    value: 'sort',
-    label: '排序'
-  }
-]
+
+const categoryData = ref([{ id: '', name: '', count: '', boolea: false }]) //类别
+const creatMy = async () => {
+  const res = await shopcardcategories()
+  categoryData.value = res.data
+}
+creatMy()
 watch(
   showhide,
   (newVal) => {
@@ -86,6 +95,7 @@ watch(
   }
 )
 const $emit = defineEmits(['LeftData'])
+
 watch(
   search,
   (newVal) => {
@@ -96,8 +106,20 @@ watch(
   }
 )
 </script>
+<style lang="scss">
+.blueBack.el-popper.is-light {
+  background-color: #00081a !important;
+  border: 1px solid #2f2351;
+}
+.blueBack {
+  .el-popper.is-light .el-popper__arrow::before {
+    border: 1px solid #376edc;
+    background: #151111 !important;
+  }
+}
+</style>
 <style lang="scss" scoped>
-:deep(.el-input__inner) {
+:deep(.el-popper.is-light) {
   color: white;
 }
 %mt {
@@ -158,6 +180,9 @@ watch(
     transition: 1s;
     overflow: hidden;
     transform-origin: center top;
+    :deep(.el-checkbox__label) {
+      display: none;
+    }
     .lei {
       margin-top: 20px;
       position: relative;
