@@ -703,3 +703,10 @@ html {
         font-size: 50px;
     }
 } */
+$backgroundPicker:#0e0e14;
+.el-picker-panel__body {
+  background-color: $backgroundPicker;
+}
+:deep(.el-picker-panel__footer){
+  background-color: $backgroundPicker;
+}

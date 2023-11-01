@@ -25,7 +25,7 @@
             <input class='inputSum' v-model='admin.password' disabled>
           </div>
           <div class='inputBtn'>
-            <div class='inputBtn2' @click='handleEditInput("password")'>
+            <div class='inputBtn2' @click='handleEditPassword'>
              修改</div>
           </div>
         </div>
@@ -35,7 +35,7 @@
             <input class='inputSumnickName' v-model='admin.authentication' disabled>
           </div>
           <div class='inputBtn'>
-            <div class='inputBtn2' @click='handleEditInput("authentication")'>
+            <div class='inputBtn2' @click='handleAuthenticationPopupShow'>
             去实名</div>
           </div>
         </div>
@@ -76,17 +76,18 @@
 </template>
 
 <script setup>
-import { reactive, nextTick, computed } from 'vue'
+import { reactive, nextTick, computed, ref ,onUnmounted} from 'vue'
 import { ElMessage } from 'element-plus'
-
-
+import { useStore } from '@/pinia/index.js'
+import { nicknameEdit } from '@/network/personalCenter.js'
+const { useUsersStore } = useStore()
 let admin = reactive({
-  nickName: '今天也要睡觉',
-  mobile: '15650053503',
+  nickName: useUsersStore.userInfo.nickname,
+  mobile: useUsersStore.userInfo.mobile,
   password:'******',
-  authentication:'未实名',
-  invitationCode:'CARD95666',
-  bindingCode:'',
+  authentication:useUsersStore.userInfo.realAuthentication?'已实名':'未实名',
+  invitationCode:useUsersStore.userInfo.invitationCode,
+  bindingCode:useUsersStore.userInfo.ownerInvitationCode,
 })
 let adminInput = reactive({
   nickName: true,
@@ -97,28 +98,46 @@ const mobileValue=computed(()=>{
   return admin.mobile.substring(0, 3)+"****"+admin.mobile.substring(7)
 })
 // 修改接口
-const handleEditInput = (item) => {
+const handleEditInput = async (item) => {
   for (let adminInputKey in adminInput) {
     if (adminInputKey === item) {
       // 未选中状态
       if(adminInput[item]){
         adminInput[item] = false
         let dom = document.querySelector('.inputSum' + adminInputKey)
-        console.log(dom)
         nextTick(()=>{
           dom.focus()
         })
       //   选中状态
       }else {
-        ElMessage({
-          message: '修改成功',
-          type: 'success',
-        })
-        adminInput[item] = true
+        console.log("选择")
+        if(item==='nickName'){
+          const res=await nicknameEdit({nickname:admin.nickName})
+          console.log(res)
+          if(res.code===200){
+            await useUsersStore.handleUserInfo()
+            adminInput[item] = true
+          }
+        }
+
+        // ElMessage({
+        //   message: '修改成功',
+        //   type: 'success',
+        // })
+        // adminInput[item] = true
       }
     }
   }
 }
+const handleEditPassword=()=>{
+  useUsersStore.passwordPopup=true
+}
+const handleAuthenticationPopupShow=()=>{
+  useUsersStore.authenticationPopup=true
+}
+// if(item==='password'){
+//
+// }
 
 const handleCopyIcon = ()=>{
   const textField = document.createElement('textarea');
@@ -132,6 +151,9 @@ const handleCopyIcon = ()=>{
     type: 'success',
   })
 }
+onUnmounted(()=>{
+
+})
 </script>
 
 <style lang='scss' scoped>

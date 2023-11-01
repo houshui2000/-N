@@ -1,9 +1,12 @@
-#orderForm{
+#orderForm {
   width: 1473px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 25px;
+  font-family:'PingFang SC';
+  font-size:14px;
+
   :deep(.el-input__inner) {
     box-shadow: none !important;
     color: white;
@@ -25,13 +28,16 @@
   :deep(.el-range-editor.el-input__wrapper) {
     width: 163px;
   }
+
   //去掉下拉框小三角
-  :deep(.el-popper[x-placement^=bottom] .popper__arrow::after){
+  :deep(.el-popper[x-placement^=bottom] .popper__arrow::after) {
     border-bottom-color: transparent;
   }
-  :deep(.el-popper .popper__arrow, .el-popper .popper__arrow::after){
+
+  :deep(.el-popper .popper__arrow, .el-popper .popper__arrow::after) {
     border-style: none !important;
   }
+
   .title {
     width: 1473px;
     height: 36px;
@@ -42,47 +48,68 @@
     .left {
       display: flex;
       align-items: center;
-      .frameSort1 {
-        width: 134px;
-        height: 36px;
-        background: url($gxsAssetLibraryFrame1) no-repeat center;
-        background-size: contain;
-        line-height: 36px;
-        font-size: 12px;
-        position: relative;
 
-        .arrow {
-          width: 10px;
-          height: 6px;
-          background: url($gxsAssetLibraryArrow) no-repeat center;
-          background-size: contain;
-          position: absolute;
-          top: 50%;
-          margin-top: -5px;
-        }
-      }
-      .CreateDateTime{
+      .CreateDateTime {
         margin-left: 20px;
         width: 163px;
         height: 36px;
-        background:url($gxsAssetLibraryFrame2) no-repeat center;
-        background-size:contain;
+
         cursor: pointer;
         overflow: hidden;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         position: relative;
-        .text{
+
+        .text {
           width: 163px;
           height: 36px;
           line-height: 36px;
           text-align: center;
+          position: absolute;
+          z-index: 100;
+          background: url($gxsAssetLibraryFrame2) black no-repeat center;
+          background-size: contain;
+
         }
-        .CreateDateTimePicker{
+
+        .CreateDateTimePicker {
           position: absolute;
           top: 100px;
           opacity: 0;
+          z-index: -100;
+        }
+      }
+
+      .PayDateTime {
+        margin-left: 20px;
+        width: 163px;
+        height: 36px;
+
+        cursor: pointer;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+
+        .text {
+          width: 163px;
+          height: 36px;
+          line-height: 36px;
+          text-align: center;
+          position: absolute;
+          z-index: 100;
+          background: url($gxsAssetLibraryFrame2) black no-repeat center;
+          background-size: contain;
+        }
+
+
+        .PayDateTimePicker {
+          position: absolute;
+          top: 100px;
+          opacity: 0;
+          z-index: -100;
         }
       }
     }
@@ -91,6 +118,7 @@
       display: flex;
       justify-content: right;
       align-items: center;
+
       .frameSort2 {
         width: 163px;
         height: 36px;
@@ -109,7 +137,7 @@
           color: #fff;
 
           &::placeholder {
-            color: rgba(#fff,.5); /* 自定义占位符文本颜色 */
+            color: rgba(#fff, .5); /* 自定义占位符文本颜色 */
           }
         }
 
@@ -134,4 +162,185 @@
       }
     }
   }
+
+  .orderDetails {
+    width: 1470px;
+    margin: 25px;
+    border-radius: 6px;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    border: 1px solid transparent;
+    background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(155.92deg, rgba(159, 98, 219, 0.5) 0%, rgba(126, 172, 186, 0.5) 48.67%, rgba(99, 149, 231, 0.5) 96.71%);
+    overflow: hidden;
+
+    .orderTitleBg {
+      width: 1468px;
+      height: 52px;
+      background: url($gxsOrderTitleBg) no-repeat center;
+      background-size: 100%;
+      display: flex;
+      line-height: 52px;
+
+      .text {
+        width: 60px;
+        margin-left: 173px;
+
+        &:nth-child(2) {
+          margin-left: 253px;
+        }
+
+        &:nth-child(3) {
+          margin-left: 153px;
+        }
+
+        &:nth-child(4) {
+          margin-left: 155px;
+        }
+
+        &:nth-child(5) {
+          margin-left: 192px;
+        }
+
+        &:nth-child(6) {
+          margin-left: 166px;
+        }
+      }
+
+    }
+
+    .borderFrame {
+      width: 1470px;
+      height: 1px;
+      background: url($gxsOrderBorderFrame) no-repeat center;
+    }
+
+    .orderList {
+      width: 1468px;
+
+      .orderListBox {
+        width: 1468px;
+        height: 155px;
+        cursor: pointer;
+        background: url($gxsOrderListNone) no-repeat center;
+        background-size: contain;
+        transition: all .3s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &:hover {
+          background: url($gxsOrderListActive) no-repeat center;
+          background-size: contain;
+        }
+
+        .head {
+          width: 1391px;
+          height: 41px;
+          line-height: 41px;
+          display: flex;
+          align-items: center;
+
+          .copyIcon {
+            width: 22px;
+            height: 22px;
+            background: url($gxsPersonalCopyIcon) no-repeat center;
+            background-size: contain;
+            margin-left: 5px;
+          }
+        }
+
+        .content {
+          width: 1468px;
+          height: 114px;
+          display: flex;
+          align-items: center;
+
+          .cardImg {
+            width: 69px;
+            height: 83px;
+            background-clip: padding-box, border-box;
+            background-origin: padding-box, border-box;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            background-image: linear-gradient(to top, #000, #000), linear-gradient(180deg, rgba(245, 158, 255, 0.6) 0.01%, rgba(99, 125, 255, 0.6) 100%);
+            overflow: hidden;
+            margin-left: 39px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .nameBox{
+            width: 220px;
+            height: 114px;
+            margin-left: 26px;
+
+            .name{
+              margin-top: 26px;
+            }
+            .number{
+              margin-top: 33px;
+              display: flex;
+
+              .icon{
+                width: 16px;
+                height: 16px;
+                background:url($gxsOrderCardId) no-repeat center;
+                background-size:contain;
+              }
+              .text{
+                width: 160px;
+                margin-left: 5px;
+                color: #00D1FF;
+              }
+            }
+          }
+
+          .money{
+            margin-left: 108px;
+            width: 100px;
+            text-align: center;
+          }
+          .payment{
+            margin-left: 118px;
+            width: 100px;
+            text-align: center;
+          }
+          .createTime{
+            margin-left: 70px;
+            width: 180px;
+            text-align: center;
+          }
+          .payTime{
+            margin-left: 70px;
+            width: 180px;
+            text-align: center;
+          }
+          .payBox{
+            width:70px;
+            margin-left: 98px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            .state{
+              width: 70px;
+            }
+            .btn{
+              width:70px;
+              height: 20px;
+              line-height:20px;
+              text-align: center;
+              background:url($gxsOrderGoPayBtn) no-repeat center;
+              background-size:contain;
+              margin-top: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+
 }

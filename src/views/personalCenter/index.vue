@@ -10,52 +10,49 @@
           </div>
           <div class='avatar'>
             <div class='photo'>
-              <div class='photoBox'
-                   style='background-image: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2F8075fa62-cf88-420a-88f7-9a4a4d714bb0%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1701238477&t=ca5cc4ad0b2dd15e855f3d44587044ba")'>
+              <div class='photoBox' @click='photoFileOpen'>
 <!--                <el-upload-->
 <!--                  class='avatar-uploader'-->
-<!--                  action='https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15'-->
+<!--                  action=''-->
 <!--                  :show-file-list='false'-->
-<!--                  :on-success='handleAvatarSuccess'-->
-<!--                  :before-upload='beforeAvatarUpload'-->
-<!--                >-->
-<!--                  <img v-if='imageUrl' :src='imageUrl' class='avatar' />-->
-<!--                  <el-icon v-else class='avatar-uploader-icon'>-->
-<!--                    <Plus />-->
-<!--                  </el-icon>-->
-<!--                </el-upload>-->
-                <img
-                  src='https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2F8075fa62-cf88-420a-88f7-9a4a4d714bb0%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1701238477&t=ca5cc4ad0b2dd15e855f3d44587044ba'
-                  alt=''>
-              </div>
+<!--                  :http-request='uploadFile'-->
+<!--                />-->
             </div>
           </div>
-          <div class='tabs'>
-            <div class='bg'>
-              <div class='tabsText'>
-                <div class='text' v-for='(item,index) in tabList' :key='"tabList"+item.id'>
-                  <div class='TabName' @click='handleTabShow(item,index)'>{{ item.name }}</div>
-                  <div class='icon' v-if='item.id===1'></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class='exitBtn'>退出登录</div>
         </div>
-
-      </div>
-      <div class='box'>
-        <router-view></router-view>
+        <div class='nickName'>{{ useUsersStore.userInfo.nickname }}</div>
+        <div class='tabs'>
+          <div class='bg'>
+            <div class='tabsText'>
+              <div class='text' v-for='(item,index) in tabList' :key='"tabList"+item.id'>
+                <div class='TabName' @click='handleTabShow(item,index)'>{{ item.name }}</div>
+                <div class='icon' v-if='item.id===1'></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='exitBtn'>退出登录</div>
       </div>
     </div>
+    <div class='box'>
+      <router-view></router-view>
+    </div>
+      <passwordPopup/>
+      <authenticationPopup/>
+  </div>
   </div>
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import router from '@/router/index.js'
+import { useStore } from '@/pinia/index.js'
+import { getItem } from '@/utils/storage.js'
+import passwordPopup from './components/passwordPopup.vue'
+import authenticationPopup from './components/authenticationPopup.vue'
 
+const { loginStore, useUsersStore } = useStore()
 const imageUrl = ref('')
 let indexActive = ref(0)
 let tabList = reactive([
@@ -74,31 +71,36 @@ let tabList = reactive([
   }
 ])
 //tab标签切换
-const handleTabShow = (item,index) => {
-  if(index!==-1){
+const handleTabShow = (item, index) => {
+  if (index !== -1) {
     if (index === indexActive) return
+    if (index === 2) {
+      useUsersStore.handleUserInfo()
+    }
     indexActive.value = index
     router.push(item.pushLink)
+
   }
   let tabDom = document.querySelector('.icons')
   let tab = tabDom.getBoundingClientRect()
   let tabBg = document.querySelector('.tabs .bg').getBoundingClientRect()
-  let tabText =document.querySelectorAll('.TabName')[indexActive.value].getBoundingClientRect()
-  console.log(tab.width/Math.sqrt(2))
-  let lefts = tabText.left-tabBg.left+(tabText.width/2)-(tab.width/Math.sqrt(2)/2)
-  tabDom.style.left=lefts+'px'
+  let tabText = document.querySelectorAll('.TabName')[indexActive.value].getBoundingClientRect()
+  console.log(tab.width / Math.sqrt(2))
+  let lefts = tabText.left - tabBg.left + (tabText.width / 2) - (tab.width / Math.sqrt(2) / 2)
+  tabDom.style.left = lefts + 'px'
 }
 
 window.addEventListener('resize', function() {
   // 执行需要的操作
   // console.log('窗口大小已改变');
   handleTabShow(-1)
-});
+})
 
 const handleAvatarSuccess = (
   response,
   uploadFile
 ) => {
+  console.log('上传地址', URL.createObjectURL(uploadFile.raw))
   imageUrl.value = URL.createObjectURL(uploadFile.raw)
 }
 
@@ -111,6 +113,27 @@ const beforeAvatarUpload = (rawFile) => {
     return false
   }
   return true
+}
+//打开上传框
+const photoFileOpen = () => {
+  const input = document.querySelector('.photoFileInput')
+  input.click()
+}
+
+const getPhotoFile = (e) => {
+  console.log(e, ...e.target.files)
+}
+
+const handleFile = (e) => {
+  console.log(e)
+}
+
+onMounted(() => {
+  useUsersStore.handleUserInfo()
+  console.log('userInfo', useUsersStore.userInfo)
+})
+const getToken = () => {
+  getItem('token')
 }
 </script>
 
