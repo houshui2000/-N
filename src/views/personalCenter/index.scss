@@ -48,6 +48,15 @@
           background: black;
           transition: all .3s;
         }
+        .nickName{
+          height: 20px;
+          position: absolute;
+          top: 50%;
+          margin-top: -10px;
+          line-height: 20px;
+          font-size: 14px;
+          left: 178px;
+        }
 
         .exitBtn {
           width: 76px;
@@ -81,13 +90,19 @@
             position: relative;
             width: 119px;
             height: 119px;
-            background: url($gxsMyAccountAvatarStroke) no-repeat center;
+            border-radius: 10px;
+            //background: url($gxsMyAccountAvatarStroke) no-repeat center;
             background-size: contain;
             display: flex;
             align-items: center;
             justify-content: center;
             box-sizing: border-box;
             padding: 1px;
+            background-clip: padding-box, border-box;
+            background-origin: padding-box, border-box;
+            border: 1px solid transparent;
+            background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(155.92deg, rgba(159, 98, 219, 0.5) 0%, rgba(126, 172, 186, 0.5) 48.67%, rgba(99, 149, 231, 0.5) 96.71%);
+            overflow: hidden;
 
             .photoBox {
               width: 117px;
