@@ -6,7 +6,7 @@
         <i>></i>
       </span>
 
-      <span>卡牌详情</span>
+      <span>资产详情</span>
     </div>
     <section v-if="creatData.productName">
       <TopVue :creatDataAll="creatDataAll" :creatData="creatData" />

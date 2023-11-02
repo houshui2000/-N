@@ -14,20 +14,18 @@ const WhitelistedRouting = [
 
 router.beforeEach(async (to, from, next) => {
 
-  if (getItem('token')) {// 判断有没有 token
-
+  if (getItem('token')) {// 有 token
+    // 更新个人信息
+    const { useUsersStore } = useStore()
+    useUsersStore.handleUserInfo()
     next()
-  } else {
+  } else {   // 没有token
     const routMy = WhitelistedRouting.some(item => item.name == to.name)
-
     if (routMy) { // 在白名单
-      // console.log('在白名单')
-
       next()
     } else { // 不在在白名单
       // console.log('不在在白名单--')
       next('/')
-
       const { loginStore } = useStore()
       loginStore.login = true
     }

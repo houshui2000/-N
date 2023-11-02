@@ -24,10 +24,7 @@ import { ref } from 'vue'
 const carouselUtem = ref([])
 const creat = async () => {
   // const res = await indexbanner()
-  // const resdff = new url
   const kaCe = new URL('../../../../assets/images/carggo/Rectangle 1602_ce.png', import.meta.url).href
-  // const img = ref(new URL('../../../../assets/images/carggo/ceshi.png', import.meta.url).href)
-  //
   // if (res.code === 200) {
   carouselUtem.value = [{ url: kaCe }]
   // }

@@ -84,20 +84,20 @@ const mallHomepageTTwo = [
     id: 0,
     value: 'true',
     name: 'true',
-    label: '根据卡牌编号正序排序'
+    label: '根据资产编号正序排序'
   },
   {
     id: 1,
     value: 'false',
     name: 'false',
-    label: '(默认)根据卡牌编号倒序排序'
+    label: '(默认)根据资产编号倒序排序'
   }
 ]
 const mallHomepagName = ref({
   // 排序 + 搜索
   orders: '',
   asc: 'false'
-}) // 当前页
+})
 const Fenye = ref({
   currentPage: 1,
   size: 10, // 一页多少条

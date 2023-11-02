@@ -23,7 +23,9 @@
         <div class="section_bottom">
           <div class="bottom_left">
             <p class="title">{{ creatData.authorName }}</p>
-            <p class="center">sadsad</p>
+            <!-- <p v-html="props.creatData.productIntroduction" class="center"></p> -->
+            <p class="center">发现一款猴赛雷的数藏，快来瞧瞧</p>
+
             <div class="cardJ">
               <div class="cardJ_top">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 41 25" fill="none">
@@ -58,6 +60,8 @@ const props = defineProps({
   dialogVisiblePay: { type: Boolean, required: true },
   creatData: { type: Object, required: true }
 })
+// console.log(props.creatData)
+
 const realPictures = ref('') // 真正的图片
 const toBase64 = (imgUrl) => {
   // 一定要设置为let，不然图片不显示
@@ -80,7 +84,6 @@ const toBase64 = (imgUrl) => {
     realPictures.value = dataurl
   }
 }
-// toBase64('http://172.16.1.38:5173/src/assets/images/carggo/ceshi_xia.png')
 
 const { dialogVisiblePay, creatData } = toRefs(props)
 const $emit = defineEmits(['update:dialogVisiblePay'])
@@ -91,7 +94,6 @@ const show = () => {
   if (!erweima.value) return
   QRCode.toCanvas(erweima.value, window.location.href)
   // upload()
-  console.log(creatData.value)
 
   toBase64(creatData.value.productUrl)
   // toBase64('http://172.16.1.38:5173/src/assets/images/carggo/ceshi_xia.png')

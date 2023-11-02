@@ -43,10 +43,10 @@
 <script setup>
 import { ref } from 'vue'
 
-const value = ref('卡牌编号正序')
+const value = ref('资产编号正序')
 const options = ref([
-  { id: 1, label: '卡牌编号正序', desc: 'Option A - 230506' },
-  { id: 2, label: '卡牌编号倒序', desc: 'Option B - 230506' }
+  { id: 1, label: '资产编号正序', desc: 'Option A - 230506' },
+  { id: 2, label: '资产编号倒序', desc: 'Option B - 230506' }
 ])
 let search = ref('')
 </script>

@@ -3,7 +3,7 @@
     <div class="S_L_top">
       <p>搜索</p>
       <div class="input">
-        <el-input v-model.trim="search.name" class="w-50 m-2" placeholder="找寻理想的卡牌" />
+        <el-input v-model.trim="search.name" class="w-50 m-2" placeholder="找寻理想的资产" />
         <div class="icon">
           <SvgIcon icon-class="sousuo" />
         </div>

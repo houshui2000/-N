@@ -2,14 +2,20 @@
   <div class="CIjing">
     <router-view />
     <LoginOne />
+    <MenyOnTheRightVue />
   </div>
 </template>
 <script setup>
 import LoginOne from '@/components/LoginOne/index.vue'
+import MenyOnTheRightVue from '@/components/menuOnTheRight/index.vue'
 </script>
 
 <style scoped lang="scss">
+body {
+  width: 1920px;
+}
 .CIjing {
+  width: 1920px;
   // background-color: cadetblue;
   background: url('@/assets/images/all/bei.png') no-repeat;
   background-size: 100% 100%;

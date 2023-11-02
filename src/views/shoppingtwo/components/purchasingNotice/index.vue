@@ -1,10 +1,22 @@
 <template>
   <div class="IntroTpTheWorkVue">
     <!-- 购买须知 -->
-    <div class="setction scrollStyle">购买须知</div>
+    <div class="setction scrollStyle">
+      <div v-html="aaa"></div>
+    </div>
   </div>
 </template>
-<script setup></script>
+<script setup>
+import { shopbuynotice } from '@/network/shoppingCentre/shoppingtwo'
+import { ref } from 'vue'
+//shop/buy-notice
+const aaa = ref()
+const init = async () => {
+  const res = await shopbuynotice()
+  aaa.value = res.data
+}
+init()
+</script>
 <style lang="scss" scoped>
 .IntroTpTheWorkVue {
   padding: 5px;
@@ -15,7 +27,7 @@
   @include bordergradientMY();
   .setction {
     width: 100%;
-    overflow: auto; 
+    overflow: auto;
     height: 100%;
   }
 }

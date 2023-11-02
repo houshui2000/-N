@@ -7,12 +7,22 @@
     </div>
   </div>
 </template>
-<script setup>
+<!-- <script setup>
 import { inject, computed } from 'vue'
 const creatData = inject('creatData')
 let url = 'http://cardjing.oss-cn-qingdao.aliyuncs.com/'
 const IMgURl = computed(() => {
   return JSON.parse(creatData.value.imgTextUrl).map((item) => url + item)
+})
+</script> -->
+<script setup>
+import { inject, computed } from 'vue'
+const creatData = inject('creatData')
+import { useStore } from '@/pinia/index'
+const { loginStore } = useStore()
+// let url =
+const IMgURl = computed(() => {
+  return JSON.parse(creatData.value.imgTextUrl).map((item) => loginStore.cossUrl + item)
 })
 </script>
 <style lang="scss" scoped>
