@@ -32,6 +32,11 @@ export const userDataInfo = defineStore('userData', {
       passwordPopup:false,
       authenticationPopup:false,
       authenticationConFirmPopup:false,
+      realNameZFBPopup:false,
+      passwordEdit:{
+        "certNo": '',
+        "username": ''
+      }
     }
   },
   actions: {

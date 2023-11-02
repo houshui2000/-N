@@ -22,6 +22,7 @@ const gxsChildrenRouter = [
         props: true,
         meta: {
           immediate: false, // 路由显示
+          gundong: true, // 实时左侧滚动组件false 开启，true关闭
           scrollTheSubtitles: true // 滚动字幕开启，关闭
         }
       },
@@ -32,6 +33,7 @@ const gxsChildrenRouter = [
         props: true,
         meta: {
           immediate: false, // 路由显示
+          gundong: true, // 实时左侧滚动组件false 开启，true关闭
           scrollTheSubtitles: true // 滚动字幕开启，关闭
         },
       },
@@ -42,6 +44,7 @@ const gxsChildrenRouter = [
         props: true,
         meta: {
           immediate: false, // 路由显示
+          gundong: true, // 实时左侧滚动组件false 开启，true关闭
           scrollTheSubtitles: true // 滚动字幕开启，关闭
         },
       }
