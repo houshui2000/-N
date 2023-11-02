@@ -4,8 +4,8 @@
   flex-direction: column;
   align-items: center;
   margin-top: 25px;
-  font-family:'PingFang SC';
-  font-size:14px;
+  font-family: 'PingFang SC';
+  font-size: 14px;
 
   :deep(.el-input__inner) {
     box-shadow: none !important;
@@ -171,7 +171,7 @@
     background-origin: padding-box, border-box;
     border: 1px solid transparent;
     background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(155.92deg, rgba(159, 98, 219, 0.5) 0%, rgba(126, 172, 186, 0.5) 48.67%, rgba(99, 149, 231, 0.5) 96.71%);
-    overflow: hidden;
+    //overflow: hidden;
 
     .orderTitleBg {
       width: 1468px;
@@ -255,41 +255,181 @@
           display: flex;
           align-items: center;
 
-          .cardImg {
-            width: 69px;
-            height: 83px;
-            background-clip: padding-box, border-box;
-            background-origin: padding-box, border-box;
-            border: 1px solid transparent;
-            border-radius: 4px;
-            background-image: linear-gradient(to top, #000, #000), linear-gradient(180deg, rgba(245, 158, 255, 0.6) 0.01%, rgba(99, 125, 255, 0.6) 100%);
-            overflow: hidden;
+          .cardImgBox {
+            //width: 69px;
+            //height: 83px;
             margin-left: 39px;
-            img {
-              width: 100%;
-              height: 100%;
+            position: relative;
+            padding-right: 26px;
+            &:after{
+              content: "";
+              display: block;
+              height: 0;
+              clear:both;
+              visibility: hidden;
             }
-          }
+            .cardImg {
+              width: 69px;
+              height: 83px;
+              border-radius: 4px;
+              background-clip: padding-box, border-box;
+              background-origin: padding-box, border-box;
+              border: 1px solid transparent;
+              border-radius: 4px;
+              background-image: linear-gradient(to top, #000, #000), linear-gradient(180deg, rgba(245, 158, 255, 0.6) 0.01%, rgba(99, 125, 255, 0.6) 100%);
 
-          .nameBox{
+              overflow: hidden;
+
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+            .orderDetailsBox{
+              width: 290px;
+              height: 618px;
+              padding-left: 24px;
+              position: absolute;
+              top: 50%;
+              left: 63px;
+              z-index: 999;
+              margin-top: -309px;
+              .orderDetailsPopup{
+                width: 270px;
+                height: 618px;
+                background: url($gxsorderDetailsPopup) beige no-repeat center;
+                background-size: contain;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .titleIcon {
+                  width: 48px;
+                  height: 48px;
+                  background: url($gxsorderDetailsIcon) no-repeat center;
+                  background-size: contain;
+                  margin-top: 21px;
+                }
+
+                .titleText {
+                  height: 20px;
+                  line-height: 20px;
+                  color: #FAB74C;
+                  margin-top: 7px;
+                }
+
+                .imgBox {
+                  margin-top: 17px;
+                  width: 118px;
+                  height: 150px;
+                  background-clip: padding-box, border-box;
+                  background-origin: padding-box, border-box;
+                  border: 1px solid transparent;
+                  border-radius: 3.8px;
+                  background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(180deg, #F59EFF 0.01%, #637DFF 100%);
+                  overflow: hidden;
+
+                  img {
+                    width: 100%;
+                    height: 100%;
+                  }
+                }
+
+                .name {
+                  margin-top: 18px;
+                }
+
+                .number {
+                  width: 138px;
+                  height: 28px;
+                  background: url($gxsorderDetailsNumber) no-repeat center;
+                  background-size: contain;
+                  margin-top: 20px;
+
+                  .numberText {
+                    width: 198px;
+                    font-size: 12px;
+                    margin-left: 32px;
+                    line-height: 28px;
+                  }
+                }
+
+                .btnBox {
+                  width: 219px;
+                  height: 36px;
+                  display: flex;
+                  justify-content: space-between;
+                  margin-top: 24px;
+
+                  .close, .payBtn {
+                    width: 100px;
+                    height: 36px;
+                    text-align: center;
+                    line-height: 36px;
+                    background: url($gxsorderDetailsCloseBtn) no-repeat center;
+                    background-size: contain;
+                  }
+
+                  .payBtn {
+                    background: url($gxsorderDetailsPayBtn) no-repeat center;
+                    background-size: contain;
+                  }
+                }
+
+                .border {
+                  width: 268px;
+                  height: 2px;
+                  background: url($gxsorderDetailsborder) no-repeat center;
+                  background-size: contain;
+                  margin-top: 28px;
+                }
+                .contentText{
+                  width: 220px;
+                  height: 140px;
+                  text-align: left;
+
+                  .contentTextBox{
+                    display: flex;
+                    height: 17px;
+                    line-height: 17px;
+                    margin-top: 17px;
+                    .label{
+                      width: 61px;
+                      font-size: 12px;
+                      color: #B8B8B8;
+                    }
+                    .dataValue{
+                      width: 137px;
+                      font-size: 12px;
+                    }
+                  }
+                }
+
+
+              }
+            }
+
+          }
+          .nameBox {
             width: 220px;
             height: 114px;
-            margin-left: 26px;
+            //margin-left: 26px;
 
-            .name{
+            .name {
               margin-top: 26px;
             }
-            .number{
+
+            .number {
               margin-top: 33px;
               display: flex;
 
-              .icon{
+              .icon {
                 width: 16px;
                 height: 16px;
-                background:url($gxsOrderCardId) no-repeat center;
-                background-size:contain;
+                background: url($gxsOrderCardId) no-repeat center;
+                background-size: contain;
               }
-              .text{
+
+              .text {
                 width: 160px;
                 margin-left: 5px;
                 color: #00D1FF;
@@ -297,44 +437,50 @@
             }
           }
 
-          .money{
+          .money {
             margin-left: 108px;
             width: 100px;
             text-align: center;
           }
-          .payment{
+
+          .payment {
             margin-left: 118px;
             width: 100px;
             text-align: center;
           }
-          .createTime{
+
+          .createTime {
             margin-left: 70px;
             width: 180px;
             text-align: center;
           }
-          .payTime{
+
+          .payTime {
             margin-left: 70px;
             width: 180px;
             text-align: center;
           }
-          .payBox{
-            width:70px;
+
+          .payBox {
+            width: 70px;
             margin-left: 98px;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            .state{
+
+            .state {
               width: 70px;
             }
-            .btn{
-              width:70px;
+
+            .btn {
+              width: 70px;
               height: 20px;
-              line-height:20px;
+              line-height: 20px;
               text-align: center;
-              background:url($gxsOrderGoPayBtn) no-repeat center;
-              background-size:contain;
+              background: url($gxsOrderGoPayBtn) no-repeat center;
+              background-size: contain;
               margin-top: 20px;
             }
           }

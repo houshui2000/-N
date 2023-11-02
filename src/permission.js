@@ -4,6 +4,7 @@ import { useStore } from '@/pinia'
 import { NoLogin } from '@/router/InputTransfer.js'
 
 
+
 // 白名单路由 -- 里面都是不用登陆
 const WhitelistedRouting = [
   '/',
@@ -29,6 +30,7 @@ router.beforeEach(async (to, from, next) => {
       const { loginStore } = useStore()
       loginStore.login = true
     }
+
   }
 
 
