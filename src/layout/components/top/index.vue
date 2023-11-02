@@ -36,16 +36,16 @@
       <div class="fen"></div>
       <div class="adminUser">
         <div class="uploadText">
-          <div @click="handleLogin" v-if="!loginStore.token">登录</div>
-          <div v-if="loginStore.token">{{ useUsersStore.userInfo.nickname }}后端默认值</div>
+          <div @click="handleLogin" v-if='!loginStore.token'>登录</div>
+          <div v-if='loginStore.token'>{{ useUsersStore.userInfo.nickname }}</div>
         </div>
-        <div class="uploadImg" v-if="loginStore.token">
+        <div class="uploadImg" v-if='loginStore.token'>
           <div class="dian"></div>
           <div class="uploadPhoto">
-            <img :src="useUsersStore.userInfo.avatar" />
+            <img :src='useUsersStore.userInfo.avatar'>
           </div>
         </div>
-        <div class="uploadContent" v-if="loginStore.token">
+        <div class="uploadContent" v-if='loginStore.token' @click='handleMyShow'>
           <div class="uploadBox">
             <div class="uploadBox-img"></div>
             <div class="nickName">{{ useUsersStore.userInfo.nickname }}</div>
@@ -58,7 +58,7 @@
             </div>
             <div class="iconDiv">
               <div class="icon"></div>
-              <div class="text" @click="handleLoginExit()">退出登录</div>
+              <div class="text" @click='handleLoginExit()'>退出登录</div>
             </div>
           </div>
         </div>
@@ -77,13 +77,14 @@ import { useStore } from '@/pinia'
 import uploadAvatar from '../uploadAvatar/index.vue'
 import { removeItem } from '@/utils/storage.js'
 import { userlogout } from '@/network/userInterface.js'
+import router from '@/router/index.js'
 
-const { loginStore, useUsersStore } = useStore()
+const { loginStore,useUsersStore } = useStore()
 
 let navList = reactive([
-  { name: '卡牌商城', push: '' }
-  // { name: '飞升计划', push: '' },
-  // { name: '啦啦啦计划', push: '' }
+  { name: '卡GO', push: '' },
+  { name: '飞升计划', push: '' },
+  { name: '啦啦啦计划', push: '' }
 ])
 let navIndex = ref(0)
 let navBorder = ref(null)
@@ -101,15 +102,20 @@ const handleLogin = () => {
   loginStore.login = true
 }
 //退出登录
-const handleLoginExit = async () => {
+const handleLoginExit=async ()=>{
   let result = await userlogout()
   removeItem('token')
-  loginStore.token = ''
-  loginStore.userId = ''
+  loginStore.token=""
+  loginStore.userId=""
   removeItem('userId')
   useUsersStore.handleUserInfoInit()
-  loginStore.login = true
-  console.log('退出登录')
+  loginStore.login=true
+  console.log("退出登录")
+
+}
+//跳转个人中心
+const handleMyShow =()=>{
+  router.push('myAccount')
 }
 onMounted(() => {})
 </script>
@@ -336,7 +342,7 @@ onMounted(() => {})
           left: 50%;
           margin-top: -15px;
           margin-left: -15px;
-          img {
+          img{
             width: 100%;
             height: 100%;
           }
