@@ -20,3 +20,45 @@ export function shopcarddetail (params) {
     method: 'GET', params
   })
 }
+
+
+/**
+ * 其他系列卡牌
+ *cardVaultShopId=1&current=1&size=1
+*/
+export function shopotherproducts (params) {
+  return service({
+    url: '/shop/other-products',
+    method: 'GET', params
+  })
+}
+
+
+
+/**
+ * 快速购买
+ *{
+   cardVaultId: 1, // 跳转页面的id
+    payChanelId: 1 // 支付通道 1 是支付宝
+}
+*/
+export function shopquickbuy (data) {
+  return service({
+    url: '/shop/quick-buy',
+    method: 'POST', data
+  })
+}
+
+// /**
+//  * 快速购买
+//  *{
+//    cardVaultId: 1, // 跳转页面的id
+//     payChanelId: 1 // 支付通道 1 是支付宝
+// }
+// */
+// export function shopquickbuy (data) {
+//   return service({
+//     url: '/shop/quick-buy',
+//     method: 'POST', data
+//   })
+// }

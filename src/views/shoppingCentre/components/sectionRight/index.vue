@@ -1,11 +1,6 @@
 <template>
   <div class="side">
-    <div
-      v-for="(item, index) in pros.INterOb"
-      @click="router.push(`/shoppingtwo/${item.id}`)"
-      :key="index"
-      class="kapai"
-    >
+    <div v-for="(item, index) in pros.INterOb" @click="router.push(`/SCDetail/${item.id}`)" :key="index" class="kapai">
       <KaParVue :KaParVueitem="item" />
     </div>
   </div>

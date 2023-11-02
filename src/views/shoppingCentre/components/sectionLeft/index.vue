@@ -12,16 +12,29 @@
     <!-- 排序方式 -->
     <div class="S_L_Par">
       <p>排序方式</p>
-      <div class="input">
-        <el-select
+      <div class="input_select">
+        <selectVue v-model:orderColumn="search.orderColumn" :mallHomepage="mallHomepage">
+          <template #top_icon_true="{ dropdownMenu }">
+            <div class="top_icon">
+              <!-- {{ dropdownMenu }} -->
+              <p v-show="dropdownMenu">
+                <el-icon><ArrowUpBold /></el-icon>
+              </p>
+              <p v-show="!dropdownMenu">
+                <el-icon><ArrowDownBold /></el-icon>
+              </p>
+            </div>
+          </template>
+        </selectVue>
+        <!-- <el-select
           popper-class="blueBack"
           v-model="search.orderColumn"
           class="m-2"
           placeholder="价格由低到高"
           size="large"
         >
-          <!-- <el-option v-for="item in mallHomepage" :key="item.value" :label="item.label" :value="item.value" /> -->
-        </el-select>
+          <!~~ <el-option v-for="item in mallHomepage" :key="item.value" :label="item.label" :value="item.value" /> ~~>
+        </el-select>-->
       </div>
     </div>
     <!-- 类别 -->
@@ -49,10 +62,11 @@
 </template>
 <script setup name="lefetSectuibLet">
 import SvgIcon from '@/components/SvgIcon/index.vue'
+import selectVue from '@/components/select/index.vue'
 import { ref, watch, nextTick } from 'vue'
 import { ArrowDownBold, ArrowUpBold } from '@element-plus/icons-vue'
 import { shopcardcategories } from '@/network/shoppingCentre/shoppingCentre'
-// import { mallHomepage } from '@/enumerate/index.js'
+import { mallHomepage } from '@/enumerate/index.js'
 const props = defineProps({
   LeftData: { type: Object, required: true }
 })
@@ -210,6 +224,39 @@ watch(
         color: #666;
       }
     }
+  }
+}
+.input_select {
+  width: 213px;
+  height: 48px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  // 000717
+  background-image: linear-gradient(180deg, #000717 -1.45%, #000717 100%),
+    linear-gradient(0deg, rgba(159, 100, 219, 0.5) 0%, rgba(117, 163, 203, 0.5) 100%);
+  :deep(.article) {
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    // 000717
+    background-image: linear-gradient(180deg, #000717 -1.45%, #000717 100%),
+      linear-gradient(0deg, rgba(159, 100, 219, 0.5) 0%, rgba(117, 163, 203, 0.5) 100%);
+  }
+}
+.top_icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  > p {
+    width: 100%;
+    height: 100%;
+    @include Myflex();
   }
 }
 </style>

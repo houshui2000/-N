@@ -1,7 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 import { getItem } from '@/utils/storage.js'
-import { registermobile } from '@/network/userInterface.js'
 
 export const loginDataInfo = defineStore('loginDataInfo', {
   state: () => {

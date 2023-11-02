@@ -14,8 +14,8 @@ const shoppingCentrechildren = [
     },
   },
   {
-    path: '/shoppingtwo/:vaultId',
-    name: ' ',
+    path: '/SCDetail/:vaultId',
+    name: 'SCDetailName',
     component: () => import('@/views/shoppingtwo/index.vue'),
     props: true,
     meta: {

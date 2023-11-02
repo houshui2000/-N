@@ -6,6 +6,9 @@
     <div v-if="creatData.records?.length > 0" class="section_right">
       <section_right :INterOb="creatData.records" />
     </div>
+    <div class="section_right" v-else>
+      <MissWakeupPage />
+    </div>
   </div>
   <div ref="xianshi_geng" class="xianshi_geng">加载更多</div>
 </template>
@@ -13,6 +16,8 @@
 import Section_left from './components/sectionLeft/index.vue'
 import section_right from './components/sectionRight/index.vue'
 import MYIntersectionObserver from '@/utils/IntersectionObserver.js'
+import MissWakeupPage from '@/components/missingWakeupPage/index.vue'
+
 import { ref, onMounted } from 'vue'
 import { shopliscard } from '@/network/shoppingCentre/shoppingCentre'
 import { mallHomepage } from '@/enumerate/index.js'
@@ -47,7 +52,7 @@ const init = async () => {
     name: LeftData.value.name,
     categoryIds: LeftData.value.categoryIds.join(',')
   })
-
+  // creatData.records
   creatData.value = res.data
 }
 init()
@@ -55,7 +60,6 @@ let time = null
 /**子组件改动更新接口 */
 const LeftDataFuncation = (e) => {
   LeftData.value = e
-  // LeftData.value.categoryIds = LeftData.value.categoryIds.join(',')
 
   if (time) clearTimeout(time)
   time = setTimeout(() => {
