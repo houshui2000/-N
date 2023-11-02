@@ -87,7 +87,7 @@
 import { reactive, nextTick, computed, ref, onUnmounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useStore } from '@/pinia/index.js'
-import { invitationCodePost, nicknameEdit } from '@/network/personalCenter.js'
+import { bindInvitationCodePost, invitationCodePost, nicknameEdit } from '@/network/personalCenter.js'
 import MessageBoxVue from '@/components/MessageBox/index.js'
 
 const { useUsersStore } = useStore()
@@ -139,6 +139,18 @@ const handleEditInput = async (item) => {
             await useUsersStore.handleUserInfo()
           } else {
             admin.ownerInvitationCode = useUsersStore.userInfo.ownerInvitationCode
+          }
+        }
+        if (item === 'bindingCode') {
+          console.log(admin.bindingCode)
+          const res = await bindInvitationCodePost({ invitationCode: admin.bindingCode })
+          if (res.code === 200) {
+            MessageBoxVue({
+              title: res.msg
+            })
+            await useUsersStore.handleUserInfo()
+          } else {
+            admin.ownerInvitationCode = useUsersStore.userInfo.invitationCode
           }
         }
 

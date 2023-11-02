@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-        <div class='exitBtn'>退出登录</div>
+        <div class='exitBtn' @click='handleLoginExit'>退出登录</div>
       </div>
     </div>
     <div class='box'>
@@ -49,10 +49,11 @@ import { onMounted, reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import router from '@/router/index.js'
 import { useStore } from '@/pinia/index.js'
-import { getItem } from '@/utils/storage.js'
+import { getItem, removeItem } from '@/utils/storage.js'
 import passwordPopup from './components/passwordPopup.vue'
 import authenticationPopup from './components/authenticationPopup.vue'
 import realNameZFBPopup from './components/realNameZFBPopup.vue'
+import { userlogout } from '@/network/userInterface.js'
 
 const { loginStore, useUsersStore } = useStore()
 const imageUrl = ref('')
@@ -134,6 +135,18 @@ onMounted(() => {
   useUsersStore.handleUserInfo()
   console.log('userInfo', useUsersStore.userInfo)
 })
+//退出登录
+const handleLoginExit=async ()=>{
+  let result = await userlogout()
+  removeItem('token')
+  loginStore.token=""
+  loginStore.userId=""
+  removeItem('userId')
+  useUsersStore.handleUserInfoInit()
+  loginStore.login=true
+  console.log("退出登录")
+
+}
 const getToken = () => {
   getItem('token')
 }

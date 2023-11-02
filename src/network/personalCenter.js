@@ -35,10 +35,20 @@ export function realNamePost(data) {
     data
   })
 }
+
 //修改自己的邀请码
 export function invitationCodePost(data) {
   return service({
     url: 'user/invitation-code',
+    method: 'post',
+    data
+  })
+}
+
+//邀请码
+export function bindInvitationCodePost(data) {
+  return service({
+    url: 'user/bind-invitation-code',
     method: 'post',
     data
   })
