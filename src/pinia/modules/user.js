@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 import { registermobile } from '@/network/userInterface.js'
 
 /**
@@ -37,7 +36,7 @@ export const userDataInfo = defineStore('userData', {
   },
   actions: {
     //获取用户信息
-    async handleUserInfo() {
+    async handleUserInfo () {
       let result = await registermobile()
       if (result.code === 200) {
         console.log('userInfo', result)
@@ -47,7 +46,7 @@ export const userDataInfo = defineStore('userData', {
       }
     },
     //初始化userinfo
-    handleUserInfoInit() {
+    handleUserInfoInit () {
       this.userInfo = {
         avatar: null,
         boundQQ: false,

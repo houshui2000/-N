@@ -4,24 +4,26 @@
       <div
         class="S_L_Left"
         :style="{
-          color: 'red',
-          background: `url(${props.creatData.productUrl}) no-repeat scroll left top/ 100% 100%`
+          color: 'red'
         }"
       >
-        <div style="cursor: pointer" class="fenxiang"><SvgIcon size="45px" icon-class="fenxiang" /></div>
+        <!-- background: `url(${props.creatData.productUrl}) no-repeat scroll left top/ 100% 100%` -->
+        <div style="cursor: pointer" @click="fenxiangdialog = !fenxiangdialog" class="fenxiang">
+          <SvgIcon size="55px" icon-class="fenxiang" />
+        </div>
         <div class="img">
-          <img class="equalProportions" :src="props.creatData.effectFrontUrl" alt="" />
+          <img class="equalProportions" :src="props.creatData.productUrl" alt="" />
         </div>
         <div class="di_guang"></div>
       </div>
       <div class="S_L_right">
         <div class="S_L_Top">
-          <p>{{ props.creatData.authorName }}</p>
+          <p>{{ props.creatData.productName }}</p>
           <div class="S_l_center">
             <p>发行方：{{ props.creatData.issueName }}</p>
-            <p>发行方：{{ props.creatData.buyRestrict }}</p>
+            <p>发行数：{{ props.creatData.issueNum }}</p>
 
-            <p>发行价：￥{{ props.creatData.buyRestrict }}</p>
+            <p>发行价：￥{{ props.creatData.issuePrice }}</p>
           </div>
         </div>
         <!-- 支付 -->
@@ -36,26 +38,29 @@
       </div>
     </div>
     <div class="section_right">
-      <p>其他系列</p>
+      <p>
+        其他系列
+        <!-- https://excashier.alipay.com/standard/auth.htm?payOrderId=ffd84132fad64030b1a34086b98f085e.00 -->
+      </p>
       <div class="S_R_XIlie">
         <div
-          v-for="(item, index) in 6"
-          @click="series.index = index"
-          :class="{ Xilie_da: index === series.index }"
+          v-for="(item, index) in creatDataAll.records"
+          @click="router.push(`/SCDetail/${item.id}`)"
+          :class="{ Xilie_da: item.id == route.params.vaultId }"
           :key="index"
           class="XIlie_one"
         >
           <div class="left_one">
-            <img class="equalProportions" src="@/assets/images/carggo/ceshi.png" alt="" />
+            <img class="equalProportions" :src="item.productUrl" alt="" />
           </div>
           <div class="right_one">
-            <p>赛博朋克2077-边缘行者</p>
+            <p>{{ item.productName }}</p>
             <p>
               在售
-              <span>988</span>
+              <span>{{ item.onSellingCount }}</span>
             </p>
             <div class="mounch">
-              ￥100
+              <span>￥{{ item.minPrice }}</span>
               <span>起</span>
             </div>
           </div>
@@ -63,20 +68,23 @@
       </div>
     </div>
     <payVue v-model:dialogVisiblePay="dialogVisiblePay" />
+    <ShareVue :creatData="creatData" v-model:dialogVisiblePay="fenxiangdialog" />
   </div>
 </template>
 <script setup>
 import payVue from './components/pay/index.vue'
-// import errDialoVue from './components/errdialo/index.vue'
+import ShareVue from './components/share/index.vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
+import { useRoute, useRouter } from 'vue-router'
 import { ref } from 'vue'
+const route = useRoute()
+const router = useRouter()
 const props = defineProps({
-  creatData: { type: Object, required: true }
+  creatData: { type: Object, required: true },
+  creatDataAll: { type: Object, required: true }
 })
-const dialogVisiblePay = ref(true) //支付弹框
-const series = ref({
-  index: 0
-})
+const dialogVisiblePay = ref(false) //支付弹框
+const fenxiangdialog = ref(false) // 分享弹框
 </script>
 <style lang="scss" scoped>
 .top_nav {
@@ -99,11 +107,13 @@ const series = ref({
     // background-color: salmon;
     @include Myflex();
     // shopp_TWo.png
-    // background: url('@/assets/images/shoppingCentre/shopp_TWo.png') no-repeat scroll left top/ 100% 100%;
+    background: url('@/assets/images/shoppingCentre/shopp_TWo.png') no-repeat scroll left top/ 100% 100%;
     .fenxiang {
       position: absolute;
-      right: 23px;
-      top: 19px;
+      right: 33px;
+      top: -10px;
+      width: 72px;
+      height: 30px;
     }
     .img {
       position: absolute;
@@ -117,19 +127,19 @@ const series = ref({
       perspective: 1000px;
 
       > img {
-        animation: infinite shiver 5s linear;
+        animation: infinite shiver 10s linear;
         @keyframes shiver {
           0% {
             transform: rotateY(0);
           }
           30% {
-            transform: rotateY(35deg);
+            transform: rotateY(25deg);
           }
           55% {
             transform: rotateY(0);
           }
           75% {
-            transform: rotateY(-35deg);
+            transform: rotateY(-25deg);
           }
           100% {
             transform: rotateY(0);
@@ -194,9 +204,7 @@ const series = ref({
               100% 100%,
               100% 0%
             );
-            clip-path: polygon(2% 0%, 2% 100%, 6% 96%, 6% 7%, 95% 9%, 96% 91%, 0% 92%, 1% 100%, 100% 100%, 100% 0%);
-            -webkit-clip-path: polygon(25% 40% at 50% 50%);
-            clip-path: border-box;
+            clip-path: polygon(2% 0%, 2% 100%, 6% 96%, 6% 7%, 95% 9%, 96% 91%, 3% 92%, 1% 100%, 100% 100%, 100% 0%);
           }
         }
       }
@@ -225,7 +233,7 @@ const series = ref({
   }
 }
 .section_right {
-  width: 324.48px;
+  width: calc(100% - 1094px);
   height: 100%;
 
   > p {
@@ -234,6 +242,7 @@ const series = ref({
     font: normal normal 600 14px 'Microsoft YaHei';
     color: white;
     height: 32px;
+    transform: translateX(85px);
     // line-height: 32px;
     @include Myflex(flex-start);
     &::before {
@@ -273,11 +282,26 @@ const series = ref({
       background-color: #282a52;
     }
     .Xilie_da {
+      position: relative;
       transform: scale(1.1) translateX(-10px);
+      opacity: 1 !important;
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 46px;
+        height: 150px;
+        // border-radius: 50%;
+        position: absolute;
+        left: -46px;
+        top: 0;
+        // margin-left: 10px;qita_zhi.png
+        background: url('@/assets/images/shoppingCentre/qita_zhi.png') no-repeat scroll left top/ 100% 100%;
+      }
     }
     .XIlie_one {
       cursor: pointer;
       margin-top: 15px;
+      opacity: 0.5;
       border-radius: 5px;
       border: 0.96px solid #9f64db;
       background: linear-gradient(149deg, #200924 45.99%, #0e1045 69.44%, #000a2c 85.48%);

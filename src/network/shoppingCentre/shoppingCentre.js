@@ -23,3 +23,13 @@ export function shopcardcategories () {
     method: 'GET',
   })
 }
+
+/**
+ * 首页获取分类
+*/
+export function shopbulletcomment () {
+  return service({
+    url: '/shop/bullet-comment',
+    method: 'GET',
+  })
+}

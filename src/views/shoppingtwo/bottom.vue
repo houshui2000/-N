@@ -11,23 +11,20 @@
         <!-- 排序方式 -->
         <div class="S_L_Par">
           <div class="input">
-            <el-select
-              :popper-append-to-body="false"
-              class="Mysecleet m-2"
-              v-model="mallHomepagName.asc"
-              placeholder="卡牌编号正序"
-              size="large"
-            >
-              <div class="sortDiv">
-                <el-option
-                  class="blueBack"
-                  v-for="item in mallHomepageTTwo"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                />
-              </div>
-            </el-select>
+            <div class="input_select">
+              <selectVue v-model:orderColumn="mallHomepagName.asc" :mallHomepage="mallHomepageTTwo">
+                <template #top_icon_true="{ dropdownMenu }">
+                  <div class="top_icon">
+                    <p v-show="dropdownMenu">
+                      <el-icon><ArrowUpBold /></el-icon>
+                    </p>
+                    <p v-show="!dropdownMenu">
+                      <el-icon><ArrowDownBold /></el-icon>
+                    </p>
+                  </div>
+                </template>
+              </selectVue>
+            </div>
           </div>
         </div>
         <!-- <input type="text"> -->
@@ -66,6 +63,8 @@ import IntroTpTheWorkVue from './components/introductionToTheWork/index.vue'
 import purchasingNotice from './components/purchasingNotice/index.vue'
 import tablesVue from './components/tables/index.vue'
 import { ref, watch } from 'vue'
+import selectVue from '@/components/select/index.vue'
+import { ArrowDownBold, ArrowUpBold } from '@element-plus/icons-vue'
 import { useRoute } from 'vue-router'
 import { shopcarddetail } from '@/network/shoppingCentre/shoppingtwo.js'
 const route = useRoute()
@@ -75,7 +74,7 @@ const creatData = ref({
 
 const classify = ref({
   // 动态组建切换分类
-  index: 0,
+  index: 1,
   arr: ['该系列作品', '作品介绍', '购买须知']
 })
 
@@ -108,8 +107,9 @@ const init = async () => {
     cardVaultId: route.params.vaultId,
     size: Fenye.value.size,
     current: Fenye.value.currentPage,
-    // orders: mallHomepagName.value.orders, // 搜索
-    asc: mallHomepagName.value.asc // 排序 true 升，false 降
+    name: mallHomepagName.value.orders, // 搜索
+    'orders[0].column': 'cardNo',
+    'orders[0].asc': mallHomepagName.value.asc // 排序 true 升，false 降
   })
   Fenye.value.pages = res.data.total
   creatData.value = res.data
@@ -128,31 +128,35 @@ watch(
     deep: true
   }
 )
+watch(
+  () => route.params.vaultId,
+  () => {
+    init()
+  },
+  {
+    deep: true
+  }
+)
 </script>
 <style lang="scss" scoped>
 @import '@/styles/other/paginations.scss';
-// 修改 el-select
-:deep(.el-input__inner) {
-  color: white;
-}
-:deep(.el-checkbox__input.is-checked .el-checkbox__inner) {
-  background-color: transparent;
-  border-color: #4f4f4f !important;
-}
+
 :deep(.el-input__wrapper) {
   background-color: transparent;
   box-shadow: none;
   height: 48px;
-  border: 1px solid #2f2351;
+  // border: 1px solid #2f2351;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  // 000717
+  // background-image: linear-gradient(180deg, #000717 -1.45%, #000717 100%),
+  //   linear-gradient(0deg, rgba(159, 100, 219, 0.5) 0%, rgba(117, 163, 203, 0.5) 100%);
+  // background-color: linear-gradient(180deg, #000717 -1.45%, #000717 100%);
+  background-image: linear-gradient(180deg, #120100 -1.45%, #000717 100%),
+    linear-gradient(0deg, rgba(159, 100, 219, 0.5) 0%, rgba(117, 163, 203, 0.5) 100%);
 }
-:deep(.el-input.is-focus .el-input__wrapper) {
-  box-shadow: none !important;
-}
-:deep(.el-checkbox__inner) {
-  background-color: transparent;
-  border: 1px solid #4f4f4f;
-}
-// 修改 el-select end
 .footer {
   // padding-top: 54px;
   margin-top: 54px;
@@ -182,10 +186,52 @@ watch(
     .right_top {
       @include Myflex(flex-end);
 
+      .input_select {
+        margin-right: 20px;
+        width: 234px;
+        // height: 46px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-clip: padding-box, border-box;
+        background-origin: padding-box, border-box;
+        // background-image: linear-gradient(
+        //     180deg,
+        //     rgba(28, 0, 45, 0.8) 0%,
+        //     rgba(24, 0, 30, 0.8) 0.01%,
+        //     rgba(0, 9, 54, 0.8) 100%
+        //   ),
+        //   linear-gradient(0deg, rgba(159, 100, 219, 0.5) 0%, rgba(117, 163, 203, 0.5) 100%);
+        background-image: linear-gradient(180deg, #0e0b0a 0%, #0e0b0a 0.01%),
+          linear-gradient(0deg, rgba(159, 100, 219, 0.5) 0%, rgba(117, 163, 203, 0.5) 100%);
+
+        :deep(.article) {
+          border: 1px solid transparent;
+          border-radius: 8px;
+          background-clip: padding-box, border-box;
+          background-origin: padding-box, border-box;
+          // 000717
+          // background-image: linear-gradient(180deg, #000717 -1.45%, #000717 100%),
+          //   linear-gradient(0deg, rgba(159, 100, 219, 0.5) 0%, rgba(117, 163, 203, 0.5) 100%);
+        }
+
+        .top_icon {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 26px;
+          height: 26px;
+          > p {
+            width: 100%;
+            height: 100%;
+            @include Myflex();
+          }
+        }
+      }
       .input {
-        margin-left: 20px;
+        // margin-left: 20px;
         position: relative;
-        width: 163px;
+        // width: 163px;
 
         .icon {
           width: 15px;

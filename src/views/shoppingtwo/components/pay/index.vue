@@ -14,19 +14,14 @@
         <div class="top">
           选择支付方式
           <div @click="$emit('update:dialogVisiblePay', false)" class="close">
-            <SvgIcon size="" icon-class="close" />
+            <SvgIcon size="20px " icon-class="close" />
           </div>
         </div>
       </template>
       <section>
         <div class="sectoion_top">
           <div class="top_left">
-            <img
-              @click="errDialoVueUpdate = true"
-              class="equalProportions"
-              src="@/assets/images/carggo/ceshi.png"
-              alt=""
-            />
+            <img class="equalProportions" src="@/assets/images/carggo/ceshi.png" alt="" />
           </div>
           <div class="top_right">
             <p>asdasd</p>
@@ -69,20 +64,19 @@
         </div>
       </section>
       <template #footer>
-        <div class="footer">选择支付方式</div>
+        <div @click="shopquickbuyPay" class="footer">选择支付方式</div>
+        <!--  @click="errDialoVueUpdate = true" -->
       </template>
     </el-dialog>
   </div>
   <errDialoVue v-model:errDialoVueUpdate="errDialoVueUpdate" />
 </template>
 <script setup>
-import { toRefs } from 'vue'
+import { toRefs, ref } from 'vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import errDialoVue from '../errdialo/index.vue'
-import { ref } from 'vue'
-// import { ElMessageBox } from 'element-plus'
+import { shopquickbuy } from '@/network/shoppingCentre/shoppingtwo.js'
 
-// const dialogVisible = ref(false)
 const props = defineProps({
   dialogVisiblePay: { type: Boolean, required: true }
 })
@@ -90,6 +84,18 @@ const errDialoVueUpdate = ref(false) //支付弹框
 
 const { dialogVisiblePay } = toRefs(props)
 const $emit = defineEmits(['update:dialogVisiblePay'])
+/**支付 */
+const shopquickbuyPay = async () => {
+  const res = await shopquickbuy({
+    cardVaultId: 1, // 跳转页面的id
+    payChanelId: 1 // 支付通道 1 是支付宝
+  })
+  // router.push(res.data)
+  console.log(res)
+  console.log(112)
+
+  // window.location.href = res.data
+}
 </script>
 <style lang="scss" scoped>
 .dialog-footer button:first-child {
