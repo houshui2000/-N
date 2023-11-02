@@ -1,4 +1,3 @@
-<link rel='stylesheet' href='../../styles/all.scss'>
 <template>
   <div id='myAccount'>
     <div class='content'>

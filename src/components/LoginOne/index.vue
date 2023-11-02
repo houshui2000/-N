@@ -219,6 +219,7 @@ const handleLoginBtn = async () => {
     }
     if(handleAgreement()) return
     let result = await loginmobile(passwordInfo)
+    console.log("登录",result)
     if (result.code === 200) {
       setItem('token', result.data.token)
       loginStore.token = result.data.token
