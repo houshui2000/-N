@@ -53,6 +53,7 @@
       <!-- 作品介绍 -->
       <IntroTpTheWorkVue v-show="classify.index === 1" />
       <!-- 购买须知 -->
+
       <purchasingNotice v-show="classify.index === 2" />
     </div>
   </div>
@@ -74,7 +75,7 @@ const creatData = ref({
 
 const classify = ref({
   // 动态组建切换分类
-  index: 1,
+  index: 0,
   arr: ['该系列作品', '作品介绍', '购买须知']
 })
 
@@ -131,6 +132,7 @@ watch(
 watch(
   () => route.params.vaultId,
   () => {
+    if (route.name !== 'SCDetailName') return
     init()
   },
   {
@@ -144,18 +146,9 @@ watch(
 :deep(.el-input__wrapper) {
   background-color: transparent;
   box-shadow: none;
-  height: 48px;
-  // border: 1px solid #2f2351;
-  border: 1px solid transparent;
+  height: 50px;
   border-radius: 4px;
-  background-clip: padding-box, border-box;
-  background-origin: padding-box, border-box;
-  // 000717
-  // background-image: linear-gradient(180deg, #000717 -1.45%, #000717 100%),
-  //   linear-gradient(0deg, rgba(159, 100, 219, 0.5) 0%, rgba(117, 163, 203, 0.5) 100%);
-  // background-color: linear-gradient(180deg, #000717 -1.45%, #000717 100%);
-  background-image: linear-gradient(180deg, #120100 -1.45%, #000717 100%),
-    linear-gradient(0deg, rgba(159, 100, 219, 0.5) 0%, rgba(117, 163, 203, 0.5) 100%);
+  @include bordergradientMY(linear-gradient(180deg, rgba(244, 158, 255, 0.6) 0%, rgba(89, 110, 223, 0.6) 100%));
 }
 .footer {
   // padding-top: 54px;
@@ -189,29 +182,13 @@ watch(
       .input_select {
         margin-right: 20px;
         width: 234px;
-        // height: 46px;
-        border: 1px solid transparent;
         border-radius: 4px;
-        background-clip: padding-box, border-box;
-        background-origin: padding-box, border-box;
-        // background-image: linear-gradient(
-        //     180deg,
-        //     rgba(28, 0, 45, 0.8) 0%,
-        //     rgba(24, 0, 30, 0.8) 0.01%,
-        //     rgba(0, 9, 54, 0.8) 100%
-        //   ),
-        //   linear-gradient(0deg, rgba(159, 100, 219, 0.5) 0%, rgba(117, 163, 203, 0.5) 100%);
-        background-image: linear-gradient(180deg, #0e0b0a 0%, #0e0b0a 0.01%),
-          linear-gradient(0deg, rgba(159, 100, 219, 0.5) 0%, rgba(117, 163, 203, 0.5) 100%);
-
+        @include bordergradientMY(linear-gradient(180deg, rgba(244, 158, 255, 0.6) 0%, rgba(89, 110, 223, 0.6) 100%));
         :deep(.article) {
           border: 1px solid transparent;
           border-radius: 8px;
           background-clip: padding-box, border-box;
           background-origin: padding-box, border-box;
-          // 000717
-          // background-image: linear-gradient(180deg, #000717 -1.45%, #000717 100%),
-          //   linear-gradient(0deg, rgba(159, 100, 219, 0.5) 0%, rgba(117, 163, 203, 0.5) 100%);
         }
 
         .top_icon {
@@ -249,7 +226,7 @@ watch(
       height: 100%;
       width: 100%;
       @include Myflex();
-      padding: 23px 0 0 0;
+      // padding: 23px 0 0 0;
     }
     .fen_xi {
       display: inline-block;

@@ -108,11 +108,10 @@ const shopquickbuyPay = async () => {
     // border: 2px solid turquoise;
     width: 400px;
     height: 480px;
-    border: 1px solid transparent;
-    background-clip: padding-box, border-box;
-    background-origin: padding-box, border-box;
-    background-image: linear-gradient(180deg, #122743 -1.45%, #030d15 100%),
-      linear-gradient(0deg, rgb(174, 111, 255) 0%, rgb(46, 179, 255) 100%);
+    @include bordergradientMY(
+      linear-gradient(90deg, rgba(156, 104, 216, 0.9) 20%, rgba(80, 122, 191, 0.9) 80%),
+      linear-gradient(180deg, #122743 -1.45%, #030d15 100%)
+    );
   }
 }
 .top {
@@ -154,11 +153,8 @@ section {
       width: $top_leftWidth;
       height: 141px;
       border-radius: 8px;
-      border: 1px solid transparent;
-      background-clip: padding-box, border-box;
-      background-origin: padding-box, border-box;
-      background-image: linear-gradient(180deg, #122743 -1.45%, #030d15 100%),
-        linear-gradient(0deg, rgb(174, 111, 255) 0%, rgb(46, 179, 255) 100%);
+      @include bordergradientMY(linear-gradient(90deg, rgb(52, 62, 252) 0%, rgb(223, 0, 201) 100%));
+
       box-shadow: 2px 2px 5px 0px #4a52ff;
     }
     .top_right {
@@ -246,11 +242,15 @@ section {
       border-radius: 4px;
       padding: 5px 12px;
       @include Myflex(flex-start);
-      border: 1px solid transparent;
-      background-clip: padding-box, border-box;
-      background-origin: padding-box, border-box;
-      background-image: linear-gradient(180deg, #122743 -1.45%, #030d15 100%),
-        linear-gradient(0deg, rgba(157, 102, 217, 0.5) 0%, rgba(99, 149, 231, 0.8) 100%);
+      // border: 1px solid transparent;
+      // background-clip: padding-box, border-box;
+      // background-origin: padding-box, border-box;
+      // background-image: linear-gradient(180deg, #122743 -1.45%, #030d15 100%),
+      //   linear-gradient(0deg, rgba(157, 102, 217, 0.5) 0%, rgba(99, 149, 231, 0.8) 100%);
+      @include bordergradientMY(
+        linear-gradient(180deg, rgba(137, 95, 193, 0.5) 20%, rgba(52, 82, 124, 0.9) 80%),
+        linear-gradient(180deg, #122743 -1.45%, #030d15 100%)
+      );
 
       .img {
         width: 25px;

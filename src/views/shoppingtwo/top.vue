@@ -97,16 +97,15 @@ const fenxiangdialog = ref(false) // 分享弹框
   height: 612px;
   border-radius: 6px;
   @include Myflex(space-between, flex-start);
-  border: 1.213px solid #9f62db;
-  background: linear-gradient(180deg, rgba(18, 39, 67, 0.59) 0%, rgba(3, 13, 21, 0.59) 100%);
+
+  @include bordergradientMY(linear-gradient(180deg, rgba(157, 104, 217, 0.7) 0%, rgba(99, 149, 231, 0.7) 100%));
+
   box-shadow: 0px 4.85072px 15.76483px 0px rgba(0, 0, 0, 0.43);
   .S_L_Left {
     position: relative;
     width: 609px;
     height: 608px;
-    // background-color: salmon;
     @include Myflex();
-    // shopp_TWo.png
     background: url('@/assets/images/shoppingCentre/shopp_TWo.png') no-repeat scroll left top/ 100% 100%;
     .fenxiang {
       position: absolute;
@@ -162,7 +161,7 @@ const fenxiangdialog = ref(false) // 分享弹框
     border-radius: 6px;
     @include Myflex(space-between);
     flex-direction: column;
-    border-left: 1.213px solid #9f62db;
+    border-left: 1.213px solid rgba(159, 98, 219, 0.5);
     background: linear-gradient(180deg, rgba(18, 39, 67, 0.59) 0%, rgba(3, 13, 21, 0.59) 100%);
     box-shadow: 0px 4.85072px 15.76483px 0px rgba(0, 0, 0, 0.43);
     .S_L_Top {
@@ -182,30 +181,10 @@ const fenxiangdialog = ref(false) // 分享弹框
           line-height: 55px;
           height: 55px;
           padding: 0 12px;
-          &::after {
-            position: absolute;
-            left: 0;
-            top: 0;
-            content: '';
-            background: linear-gradient(180deg, rgba(148, 96, 2071, 1) 0%, rgba(99, 149, 231, 1) 100%);
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            border-radius: 8px;
-            -webkit-clip-path: polygon(
-              2% 0%,
-              2% 100%,
-              6% 96%,
-              6% 7%,
-              95% 9%,
-              96% 91%,
-              0% 92%,
-              1% 100%,
-              100% 100%,
-              100% 0%
-            );
-            clip-path: polygon(2% 0%, 2% 100%, 6% 96%, 6% 7%, 95% 9%, 96% 91%, 3% 92%, 1% 100%, 100% 100%, 100% 0%);
-          }
+          border-radius: 8px;
+          @include bordergradientMY(
+            linear-gradient(180deg, rgba(157, 102, 217, 0.5) 0%, rgba(102, 152, 227, 0.5) 100%)
+          );
         }
       }
     }
@@ -237,7 +216,7 @@ const fenxiangdialog = ref(false) // 分享弹框
   height: 100%;
 
   > p {
-    background: linear-gradient(90deg, #eb57dc 0%, rgba(65, 81, 253, 0) 100%);
+    background: linear-gradient(90deg, rgba(235, 87, 220, 0.4) 30%, rgba(65, 81, 253, 0) 100%);
     width: 138px;
     font: normal normal 600 14px 'Microsoft YaHei';
     color: white;
@@ -303,8 +282,12 @@ const fenxiangdialog = ref(false) // 分享弹框
       margin-top: 15px;
       opacity: 0.5;
       border-radius: 5px;
-      border: 0.96px solid #9f64db;
-      background: linear-gradient(149deg, #200924 45.99%, #0e1045 69.44%, #000a2c 85.48%);
+      border: 1px solid transparent;
+      background-clip: padding-box, border-box;
+      background-origin: padding-box, border-box;
+      background-image: linear-gradient(149deg, #200924 45.99%, #0e1045 69.44%, #000a2c 85.48%),
+        linear-gradient(180deg, rgba(196, 1, 176, 0.3) 0%, rgba(40, 58, 226, 0.3) 100%);
+
       width: 278.4px;
       height: 150px;
       @include Myflex(space-between);

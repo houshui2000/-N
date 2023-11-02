@@ -19,12 +19,12 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .MessageboxMy {
   position: fixed;
-  top: 90px;
+  top: 120px;
   left: 50%;
   z-index: 99999;
   transform: translateX(-50%);
   width: 324px;
-  height: 77px;
+  height: 58px;
   border-radius: 4px;
   border: 1px solid transparent;
   background-clip: padding-box, border-box;

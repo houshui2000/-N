@@ -74,19 +74,22 @@ table {
   width: 1470px;
   flex-shrink: 0;
   border-radius: 61px;
-  border: 1px solid var(--Linear, #9f62db);
+  // border: 1px solid var(--Linear, #9f62db);
   background: #070d13;
   border-collapse: separate;
   border-spacing: 0;
   border-radius: 10px;
+  @include bordergradientMY();
 
   thead {
     height: 56px;
     font: normal normal 400 14px 'PingFang SC';
     text-align: center;
     color: #fefefe;
-    border-bottom: 1px solid #414971;
     tr {
+      display: block;
+      border-bottom: 1px solid #414971;
+      background: linear-gradient(180deg, #241328 0%, #000c2c 100%);
       td {
         width: 20% !important;
         display: inline-block;
@@ -108,16 +111,21 @@ table {
       position: relative;
       display: block;
       margin: auto;
-      &::after {
-        position: absolute;
-        left: 50%;
-        bottom: 0;
-        transform: translateX(-50%);
-        content: '';
-        display: block;
-        width: calc(1470px - 160px);
-        height: 1px;
-        border-bottom: 1px solid #414971;
+      &:last-child {
+        height: 55px;
+      }
+      &:not(:last-child) {
+        &::after {
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          transform: translateX(-50%);
+          content: '';
+          display: block;
+          width: calc(1470px - 160px);
+          height: 1px;
+          border-bottom: 1px solid #414971;
+        }
       }
       td {
         display: inline-block;
@@ -199,30 +207,10 @@ table {
 
           .zhiFU_one_mai {
             position: relative;
-            &::after {
-              position: absolute;
-              left: 0;
-              top: 0;
-              content: '';
-              background: linear-gradient(90deg, rgba(47, 65, 254, 1) 0%, rgba(224, 1, 201, 1) 100%);
-              width: 100%;
-              height: 100%;
-              z-index: 0;
-              border-radius: 8px;
-              -webkit-clip-path: polygon(
-                1% 0%,
-                1% 100%,
-                6% 100%,
-                6% 8%,
-                93% 8%,
-                93% 94%,
-                0% 93%,
-                0% 100%,
-                97% 100%,
-                97% 2%
-              );
-              clip-path: polygon(1% 0%, 1% 100%, 6% 100%, 6% 8%, 93% 8%, 93% 94%, 0% 93%, 0% 100%, 97% 100%, 97% 2%);
-            }
+            border-radius: 5px;
+            @include bordergradientMY(
+              linear-gradient(180deg, rgba(157, 102, 217, 0.5) 0%, rgba(102, 152, 227, 0.5) 100%)
+            );
           }
         }
       }

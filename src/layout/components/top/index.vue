@@ -1,6 +1,7 @@
 <template>
   <div id="navTop">
     <!--  左边  -->
+    <div class="navContent-bottom" ref="navBorder"></div>
     <div class="left">
       <div class="logo">
         <div class="logoImg"></div>
@@ -8,44 +9,45 @@
       <div class="navContent">
         <div
           class="navContent-box"
-          :class="{ active: navIndex === index }"
+          :data-dom="`slide${item.name}`"
+          :class="{ active: navIndex === item.name }"
           v-for="(item, index) in navList"
           :key="item.name"
+          ref="navContentbox"
           @click="handleNavOpen(item, index)"
         >
-          {{ item.name }}
-          <div class="navContent-bottom" v-show="navIndex === index" ref="navBorder"></div>
+          <span v-if="item.meta.immediate">{{ item.meta.name }}</span>
         </div>
       </div>
     </div>
     <!--  右边  -->
     <div class="right">
-      <div class="search" @click="handleSeachShow"></div>
-      <div class="download"></div>
-      <div class="cardMoneyBox">
+      <!-- <div class="search" @click="handleSeachShow"></div> -->
+      <div @click="router.push('/app')" class="download"></div>
+      <!-- <div class="cardMoneyBox">
         <div class="cardMoney"></div>
         <div class="fontsize">{{ useUsersStore.userInfo.dbalance }}</div>
         <div class="pay"></div>
-      </div>
-      <div class="dMoneyBox">
+      </div> -->
+      <!-- <div class="dMoneyBox">
         <div class="dMoney">
           <SvgIcon size="22px" icon-class="DBi" />
         </div>
         <div class="fontsize">{{ useUsersStore.userInfo.dbalance }}</div>
-      </div>
+      </div> -->
       <div class="fen"></div>
       <div class="adminUser">
         <div class="uploadText">
-          <div @click="handleLogin" v-if='!loginStore.token'>登录</div>
-          <div v-if='loginStore.token'>{{ useUsersStore.userInfo.nickname }}</div>
+          <div @click="handleLogin" v-if="!loginStore.token">登录</div>
+          <div v-if="loginStore.token">{{ useUsersStore.userInfo.nickname }}</div>
         </div>
-        <div class="uploadImg" v-if='loginStore.token'>
+        <div class="uploadImg" v-if="loginStore.token">
           <div class="dian"></div>
           <div class="uploadPhoto">
-            <img :src='useUsersStore.userInfo.avatar'>
+            <img :src="useUsersStore.userInfo.avatar" />
           </div>
         </div>
-        <div class="uploadContent" v-if='loginStore.token' @click='handleMyShow'>
+        <div class="uploadContent" v-if="loginStore.token" @click="handleMyShow">
           <div class="uploadBox">
             <div class="uploadBox-img"></div>
             <div class="nickName">{{ useUsersStore.userInfo.nickname }}</div>
@@ -58,7 +60,7 @@
             </div>
             <div class="iconDiv">
               <div class="icon"></div>
-              <div class="text" @click='handleLoginExit()'>退出登录</div>
+              <div class="text" @click="handleLoginExit()">退出登录</div>
             </div>
           </div>
         </div>
@@ -70,54 +72,95 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, reactive } from 'vue'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import { ref, computed, nextTick, onMounted, watch } from 'vue'
+// import SvgIcon from '@/components/SvgIcon/index.vue'
 import Login from '@/components/Login/index.vue'
 import { useStore } from '@/pinia'
-import uploadAvatar from '../uploadAvatar/index.vue'
 import { removeItem } from '@/utils/storage.js'
 import { userlogout } from '@/network/userInterface.js'
-import router from '@/router/index.js'
+import { ToLogin, NoLogin } from '@/router/InputTransfer.js'
+// import router from '@/router/index.js'
+import { useRouter, useRoute } from 'vue-router'
+const router = useRouter()
+const route = useRoute()
 
-const { loginStore,useUsersStore } = useStore()
+const { loginStore, useUsersStore } = useStore()
 
-let navList = reactive([
-  { name: '卡GO', push: '' },
-  { name: '飞升计划', push: '' },
-  { name: '啦啦啦计划', push: '' }
-])
-let navIndex = ref(0)
-let navBorder = ref(null)
-const handleNavOpen = (item, index) => {
-  navIndex.value = index
+// let navList = reactive([
+//   // { name: '卡GO', push: '' },
+//   // { name: '飞升计划', push: '' },
+//   // { name: '啦啦啦计划', push: '' }
+//   ...NoLogin,
+//   ...ToLogin
+// ])
+let navList = computed(() => {
+  let rout = [...NoLogin, ...ToLogin]
+  const res = rout.filter((item) => item.meta.immediate)
+  return res
+})
+let navIndex = ref('')
+const handleNavOpen = (item) => {
+  router.push(item.path)
+
+  // navIndex.value = item.name
   // let dom=document.querySelectorAll('.navContent-box')[navIndex.value].getBoundingClientRect()
   // let navBorderWidth=document.querySelector('.navContent-bottom').getBoundingClientRect()
   // let logo=parseFloat(getComputedStyle(document.querySelector('.logo')).width.slice(0, -2))
   // let navBottom=(dom.x+dom.width/2-navBorderWidth.width/2-logo)
   // navBorder.value.style.left=34+'px'
 }
-const handleSeachShow = () => {}
 
 const handleLogin = () => {
   loginStore.login = true
 }
 //退出登录
-const handleLoginExit=async ()=>{
-  let result = await userlogout()
+const handleLoginExit = async () => {
+  // let result = await userlogout()
+  await userlogout()
+
   removeItem('token')
-  loginStore.token=""
-  loginStore.userId=""
+  loginStore.token = ''
+  loginStore.userId = ''
   removeItem('userId')
   useUsersStore.handleUserInfoInit()
-  loginStore.login=true
-  console.log("退出登录")
-
+  loginStore.login = true
+  console.log('退出登录')
 }
 //跳转个人中心
-const handleMyShow =()=>{
+const handleMyShow = () => {
   router.push('myAccount')
 }
 onMounted(() => {})
+const navBorder = ref(null)
+const navContentbox = ref([])
+/**动态路由提示切换 */
+const navContenBottomDOM = () => {
+  let genuineDOm = navContentbox.value.find((item) => {
+    if (item.dataset.dom == navIndex.value) {
+      return item
+    }
+  })
+  if (!genuineDOm) {
+    navBorder.value.style.left = '-100px'
+    return
+  }
+  const { left, bottom, width } = genuineDOm.getBoundingClientRect()
+  navBorder.value.style.left = left + width / 2 - 10 + 'px'
+  navBorder.value.style.top = bottom - 10 + 'px'
+}
+watch(
+  () => router,
+  () => {
+    navIndex.value = 'slide' + route.name
+    nextTick(() => {
+      navContenBottomDOM()
+    })
+  },
+  {
+    deep: true,
+    immediate: true
+  }
+)
 </script>
 <style lang="scss" scoped>
 #navTop {
@@ -128,10 +171,21 @@ onMounted(() => {})
   display: flex;
   justify-content: space-between;
   position: fixed;
-  top: 0;
+  top: 0px;
   left: 0;
   z-index: 1000;
-
+  .navContent-bottom {
+    width: 32px;
+    height: 2px;
+    background: url($gxsnavHover) no-repeat center;
+    background-size: contain;
+    position: fixed;
+    top: 60px;
+    z-index: 99;
+    left: 0;
+    transition: all 0.5s;
+    // margin-left: -16px;
+  }
   .left {
     display: flex;
 
@@ -175,17 +229,6 @@ onMounted(() => {})
         &.active {
           font-weight: 700;
         }
-
-        .navContent-bottom {
-          width: 32px;
-          height: 2px;
-          background: url($gxsnavHover) no-repeat center;
-          background-size: contain;
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          margin-left: -16px;
-        }
       }
     }
   }
@@ -194,15 +237,16 @@ onMounted(() => {})
     width: 710px;
     height: 70px;
     line-height: 70px;
+    padding-right: 30px;
     display: flex;
     align-items: center;
-
-    .search {
-      width: 26px;
-      height: 26px;
-      background: url($gxssearch) no-repeat center;
-      background-size: contain;
-    }
+    justify-content: flex-end;
+    // .search {
+    //   width: 26px;
+    //   height: 26px;
+    //   background: url($gxssearch) no-repeat center;
+    //   background-size: contain;
+    // }
 
     .download {
       width: 26px;
@@ -212,72 +256,72 @@ onMounted(() => {})
       margin-left: 30px;
     }
 
-    .cardMoneyBox {
-      width: 174px;
-      height: 34px;
-      background: url($gxstiao1) no-repeat center;
-      background-size: contain;
-      margin-left: 40px;
-      display: flex;
-      align-items: center;
-      position: relative;
+    // .cardMoneyBox {
+    //   width: 174px;
+    //   height: 34px;
+    //   background: url($gxstiao1) no-repeat center;
+    //   background-size: contain;
+    //   margin-left: 40px;
+    //   display: flex;
+    //   align-items: center;
+    //   position: relative;
 
-      .cardMoney {
-        position: absolute;
-        width: 29px;
-        height: 32px;
-        background: url($gxscardMoney) no-repeat center;
-        background-size: contain;
-        left: 11px;
-      }
+    //   .cardMoney {
+    //     position: absolute;
+    //     width: 29px;
+    //     height: 32px;
+    //     background: url($gxscardMoney) no-repeat center;
+    //     background-size: contain;
+    //     left: 11px;
+    //   }
 
-      .fontsize {
-        max-width: 100px;
-        font-size: 14px;
-        font-family: 'PingFang SC';
-        color: white;
-        position: absolute;
-        left: 40px;
-        font-weight: 600;
-      }
+    //   .fontsize {
+    //     max-width: 100px;
+    //     font-size: 14px;
+    //     font-family: 'PingFang SC';
+    //     color: white;
+    //     position: absolute;
+    //     left: 40px;
+    //     font-weight: 600;
+    //   }
 
-      .pay {
-        width: 22px;
-        height: 22px;
-        background: url($gxsRecharge) no-repeat center;
-        background-size: contain;
-        position: absolute;
-        right: 11px;
-      }
-    }
+    //   .pay {
+    //     width: 22px;
+    //     height: 22px;
+    //     background: url($gxsRecharge) no-repeat center;
+    //     background-size: contain;
+    //     position: absolute;
+    //     right: 11px;
+    //   }
+    // }
 
-    .dMoneyBox {
-      width: 155px;
-      height: 34px;
-      background: url($gxstiao2) no-repeat center;
-      background-size: contain;
-      margin-left: 16px;
-      display: flex;
-      align-items: center;
+    // .dMoneyBox {
+    //   width: 155px;
+    //   height: 34px;
+    //   background: url($gxstiao2) no-repeat center;
+    //   background-size: contain;
+    //   margin-left: 16px;
+    //   display: flex;
+    //   align-items: center;
 
-      .dMoney {
-        width: 24px;
-        height: 24px;
-        @include Myflex();
-        // background: url($gxsDMoney) no-repeat center;
-        // background-size: contain;
-        margin-left: 11px;
-      }
+    //   .dMoney {
+    //     width: 24px;
+    //     height: 24px;
+    //     @include Myflex();
+    //     // background: url($gxsDMoney) no-repeat center;
+    //     // background-size: contain;
+    //     margin-left: 11px;
+    //   }
 
-      .fontsize {
-        max-width: 100px;
-        font-size: 14px;
-        font-family: 'PingFang SC';
-        color: white;
-        margin-left: 10px;
-        font-weight: 600;
-      }
-    }
+    //   .fontsize {
+    //     max-width: 100px;
+    //     font-size: 14px;
+    //     font-family: 'PingFang SC';
+    //     color: white;
+    //     margin-left: 10px;
+    //     font-weight: 600;
+    //   }
+    // }
 
     .fen {
       margin: 0 30px;
@@ -342,7 +386,7 @@ onMounted(() => {})
           left: 50%;
           margin-top: -15px;
           margin-left: -15px;
-          img{
+          img {
             width: 100%;
             height: 100%;
           }

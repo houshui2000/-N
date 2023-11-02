@@ -21,11 +21,12 @@
     </p>-->
     <!--  -->
     <div class="footer_borrom">
-      <Router-link to="/"><div class="tiaozhuan">测试1</div></Router-link>
-      <Router-link to="/"><div class="tiaozhuan">测试2</div></Router-link>
-      <Router-link to="/"><div class="tiaozhuan">测试3</div></Router-link>
-      <Router-link to="/"><div class="tiaozhuan">测试4</div></Router-link>
-      <Router-link to="/"><div class="tiaozhuan">测试5</div></Router-link>
+      <Router-link to="/"><div class="tiaozhuan">关于我们</div></Router-link>
+      <Router-link to="/"><div class="tiaozhuan">联系我们</div></Router-link>
+      <Router-link to="/"><div class="tiaozhuan">相关教程</div></Router-link>
+      <Router-link to="/"><div class="tiaozhuan">隐私协议</div></Router-link>
+      <Router-link to="/"><div class="tiaozhuan">声明</div></Router-link>
+      <Router-link to="/"><div style="border-right: 0" class="tiaozhuan">用户协议</div></Router-link>
     </div>
   </footer>
 </template>
@@ -34,7 +35,9 @@
 footer {
   padding: 50px 0;
   width: 1920px;
+  height: 308px;
   background: #16191f;
+  @include Myflex(); 
   .footer_top {
     // width: ;
     @include Myflex();
@@ -68,9 +71,12 @@ footer {
     .tiaozhuan {
       @include Myflex();
       width: 100px;
-      height: 60px;
-      background-color: aqua;
+      height: 17px;
+      // background-color: aqua;
       margin-right: 20px;
+      border-right: 1px solid rgba(255, 255, 255, 0.5);
+      font: normal normal 400 12px 'PingFang SC';
+      color: white;
     }
   }
 }

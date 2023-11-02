@@ -1,6 +1,7 @@
 @import './variables.scss';
 @import './childrenStyle/index.scss';
 @import './all.scss';
+
 .transition05s-enter-active,
 .transition05s-leave-active {
   transition: opacity 0.5s ease;
@@ -48,23 +49,23 @@ div::-webkit-scrollbar-track {
 
 // 滚动条样式
 .scrollStyle {
+
   &::-webkit-scrollbar {
-    width: 10px !important;
-    height: 12px !important;
-    background-color: rgba($color: #000000, $alpha: 0);
+    width: 4px;
   }
 
-  /* scroll轨道背景 */
-  &::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0) !important;
-    border-radius: 12px;
-    background-color: rgba($color: #000000, $alpha: 0) !important;
-  }
-
-  /* 滚动条中能上下移动的小块 */
+  // 滚轮样式
   &::-webkit-scrollbar-thumb {
-    border-radius: 12px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
-    background-color: #453293 !important;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(180deg, #de01ca 0%, #3340fe 100%);
+  }
+
+  // 滚轮背景
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    // background: rgba(0, 0, 0, 0.1);
+    background-color: #282a52;
   }
 }

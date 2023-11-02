@@ -18,7 +18,7 @@
       <div @click="upload" class="download">下载</div>
       <section>
         <div class="img">
-          <img class="" :src="realPictures" alt="" />
+          <img class="equalProportions" :src="realPictures" alt="" />
         </div>
         <div class="section_bottom">
           <div class="bottom_left">
@@ -93,7 +93,7 @@ const show = () => {
   // upload()
   console.log(creatData.value)
 
-  toBase64(creatData.value.effectFrontUrl)
+  toBase64(creatData.value.productUrl)
   // toBase64('http://172.16.1.38:5173/src/assets/images/carggo/ceshi_xia.png')
 }
 const section = ref(null)
@@ -187,7 +187,9 @@ section {
   height: 546px;
 
   border: 3px solid #561895;
-  @include borderGradient();
+  @include bordergradientMY();
+  // border-radius: 30px;
+  overflow: hidden;
   background: linear-gradient(180deg, #122743 -1.45%, #030d15 100%);
   flex-direction: column;
   @include Myflex(flex-start);
@@ -248,13 +250,13 @@ section {
     .bottom_right {
       width: 132px;
       height: 132px;
-      @include borderGradient();
-      border-radius: 4px;
+      @include bordergradientMY();
+      border-radius: 8px;
       @include Myflex();
       .img {
-        @include borderGradient();
+        @include bordergradientMY();
         width: 111.092px;
-        border-radius: 4px;
+        border-radius: 8px;
         height: 112.286px;
         .erweima {
           width: 100% !important;

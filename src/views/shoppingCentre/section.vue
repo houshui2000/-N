@@ -10,7 +10,7 @@
       <MissWakeupPage />
     </div>
   </div>
-  <div ref="xianshi_geng" class="xianshi_geng">加载更多</div>
+  <div ref="xianshi_geng" v-show="creatData.records?.length > 0" class="xianshi_geng">加载更多</div>
 </template>
 <script setup>
 import Section_left from './components/sectionLeft/index.vue'

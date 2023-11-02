@@ -1,18 +1,18 @@
 <template>
-  <div id='authenticationConfirmPopup' v-if='!useUsersStore.authenticationConFirmPopup'>
-    <div class='content'>
-      <div class='text'>确认认证
-        <div class='border'></div>
+  <div id="authenticationConfirmPopup" v-if="useUsersStore.authenticationConFirmPopup">
+    <div class="content">
+      <div class="text">
+        确认认证
+        <div class="border"></div>
       </div>
-      <div class='titleText'>实名信息认证后不可修改，请检验信息无误后再提交。</div>
-      <div class='close' @click='useUsersStore.authenticationConFirmPopup=false'></div>
-      <div class='bottom'>
-        <div class='back'>返回</div>
-        <div class='Btn'>确认</div>
+      <div class="titleText">实名信息认证后不可修改，请检验信息无误后再提交。</div>
+      <div class="close" @click="useUsersStore.authenticationConFirmPopup = false"></div>
+      <div class="bottom">
+        <div class="back">返回</div>
+        <div class="Btn">确认</div>
       </div>
     </div>
   </div>
-
 </template>
 
 <script setup>
@@ -53,19 +53,19 @@ const handlePassword = async () => {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #authenticationConfirmPopup {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(#000, .8);
+  background: rgba(#000, 0.8);
   z-index: 10005;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Alibaba PuHuiTi";
+  font-family: 'Alibaba PuHuiTi';
   font-weight: 400;
   color: white;
 
@@ -110,7 +110,7 @@ const handlePassword = async () => {
       right: 20px;
       cursor: pointer;
     }
-    .titleText{
+    .titleText {
       width: 398px;
       height: 82px;
       line-height: 82px;
@@ -120,7 +120,7 @@ const handlePassword = async () => {
       font-weight: 400;
       color: #fff;
     }
-    .bottom{
+    .bottom {
       width: 222px;
       height: 34px;
       font-size: 14px;
@@ -128,24 +128,22 @@ const handlePassword = async () => {
       display: flex;
       justify-content: space-between;
       line-height: 34px;
-      .back{
+      .back {
         width: 100px;
         height: 34px;
         text-align: center;
-        background:url($gxsauthenticationConfirmPopupBack) no-repeat center;
-        background-size:contain;
+        background: url($gxsauthenticationConfirmPopupBack) no-repeat center;
+        background-size: contain;
       }
-      .Btn{
+      .Btn {
         width: 99px;
         height: 34px;
         line-height: 34px;
         text-align: center;
-        background:url($gxsauthenticationConfirmPopupBtn) #f7ba2a no-repeat center;
-        background-size:contain;
+        background: url($gxsauthenticationConfirmPopupBtn) #f7ba2a no-repeat center;
+        background-size: contain;
       }
     }
-
-
   }
 }
 </style>

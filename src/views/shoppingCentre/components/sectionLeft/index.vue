@@ -229,13 +229,8 @@ watch(
 .input_select {
   width: 213px;
   height: 48px;
-  border: 1px solid transparent;
   border-radius: 8px;
-  background-clip: padding-box, border-box;
-  background-origin: padding-box, border-box;
-  // 000717
-  background-image: linear-gradient(180deg, #000717 -1.45%, #000717 100%),
-    linear-gradient(0deg, rgba(159, 100, 219, 0.5) 0%, rgba(117, 163, 203, 0.5) 100%);
+  @include bordergradientMY();
   :deep(.article) {
     border: 1px solid transparent;
     border-radius: 8px;

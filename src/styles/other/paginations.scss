@@ -55,7 +55,8 @@
 
   :deep(.el-pager li.is-active) {
     color: white;
-    border: 1px solid #8122e5;
+    // border: 1px solid #8122e5;
+    @include bordergradientMY();
     background-color: transparent !important;
   }
 }

@@ -36,9 +36,7 @@ const init = async () => {
   })
 
   creatData.value = res.data
-  const norId = await shopotherproducts({
-    // norId: route.params.vaultId
-  })
+  const norId = await shopotherproducts({})
 
   creatDataAll.value = norId.data
 }
@@ -47,6 +45,8 @@ provide('creatData', creatData)
 watch(
   () => route.params.vaultId,
   () => {
+    if (route.name !== 'SCDetailName') return
+
     init()
   },
   {
