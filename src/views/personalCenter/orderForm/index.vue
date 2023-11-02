@@ -15,6 +15,7 @@
             format='YYYY-MM-DD HH:mm'
             date-format='YYYY/MM/DD ddd'
             time-format='A hh:mm:ss'
+            @change='handleCreateDateTime'
           />
         </div>
         <div class='PayDateTime' @click='handlePayDateTimeShow'>
@@ -22,7 +23,7 @@
           <el-date-picker
             class='PayDateTimePicker'
             popper-class='CreateDateTimePickerKuang'
-            v-model='createTime'
+            v-model='payTime'
             type='datetimerange'
             start-placeholder='开始时间'
             end-placeholder='结束时间'
@@ -48,17 +49,57 @@
         <div class='text'>支付时间</div>
         <div class='text'>状态</div>
       </div>
-      <div class='borderFrame'></div>
+      <div class='borderFrame'> </div>
       <div class='orderList'>
-        <div class='orderListBox' v-for='item in orderList'>
+        <div class='orderListBox' v-for='(item,index) in orderList'>
           <div class='head'>
             订单号: 2023102722001197771411396182
             <div class='copyIcon' @click='handleCopyIcon("2023102722001197771411396182")'></div>
           </div>
           <div class='content'>
-            <div class='cardImg'>
-              <img src='@/assets/images/myAccount/linshiImage.png' alt=''>
-            </div>
+            <div class='cardImgBox' @mouseenter='handleMouseover(index)' @mouseleave='handleMouseout(index)'>
+              <div class='cardImg'>
+                <img src='@/assets/images/myAccount/linshiImage.png' alt=''>
+              </div>
+              <div class='orderDetailsBox' v-if='index===indexDetail' @mouseenter='handleMouseover(index)'>
+                <div class='orderDetailsPopup'  @mouseleave='handleMouseout(index)'>
+                  <div class='titleIcon'></div>
+                  <div class='titleText'>待支付</div>
+                  <div class='imgBox'>
+                    <img src='https://img.zhisheji.com/bbs/forum/201401/05/153945tbr7pg5torfzptso.jpg'>
+                  </div>
+                  <div class='name'>MASTER KILLER</div>
+                  <div class='number'>
+                    <div class='numberText'>002-2023-A20-01</div>
+                  </div>
+                  <div class='btnBox'>
+                    <div class='close'>取消支付</div>
+                    <div class='payBtn'>去支付</div>
+                  </div>
+                  <div class='border'></div>
+                  <div class='contentText'>
+                    <div class='contentTextBox'>
+                      <div  class='label'>订单编号</div>
+                      <div  class='dataValue'>2233225533322222225</div>
+                    </div>
+                    <div class='contentTextBox'>
+                      <div  class='label'>订单编号</div>
+                      <div  class='dataValue'>2233225533322222225</div>
+                    </div>
+                    <div class='contentTextBox'>
+                      <div  class='label'>订单编号</div>
+                      <div  class='dataValue'>2233225533322222225</div>
+                    </div>
+                    <div class='contentTextBox'>
+                      <div  class='label'>订单编号</div>
+                      <div  class='dataValue'>2233225533322222225</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+                 </div>
+
             <div class='nameBox'>
               <div class='name'>MASTER KILLER</div>
               <div class='number'>
@@ -78,18 +119,35 @@
         </div>
       </div>
     </div>
-
+<!--    <orderDetailsPopup/>-->
   </div>
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref,onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import gxsSelect from '../components/gxsSelect.vue'
-let orderList = reactive([{}, {}, {}])
-
+import orderDetailsPopup from '../components/orderDetailsPopup.vue'
+import { GetorderList } from '@/network/personalCenter.js'
+let orderList = reactive([{},{},{},{},{},{}])
+let orderInfo=reactive({
+  payTimes:null,
+  createTimes:null,
+  current:1,
+  size:10,
+  key:null,
+  payStatus:null,
+})
 let search = ref('')
 let createTime = ref('')
+let payTime = ref('')
+let indexDetail=ref(-1)
+const handleMouseover =(indexV)=>{
+  indexDetail.value=indexV
+}
+const handleMouseout=()=>{
+  indexDetail.value=-1
+}
 const handleCreateDateTimeShow = () => {
   document.querySelector('.CreateDateTimePicker').querySelector('input').focus()
 
@@ -112,13 +170,13 @@ const handleCopyIcon = (item)=>{
 }
 //下拉框
 const options = reactive([
-  { values: 1, label: '全部状态' },
-  { values: 2, label: '待支付' },
-  { values: 3, label: '已取消' },
-  { values: 4, label: '已支付' },
-  { values: 5, label: '登记中' },
-  { values: 6, label: '交易成功' },
+  { values: null, label: '全部状态' },
+  { values: 0, label: '待支付' },
+  { values: -1, label: '已取消' },
+  { values: 1, label: '已支付' },
+  { values:2, label: '交易成功' },
 ])
+// { values: 5, label: '登记中' },
 const arrayValue=reactive({
   values: 1,
   label: '全部状态'
@@ -128,7 +186,23 @@ const handleSelectValue =(val)=>{
   console.log("val",val)
   arrayValue.label=val.label
   arrayValue.values=val.values
+  orderInfo.payStatus=val.values
 }
+const handleOrderList =async ()=>{
+  let res =await GetorderList(orderInfo)
+  console.log(res)
+  if(res.code===200){
+
+  }
+
+}
+//选择时间
+const handleCreateDateTime =(time)=>{
+  console.log("time",time)
+}
+onMounted(()=>{
+  handleOrderList()
+})
 
 </script>
 

@@ -53,3 +53,12 @@ export function bindInvitationCodePost(data) {
     data
   })
 }
+
+// 订单明细获取
+export function GetorderList(params) {
+  return service({
+    url: 'shop/order',
+    method: 'get',
+    params
+  })
+}
