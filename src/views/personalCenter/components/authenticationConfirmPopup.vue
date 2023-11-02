@@ -4,10 +4,12 @@
       <div class='text'>确认认证
         <div class='border'></div>
       </div>
-      <div class=''>实名信息认证后不可修改，请检验信息无误后再提交。</div>
-      <div class='close' @click='useUsersStore.authenticationPopup=false'></div>
-
-      <div class='passwordEditBtn' @click='handlePassword'>同 意 授 权 并 认 证</div>
+      <div class='titleText'>实名信息认证后不可修改，请检验信息无误后再提交。</div>
+      <div class='close' @click='useUsersStore.authenticationConFirmPopup=false'></div>
+      <div class='bottom'>
+        <div class='back'>返回</div>
+        <div class='Btn'>确认</div>
+      </div>
     </div>
   </div>
 
@@ -77,30 +79,6 @@ const handlePassword = async () => {
     flex-direction: column;
     align-items: center;
 
-    .messageTop {
-      width: 375px;
-      height: 60px;
-      margin-top: 18px;
-      font-weight: 400;
-      font-size: 12px;
-      color: rgba(#fff, 0.5);
-      line-height: 20px;
-    }
-
-    .passwordEditBtn {
-      width: 275px;
-      height: 36px;
-      background: url($gxsauthenticationPopupBtn) no-repeat;
-      background-size: 100%;
-      margin-top: 26px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border-radius: 4px;
-      font-size: 16px;
-    }
-
     .text {
       width: 600px;
       height: 26px;
@@ -132,65 +110,42 @@ const handlePassword = async () => {
       right: 20px;
       cursor: pointer;
     }
-
-    .domInput {
-      display: flex;
-      height: 40px;
+    .titleText{
+      width: 398px;
+      height: 82px;
+      line-height: 82px;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
       font-weight: 400;
-      align-items: center;
-      position: relative;
-
-      .label {
-        width: 76px;
-        text-align: left;
-      }
-
-      .textPass {
+      color: #fff;
+    }
+    .bottom{
+      width: 222px;
+      height: 34px;
+      font-size: 14px;
+      font-weight: 400;
+      display: flex;
+      justify-content: space-between;
+      line-height: 34px;
+      .back{
         width: 100px;
-        height: 40px;
-        line-height: 40px;
-        color: #018ef8;
-        position: absolute;
-        top: 50%;
-        margin-top: -20px;
-        right: 10px;
-        font-size: 20px;
-        cursor: pointer;
-        text-align: right;
+        height: 34px;
+        text-align: center;
+        background:url($gxsauthenticationConfirmPopupBack) no-repeat center;
+        background-size:contain;
       }
-
-      &.marginTop35 {
-        margin-top: 35px;
-      }
-
-      &.marginTop28 {
-        margin-top: 28px;
-      }
-
-      &.marginTop24 {
-        margin-top: 36px;
-      }
-
-      .inputFrame {
-        width: 300px;
-        height: 40px;
-        line-height: 40px;
-        background: url($gxspupupInputFrame) no-repeat center;
-        background-size: contain;
-
-        input {
-          width: 300px;
-          height: 40px;
-          line-height: 40px;
-          padding-left: 13px;
-          color: white;
-
-          &::placeholder {
-            color: rgba(#fff, .6);
-          }
-        }
+      .Btn{
+        width: 99px;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+        background:url($gxsauthenticationConfirmPopupBtn) #f7ba2a no-repeat center;
+        background-size:contain;
       }
     }
+
+
   }
 }
 </style>
