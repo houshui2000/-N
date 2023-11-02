@@ -8,12 +8,6 @@ import service from '../axios'
     asc: 升序降序,
     name: 搜索名字
 */
-import { useStore } from "@/pinia/index.js";
-// console.log(useStore)
-const { loginStore } = useStore()
-console.log(loginStore.login, 'useUsersStore')
-
-
 export function shopliscard (params) {
   return service({
     url: '/shop/list-card',

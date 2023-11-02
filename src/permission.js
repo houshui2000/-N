@@ -10,18 +10,19 @@ const WhitelistedRouting = []
 
 router.beforeEach(async (to, from, next) => {
 
-  if (getItem('token')) {// 判断有没有 token
-    next()
-  } else {
-    // next()
-    if (WhitelistedRouting.includes(to.name)) { // 在不在白名单
-      next()
-    } else {
-      next('/')
-      const { loginStore } = useStore()
-      loginStore.login = true
-    }
-  }
+  // if (getItem('token')) {// 判断有没有 token
+  //   next()
+  // } else {
+  //   // next()
+  //   if (WhitelistedRouting.includes(to.name)) { // 在不在白名单
+  //     next()
+  //   } else {
+  //     next('/')
+  //     const { loginStore } = useStore()
+  //     loginStore.login = true
+  //   }
+  // }
+  next()
 
 
 });

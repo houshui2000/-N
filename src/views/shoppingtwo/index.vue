@@ -1,7 +1,7 @@
 <template>
   <div @click="ass" class="kapai">
     <div class="crumbs">
-      <span @click="router.push('/')">
+      <span @click="router.push('/shoppingCentre')">
         商城
         <i>></i>
       </span>

@@ -13,22 +13,25 @@ export const userDataInfo = defineStore('userData', {
     return {
       ammoBalance: 324,
       userInfo: {
-        avatar: null,
-        boundQQ: false,
-        boundWx: false,
-        cbalance: '0.00',
-        dbalance: '0.00',
-        invitationCode: '',
-        mobile: '',
-        nickname: '',
-        ownerInvitationCode: '',
-        qqNickname: '',
-        realAuthentication: false,
-        steamUrl: '',
-        transformPlatformCode: null,
-        username: null,
-        wxNickname: ''
-      }
+        "username": "",
+        "mobile": "",
+        "nickname": "",
+        "avatar": null,
+        "invitationCode": "",
+        "ownerInvitationCode": "",
+        "wxNickname": "",
+        "qqNickname": "",
+        "steamUrl": "",
+        "transformPlatformCode": null,
+        "dbalance": "",
+        "cbalance": "",
+        "boundQQ": false,
+        "realAuthentication": false,
+        "boundWx": false
+      },
+      passwordPopup:false,
+      authenticationPopup:false,
+      authenticationConFirmPopup:false,
     }
   },
   actions: {
