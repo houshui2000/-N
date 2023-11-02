@@ -3,7 +3,7 @@ import { createVNode, render } from 'vue'
 // MessageBoxVue({
 //   title: 'asdsadsa'
 // })
-// import MessafeBox from '@/components/MessageBox/index.js'
+// import MessageBoxVue from '@/components/MessageBox/index.js'
 
 export default (props) => {
   //

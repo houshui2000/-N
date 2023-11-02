@@ -1,5 +1,5 @@
 <template>
-  <div id='passwordPopup' v-if='!useUsersStore.authenticationPopup'>
+  <div id='passwordPopup' v-if='useUsersStore.authenticationPopup'>
     <div class='content'>
       <div class='text'>实名认证信息
         <div class='border'></div>
@@ -11,13 +11,13 @@
       <div class='domInput marginTop28'>
         <div class='label'>姓名：</div>
         <div class='inputFrame '>
-          <input placeholder='请输入姓名' v-model='passwordEdit.code' type='number'>
+          <input placeholder='请输入姓名' v-model='passwordEdit.username'>
         </div>
       </div>
       <div class='domInput marginTop24'>
         <div class='label'>身份证：</div>
         <div class='inputFrame'>
-          <input placeholder='请输入个人身份证号' v-model='passwordEdit.password'>
+          <input placeholder='请输入个人身份证号' v-model='passwordEdit.certNo'>
         </div>
       </div>
       <div class='domInput marginTop35'>
@@ -31,12 +31,12 @@
         *您填写的实名认证信息，须和您的注册手机号所绑定的身份信息一致<br>
         *未经您的授权，您的身份信息不会用于其他用途
       </div>
-      <div class='passwordEditBtn' @click='handlePassword'>同 意 授 权 并 认 证</div>
+      <div class='passwordEditBtn' @click='handleEmpowerShow'>同 意 授 权 并 认 证</div>
     </div>
     <div class='confirmPopup'>
       <div class='content2'></div>
     </div>
-    <authenticationConFirmPopup/>
+    <authenticationConFirmPopup :info='passwordEdit'/>
   </div>
 </template>
 
@@ -51,31 +51,13 @@ import authenticationConFirmPopup from '../components/authenticationConfirmPopup
 const { useUsersStore, loginStore } = useStore()
 
 let passwordEdit = reactive({
-  code: '',
-  password: ''
+  certNo: '',
+  username: ''
 })
-let codeTime = ref(-1)
-// 倒计时
-const handleCodeTime60 = () => {
-  if (codeTime.value >= 0) {
-    codeTime.value--
-    setTimeout(handleCodeTime60, 1000)
-  }
-}
-//验证码组件
-const handleCodeTime = async () => {
-  const result = await passwordEditCode({ mobile: useUsersStore.userInfo.mobile })
-  codeTime.value = 60
-  setTimeout(handleCodeTime60, 1000)
-}
-//修改密码按钮
-const handlePassword = async () => {
-  const result = await updatePassword(passwordEdit)
-  if (result.code === 200) {
-    useUsersStore.passwordPopup = false
-    loginStore.login = true
-    removeItem('token')
-  }
+const handleEmpowerShow = () =>{
+  useUsersStore.passwordEdit.certNo=passwordEdit.certNo
+  useUsersStore.passwordEdit.username=passwordEdit.username
+  useUsersStore.authenticationConFirmPopup=true
 }
 </script>
 
@@ -127,6 +109,7 @@ const handlePassword = async () => {
       overflow: hidden;
       border-radius: 4px;
       font-size: 16px;
+      cursor: pointer;
     }
 
     .text {

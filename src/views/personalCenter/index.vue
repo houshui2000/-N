@@ -37,8 +37,9 @@
     <div class='box'>
       <router-view></router-view>
     </div>
-      <passwordPopup/>
-      <authenticationPopup/>
+      <passwordPopup />
+      <authenticationPopup />
+      <realNameZFBPopup v-if='useUsersStore.realNameZFBPopup'/>
   </div>
   </div>
 </template>
@@ -51,6 +52,7 @@ import { useStore } from '@/pinia/index.js'
 import { getItem } from '@/utils/storage.js'
 import passwordPopup from './components/passwordPopup.vue'
 import authenticationPopup from './components/authenticationPopup.vue'
+import realNameZFBPopup from './components/realNameZFBPopup.vue'
 
 const { loginStore, useUsersStore } = useStore()
 const imageUrl = ref('')

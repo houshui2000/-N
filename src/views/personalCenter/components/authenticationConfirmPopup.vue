@@ -1,14 +1,14 @@
 <template>
-  <div id='authenticationConfirmPopup' v-if='!useUsersStore.authenticationConFirmPopup'>
+  <div id='authenticationConfirmPopup' v-if='useUsersStore.authenticationConFirmPopup'>
     <div class='content'>
       <div class='text'>确认认证
         <div class='border'></div>
       </div>
       <div class='titleText'>实名信息认证后不可修改，请检验信息无误后再提交。</div>
-      <div class='close' @click='useUsersStore.authenticationConFirmPopup=false'></div>
+<!--      <div class='close' @click='useUsersStore.authenticationConFirmPopup=false'></div>-->
       <div class='bottom'>
-        <div class='back'>返回</div>
-        <div class='Btn'>确认</div>
+        <div class='back' @click='useUsersStore.authenticationConFirmPopup=false'>返回</div>
+        <div class='Btn' @click='handleRealName'>确认</div>
       </div>
     </div>
   </div>
@@ -19,38 +19,22 @@
 import { reactive, ref } from 'vue'
 import { useStore } from '@/pinia/index.js'
 import { codeloginmobile } from '@/network/user.js'
-import { passwordEditCode, updatePassword } from '@/network/personalCenter.js'
+import { passwordEditCode, realNamePost, updatePassword } from '@/network/personalCenter.js'
 import { removeItem } from '@/utils/storage.js'
 
 const { useUsersStore, loginStore } = useStore()
+const handleRealName = async () => {
+  // console.log(props.info)
+  // const res = await realNamePost(props.info)
+  // console.log(res)
+  // if (res.code===200){
+  //
+  // }
+  useUsersStore.authenticationConFirmPopup=false
+  useUsersStore.authenticationPopup=false
+  useUsersStore.realNameZFBPopup=true
+}
 
-let passwordEdit = reactive({
-  code: '',
-  password: ''
-})
-let codeTime = ref(-1)
-// 倒计时
-const handleCodeTime60 = () => {
-  if (codeTime.value >= 0) {
-    codeTime.value--
-    setTimeout(handleCodeTime60, 1000)
-  }
-}
-//验证码组件
-const handleCodeTime = async () => {
-  const result = await passwordEditCode({ mobile: useUsersStore.userInfo.mobile })
-  codeTime.value = 60
-  setTimeout(handleCodeTime60, 1000)
-}
-//修改密码按钮
-const handlePassword = async () => {
-  const result = await updatePassword(passwordEdit)
-  if (result.code === 200) {
-    useUsersStore.passwordPopup = false
-    loginStore.login = true
-    removeItem('token')
-  }
-}
 </script>
 
 <style lang='scss' scoped>
@@ -110,7 +94,8 @@ const handlePassword = async () => {
       right: 20px;
       cursor: pointer;
     }
-    .titleText{
+
+    .titleText {
       width: 398px;
       height: 82px;
       line-height: 82px;
@@ -120,7 +105,8 @@ const handlePassword = async () => {
       font-weight: 400;
       color: #fff;
     }
-    .bottom{
+
+    .bottom {
       width: 222px;
       height: 34px;
       font-size: 14px;
@@ -128,20 +114,24 @@ const handlePassword = async () => {
       display: flex;
       justify-content: space-between;
       line-height: 34px;
-      .back{
+
+      .back {
         width: 100px;
         height: 34px;
         text-align: center;
-        background:url($gxsauthenticationConfirmPopupBack) no-repeat center;
-        background-size:contain;
+        background: url($gxsauthenticationConfirmPopupBack) no-repeat center;
+        background-size: contain;
+        cursor: pointer;
       }
-      .Btn{
+
+      .Btn {
         width: 99px;
         height: 34px;
         line-height: 34px;
         text-align: center;
-        background:url($gxsauthenticationConfirmPopupBtn) #f7ba2a no-repeat center;
-        background-size:contain;
+        background: url($gxsauthenticationConfirmPopupBtn) #f7ba2a no-repeat center;
+        background-size: contain;
+        cursor: pointer;
       }
     }
 

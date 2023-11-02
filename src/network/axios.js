@@ -43,6 +43,9 @@ service.interceptors.response.use((res) => {
   }
 }, (err) => {
   console.log(err, 'err')
+    MessageBoxVue({
+      title: err
+    })
   return Promise.reject(err)
 }
 )
