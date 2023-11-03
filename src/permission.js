@@ -2,7 +2,6 @@ import router from "@/router";
 import { getItem } from '@/utils/storage.js'
 import { useStore } from '@/pinia'
 import { NoLogin } from '@/router/InputTransfer.js'
-console.log(NoLogin, 'NoLogin')
 
 
 

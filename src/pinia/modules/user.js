@@ -11,7 +11,6 @@ import { registermobile } from '@/network/userInterface.js'
 export const userDataInfo = defineStore('userData', {
   state: () => {
     return {
-      ammoBalance: 324,
       userInfo: {
         "username": "",
         "mobile": "",
@@ -52,6 +51,8 @@ export const userDataInfo = defineStore('userData', {
     },
     //初始化userinfo
     handleUserInfoInit () {
+      console.log(555)
+
       this.userInfo = {
         avatar: null,
         boundQQ: false,

@@ -29,6 +29,8 @@ service.interceptors.response.use((res) => {
 
   const { code, msg } = res.data
 
+  // const { loginStore, useUsersStore } = useStore()
+  // console.log(useUsersStore, 'loginStore')
   if (code >= 200 && code < 300) {
     return res.data
   } else {
@@ -36,16 +38,25 @@ service.interceptors.response.use((res) => {
       title: msg
     })
     if (code == 401) {
+      initialize()
 
-      const { loginStore } = useStore()
-      loginStore.login = true
+      // const { loginStore } = useStore()
+      // console.log(loginStore)
+
+      // loginStore.handleUserInfoInit()
+      // loginStore.login = true
     }
     return Promise.reject(new Error(msg))
   }
 }, (err) => {
   if (err.response.status == 401) {
-    const { loginStore } = useStore()
-    loginStore.login = true
+    initialize()
+
+    // const { loginStore } = useStore()
+    // console.log(loginStore, 'loginStore')
+
+    // loginStore.handleUserInfoInit()
+    // loginStore.login = true
   }
   MessageBoxVue({
     title: err
@@ -54,5 +65,13 @@ service.interceptors.response.use((res) => {
   return Promise.reject(err)
 }
 )
+const initialize = () => {
 
+  const { loginStore, useUsersStore } = useStore()
+  console.log(loginStore)
+
+  useUsersStore.handleUserInfoInit()
+  loginStore.token = ''
+  loginStore.login = true
+}
 export default service
