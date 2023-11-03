@@ -91,7 +91,6 @@ const shopquickbuyPay = async () => {
     payChanelId: 1 // 支付通道 1 是支付宝
   })
   // router.push(res.data)
-  
 
   window.location.href = res.data
 }

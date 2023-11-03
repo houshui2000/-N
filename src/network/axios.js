@@ -36,13 +36,17 @@ service.interceptors.response.use((res) => {
       title: msg
     })
     if (code == 401) {
+
       const { loginStore } = useStore()
       loginStore.login = true
     }
     return Promise.reject(new Error(msg))
   }
 }, (err) => {
-  console.log(err, 'err')
+  if (err.response.status == 401) {
+    const { loginStore } = useStore()
+    loginStore.login = true
+  }
   MessageBoxVue({
     title: err
   })

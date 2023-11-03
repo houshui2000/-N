@@ -31,7 +31,7 @@ const route = useRoute()
 <style lang="scss" scoped>
 #homePC {
   // background: black;
-  width: 1920px;
+  width: 100%;
   margin: auto;
   overflow: hidden;
 

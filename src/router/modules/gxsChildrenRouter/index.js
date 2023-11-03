@@ -5,16 +5,18 @@ const gxsChildrenRouter = [
     name: 'myAccount',
     component: () => import('@/views/personalCenter/index.vue'),
     props: true,
+    redirect: 'assetLibrary',
+
     meta: {
       immediate: false, // 路由显示
       name: '个人中心',
       scrollTheSubtitles: true // 滚动字幕开启，关闭
     },
     children: [
-      {
-        path: '/myAccount',
-        redirect: 'assetLibrary'
-      },
+      // {
+      //   path: '/myAccount',
+      //   redirect: 'assetLibrary'
+      // },
       {
         path: '/assetLibrary',//个人中心
         name: 'assetLibrary',

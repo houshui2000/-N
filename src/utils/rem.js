@@ -15,7 +15,6 @@ function setRem () {
   // if (scale > 1920) {
   //   scale = 1920
   // }
-  console.log(scale)
 
   const shiji = scale / 1920;
   // 设置页面根节点字体大小（“Math.min(scale, 2)” 指最高放大比例为2，可根据实际业务需求调整）

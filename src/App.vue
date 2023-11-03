@@ -1,5 +1,6 @@
 <template>
   <div class="CIjing">
+    <aside></aside>
     <router-view />
     <LoginOne />
     <MenyOnTheRightVue />
@@ -18,7 +19,17 @@ body {
   width: 1920px;
   // background-color: cadetblue;
   background: url('@/assets/images/all/bei.png') no-repeat;
+  position: relative;
   background-size: 100% 100%;
+  aside {
+    position: absolute;
+    right: 0;
+    top: 120px;
+    z-index: 1;
+    width: 358px;
+    height: 899px;
+    background: url('@/assets/images/carggo/aside.png') no-repeat scroll left top/ 100% 100%;
+  }
 }
 </style>
 <style lang="scss">

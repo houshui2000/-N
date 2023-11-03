@@ -1,9 +1,11 @@
-<template>
+<!--<template>
   <el-upload
     class="avatar-uploader"
     action="#"
+    :limit="1"
     :show-file-list="false"
     :on-success="handleAvatarSuccess"
+    :on-error="sasadsa"
     :http-request="uploadHttpRequest"
     :before-upload="beforeAvatarUpload"
   >
@@ -20,6 +22,8 @@ import { uploadavatar } from '@/network/userInterface'
 const imageUrl = ref('')
 
 const handleAvatarSuccess = (response, uploadFile) => {
+  console.log(uploadFile)
+
   imageUrl.value = URL.createObjectURL(uploadFile.raw)
 }
 const uploadHttpRequest = (params) => {
@@ -27,6 +31,9 @@ const uploadHttpRequest = (params) => {
   let formData = new FormData()
   formData.set('file', _file)
   uploadavatar(formData)
+}
+const sasadsa = () => {
+  console.log(120)
 }
 const beforeAvatarUpload = (rawFile) => {
   if (rawFile.type !== 'image/jpeg' && rawFile.type !== 'image/png') {
@@ -68,5 +75,25 @@ const beforeAvatarUpload = (rawFile) => {
   width: 178px;
   height: 178px;
   text-align: center;
+}
+</style>
+-->
+<template>
+  <div class="example-pagination-block">
+    <div class="example-demonstration">When you have few pages</div>
+    <el-pagination layout="prev, pager, next" :total="50" />
+  </div>
+  <div class="example-pagination-block">
+    <div class="example-demonstration">When you have more than 7 pages</div>
+    <el-pagination layout="prev, pager, next" :total="1000" />
+  </div>
+</template>
+
+<style scoped>
+.example-pagination-block + .example-pagination-block {
+  margin-top: 10px;
+}
+.example-pagination-block .example-demonstration {
+  margin-bottom: 16px;
 }
 </style>

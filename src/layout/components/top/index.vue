@@ -44,7 +44,7 @@
         <div class="uploadImg" v-if="loginStore.token">
           <div class="dian"></div>
           <div class="uploadPhoto">
-            <img :src="loginStore.cossUrl + useUsersStore.userInfo.avatar" />
+            <img v-if="useUsersStore.userInfo.avatar" :src="`${loginStore.cossUrl}${useUsersStore.userInfo.avatar}`" />
           </div>
         </div>
         <div class="uploadContent" v-if="loginStore.token" @click="handleMyShow">
@@ -101,6 +101,8 @@ let navList = computed(() => {
 })
 let navIndex = ref('')
 const handleNavOpen = (item) => {
+  console.log(item.path)
+
   router.push(item.path)
 
   // navIndex.value = item.name
@@ -129,7 +131,7 @@ const handleLoginExit = async () => {
 }
 //跳转个人中心
 const handleMyShow = () => {
-  router.push('myAccount')
+  router.push('/assetLibrary')
 }
 onMounted(() => {})
 const navBorder = ref(null)
@@ -165,7 +167,9 @@ watch(
 </script>
 <style lang="scss" scoped>
 #navTop {
-  width: 1920px;
+  // min-width: 1920px;
+  width: 100%;
+
   height: 70px;
   background: rgba(#000, 0.6);
   background-size: contain;

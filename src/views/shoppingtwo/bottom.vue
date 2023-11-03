@@ -27,11 +27,12 @@
             </div>
           </div>
         </div>
+
         <!-- <input type="text"> -->
         <div class="input">
           <el-input v-model.lazy="mallHomepagName.orders" class="w-50 m-2" placeholder="请输入编号" />
           <div class="icon">
-            <SvgIcon icon-class="sousuo" />
+            <SvgIcon size="20" icon-class="sousuo" />
           </div>
         </div>
       </div>
@@ -112,6 +113,8 @@ const init = async () => {
     'orders[0].column': 'cardNo',
     'orders[0].asc': mallHomepagName.value.asc // 排序 true 升，false 降
   })
+  console.log(res.data.total)
+
   Fenye.value.pages = res.data.total
   creatData.value = res.data
 }
