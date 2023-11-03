@@ -8,12 +8,12 @@ import './permission'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import 'virtual:svg-icons-register'
-// import './utils/rem'
+import './utils/rem'
 import './utils/forbid.js'
 // 引入字体样式文件
 import './assets/fonts/font.css'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
-import {componentPligin} from "@/components/index"
+import { componentPligin } from "@/components/index"
 const app = createApp(App);
 const pinia = createPinia()
 app.config.globalProperties.$config = Config // 公共过滤器方法

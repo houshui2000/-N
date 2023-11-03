@@ -1,7 +1,7 @@
 import service from '../axios'
 
 /**
- * 卡牌详情页
+ * 资产详情页
  *vaultId
 */
 export function shopcardxdetail (params) {
@@ -23,7 +23,7 @@ export function shopcarddetail (params) {
 
 
 /**
- * 其他系列卡牌
+ * 其他系列资产
  *cardVaultShopId=1&current=1&size=1
 */
 export function shopotherproducts (params) {
@@ -62,3 +62,14 @@ export function shopquickbuy (data) {
 //     method: 'POST', data
 //   })
 // }
+
+
+/**
+ * 购买须知
+*/
+export function shopbuynotice () {
+  return service({
+    url: '/shop/buy-notice',
+    method: 'GET'
+  })
+}

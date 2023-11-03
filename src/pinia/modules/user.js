@@ -29,11 +29,11 @@ export const userDataInfo = defineStore('userData', {
         "realAuthentication": false,
         "boundWx": false
       },
-      passwordPopup:false,
-      authenticationPopup:false,
-      authenticationConFirmPopup:false,
-      realNameZFBPopup:false,
-      passwordEdit:{
+      passwordPopup: false,
+      authenticationPopup: false,
+      authenticationConFirmPopup: false,
+      realNameZFBPopup: false,
+      passwordEdit: {
         "certNo": '',
         "username": ''
       }
@@ -43,8 +43,8 @@ export const userDataInfo = defineStore('userData', {
     //获取用户信息
     async handleUserInfo () {
       let result = await registermobile()
+
       if (result.code === 200) {
-        console.log('userInfo', result)
         this.userInfo = result.data
       } else {
         alert(result.msg)

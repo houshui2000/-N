@@ -44,7 +44,7 @@
         <div class="uploadImg" v-if="loginStore.token">
           <div class="dian"></div>
           <div class="uploadPhoto">
-            <img :src="useUsersStore.userInfo.avatar" />
+            <img :src="loginStore.cossUrl + useUsersStore.userInfo.avatar" />
           </div>
         </div>
         <div class="uploadContent" v-if="loginStore.token" @click="handleMyShow">
@@ -81,6 +81,7 @@ import { userlogout } from '@/network/userInterface.js'
 import { ToLogin, NoLogin } from '@/router/InputTransfer.js'
 // import router from '@/router/index.js'
 import { useRouter, useRoute } from 'vue-router'
+
 const router = useRouter()
 const route = useRoute()
 
@@ -360,7 +361,7 @@ watch(
         //overflow: hidden;
         border-radius: 50%;
         // background: url($gxsavatar) no-repeat center;
-        background-color: saddlebrown;
+        // background-color: saddlebrown;
         // background-size: contain;
         margin-left: 14px;
         position: relative;
@@ -386,6 +387,7 @@ watch(
           left: 50%;
           margin-top: -15px;
           margin-left: -15px;
+          @include Myflex();
           img {
             width: 100%;
             height: 100%;

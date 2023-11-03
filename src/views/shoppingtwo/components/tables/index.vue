@@ -3,9 +3,9 @@
     <table>
       <thead>
         <tr>
-          <td>卡牌</td>
+          <td>资产</td>
           <td>用户昵称</td>
-          <td>卡牌编号</td>
+          <td>资产编号</td>
           <td>价格</td>
           <td>操作</td>
         </tr>
@@ -24,10 +24,9 @@
           <td>
             <p class="kapaiming">
               <span>
-                <img src="@/assets/images/carggo/ceshi.png" alt="" />
+                <img :src="item.avatar" alt="" />
               </span>
-              <span>{{ item.productName }}</span>
-              <!-- {{ item.productName }} -->
+              <span>{{ item.nickname ? item.nickname : '---' }}</span>
             </p>
           </td>
 
@@ -44,8 +43,9 @@
           </td>
           <td>
             <div class="zhifu">
-              <!-- <div class="zhiFU_one">支付中</div> -->
-              <div class="zhiFU_one_mai">买入</div>
+              <!-- status : true 买入 || false : 支付中 -->
+              <div v-if="!item.status" class="zhiFU_one">支付中</div>
+              <div v-else class="zhiFU_one_mai">买入</div>
             </div>
           </td>
         </tr>
