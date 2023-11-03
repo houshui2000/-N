@@ -37,16 +37,18 @@
         <el-pagination background layout='prev, pager, next' :total='1000' />
       </div>
     </div>
+    <assetLibraryDetail v-model:errDialoVueUpdate='errDialoVueUpdate' title='查证' />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-
-const value = ref('资产编号正序')
+import assetLibraryDetail from '../components/assetLibraryDetail.vue'
+const  errDialoVueUpdate= ref(false)
+const value = ref('卡牌编号正序')
 const options = ref([
-  { id: 1, label: '资产编号正序', desc: 'Option A - 230506' },
-  { id: 2, label: '资产编号倒序', desc: 'Option B - 230506' }
+  { id: 1, label: '卡牌编号正序', desc: 'Option A - 230506' },
+  { id: 2, label: '卡牌编号倒序', desc: 'Option B - 230506' }
 ])
 let search = ref('')
 </script>
