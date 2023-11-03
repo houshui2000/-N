@@ -38,6 +38,7 @@ const route = useRoute()
   .center {
     background-color: rgba(15, 12, 16, 0.7);
     position: relative;
+    min-height: 1000px;
     padding-bottom: 102px;
     margin-top: 70px;
   }

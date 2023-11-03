@@ -14,11 +14,6 @@
       </div>
       <div class="section_bottom">
         <router-view />
-        <!-- <div class="section_bottom_left">
-          <div class="section_bottom_left_top">sadsa</div>
-        </div>
-        <!~~  ~~>
-        <div class="section_bottom_right">sadasd</div>-->
       </div>
     </section>
   </div>
@@ -47,7 +42,6 @@ watch(
   .top {
     width: 1920px;
     height: 219.763px;
-    // background-color: saddlebrown;
     background: url('@/assets/images/carggo/Rectangle 1602_ce.png') no-repeat scroll left bottom/ 100% 100%;
   }
   section {

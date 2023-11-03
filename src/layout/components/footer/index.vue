@@ -22,22 +22,21 @@
     <!--  -->
     <div class="footer_borrom">
       <Router-link v-for="(item, index) in helpCenterArrVue" :key="index" :to="`/helpCenter/${item.path}`">
-        <div :style="{ borderRight: index == helpCenterArrVue.length - 1 ? 0 : '' }" class="tiaozhuan">
+        <div class="tiaozhuan">
+          <!-- :style="{ borderRight: index == helpCenterArrVue.length - 1 ? 0 : '' }" -->
           {{ item.meta.name }}
         </div>
       </Router-link>
-      <!-- <Router-link to="/"><div class="tiaozhuan">联系我们</div></Router-link>
-      <Router-link to="/"><div class="tiaozhuan">相关教程</div></Router-link>
-      <Router-link to="/"><div class="tiaozhuan">隐私协议</div></Router-link>
-      <Router-link to="/"><div class="tiaozhuan">声明</div></Router-link> -->
-      <!-- <Router-link to="/"><div style="border-right: 0" class="tiaozhuan">用户协议</div></Router-link> -->
+      <Router-link to="/information">
+        <div style="border: 0" class="tiaozhuan">资讯信息</div>
+      </Router-link>
     </div>
   </footer>
 </template>
 <script setup>
 import { helpCenterArr } from '@/router/modules/case'
 import { computed } from 'vue'
-const helpCenterArrVue = computed(() => helpCenterArr)
+const helpCenterArrVue = computed(() => [...helpCenterArr])
 </script>
 <style lang="scss" scoped>
 footer {
