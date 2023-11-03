@@ -48,7 +48,7 @@ const Xin_xiArr = ref([
   position: fixed;
   right: 0;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) scale(.8);
   // width: 100px;
   padding-right: 11px;
   height: 300px;
@@ -64,6 +64,7 @@ const Xin_xiArr = ref([
       > img {
         width: 42px;
         height: 42px;
+        transform: scale(.8);
       }
     }
     p {
