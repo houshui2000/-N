@@ -19,7 +19,6 @@ router.beforeEach(async (to, from, next) => {
     next()
   } else {
     const {  useUsersStore,loginStore } = useStore()
-    await useUsersStore.handleUserInfo()
     const routMy = WhitelistedRouting.some(item => item.name == to.name)
 
     if (routMy) { // 在白名单

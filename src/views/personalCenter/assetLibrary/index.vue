@@ -37,12 +37,14 @@
         <el-pagination background layout='prev, pager, next' :total='1000' />
       </div>
     </div>
+    <assetLibraryDetail v-model:errDialoVueUpdate='errDialoVueUpdate' title='查证' />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-
+import assetLibraryDetail from '../components/assetLibraryDetail.vue'
+const  errDialoVueUpdate= ref(false)
 const value = ref('卡牌编号正序')
 const options = ref([
   { id: 1, label: '卡牌编号正序', desc: 'Option A - 230506' },

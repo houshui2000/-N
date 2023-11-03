@@ -150,6 +150,7 @@
           top: 50%;
           margin-top: -7px;
           right: 10px;
+          cursor: pointer;
         }
       }
 
@@ -305,9 +306,27 @@
                 .titleIcon {
                   width: 48px;
                   height: 48px;
-                  background: url($gxsorderDetailsIcon) no-repeat center;
-                  background-size: contain;
                   margin-top: 21px;
+                  &.active0{
+                    background: url($gxsorderDetailsIcon) no-repeat center;
+                    background-size: contain;
+                  }
+                  &.active1{
+                    background: url($gxsorderDetailyzfIcon) no-repeat center;
+                    background-size: contain;
+                  }
+                  &.activef2{
+                    background: url($gxsorderDetailytkIcon) no-repeat center;
+                    background-size: contain;
+                  }
+                  &.activef1{
+                    background: url($gxsorderDetailyqxIcon) no-repeat center;
+                    background-size: contain;
+                  }
+                  &.active2{
+                    background: url($gxsorderDetailzfwcIcon) no-repeat center;
+                    background-size: contain;
+                  }
                 }
 
                 .titleText {
@@ -485,6 +504,11 @@
             }
           }
         }
+      }
+      .bottomMsg{
+        width: 1470px;
+        text-align: center;
+        margin:10px 0;
       }
     }
   }
