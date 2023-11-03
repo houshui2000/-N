@@ -62,3 +62,11 @@ export function GetorderList(params) {
     params
   })
 }
+//查询实名认证结果
+export function getRealName(params) {
+  return service({
+    url: 'user/auth/result',
+    method: 'get',
+    params
+  })
+}

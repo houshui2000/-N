@@ -56,7 +56,8 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, reactive, ref,watchEffect,nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 import router from '@/router/index.js'
 import { useStore } from '@/pinia/index.js'
 import { getItem, removeItem } from '@/utils/storage.js'
@@ -69,6 +70,7 @@ import { uploadavatar } from '@/network/userInterface'
 import MessageBoxVue from '@/components/MessageBox/index.js'
 
 const { loginStore, useUsersStore } = useStore()
+const route = useRoute()
 const imageUrl = ref('')
 let indexActive = ref(0)
 let tabList = reactive([
@@ -93,10 +95,12 @@ const handleTabShow = (item, index) => {
   if (index !== -1) {
     if (index === indexActive.value) return
     if (index === 2) {
-      useUsersStore.handleUserInfo()
+      nextTick(() => {
+        useUsersStore.handleUserInfo()
+      })
     }
     indexActive.value = index
-    router.push(item.pushLink)
+     router.push(item.pushLink)
   }
   let tabDom = document.querySelector('.icons')
   let tab = tabDom.getBoundingClientRect()
@@ -111,6 +115,26 @@ window.addEventListener('resize', function () {
   // 执行需要的操作
   // console.log('窗口大小已改变');
   handleTabShow(-1)
+})
+watchEffect(() => {
+  console.log(route.name)
+  indexActive.value=-1
+  if(route.name==='assetLibrary'){
+    nextTick(()=>{
+      handleTabShow(tabList[0],0)
+    })
+
+  }
+  if(route.name==='orderForm'){
+    nextTick(()=>{
+      handleTabShow(tabList[1],1)
+    })
+  }
+  if(route.name==='personal'){
+    nextTick(()=>{
+      handleTabShow(tabList[2],2)
+    })
+  }
 })
 
 const handleAvatarSuccess = (response, uploadFile) => {
@@ -143,7 +167,8 @@ const uploadHttpRequest = async (params) => {
   let formData = new FormData()
   formData.set('file', _file)
   await uploadavatar(formData)
-  useUsersStore.handleUserInfo()
+  MessageBoxVue({ title: '修改成功!' })
+  await useUsersStore.handleUserInfo()
 }
 const beforeAvatarUpload = (rawFile) => {
   console.log(rawFile.type)

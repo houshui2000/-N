@@ -68,7 +68,7 @@
                        :class='{active0:item.payStatus===0,active1:item.payStatus===1,activef1:item.payStatus===-1,activef2:item.payStatus===-2,active2:item.payStatus===2}'></div>
                   <div class='titleText'>
                     <span v-if='item.payStatus===0'>待支付</span>
-                    <span v-if='item.payStatus===1'>已支付</span>
+                    <span v-if='item.payStatus===1'>登记中</span>
                     <span v-if='item.payStatus===-1' style='color: #909399'>已取消</span>
                     <span v-if='item.payStatus===-2' style='color: #1CC46C'>已退款</span>
                     <span v-if='item.payStatus===2' style='color: #1CC46C'>交易成功</span>
@@ -76,7 +76,7 @@
                   <div class='imgBox'>
                     <img src='https://img.zhisheji.com/bbs/forum/201401/05/153945tbr7pg5torfzptso.jpg'>
                   </div>
-                  <div class='name'>MASTER KILLER</div>
+                  <div class='name'>{{ item.productName }}</div>
                   <div class='number'>
                     <div class='numberText'>002-2023-A20-01</div>
                   </div>
@@ -88,20 +88,35 @@
                   <div class='contentText'>
                     <div class='contentTextBox'>
                       <div class='label'>订单编号</div>
-                      <div class='dataValue'>2233225533322222225</div>
+                      <div class='dataValue'>{{ item.orderNo }}</div>
                     </div>
                     <div class='contentTextBox'>
-                      <div class='label'>订单编号</div>
-                      <div class='dataValue'>2233225533322222225</div>
+                      <div class='label'>创建时间</div>
+                      <div class='dataValue'>{{ item.createTime }}</div>
+                    </div>
+                    <div class='contentTextBox' v-if='item.payStatus===-1'>
+                      <div class='label'>取消时间</div>
+                      <div class='dataValue'>{{ item.currentStatusTime }}</div>
+                    </div>
+                    <div class='contentTextBox' v-if='item.payStatus===-1'>
+                      <div class='label'>支付时间</div>
+                      <div class='dataValue'>{{ item.currentStatusTime }}</div>
                     </div>
                     <div class='contentTextBox'>
-                      <div class='label'>订单编号</div>
-                      <div class='dataValue'>2233225533322222225</div>
+                      <div class='label'>支付方式</div>
+                      <div class='dataValue'>{{ item.payType===0?'支付宝':'微信' }}</div>
                     </div>
                     <div class='contentTextBox'>
-                      <div class='label'>订单编号</div>
-                      <div class='dataValue'>2233225533322222225</div>
+                      <div class='label'>交易金额</div>
+                      <div class='dataValue'>￥{{ item.payAmount }}</div>
                     </div>
+                    <div class='contentTextBox'>
+                      <div class='label'>交易金额</div>
+                      <div class='dataValue'>2233225533322222225</div>
+                    </div><div class='contentTextBox'>
+                    <div class='label'>交易金额</div>
+                    <div class='dataValue'>2233225533322222225</div>
+                  </div>
                   </div>
                 </div>
 
@@ -122,7 +137,7 @@
             <div class='payBox'>
               <div class='state'>
                 <span v-if='item.payStatus===0'>待支付</span>
-                <span v-if='item.payStatus===1'>已支付</span>
+                <span v-if='item.payStatus===1'>登记中</span>
                 <span v-if='item.payStatus===-1'>已取消</span>
                 <span v-if='item.payStatus===-2'>退款</span>
                 <span v-if='item.payStatus===2'>交易成功</span>
@@ -137,7 +152,7 @@
     <div class='fen_xi'>
       <el-pagination background v-model:current-page='orderInfo.current'
                      v-model:page-size='orderInfo.size' layout='prev, pager, next' :total='total'
-                     v-if='orderList.length!==0' @size-change='handleSizeChange' />
+                     v-if='orderList.length!==0' @current-change='handleCurrentChange' />
     </div>
   </div>
 </template>
@@ -150,7 +165,6 @@ import orderDetailsPopup from '../components/orderDetailsPopup.vue'
 import { GetorderList } from '@/network/personalCenter.js'
 
 let orderList = ref([])
-let actives = ref('active')
 let orderInfo = ref({
   payTimes: null,
   createTimes: null,
@@ -159,10 +173,11 @@ let orderInfo = ref({
   key: null,
   payStatus: null
 })
-let total = ref(10)
+let total = ref(0)
 let createTime = ref('')
 let payTime = ref('')
 let indexDetail = ref(-1)
+
 const handleMouseover = (indexV) => {
   indexDetail.value = indexV
 }
@@ -194,8 +209,9 @@ const options = reactive([
   { values: null, label: '全部状态' },
   { values: 0, label: '待支付' },
   { values: -1, label: '已取消' },
-  { values: 1, label: '已支付' },
-  { values: 2, label: '交易成功' }
+  { values: 1, label: '登记中' },
+  { values: 2, label: '交易成功' },
+  { values: -2, label: '已退款' },
 ])
 // { values: 5, label: '登记中' },
 const arrayValue = reactive({
@@ -207,15 +223,16 @@ const handleSelectValue = (val) => {
   console.log('val', val)
   arrayValue.label = val.label
   arrayValue.values = val.values
-  orderInfo.payStatus = val.values
+  orderInfo.value.payStatus = val.values
   handleOrderList()
 }
 const handleOrderList = async () => {
-  let res = await GetorderList(orderInfo)
+  let res = await GetorderList(orderInfo.value)
   console.log(res)
   let data = res.data.records
   if (res.code === 200) {
-    orderList.value = res.data.records
+    orderList.value = data
+    total.value=res.data.total
     console.log(orderList)
 
   }
@@ -234,13 +251,13 @@ const timeZhuan = (time) => {
 //选择时间
 const handleCreateDateTime = () => {
   if (!createTime.value) {
-    orderInfo.createTimes = null
+    orderInfo.value.createTimes = null
   } else {
     let str = ''
     for (let i = 0; i < createTime.value.length; i++) {
       str += timeZhuan(createTime.value[i]) + ','
     }
-    orderInfo.createTimes = str.slice(0, -1)
+    orderInfo.value.createTimes = str.slice(0, -1)
   }
   handleOrderList()
 }
@@ -252,12 +269,12 @@ const handlePayTime = () => {
     for (let i = 0; i < payTime.value.length; i++) {
       str += timeZhuan(payTime.value[i]) + ','
     }
-    orderInfo.payTime = str.slice(0, -1)
+    orderInfo.value.payTime = str.slice(0, -1)
   }
   handleOrderList()
 }
-const handleSizeChange = (val) => {
-  orderInfo.current.value = val
+const handleCurrentChange = (val) => {
+  orderInfo.value.current = val
   handleOrderList()
 }
 
