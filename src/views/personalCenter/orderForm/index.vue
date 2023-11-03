@@ -64,7 +64,8 @@
               </div>
               <div class='orderDetailsBox' v-if='index===indexDetail' @mouseenter='handleMouseover(index)'>
                 <div class='orderDetailsPopup' @mouseleave='handleMouseout(index)'>
-                  <div class='titleIcon' :class="{active0:item.payStatus===0,active1:item.payStatus===1,activef1:item.payStatus===-1,activef2:item.payStatus===-2,active2:item.payStatus===2}"></div>
+                  <div class='titleIcon'
+                       :class='{active0:item.payStatus===0,active1:item.payStatus===1,activef1:item.payStatus===-1,activef2:item.payStatus===-2,active2:item.payStatus===2}'></div>
                   <div class='titleText'>
                     <span v-if='item.payStatus===0'>待支付</span>
                     <span v-if='item.payStatus===1'>已支付</span>
@@ -80,7 +81,7 @@
                     <div class='numberText'>002-2023-A20-01</div>
                   </div>
                   <div class='btnBox' v-if='item.payStatus===0'>
-                    <div class='close' >取消支付</div>
+                    <div class='close'>取消支付</div>
                     <div class='payBtn'>去支付</div>
                   </div>
                   <div class='border'></div>
@@ -115,9 +116,9 @@
               </div>
             </div>
             <div class='money'>￥{{ item.payAmount }}</div>
-            <div class='payment'>{{ item.payType===0?'支付宝': '微信'}}</div>
+            <div class='payment'>{{ item.payType === 0 ? '支付宝' : '微信' }}</div>
             <div class='createTime'>{{ item.createTime }}</div>
-            <div class='payTime'>{{item.payTime?item.payTime:'-'}}</div>
+            <div class='payTime'>{{ item.payTime ? item.payTime : '-' }}</div>
             <div class='payBox'>
               <div class='state'>
                 <span v-if='item.payStatus===0'>待支付</span>
@@ -126,18 +127,18 @@
                 <span v-if='item.payStatus===-2'>退款</span>
                 <span v-if='item.payStatus===2'>交易成功</span>
               </div>
-              <div class='btn'  v-if='item.payStatus===0'>去支付</div>
+              <div class='btn' v-if='item.payStatus===0'>去支付</div>
             </div>
           </div>
         </div>
-        <div  class='bottomMsg' v-if='orderList.length===0'>暂无明细</div>
+        <div class='bottomMsg' v-if='orderList.length===0'>暂无明细</div>
       </div>
     </div>
-    <div class="fen_xi">
-      <el-pagination background v-model:current-page="orderInfo.current"
-                     v-model:page-size="orderInfo.size" layout="prev, pager, next" :total="total" v-if='orderList.length!==0'  @size-change="handleSizeChange" />
+    <div class='fen_xi'>
+      <el-pagination background v-model:current-page='orderInfo.current'
+                     v-model:page-size='orderInfo.size' layout='prev, pager, next' :total='total'
+                     v-if='orderList.length!==0' @size-change='handleSizeChange' />
     </div>
-     <!--    <orderDetailsPopup/>-->
   </div>
 </template>
 
@@ -147,6 +148,7 @@ import { ElMessage } from 'element-plus'
 import gxsSelect from '../components/gxsSelect.vue'
 import orderDetailsPopup from '../components/orderDetailsPopup.vue'
 import { GetorderList } from '@/network/personalCenter.js'
+
 let orderList = ref([])
 let actives = ref('active')
 let orderInfo = ref({
@@ -157,7 +159,7 @@ let orderInfo = ref({
   key: null,
   payStatus: null
 })
-let total =ref(10)
+let total = ref(10)
 let createTime = ref('')
 let payTime = ref('')
 let indexDetail = ref(-1)
@@ -211,9 +213,9 @@ const handleSelectValue = (val) => {
 const handleOrderList = async () => {
   let res = await GetorderList(orderInfo)
   console.log(res)
-  let data=res.data.records
+  let data = res.data.records
   if (res.code === 200) {
-    orderList.value=res.data.records
+    orderList.value = res.data.records
     console.log(orderList)
 
   }
@@ -232,8 +234,8 @@ const timeZhuan = (time) => {
 //选择时间
 const handleCreateDateTime = () => {
   if (!createTime.value) {
-    orderInfo.createTimes=null
-  }else{
+    orderInfo.createTimes = null
+  } else {
     let str = ''
     for (let i = 0; i < createTime.value.length; i++) {
       str += timeZhuan(createTime.value[i]) + ','
@@ -244,8 +246,8 @@ const handleCreateDateTime = () => {
 }
 const handlePayTime = () => {
   if (!payTime.value) {
-    payTime.createTimes=null
-  }else{
+    payTime.createTimes = null
+  } else {
     let str = ''
     for (let i = 0; i < payTime.value.length; i++) {
       str += timeZhuan(payTime.value[i]) + ','
@@ -255,7 +257,7 @@ const handlePayTime = () => {
   handleOrderList()
 }
 const handleSizeChange = (val) => {
-  orderInfo.current.value=val
+  orderInfo.current.value = val
   handleOrderList()
 }
 
@@ -273,6 +275,7 @@ onMounted(() => {
 ::v-deep .el-picker-panel__body {
   background-color: #000;
 }
+
 @import '@/styles/other/paginations.scss';
 @import "index.scss";
 </style>
