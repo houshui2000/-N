@@ -3,16 +3,7 @@
     <div class='title'>
       <div class='left'>资产数量:<span>0</span></div>
       <div class='right'>
-        <div class='frameSort1'>
-          <el-select v-model='value' value-key='id' placeholder='Select'>
-            <el-option
-              v-for='item in options'
-              :key='item.id'
-              :label='item.label'
-              :value='item'
-            />
-          </el-select>
-        </div>
+        <gxsSelect :options='options' :arrayValue='arrayValue' @handleEdit='handleSelectValue'></gxsSelect>
         <div class='frameSort2'>
           <input v-model='search' placeholder='请输入编号' />
           <div class='searchIcon'></div>
@@ -34,7 +25,9 @@
       </div>
       <!--    分页   -->
       <div class='paginationBox'>
+        <div class='fen_xi'>
         <el-pagination background layout='prev, pager, next' :total='1000' />
+        </div>
       </div>
     </div>
     <assetLibraryDetail v-model:errDialoVueUpdate='errDialoVueUpdate' title='查证' />
@@ -42,15 +35,27 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref,reactive } from 'vue'
 import assetLibraryDetail from '../components/assetLibraryDetail.vue'
+import gxsSelect from '../components/gxsSelect.vue'
 const  errDialoVueUpdate= ref(false)
 const value = ref('卡牌编号正序')
 const options = ref([
-  { id: 1, label: '卡牌编号正序', desc: 'Option A - 230506' },
-  { id: 2, label: '卡牌编号倒序', desc: 'Option B - 230506' }
+  { values: 1, label: '卡牌编号正序'},
+  { values: 2, label: '卡牌编号倒序'}
 ])
 let search = ref('')
+
+// { values: 5, label: '登记中' },
+const arrayValue = reactive({
+  values: 1,
+  label: '全部状态'
+})
+const handleSelectValue = (val) => {
+  console.log('val', val)
+  arrayValue.label = val.label
+  arrayValue.values = val.values
+}
 </script>
 
 <style lang='scss' scoped>
@@ -71,6 +76,6 @@ let search = ref('')
 :deep(.el-input .el-input__wrapper.is-focus) {
   box-shadow: none !important;
 }
-
+@import '@/styles/other/paginations.scss';
 @import "./index.scss";
 </style>

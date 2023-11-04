@@ -84,6 +84,7 @@
           top: 50%;
           margin-top: -7px;
           right: 10px;
+          cursor: pointer;
         }
       }
 
@@ -93,6 +94,7 @@
         background: url($gxsAssetLibraryQuestion) no-repeat center;
         background-size: contain;
         margin-left: 20px;
+        cursor: pointer;
       }
     }
   }

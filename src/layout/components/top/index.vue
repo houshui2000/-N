@@ -1,29 +1,29 @@
 <template>
-  <div id="navTop">
+  <div id='navTop'>
     <!--  左边  -->
-    <div class="navContent-bottom" ref="navBorder"></div>
-    <div class="left">
-      <div class="logo">
-        <div class="logoImg"></div>
+    <div class='navContent-bottom' ref='navBorder'></div>
+    <div class='left'>
+      <div class='logo'>
+        <div class='logoImg'></div>
       </div>
-      <div class="navContent">
+      <div class='navContent'>
         <div
-          class="navContent-box"
-          :data-dom="`slide${item.name}`"
-          :class="{ active: navIndex === item.name }"
-          v-for="(item, index) in navList"
-          :key="item.name"
-          ref="navContentbox"
-          @click="handleNavOpen(item, index)"
+          class='navContent-box'
+          :data-dom='`slide${item.name}`'
+          :class='{ active: navIndex === item.name }'
+          v-for='(item, index) in navList'
+          :key='item.name'
+          ref='navContentbox'
+          @click='handleNavOpen(item, index)'
         >
-          <span v-if="item.meta.immediate">{{ item.meta.name }}</span>
+          <span v-if='item.meta.immediate'>{{ item.meta.name }}</span>
         </div>
       </div>
     </div>
     <!--  右边  -->
-    <div class="right">
+    <div class='right'>
       <!-- <div class="search" @click="handleSeachShow"></div> -->
-      <div @click="router.push('/app')" class="download"></div>
+      <div @click="router.push('/app')" class='download'></div>
       <!-- <div class="cardMoneyBox">
         <div class="cardMoney"></div>
         <div class="fontsize">{{ useUsersStore.userInfo.dbalance }}</div>
@@ -35,34 +35,52 @@
         </div>
         <div class="fontsize">{{ useUsersStore.userInfo.dbalance }}</div>
       </div> -->
-      <div class="fen"></div>
-      <div class="adminUser">
-        <div class="uploadText">
-          <div @click="handleLogin" v-if="!loginStore.token">登录</div>
-          <div v-if="loginStore.token">{{ useUsersStore.userInfo.nickname }}</div>
+      <div class='fen'></div>
+      <div class='adminUser'>
+        <div class='uploadText'>
+          <div @click='handleLogin' v-if='!loginStore.token'>登录</div>
+          <div v-if='loginStore.token'>{{ useUsersStore.userInfo.nickname }}</div>
         </div>
-        <div class="uploadImg" v-if="loginStore.token">
-          <div class="dian"></div>
-          <div class="uploadPhoto">
-            <img v-if="useUsersStore.userInfo.avatar" :src="`${loginStore.cossUrl}${useUsersStore.userInfo.avatar}`" />
+        <div class='uploadImg' v-if='loginStore.token'>
+          <div class='dian'></div>
+          <div class='uploadPhoto'>
+            <img v-if='useUsersStore.userInfo.avatar' :src='`${loginStore.cossUrl}${useUsersStore.userInfo.avatar}`' />
           </div>
         </div>
-        <div class="uploadContent" v-if="loginStore.token" @click="handleMyShow">
-          <div class="uploadBox">
-            <div class="uploadBox-img"></div>
-            <div class="nickName">{{ useUsersStore.userInfo.nickname }}</div>
-          </div>
-          <div class="promotionBtn"></div>
-          <div class="IconBox">
-            <div class="iconDiv">
-              <div class="icon"></div>
-              <div class="text">掌上卡竞</div>
+        <div class='uploadContent' v-if='loginStore.token'>
+          <div class='uploadBox'>
+            <div class='uploadBox-img'>
+              <div class='avatarBox'>
+                <img :src='useUsersStore.userInfo.avatar' alt=''>
+              </div>
             </div>
-            <div class="iconDiv">
-              <div class="icon"></div>
-              <div class="text" @click="handleLoginExit()">退出登录</div>
+            <div class='nickName'>{{ useUsersStore.userInfo.nickname }}</div>
+          </div>
+          <div class='navBox'>
+            <div class='navDom' @click='handleNavDom(item.pushShow)' v-for='(item,index) in nav'>
+              <div class='icon'></div>
+              <div class='text'>{{ item.name }}</div>
+              <div class='vector'></div>
             </div>
           </div>
+          <div class='exit'>
+            <div @click="handleLoginExit()" style='display: flex;align-items: center'>
+              <div class='icon'></div>
+              退出登录
+            </div>
+
+          </div>
+          <!--          <div class="promotionBtn"></div>-->
+          <!--          <div class="IconBox">-->
+          <!--            <div class="iconDiv">-->
+          <!--              <div class="icon"></div>-->
+          <!--              <div class="text">掌上卡竞</div>-->
+          <!--            </div>-->
+          <!--            <div class="iconDiv">-->
+          <!--              <div class="icon"></div>-->
+          <!--              <div class="text" @click="handleLoginExit()">退出登录</div>-->
+          <!--            </div>-->
+          <!--          </div>-->
         </div>
       </div>
     </div>
@@ -101,8 +119,6 @@ let navList = computed(() => {
 })
 let navIndex = ref('')
 const handleNavOpen = (item) => {
-  console.log(item.path)
-
   router.push(item.path)
 
   // navIndex.value = item.name
@@ -111,6 +127,24 @@ const handleNavOpen = (item) => {
   // let logo=parseFloat(getComputedStyle(document.querySelector('.logo')).width.slice(0, -2))
   // let navBottom=(dom.x+dom.width/2-navBorderWidth.width/2-logo)
   // navBorder.value.style.left=34+'px'
+}
+let nav = ref([
+  {
+    name: '个人中心',
+    pushShow: '/personal'
+  },
+  {
+    name:'资产库',
+    pushShow:'/assetLibrary'
+  },
+  {
+    name:'订单明细',
+    pushShow:'/orderForm'
+  }
+])
+// 个人中心跳转
+const handleNavDom = (res) => {
+  router.push(res)
 }
 
 const handleLogin = () => {
@@ -130,10 +164,9 @@ const handleLoginExit = async () => {
   console.log('退出登录')
 }
 //跳转个人中心
-const handleMyShow = () => {
-  router.push('/assetLibrary')
-}
-onMounted(() => {})
+
+onMounted(() => {
+})
 const navBorder = ref(null)
 const navContentbox = ref([])
 /**动态路由提示切换 */
@@ -165,7 +198,7 @@ watch(
   }
 )
 </script>
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 #navTop {
   // min-width: 1920px;
   width: 100%;
@@ -179,6 +212,7 @@ watch(
   top: 0px;
   left: 0;
   z-index: 1000;
+
   .navContent-bottom {
     width: 32px;
     height: 2px;
@@ -191,6 +225,7 @@ watch(
     transition: all 0.5s;
     // margin-left: -16px;
   }
+
   .left {
     display: flex;
 
@@ -224,7 +259,6 @@ watch(
         color: white;
         font-size: 16px;
         font-weight: 400;
-        font-family: 'Alibaba PuHuiTi';
         cursor: pointer;
         display: flex;
         flex-direction: column;
@@ -343,7 +377,7 @@ watch(
       cursor: pointer;
 
       &:hover .uploadContent {
-        height: 240px;
+        height: 384px;
       }
 
       .uploadText {
@@ -392,6 +426,7 @@ watch(
           margin-top: -15px;
           margin-left: -15px;
           @include Myflex();
+
           img {
             width: 100%;
             height: 100%;
@@ -401,6 +436,7 @@ watch(
 
       .uploadContent {
         width: 280px;
+        //height: 384px;
         height: 0px;
         position: absolute;
         background: yellow;
@@ -409,7 +445,7 @@ watch(
         overflow: hidden;
         transition: height 0.3s;
         background: url($gxsuploadContent) no-repeat center;
-        background-size: 280px 240px;
+        background-size: 100% 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -419,35 +455,121 @@ watch(
           height: 44px;
           display: flex;
           margin-top: 23px;
+          margin-left: 45px;
 
           .uploadBox-img {
             width: 44px;
             height: 44px;
-            background: url($gxsavatar) no-repeat center;
-            background-size: contain;
-            background: yellow;
+            background-clip: padding-box, border-box;
+            background-origin: padding-box, border-box;
+            border: 2px solid transparent;
+            background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(142.59deg, #315EFF 30.5%, #C90091 85.93%);
             border-radius: 50%;
             margin-left: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .avatarBox {
+              width: 38px;
+              height: 38px;
+              overflow: hidden;
+              border-radius: 50%;
+              img {
+                max-width: 100%;
+                max-height: 100%;
+              }
+            }
           }
+
 
           .nickName {
             width: 198px;
             height: 44px;
             line-height: 44px;
             color: white;
+            font-weight: 600;
             font-size: 16px;
-            font-weight: 400;
-            font-family: 'Alibaba PuHuiTi';
             margin-left: 18px;
+            overflow: hidden;
           }
         }
 
-        .promotionBtn {
-          width: 123px;
-          height: 38px;
-          background: url($gxspromotionBtn) no-repeat center;
-          background-size: 100% 100%;
-          margin-top: 29px;
+        .navBox {
+          margin-top: 28px;
+          width: 224px;
+          height: 100px;
+
+          .navDom {
+            width: 224px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            border-radius: 6px;
+            margin-top: 8px;
+            transition: all .3s;
+            cursor: pointer;
+
+            &:hover {
+              background-color: #656565;
+            }
+
+            &:nth-child(1) .icon {
+              background: url($gxsgrzxIcon) no-repeat center;
+              background-size: contain;
+            }
+
+            &:nth-child(2) .icon {
+              background: url($gxszckIcon) no-repeat center;
+              background-size: contain;
+            }
+
+            &:nth-child(3) .icon {
+              background: url($gxsddmxIcon) no-repeat center;
+              background-size: contain;
+            }
+
+            .icon {
+              width: 18px;
+              height: 18px;
+              margin-left: 17px;
+            }
+
+            .text {
+              width: 150px;
+              color: white;
+              font-size: 12px;
+              margin-left: 18px;
+            }
+
+            .vector {
+              width: 4px;
+              height: 8px;
+              background: url($gxsvectorIcon) no-repeat center;
+              background-size: contain;
+            }
+
+          }
+        }
+        .exit{
+          position: absolute;
+          bottom: 0;
+          width: 240px;
+          height: 85px;
+          border-top: 1px solid #232323;
+          display: flex;
+          align-items: center;
+          font-size: 14px;
+          font-weight: 400;
+          color: #999999;
+          .icon{
+            width: 20px;
+            height: 20px;
+            background: url($gxsexitIcon) no-repeat center;
+            background-size: contain;
+            margin-left: 24px;
+            margin-right: 12px;
+          }
         }
 
         .IconBox {
@@ -456,6 +578,7 @@ watch(
           display: flex;
           justify-content: center;
           margin-top: 49px;
+
           .iconDiv {
             width: 118px;
             height: 40px;
@@ -463,24 +586,26 @@ watch(
             justify-content: center;
             align-items: center;
             line-height: 40px;
-            font-family: 'PingFang SC';
             font-size: 14px;
             font-weight: 400;
             text-align: left;
             color: #999;
+
             &:nth-child(2) {
               margin-left: 8px;
             }
+
             &:nth-child(2) .icon {
-              background: url($gxsexitIcon) no-repeat center;
-              background-size: contain;
+
             }
+
             .icon {
               width: 20px;
               height: 20px;
               background: url($gxsqrcardIcon) no-repeat center;
               background-size: contain;
             }
+
             .text {
               margin-left: 12px;
             }

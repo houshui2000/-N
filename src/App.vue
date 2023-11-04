@@ -1,6 +1,6 @@
 <template>
   <div class="CIjing">
-    <aside></aside>
+<!--    <aside></aside>-->
     <router-view />
     <LoginOne />
     <MenyOnTheRightVue />

@@ -70,3 +70,11 @@ export function getRealName(params) {
     params
   })
 }
+//取消支付
+export function orderCancel(data) {
+  return service({
+    url: 'shop/order-cancel/'+data.orderNo,
+    method: 'post',
+    data
+  })
+}

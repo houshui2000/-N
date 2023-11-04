@@ -63,7 +63,7 @@
                 <img src='@/assets/images/myAccount/linshiImage.png' alt=''>
               </div>
               <div class='orderDetailsBox' v-if='index===indexDetail' @mouseenter='handleMouseover(index)'>
-                <div class='orderDetailsPopup' @mouseleave='handleMouseout(index)'>
+                <div class='orderDetailsPopup' :class='{dzb:item.payStatus===0}' @mouseleave='handleMouseout(index)'>
                   <div class='titleIcon'
                        :class='{active0:item.payStatus===0,active1:item.payStatus===1,activef1:item.payStatus===-1,activef2:item.payStatus===-2,active2:item.payStatus===2}'></div>
                   <div class='titleText'>
@@ -77,11 +77,14 @@
                     <img src='https://img.zhisheji.com/bbs/forum/201401/05/153945tbr7pg5torfzptso.jpg'>
                   </div>
                   <div class='name'>{{ item.productName }}</div>
-                  <div class='number'>
-                    <div class='numberText'>002-2023-A20-01</div>
+                  <div class='numberBox'>
+                    <div class='numberBox-text'>
+                      <div class='numberBox-icon'></div>
+                      002-2023-A20-01
+                    </div>
                   </div>
                   <div class='btnBox' v-if='item.payStatus===0'>
-                    <div class='close'>取消支付</div>
+                    <div class='close' @click='handlePayClose(item.orderNo)'>取消支付</div>
                     <div class='payBtn'>去支付</div>
                   </div>
                   <div class='border'></div>
@@ -98,25 +101,32 @@
                       <div class='label'>取消时间</div>
                       <div class='dataValue'>{{ item.currentStatusTime }}</div>
                     </div>
-                    <div class='contentTextBox' v-if='item.payStatus===-1'>
+                    <div class='contentTextBox' v-if='item.payTime===1 || item.payTime===2 || item.payTime===-2'>
                       <div class='label'>支付时间</div>
+                      <div class='dataValue'>{{ item.currentStatusTime }}</div>
+                    </div>
+                    <div class='contentTextBox' v-if='item.payStatus===-2'>
+                      <div class='label'>退款时间</div>
                       <div class='dataValue'>{{ item.currentStatusTime }}</div>
                     </div>
                     <div class='contentTextBox'>
                       <div class='label'>支付方式</div>
-                      <div class='dataValue'>{{ item.payType===0?'支付宝':'微信' }}</div>
+                      <div class='dataValue'>{{ item.payType === 0 ? '支付宝' : '微信' }}
+                        <span v-if='item.payStatus===-2'>(已退款)</span>
+                      </div>
                     </div>
                     <div class='contentTextBox'>
                       <div class='label'>交易金额</div>
                       <div class='dataValue'>￥{{ item.payAmount }}</div>
                     </div>
-                    <div class='contentTextBox'>
-                      <div class='label'>交易金额</div>
-                      <div class='dataValue'>2233225533322222225</div>
-                    </div><div class='contentTextBox'>
-                    <div class='label'>交易金额</div>
-                    <div class='dataValue'>2233225533322222225</div>
-                  </div>
+                    <div class='contentTextBox' v-if='item.payStatus===-2'>
+                      <div class='label'>退款金额</div>
+                      <div class='dataValue'>￥{{ item.payAmount }}</div>
+                    </div>
+                    <div class='contentTextBox' v-if='item.payStatus===2'>
+                      <div class='label'>登记时间</div>
+                      <div class='dataValue'>{{ item.currentStatusTime }}</div>
+                    </div>
                   </div>
                 </div>
 
@@ -162,7 +172,8 @@ import { reactive, ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import gxsSelect from '../components/gxsSelect.vue'
 import orderDetailsPopup from '../components/orderDetailsPopup.vue'
-import { GetorderList } from '@/network/personalCenter.js'
+import { GetorderList, orderCancel } from '@/network/personalCenter.js'
+import MessageBoxVue from '@/components/MessageBox/index.js'
 
 let orderList = ref([])
 let orderInfo = ref({
@@ -186,11 +197,9 @@ const handleMouseout = () => {
 }
 const handleCreateDateTimeShow = () => {
   document.querySelector('.CreateDateTimePicker').querySelector('input').focus()
-
 }
 const handlePayDateTimeShow = () => {
   document.querySelector('.PayDateTimePicker').querySelector('input').focus()
-
 }
 const handleCopyIcon = (item) => {
   const textField = document.createElement('textarea')
@@ -211,7 +220,7 @@ const options = reactive([
   { values: -1, label: '已取消' },
   { values: 1, label: '登记中' },
   { values: 2, label: '交易成功' },
-  { values: -2, label: '已退款' },
+  { values: -2, label: '已退款' }
 ])
 // { values: 5, label: '登记中' },
 const arrayValue = reactive({
@@ -232,7 +241,7 @@ const handleOrderList = async () => {
   let data = res.data.records
   if (res.code === 200) {
     orderList.value = data
-    total.value=res.data.total
+    total.value = res.data.total
     console.log(orderList)
 
   }
@@ -276,6 +285,16 @@ const handlePayTime = () => {
 const handleCurrentChange = (val) => {
   orderInfo.value.current = val
   handleOrderList()
+}
+//取消支付
+const handlePayClose =async (orderNo)=>{
+  const res = await orderCancel({ orderNo })
+  if(res.code===200){
+    await handleOrderList()
+    MessageBoxVue({
+      title: '取消成功'
+    })
+  }
 }
 
 onMounted(() => {
