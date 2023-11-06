@@ -3,6 +3,7 @@ import { getItem } from '@/utils/storage.js'
 import MessageBoxVue from '@/components/MessageBox/index.js'
 
 import { useStore } from '@/pinia'
+import { removeItem } from '@/utils/storage.js'
 
 
 
@@ -18,7 +19,6 @@ service.interceptors.request.use((config) => {
   if (getItem('token')) {
     config.headers.Authorization = getItem('token')
   }
-
   config.headers['Client-Type'] = 'pc'
   return config
 }, function (error) {
@@ -29,8 +29,6 @@ service.interceptors.response.use((res) => {
 
   const { code, msg } = res.data
 
-  // const { loginStore, useUsersStore } = useStore()
-  // console.log(useUsersStore, 'loginStore')
   if (code >= 200 && code < 300) {
     return res.data
   } else {
@@ -40,26 +38,17 @@ service.interceptors.response.use((res) => {
     if (code == 401) {
       initialize()
 
-      // const { loginStore } = useStore()
-      // console.log(loginStore)
-
-      // loginStore.handleUserInfoInit()
-      // loginStore.login = true
     }
     return Promise.reject(new Error(msg))
   }
 }, (err) => {
+  console.log(err.response.data)
+
   if (err.response.status == 401) {
     initialize()
-
-    // const { loginStore } = useStore()
-    // console.log(loginStore, 'loginStore')
-
-    // loginStore.handleUserInfoInit()
-    // loginStore.login = true
   }
   MessageBoxVue({
-    title: err
+    title: err.response.data.msg
   })
 
   return Promise.reject(err)
@@ -68,8 +57,8 @@ service.interceptors.response.use((res) => {
 const initialize = () => {
 
   const { loginStore, useUsersStore } = useStore()
-  console.log(loginStore)
-
+  // 清理token
+  removeItem('token')
   useUsersStore.handleUserInfoInit()
   loginStore.token = ''
   loginStore.login = true

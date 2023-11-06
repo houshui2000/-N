@@ -67,7 +67,7 @@ const Xin_xiArr = ref([
       }
     }
     p {
-      font: normal normal 400 12px 'Inter';
+      font: normal normal 400 12px;
       color: white;
       margin-top: 5px;
       text-align: center;

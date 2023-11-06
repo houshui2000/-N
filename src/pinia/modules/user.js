@@ -45,13 +45,13 @@ export const userDataInfo = defineStore('userData', {
 
       if (result.code === 200) {
         this.userInfo = result.data
+        
       } else {
         alert(result.msg)
       }
     },
     //初始化userinfo
     handleUserInfoInit () {
-      console.log(555)
 
       this.userInfo = {
         avatar: null,

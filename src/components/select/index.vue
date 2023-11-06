@@ -149,7 +149,7 @@ watch(
       max-height: 300px;
       z-index: 999;
       transition: height 0.5s;
-      padding-top: 8px;
+      // padding-top: 8px;
 
       /*滚动条样式*/
       &::-webkit-scrollbar {

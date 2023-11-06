@@ -11,8 +11,8 @@
 </template>
 <script setup>
 import kaPaiVue from '@/components/KaPai/index.vue'
-import { ref } from 'vue'
-const img = ref(new URL('../../../../assets/images/carggo/ceshi.png', import.meta.url).href)
+// import { ref } from 'vue'
+// const img = ref(new URL('../../../../assets/images/carggo/ceshi.png', import.meta.url).href)
 const { xilie } = defineProps({
   xilie: { type: String, required: true }
 })

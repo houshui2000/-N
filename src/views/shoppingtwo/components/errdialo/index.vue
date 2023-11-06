@@ -14,7 +14,34 @@
         <div class="top"></div>
       </template>
       <section>
-        <div class="img"></div>
+        <div class="img">
+          <svg width="100" height="100" viewBox="0 0 140 133" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.5">
+              <circle opacity="0.39" cx="48.8093" cy="62.0241" r="48.8093" fill="#00E67F" />
+              <circle opacity="0.39" cx="70.1237" cy="48.8093" r="48.8093" fill="#00E67F" />
+              <circle opacity="0.39" cx="89.8093" cy="66.8093" r="48.8093" fill="#00E67F" />
+              <circle opacity="0.39" cx="67.5661" cy="80.3542" r="48.8093" fill="#00E67F" />
+              <circle cx="40.4972" cy="12.3622" r="5.11538" fill="#00D756" />
+              <circle cx="20.4615" cy="21.3141" r="3.83654" fill="#ADFFCE" />
+              <circle cx="81.4195" cy="129.163" r="3.83654" fill="#ADFFCE" />
+              <circle cx="18.7564" cy="38.3653" r="2.13141" fill="#ADFFCE" />
+              <circle cx="116.801" cy="95.4871" r="2.13141" fill="#ADFFCE" />
+              <circle cx="114.244" cy="110.833" r="2.13141" fill="#00D756" />
+              <circle cx="16.6256" cy="110.833" r="2.13141" fill="#ADFFCE" />
+            </g>
+            <g clip-path="url(#clip0_3552_5019)">
+              <path
+                d="M70 111C45.6997 111 26 91.3003 26 67C26 42.6997 45.6997 23 70 23C94.3003 23 114 42.6997 114 67C114 91.3003 94.3003 111 70 111ZM50.3998 64.6002L46.8006 69.3998L66.0004 87.4002L95.1997 54.2004L92.4004 50.9998L66.0004 78.2006L50.3998 64.6002Z"
+                fill="#00E67F"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_3552_5019">
+                <rect width="88" height="88" fill="white" transform="translate(26 23)" />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
         <p class="spice">￥100.00</p>
         <p class="chenggong">恭喜您购买成功！</p>
         <p class="shuomimnh">您使用支付宝完成了本次资产交易，该资产您可在 个人中心-资产库板块查看。</p>
@@ -27,10 +54,6 @@
 import { toRefs } from 'vue'
 // import SvgIcon from '@/components/SvgIcon/index.vue'
 
-// import { ref } from 'vue'
-// import { ElMessageBox } from 'element-plus'
-
-// const dialogVisible = ref(false)
 const props = defineProps({
   errDialoVueUpdate: { type: Boolean, required: true }
 })
@@ -43,9 +66,7 @@ const $emit = defineEmits(['update:errDialoVueUpdate'])
 }
 .eror_all {
   :deep(.el-dialog) {
-    // background: linear-gradient(180deg, #122743 -1.45%, #030d15 100%);
     border-radius: 8px;
-    // border: 2px solid turquoise;
     width: 400px;
     height: 395px;
     border: 1px solid transparent;
@@ -71,7 +92,6 @@ section {
   .img {
     width: 139.394px;
     height: 133px;
-    background-color: rebeccapurple;
   }
   .spice {
     font: normal normal 700 20px 'Microsoft YaHei';

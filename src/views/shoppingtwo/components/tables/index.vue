@@ -10,15 +10,12 @@
           <td>操作</td>
         </tr>
       </thead>
+
       <tbody v-if="drops.records?.length > 0">
         <tr v-for="(item, index) in drops.records" :key="index">
           <td>
             <div class="img">
-              <img
-                @click="(errDialoVueUpdate = !errDialoVueUpdate), (errDialoVueXinagqing = item)"
-                :src="item.productUrl"
-                alt=""
-              />
+              <img :src="item.productUrl" alt="" />
             </div>
           </td>
           <td>
@@ -44,8 +41,8 @@
           <td>
             <div class="zhifu">
               <!-- status : true 买入 || false : 支付中 -->
-              <div v-if="!item.status" class="zhiFU_one">支付中</div>
-              <div v-else class="zhiFU_one_mai">买入</div>
+              <div @click="PayFun(item)" v-if="!item.status" class="zhiFU_one">支付中</div>
+              <div @click="PayFun(item)" v-else class="zhiFU_one_mai">买入</div>
             </div>
           </td>
         </tr>
@@ -54,19 +51,37 @@
         </tr>
       </tbody>
     </table>
-    <detailVue v-model:errDialoVueUpdate="errDialoVueUpdate" :errDialoVueXinagqing="errDialoVueXinagqing" />
+    <!-- <detailVue v-model:errDialoVueUpdate="errDialoVueUpdate" :errDialoVueXinagqing="errDialoVueXinagqing" /> -->
   </div>
 </template>
 <script setup>
 import SvgIcon from '@/components/SvgIcon/index.vue'
-import { ref } from 'vue'
-import detailVue from '../detail/index.vue'
+// import { ref } from 'vue'
+import MessageBoxVue from '@/components/MessageBox/index.js'
+
+// import detailVue from '../detail/index.vue'
 const drops = defineProps({
   records: { type: Array, required: true }
 })
+// console.log(drops.records, 'drops.records')
 
-const errDialoVueUpdate = ref(false) //详情弹框
-const errDialoVueXinagqing = ref({}) //详情弹框
+// const errDialoVueUpdate = ref(false) //详情弹框
+// const errDialoVueXinagqing = ref({}) //详情弹框
+const $emit = defineEmits(['PayFun'])
+/**
+ * 表格操作按钮
+ * status : true 买入 || false : 支付中
+ */
+const PayFun = (item) => {
+  if (!item.status) {
+    MessageBoxVue({
+      title: '该卡牌在支付中，请选择可买入的卡牌叭~'
+    })
+    return
+  }
+  //
+  $emit('PayFun')
+}
 </script>
 <style lang="scss" scoped>
 table {
@@ -100,14 +115,10 @@ table {
     }
   }
   tbody {
-    // width: 20px;
-    // display: inline-block;
     width: 1470px;
     display: block;
-    // padd
     tr {
       height: 116px;
-      // width: calc(1470px - 160px);
       position: relative;
       display: block;
       margin: auto;
@@ -201,11 +212,14 @@ table {
           }
 
           .zhiFU_one {
+            cursor: pointer;
             border-radius: 6px;
             background: linear-gradient(90deg, #2d42ff 0%, #df00c9 96.64%);
           }
 
           .zhiFU_one_mai {
+            cursor: pointer;
+
             position: relative;
             border-radius: 5px;
             @include bordergradientMY(

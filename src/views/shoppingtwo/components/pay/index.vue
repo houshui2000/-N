@@ -21,29 +21,35 @@
       <section>
         <div class="sectoion_top">
           <div class="top_left">
-            <img class="equalProportions" src="@/assets/images/carggo/ceshi.png" alt="" />
+            <!-- {{ props.creatDataAll.issuePrice }}-->
+            <img
+              v-if="creatDataAll.productUrl"
+              class="equalProportions"
+              :src="loginStore.cossUrl + creatDataAll.productUrl"
+              alt=""
+            />
           </div>
           <div class="top_right">
-            <p>asdasd</p>
+            <p>{{ creatDataAll.cardId }}</p>
             <div class="bianhao">
               <span><SvgIcon size="20px" icon-class="bianhao" /></span>
-              <el-tooltip class="box-item" effect="dark" content="002-2023-A20-01" placement="top-start">
-                <span class="danyi">002-2023-A20-01</span>
+              <el-tooltip class="box-item" effect="dark" :content="creatDataAll.cardNo" placement="top-start">
+                <span class="danyi">{{ creatDataAll.cardNo }}</span>
               </el-tooltip>
             </div>
             <div class="price">
               <span>价格：</span>
-              <el-tooltip class="box-item" effect="dark" content="￥9dads56564565" placement="top-start">
-                <span class="danyi">￥9dads56564565</span>
+              <el-tooltip class="box-item" effect="dark" :content="`￥${creatDataAll.price}`" placement="top-start">
+                <span class="danyi">￥{{ creatDataAll.price }}</span>
               </el-tooltip>
             </div>
           </div>
         </div>
         <div class="section_bototm">
-          <div v-for="(item, index) in 6" :key="index" class="pay">
+          <div v-for="(item, index) in payArr" @click="payArrAdilo = item" :key="index" class="pay">
             <div class="img">
               <!-- <img class="equalProportions" src="" alt="" /> -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 25 25" fill="none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 25 25" fill="none">
                 <g clip-path="url(#clip0_3552_4950)">
                   <rect width="25" height="25" rx="5" fill="white" />
                   <path
@@ -58,8 +64,8 @@
                 </defs>
               </svg>
             </div>
-            <p>支付宝支付</p>
-            <div class="radio"></div>
+            <p>{{ item.title }}</p>
+            <div :class="{ radio_article: payArrAdilo.payChanelId == item.payChanelId }" class="radio"></div>
           </div>
         </div>
       </section>
@@ -71,29 +77,54 @@
   </div>
   <errDialoVue v-model:errDialoVueUpdate="errDialoVueUpdate" />
 </template>
-<script setup>
-import { toRefs, ref } from 'vue'
+<script setup name="payLint">
+import { toRefs, ref, watch } from 'vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import errDialoVue from '../errdialo/index.vue'
-import { shopquickbuy } from '@/network/shoppingCentre/shoppingtwo.js'
+import { useRoute } from 'vue-router'
+import { shopquickbuy, buyminxpricecard } from '@/network/shoppingCentre/shoppingtwo.js'
+import { useStore } from '@/pinia'
+const route = useRoute()
+const { loginStore } = useStore()
 
 const props = defineProps({
   dialogVisiblePay: { type: Boolean, required: true }
+  // creatDataAll: { type: Object, required: true }
 })
-const errDialoVueUpdate = ref(false) //支付弹框
+const errDialoVueUpdate = ref(false) //支付成功弹框
 
 const { dialogVisiblePay } = toRefs(props)
 const $emit = defineEmits(['update:dialogVisiblePay'])
+const payArr = ref([
+  { title: '支付宝支付', payChanelId: 1 },
+  { title: '假的支付测试', payChanelId: 2 }
+])
+const payArrAdilo = ref({ title: '支付宝支付', payChanelId: 1 })
 /**支付 */
 const shopquickbuyPay = async () => {
   const res = await shopquickbuy({
-    cardVaultId: 1, // 跳转页面的id
-    payChanelId: 1 // 支付通道 1 是支付宝
+    cardVaultId: route.params.vaultId, // 跳转页面的id 1
+    payChanelId: payArrAdilo.value.payChanelId // 支付通道 1 是支付宝
   })
-  // router.push(res.data)
 
   window.location.href = res.data
 }
+const creatDataAll = ref({})
+const init = async () => {
+  // route.params.vaultId
+  const res = await buyminxpricecard({ vaultId: 3 })
+  creatDataAll.value = res.data
+}
+watch(
+  dialogVisiblePay,
+  (newVal) => {
+    if (!newVal) return
+    init()
+  },
+  {
+    deep: true
+  }
+)
 </script>
 <style lang="scss" scoped>
 .dialog-footer button:first-child {
@@ -101,15 +132,13 @@ const shopquickbuyPay = async () => {
 }
 .pay_all {
   :deep(.el-dialog) {
-    // background: linear-gradient(180deg, #122743 -1.45%, #030d15 100%);
+    position: relative;
     border-radius: 8px;
-    // border: 2px solid turquoise;
     width: 400px;
     height: 480px;
-    @include bordergradientMY(
-      linear-gradient(90deg, rgba(156, 104, 216, 0.9) 20%, rgba(80, 122, 191, 0.9) 80%),
-      linear-gradient(180deg, #122743 -1.45%, #030d15 100%)
-    );
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    background: url('@/assets/images/shoppingCentre/pay_load.png') no-repeat scroll left bottom/ 100% 100%;
   }
 }
 .top {
@@ -259,6 +288,22 @@ section {
         font: normal normal 400 12px 'Microsoft YaHei';
         color: white;
       }
+      .radio_article {
+        width: 12px;
+        height: 12px;
+        &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-45%, -50%);
+          width: 80%;
+          height: 80%;
+          border-radius: 50%;
+          background: linear-gradient(0deg, #d697ff 50%, #7b82ff);
+        }
+      }
       .radio {
         position: absolute;
         right: 12px;
@@ -272,18 +317,6 @@ section {
         border-radius: 50%;
         background-image: linear-gradient(180deg, #122743 -1.45%, #030d15 100%),
           linear-gradient(0deg, rgba(157, 102, 217, 0.5) 0%, rgba(99, 149, 231, 0.8) 100%);
-        &:after {
-          content: '';
-          display: block;
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          width: 80%;
-          height: 80%;
-          border-radius: 50%;
-          background: linear-gradient(100deg, #d697ff 0%, #7b82ff 96.64%);
-        }
       }
     }
   }

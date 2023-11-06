@@ -21,20 +21,19 @@ tie(NoLogin)
 router.beforeEach(async (to, from, next) => {
 
   if (getItem('token')) {// 有 token
+    // console.log('token')
+
     // 更新个人信息
     const { useUsersStore } = useStore()
     useUsersStore.handleUserInfo()
     next()
   } else {   // 没有token
     const routMy = WhitelistedRouting.some(item => {
-      //  ==
-      // console.log(to.name, item.name)
       if (to.name == item.name) {
         return item
       }
 
     })
-    // console.log(to)
 
     if (routMy) { // 在白名单
       next()

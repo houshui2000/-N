@@ -8,6 +8,7 @@
       :lock-scroll="false"
       :showClose="false"
       @close="$emit('update:dialogVisiblePay', false)"
+      @closed="closeMy"
     >
       <template #header>
         <div class="top"></div>
@@ -62,7 +63,9 @@ const props = defineProps({
 })
 // console.log(props.creatData)
 
-const realPictures = ref('') // 真正的图片
+const realPictures = ref(
+  new URL('../../../../assets/images/shoppingCentre/missingWakeupPage.png', import.meta.url).href
+) // 真正的图片
 const toBase64 = (imgUrl) => {
   // 一定要设置为let，不然图片不显示
   const image = new Image()
@@ -81,6 +84,7 @@ const toBase64 = (imgUrl) => {
     // 这里的dataurl就是base64类型
     // 使用toDataUrl将图片转换成jpeg的格式,不要把图片压缩成png，因为压缩成png后base64的字符串可能比不转换前的长！
     const dataurl = canvas.toDataURL('image/jpeg', quality)
+
     realPictures.value = dataurl
   }
 }
@@ -95,8 +99,9 @@ const show = () => {
   QRCode.toCanvas(erweima.value, window.location.href)
   // upload()
 
-  toBase64(creatData.value.productUrl)
-  // toBase64('http://172.16.1.38:5173/src/assets/images/carggo/ceshi_xia.png')
+  // console.log(toBase64(creatData.value.productUrl))
+
+  // toBase64('http://172.16.1.38:5173/src/assets/images/carggotoBase64(creatData.value.productUrl)/ceshi_xia.png')
 }
 const section = ref(null)
 const imgLoad = ref('')
@@ -121,14 +126,20 @@ const downloadFile = (url, downloadName = '图片下载') => {
       document.body.removeChild(link)
     })
 }
+const closeMy = () => {
+  console.log(6666)
+
+  realPictures.value = new URL('../../../../assets/images/shoppingCentre/missingWakeupPage.png', import.meta.url).href
+}
 watch(
   dialogVisiblePay,
   (newVal) => {
-    //
+    toBase64(creatData.value.productUrl)
     if (!newVal || one > 0) return
     nextTick(() => {
       show()
     })
+
     one++
   },
   {
@@ -146,6 +157,7 @@ watch(
     width: 390px;
     height: 546px;
     overflow: hidden;
+    background: transparent;
     header {
       display: none;
     }
@@ -188,11 +200,12 @@ section {
   color: white;
   height: 546px;
 
-  border: 3px solid #561895;
-  @include bordergradientMY();
+  // border: 3px solid #561895;
+  // @include bordergradientMY();
   // border-radius: 30px;
+  background-color: transparent;
   overflow: hidden;
-  background: linear-gradient(180deg, #122743 -1.45%, #030d15 100%);
+  // background: linear-gradient(180deg, #122743 -1.45%, #030d15 100%);
   flex-direction: column;
   @include Myflex(flex-start);
   padding: 0 51px;
@@ -200,7 +213,8 @@ section {
   > .img {
     position: absolute;
     left: 0;
-    background: linear-gradient(180deg, #122743 -1.45%, #030d15 100%);
+    // background: linear-gradient(180deg, #122743 -1.45%, #030d15 100%);
+    background-color: transparent;
     top: 2px;
     width: 100%;
     height: 100%;

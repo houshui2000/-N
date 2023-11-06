@@ -1,6 +1,6 @@
 <template>
   <div class="CIjing">
-    <aside></aside>
+    <!-- <aside></aside> -->
     <router-view />
     <LoginOne />
     <MenyOnTheRightVue />
@@ -18,7 +18,8 @@ body {
 .CIjing {
   width: 1920px;
   // background-color: cadetblue;
-  background: url('@/assets/images/all/bei.png') no-repeat;
+  background: #0e121b url('@/assets/images/all/bei.png') no-repeat;
+  // background-color: saddlebrown;
   position: relative;
   background-size: 100% 100%;
   aside {
@@ -26,9 +27,10 @@ body {
     right: 0;
     top: 120px;
     z-index: 1;
-    width: 358px;
-    height: 899px;
+    width: 233px;
+    height: 625px;
     background: url('@/assets/images/carggo/aside.png') no-repeat scroll left top/ 100% 100%;
+    // background-color: rgba(255, 255, 255, 0.1);
   }
 }
 </style>

@@ -232,14 +232,14 @@ let otherBtn = ref('other')
 let codeTime = ref(-1)
 let registerCodeTime = ref(-1)
 let resettingCodeTime = ref(-1)
-let agreement = ref(false) //是否同意协议
+let agreement = ref(true) //是否同意协议
 let agreementShow = ref(false)
 // 手机号密码登录接口数据
 let passwordInfo = reactive({
-  // mobile: '13075300312',
-  // password: '123456'
-  mobile: '',
-  password: ''
+  mobile: '13075300312',
+  password: '123456'
+  // mobile: '',
+  // password: ''
 })
 // 手机验证码登录接口数据
 let mobileInfo = reactive({

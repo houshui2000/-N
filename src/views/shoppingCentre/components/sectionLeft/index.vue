@@ -120,18 +120,6 @@ watch(
   }
 )
 </script>
-<style lang="scss">
-.blueBack.el-popper.is-light {
-  background-color: #00081a !important;
-  border: 1px solid #2f2351;
-}
-.blueBack {
-  .el-popper.is-light .el-popper__arrow::before {
-    border: 1px solid #376edc;
-    background: #151111 !important;
-  }
-}
-</style>
 <style lang="scss" scoped>
 :deep(.el-popper.is-light) {
   color: white;
@@ -146,10 +134,10 @@ watch(
   }
   .input {
     :deep(.el-input__wrapper) {
-      background-color: transparent;
       box-shadow: none;
       height: 48px;
-      border: 1px solid #2f2351;
+      border-radius: 8px;
+      @include bordergradientMY(linear-gradient(180deg, rgba(45, 38, 81, 0.9) 0%, rgba(46, 37, 81, 0.9) 100%));
     }
   }
 }
@@ -231,13 +219,14 @@ watch(
   height: 48px;
   border-radius: 8px;
   @include bordergradientMY();
+
   :deep(.article) {
     border: 1px solid transparent;
     border-radius: 8px;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
     // 000717
-    background-image: linear-gradient(180deg, #000717 -1.45%, #000717 100%),
+    background-image: linear-gradient(180deg, #070d13 -1.45%, #070d13 100%),
       linear-gradient(0deg, rgba(159, 100, 219, 0.5) 0%, rgba(117, 163, 203, 0.5) 100%);
   }
 }

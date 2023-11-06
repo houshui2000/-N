@@ -1,24 +1,36 @@
 <template>
   <div class="information">
-    <div class="zixun">资讯信息</div>
+    <!-- <div class="zixun">资讯信息</div> -->
+    <LunBoVue />
     <section>
       <div class="section_top">
-        <p v-for="(item, index) in 2" @click="nameRef = index" :class="{ active: nameRef == index }" :key="index">
-          {{ item }}
+        <p
+          v-for="(item, index) in listArr"
+          @click="(nameRef = item.id), listOfInformation()"
+          :class="{ active: nameRef == item.id }"
+          :key="index"
+        >
+          {{ item.name }}
         </p>
       </div>
-      <div class="section_bottom">
-        <div v-for="(item, index) in 6" :key="index" class="Xin_xi_tiao">
-          <p>
+      <div v-if="listOfInformationArr?.records?.length > 0" class="section_bottom">
+        <div
+          v-for="(item, index) in listOfInformationArr.records"
+          @click="router.push(`/informationTwo/${item.id}`)"
+          :key="index"
+          class="Xin_xi_tiao"
+        >
+          <!--  <p>
             <span>置顶</span>
-            火眼金睛，发现美的眼睛
-          </p>
+            <!~~ {{ item.title }} ~~>
+          </p>-->
           <div class="xin_xi_center">
             <div class="img"></div>
             <div class="center_right">dasdas</div>
           </div>
-          <div class="xinix">2023-2-4</div>
+          <div class="xinix">{{ item.publishTime }}</div>
         </div>
+
         <div class="fenye">
           <div class="fen_xi">
             <el-pagination
@@ -26,22 +38,48 @@
               v-model:current-page="Fenye.currentPage"
               :pager-count="11"
               layout="prev, pager, next"
-              :total="Fenye.pages"
+              :total="Fenye.total"
             />
           </div>
         </div>
       </div>
+      <MissWakeupPage v-if="listOfInformationArr?.records?.length == 0" />
     </section>
   </div>
 </template>
 <script setup>
 import { ref } from 'vue'
-const nameRef = ref('0')
+import MissWakeupPage from '@/components/missingWakeupPage/index.vue'
+import LunBoVue from './components/LunBo/index.vue'
+import { shopnewscategory, shopnews } from '@/network/information'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const nameRef = ref('')
 const Fenye = ref({
   currentPage: 1,
   size: 10, // 一页多少条
-  pages: 12 // 总数
+  total: 0 // 总数
 })
+const listArr = ref({})
+const listOfInformationArr = ref([])
+const init = async () => {
+  const res = await shopnewscategory()
+  nameRef.value = res.data[3].id
+  Fenye.value.total = res.data.total
+  listArr.value = res.data
+
+  listOfInformation()
+}
+init()
+// 资讯列表
+const listOfInformation = async () => {
+  const res = await shopnews({
+    current: Fenye.value.currentPage,
+    size: Fenye.value.size,
+    categoryId: nameRef.value
+  })
+  listOfInformationArr.value = res.data
+}
 </script>
 <style lang="scss" scoped>
 @import '@/styles/other/paginations.scss';
@@ -74,12 +112,12 @@ const Fenye = ref({
 
     margin: 30px auto;
     .section_top {
-      @include bordergradientMY(
-        linear-gradient(90deg, rgba(83, 56, 119, 0.9) 0%, rgba(53, 81, 125, 0.9) 100%),
-        linear-gradient(180deg, rgba(60, 63, 130, 0.1) 0%, rgba(4, 4, 7, 0.54) 100%)
-      );
+      // @include bordergradientMY(
+      //   linear-gradient(90deg, rgba(83, 56, 119, 0.9) 0%, rgba(53, 81, 125, 0.9) 100%),
+      //   linear-gradient(180deg, rgba(60, 63, 130, 0.1) 0%, rgba(4, 4, 7, 0.54) 100%)
+      // );
       height: 100%;
-      @include Myflex(flex-start);
+      @include Myflex();
       padding: 0 69px;
       .active {
         transition: all 0.5s;
@@ -92,7 +130,7 @@ const Fenye = ref({
           bottom: 0;
           transform: translateX(-50%);
           width: 50%;
-          height: 4px;
+          height: 2px;
           border-radius: 5px;
           background: linear-gradient(149deg, rgb(213, 5, 205) 45.99%, rgb(53, 63, 253) 85.48%);
         }
@@ -101,13 +139,12 @@ const Fenye = ref({
         font: normal normal 400 14px ' PingFang SC';
         color: white;
         display: inline-block;
-        background-color: saddlebrown;
         height: 100%;
         // width: 300px;
+        margin-right: 80px;
         padding: 20px 12px;
         @include Myflex();
         margin-right: 100px;
-        background: linear-gradient(180deg, rgba(223, 0, 201, 0) 0%, rgba(0, 21, 94, 0.3) 100%);
       }
     }
     .section_bottom {
@@ -118,17 +155,17 @@ const Fenye = ref({
       .Xin_xi_tiao {
         border-bottom: 1px solid rgb(42, 49, 76);
         padding: 24px 51px;
-        > p {
-          font: normal normal 400 16px ' PingFang SC';
-          color: white;
-          span {
-            border-radius: 4px;
-            padding: 5px;
-            margin-right: 6 px;
-            font: normal normal 600 12px ' PingFang SC';
-            background: #ed614c;
-          }
-        }
+        // > p {
+        //   font: normal normal 400 16px ' PingFang SC';
+        //   color: white;
+        //   span {
+        //     border-radius: 4px;
+        //     padding: 5px;
+        //     margin-right: 6 px;
+        //     font: normal normal 600 12px ' PingFang SC';
+        //     background: #ed614c;
+        //   }
+        // }
         .xin_xi_center {
           height: 120px;
           margin: 21px 0;
@@ -136,18 +173,21 @@ const Fenye = ref({
           .img {
             width: 160px;
             height: 120px;
+            border-radius: 6px;
+            @include bordergradientMY(linear-gradient(180deg, rgba(45, 38, 81, 0.9) 0%, rgba(46, 37, 81, 0.9) 100%));
           }
           .center_right {
             width: calc(100% - 160px);
             padding-left: 36px;
             height: 100%;
-            background-color: sandybrown;
+            // background-color: sandybrown;
           }
         }
         .xinix {
           font: normal normal 600 14px ' PingFang SC';
           color: #fff;
           opacity: 0.6;
+          text-align: right;
         }
       }
     }

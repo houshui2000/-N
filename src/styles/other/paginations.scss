@@ -56,7 +56,10 @@
   :deep(.el-pager li.is-active) {
     color: white;
     // border: 1px solid #8122e5;
-    @include bordergradientMY();
     background-color: transparent !important;
+    @include bordergradientMY(linear-gradient(90deg, rgba(49, 64, 254, 0.9) 0%, rgba(223, 1, 201, 0.9) 100%));
+    border: 1px solid transparent;
+    // border: 3px solid red;
+
   }
 }

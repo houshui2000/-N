@@ -133,7 +133,7 @@ const props = defineProps({
     //   margin-top: 9px;
     //   height: 28px;
     //   @include Myflex(flex-start);
-    //   font: normal normal 600 12px 'Inter';
+    //   font: normal normal 600 12px;
 
     //   .D_bi_bott {
     //     display: inline-block;
@@ -174,7 +174,7 @@ const props = defineProps({
     //     height: 28px;
     //     border-radius: 4px;
     //     color: white;
-    //     font: normal normal 600 12px 'Inter';
+    //     font: normal normal 600 12px;
     //     background: linear-gradient(180deg, #ea3a52 0%, #c31d2c 100%);
     //   }
     // }

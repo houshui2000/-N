@@ -28,3 +28,4 @@ app.use(componentPligin)
 app.use(pinia); // 注册 pinia
 app.mount('#app')
 
+// HYYakuHei   Alibaba PuHuiTi

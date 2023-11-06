@@ -1,13 +1,19 @@
 <template>
   <div @click="ass" class="kapai">
-    <div class="crumbs">
+    <!-- <div class="crumbs">
       <span @click="router.push('/shoppingCentre')">
         商城
         <i>></i>
       </span>
 
       <span>资产详情</span>
-    </div>
+    </div> -->
+    <CrumbsVue
+      :arr="[
+        { name: '商城', path: '/shoppingCentre' },
+        { name: '资产详情', path: route.params.vaultId }
+      ]"
+    />
     <section v-if="creatData.productName">
       <TopVue :creatDataAll="creatDataAll" :creatData="creatData" />
       <BOttomVue />
@@ -19,14 +25,15 @@
 </template>
 <script setup>
 import TopVue from './top.vue'
+import CrumbsVue from '@/components/crumbs/index.vue'
 import BOttomVue from './bottom.vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { ref, provide, watch } from 'vue'
 import MissWakeupPage from '@/components/missingWakeupPage/index.vue'
 import { shopcardxdetail, shopotherproducts } from '@/network/shoppingCentre/shoppingtwo.js'
 // import Me ssageBoxVue from '@/components/MessageBox/index.js'
 const route = useRoute()
-const router = useRouter()
+// const router = useRouter()
 const creatData = ref({}) // 系列的数据
 const creatDataAll = ref([]) // 系列的所有数据
 const ass = () => {}
@@ -34,10 +41,8 @@ const init = async () => {
   const res = await shopcardxdetail({
     vaultId: route.params.vaultId
   })
-
   creatData.value = res.data
   const norId = await shopotherproducts({})
-
   creatDataAll.value = norId.data
 }
 init()
@@ -56,7 +61,7 @@ watch(
 </script>
 <style lang="scss" scoped>
 .kapai {
-  padding-top: 84px;
+  // padding-top: 84px;
   width: 1470px;
 
   margin: auto;

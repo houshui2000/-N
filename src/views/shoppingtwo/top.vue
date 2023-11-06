@@ -33,7 +33,7 @@
             <span>{{ props.creatData.buyRestrict }}</span>
             份
           </p>
-          <div @click="dialogVisiblePay = true" class="maifu">一键买入</div>
+          <div @click="onePieceBuyin" class="maifu">一键买入</div>
         </div>
       </div>
     </div>
@@ -67,6 +67,7 @@
         </div>
       </div>
     </div>
+    <!--  :creatDataAll="creatDataAll"  -->
     <payVue v-model:dialogVisiblePay="dialogVisiblePay" />
     <ShareVue :creatData="creatData" v-model:dialogVisiblePay="fenxiangdialog" />
   </div>
@@ -76,7 +77,11 @@ import payVue from './components/pay/index.vue'
 import ShareVue from './components/share/index.vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import { useRoute, useRouter } from 'vue-router'
+import MessageBoxVue from '@/components/MessageBox/index.js'
+
 import { ref } from 'vue'
+import { useStore } from '@/pinia'
+const { loginStore } = useStore()
 const route = useRoute()
 const router = useRouter()
 const props = defineProps({
@@ -85,6 +90,17 @@ const props = defineProps({
 })
 const dialogVisiblePay = ref(false) //支付弹框
 const fenxiangdialog = ref(false) // 分享弹框
+/**一件买入 */
+const onePieceBuyin = () => {
+  if (!loginStore.token) {
+    MessageBoxVue({
+      title: '请先登陆'
+    })
+    loginStore.login = true
+    return
+  }
+  dialogVisiblePay.value = true
+}
 </script>
 <style lang="scss" scoped>
 .top_nav {
@@ -206,7 +222,7 @@ const fenxiangdialog = ref(false) // 分享弹框
         @include Myflex();
         font: normal normal 600 14px 'Alibaba PuHuiTi';
         border-radius: 5.36px;
-        background: linear-gradient(141deg, #b8009a 15.76%, #1615f2 79.59%);
+        background: linear-gradient(-5deg, #1615f2 15.76%, #b8009a 79.59%);
       }
     }
   }

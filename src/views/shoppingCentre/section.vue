@@ -10,7 +10,13 @@
       <MissWakeupPage />
     </div>
   </div>
-  <div ref="xianshi_geng" v-show="creatData.records?.length > 0" class="xianshi_geng">加载更多</div>
+  <div
+    ref="xianshi_geng"
+    v-show="creatData.records?.length > 0 && creatData.total !== creatData.records?.length"
+    class="xianshi_geng"
+  >
+    加载更多
+  </div>
 </template>
 <script setup>
 import Section_left from './components/sectionLeft/index.vue'
@@ -30,6 +36,7 @@ const LeftData = ref({
 })
 const FenYe = {
   size: 10,
+  total: 0,
   current: 1
 }
 onMounted(() => {
@@ -54,6 +61,7 @@ const init = async () => {
   })
   // creatData.records
   creatData.value = res.data
+  console.log(creatData.value.total)
 }
 init()
 let time = null
@@ -78,7 +86,7 @@ const LeftDataFuncation = (e) => {
     width: 270px;
     border-radius: 6px;
     border: 1px solid #1a2a40;
-    background: #00081a;
+    background: #000819;
     backdrop-filter: blur(2px);
   }
   .section_right {

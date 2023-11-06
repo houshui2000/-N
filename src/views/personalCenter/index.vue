@@ -17,7 +17,6 @@
                   />
                 </div>
                 <el-upload
-                  :limit="1"
                   class="avatar-uploader"
                   action="#"
                   :show-file-list="false"

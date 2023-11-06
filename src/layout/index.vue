@@ -34,13 +34,14 @@ const route = useRoute()
   width: 100%;
   margin: auto;
   overflow: hidden;
+}
 
-  .center {
-    background-color: rgba(15, 12, 16, 0.7);
-    position: relative;
-    min-height: 1000px;
-    padding-bottom: 102px;
-    margin-top: 70px;
-  }
+.center {
+  // background-color: rgba(15, 12, 16, 0.7);
+  position: relative;
+  min-height: 1000px;
+  padding-bottom: 102px;
+  // margin-top: 70px;
+  padding-top: 70px;
 }
 </style>

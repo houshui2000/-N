@@ -49,6 +49,17 @@ export function shopquickbuy (data) {
   })
 }
 
+/**
+ * 获取卡牌最低价格(支付界面)
+ *{
+  ?vaultId=1
+*/
+export function buyminxpricecard (params) {
+  return service({
+    url: '/buy/min-price-card',
+    method: 'GET', params
+  })
+}
 // /**
 //  * 快速购买
 //  *{
