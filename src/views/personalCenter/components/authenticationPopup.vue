@@ -26,38 +26,54 @@
           }}****{{ useUsersStore.userInfo.mobile.substring(7) }}
         </div>
       </div>
-      <div class='messageTop'>
+      <div class='messageTop marginTop9'>
         *实名认证仅限年满18周岁到60周岁（含)之间的中国大陆用户<br>
         *您填写的实名认证信息，须和您的注册手机号所绑定的身份信息一致<br>
         *未经您的授权，您的身份信息不会用于其他用途
       </div>
-      <div class='passwordEditBtn' @click='handleEmpowerShow'>同 意 授 权 并 认 证</div>
+      <div class='passwordEditBtn' @click='handleEmpowerShow'>同意授权并认证</div>
     </div>
     <div class='confirmPopup'>
       <div class='content2'></div>
     </div>
-    <authenticationConFirmPopup :info='passwordEdit'/>
+    <authenticationConFirmPopup :info='passwordEdit' />
   </div>
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 import { useStore } from '@/pinia/index.js'
-import { codeloginmobile } from '@/network/user.js'
-import { passwordEditCode, updatePassword } from '@/network/personalCenter.js'
-import { removeItem } from '@/utils/storage.js'
 import authenticationConFirmPopup from '../components/authenticationConfirmPopup.vue'
+import MessageBoxVue from '@/components/MessageBox/index.js'
+import { realNamePost } from '@/network/personalCenter.js'
+import QRCode from 'qrcodejs2-fix'
 
 const { useUsersStore, loginStore } = useStore()
 
-let passwordEdit = reactive({
+let passwordEdit = ref({
   certNo: '',
   username: ''
 })
-const handleEmpowerShow = () =>{
-  useUsersStore.passwordEdit.certNo=passwordEdit.certNo
-  useUsersStore.passwordEdit.username=passwordEdit.username
-  useUsersStore.authenticationConFirmPopup=true
+const handleEmpowerShow = async () => {
+  if (!passwordEdit.value.username) {
+    MessageBoxVue({
+      title: '姓名不能为空'
+    })
+    return
+  }
+  if (!passwordEdit.value.certNo) {
+    MessageBoxVue({
+      title: '身份证为不能为空'
+    })
+    return
+  }
+  const res = await realNamePost(passwordEdit.value)
+  if (res.code === 200) {
+    useUsersStore.realNameQRCode=res.data
+    useUsersStore.passwordEdit.certNo=passwordEdit.value.certNo
+    useUsersStore.passwordEdit.username=passwordEdit.value.username
+    useUsersStore.authenticationConFirmPopup = true
+  }
 }
 </script>
 
@@ -73,12 +89,10 @@ const handleEmpowerShow = () =>{
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Alibaba PuHuiTi";
-  font-weight: 400;
   color: white;
 
   .content {
-    width: 600px;
+    width: 554px;
     height: 552px;
     background: url($gxsauthenticationPopup) no-repeat center;
     background-size: contain;
@@ -86,23 +100,30 @@ const handleEmpowerShow = () =>{
     display: flex;
     flex-direction: column;
     align-items: center;
+    backdrop-filter: blur(2px);
 
     .messageTop {
       width: 375px;
       height: 60px;
-      margin-top: 18px;
+      margin-top: 27px;
       font-weight: 400;
       font-size: 12px;
       color: rgba(#fff, 0.5);
       line-height: 20px;
     }
 
+    .marginTop9 {
+      margin-top: 9px;
+    }
+
     .passwordEditBtn {
-      width: 275px;
-      height: 36px;
+      width: 160px;
+      height: 32px;
+      line-height: 32px;
       background: url($gxsauthenticationPopupBtn) no-repeat;
-      background-size: 100%;
-      margin-top: 26px;
+      background-size: 100% 100%;
+      font-weight: 400;
+      margin-top: 52px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -118,7 +139,7 @@ const handleEmpowerShow = () =>{
       font-size: 20px;
       font-weight: 500;
       text-align: center;
-      margin-top: 31px;
+      margin-top: 32px;
       position: relative;
 
       .border {
@@ -145,6 +166,7 @@ const handleEmpowerShow = () =>{
     }
 
     .domInput {
+      width: 372px;
       display: flex;
       height: 40px;
       font-weight: 400;
@@ -183,11 +205,12 @@ const handleEmpowerShow = () =>{
       }
 
       .inputFrame {
-        width: 300px;
+        width: 224px;
         height: 40px;
         line-height: 40px;
-        background: url($gxspupupInputFrame) no-repeat center;
-        background-size: contain;
+        background: url($gxspasswordpupupInputFrame) no-repeat center;
+        background-size: 100% 100%;
+        margin-left: 13px;
 
         input {
           width: 300px;

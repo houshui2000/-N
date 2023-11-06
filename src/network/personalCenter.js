@@ -62,3 +62,19 @@ export function GetorderList(params) {
     params
   })
 }
+//查询实名认证结果
+export function getRealName(params) {
+  return service({
+    url: 'user/auth/result',
+    method: 'get',
+    params
+  })
+}
+//取消支付
+export function orderCancel(data) {
+  return service({
+    url: 'shop/order-cancel/'+data.orderNo,
+    method: 'post',
+    data
+  })
+}

@@ -35,7 +35,8 @@ export const userDataInfo = defineStore('userData', {
       passwordEdit: {
         "certNo": '',
         "username": ''
-      }
+      },
+      realNameQRCode:''
     }
   },
   actions: {

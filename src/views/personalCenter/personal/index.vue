@@ -91,7 +91,7 @@ import { bindInvitationCodePost, invitationCodePost, nicknameEdit } from '@/netw
 import MessageBoxVue from '@/components/MessageBox/index.js'
 
 const { useUsersStore } = useStore()
-let admin = reactive({
+let admin = ref({
   nickName: useUsersStore.userInfo.nickname,
   mobile: useUsersStore.userInfo.mobile,
   password: '******',
@@ -105,7 +105,7 @@ let adminInput = reactive({
   bindingCode: true
 })
 const mobileValue = computed(() => {
-  return admin.mobile.substring(0, 3) + '****' + admin.mobile.substring(7)
+  return admin.value.mobile.substring(0, 3) + '****' + admin.value.mobile.substring(7)
 })
 // 修改接口
 const handleEditInput = async (item) => {
@@ -121,7 +121,7 @@ const handleEditInput = async (item) => {
         //   选中状态
       } else {
         if (item === 'nickName') {
-          const res = await nicknameEdit({ nickname: admin.nickName })
+          const res = await nicknameEdit({ nickname: admin.value.nickName })
           console.log(res)
           if (res.code === 200) {
             await useUsersStore.handleUserInfo()
@@ -129,8 +129,8 @@ const handleEditInput = async (item) => {
           }
         }
         if (item === 'invitationCode') {
-          console.log(admin.invitationCode)
-          const res = await invitationCodePost({ invitationCode: admin.invitationCode })
+          console.log(admin.value.invitationCode)
+          const res = await invitationCodePost({ invitationCode: admin.value.invitationCode })
           if (res.code === 200) {
             console.log(res.msg)
             MessageBoxVue({
@@ -138,19 +138,19 @@ const handleEditInput = async (item) => {
             })
             await useUsersStore.handleUserInfo()
           } else {
-            admin.ownerInvitationCode = useUsersStore.userInfo.ownerInvitationCode
+            admin.value.ownerInvitationCode = useUsersStore.userInfo.ownerInvitationCode
           }
         }
         if (item === 'bindingCode') {
-          console.log(admin.bindingCode)
-          const res = await bindInvitationCodePost({ invitationCode: admin.bindingCode })
+          console.log(admin.value.bindingCode)
+          const res = await bindInvitationCodePost({ invitationCode: admin.value.bindingCode })
           if (res.code === 200) {
             MessageBoxVue({
               title: res.msg
             })
             await useUsersStore.handleUserInfo()
           } else {
-            admin.ownerInvitationCode = useUsersStore.userInfo.invitationCode
+            admin.value.ownerInvitationCode = useUsersStore.userInfo.invitationCode
           }
         }
 
@@ -178,7 +178,7 @@ const handleAuthenticationPopupShow = () => {
 
 const handleCopyIcon = () => {
   const textField = document.createElement('textarea')
-  textField.innerText = admin.invitationCode
+  textField.innerText = admin.value.invitationCode
   document.body.appendChild(textField)
   textField.select()
   document.execCommand('copy')

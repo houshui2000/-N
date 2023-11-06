@@ -4,13 +4,11 @@
   flex-direction: column;
   align-items: center;
   margin-top: 25px;
-  font-family: 'PingFang SC';
   font-size: 14px;
 
   :deep(.el-input__inner) {
     box-shadow: none !important;
     color: white;
-    font-family: "PingFang SC";
     font-size: 12px;
   }
 
@@ -53,13 +51,13 @@
         margin-left: 20px;
         width: 163px;
         height: 36px;
-
         cursor: pointer;
         overflow: hidden;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         position: relative;
+        font-size: 12px;
 
         .text {
           width: 163px;
@@ -92,6 +90,7 @@
         flex-direction: column;
         align-items: center;
         position: relative;
+        font-size: 12px;
 
         .text {
           width: 163px;
@@ -113,7 +112,6 @@
         }
       }
     }
-
     .right {
       display: flex;
       justify-content: right;
@@ -132,7 +130,6 @@
 
         input {
           margin-left: 10px;
-          font-family: "PingFang SC";
           font-size: 12px;
           color: #fff;
 
@@ -152,14 +149,15 @@
           right: 10px;
           cursor: pointer;
         }
-      }
 
+      }
       .question {
         width: 24px;
         height: 24px;
         background: url($gxsAssetLibraryQuestion) no-repeat center;
         background-size: contain;
         margin-left: 20px;
+        cursor: pointer;
       }
     }
   }
@@ -263,13 +261,15 @@
             margin-left: 39px;
             position: relative;
             padding-right: 26px;
-            &:after{
+
+            &:after {
               content: "";
               display: block;
               height: 0;
-              clear:both;
+              clear: both;
               visibility: hidden;
             }
+
             .cardImg {
               width: 69px;
               height: 83px;
@@ -277,7 +277,6 @@
               background-clip: padding-box, border-box;
               background-origin: padding-box, border-box;
               border: 1px solid transparent;
-              border-radius: 4px;
               background-image: linear-gradient(to top, #000, #000), linear-gradient(180deg, rgba(245, 158, 255, 0.6) 0.01%, rgba(99, 125, 255, 0.6) 100%);
 
               overflow: hidden;
@@ -287,7 +286,8 @@
                 height: 100%;
               }
             }
-            .orderDetailsBox{
+
+            .orderDetailsBox {
               width: 290px;
               height: 618px;
               padding-left: 24px;
@@ -296,35 +296,48 @@
               left: 63px;
               z-index: 999;
               margin-top: -309px;
-              .orderDetailsPopup{
+
+              .orderDetailsPopup {
                 width: 270px;
-                height: 618px;
-                background: url($gxsorderDetailsPopup) beige no-repeat center;
-                background-size: contain;
+                height: 570px;
+                background: url($gxsorderDetailsPopupBig) no-repeat center;
+                background-size: 100% 100%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+
+                &.dzb {
+                  height: 618px;
+                  background: url($gxsorderDetailsPopup) no-repeat center;
+                  background-size: 100% 100%;
+                }
+
                 .titleIcon {
                   width: 48px;
                   height: 48px;
                   margin-top: 21px;
-                  &.active0{
+
+                  &.active0 {
                     background: url($gxsorderDetailsIcon) no-repeat center;
                     background-size: contain;
                   }
-                  &.active1{
+
+                  &.active1 {
                     background: url($gxsorderDetailyzfIcon) no-repeat center;
                     background-size: contain;
                   }
-                  &.activef2{
+
+                  &.activef2 {
                     background: url($gxsorderDetailytkIcon) no-repeat center;
                     background-size: contain;
                   }
-                  &.activef1{
+
+                  &.activef1 {
                     background: url($gxsorderDetailyqxIcon) no-repeat center;
                     background-size: contain;
                   }
-                  &.active2{
+
+                  &.active2 {
                     background: url($gxsorderDetailzfwcIcon) no-repeat center;
                     background-size: contain;
                   }
@@ -358,19 +371,36 @@
                   margin-top: 18px;
                 }
 
-                .number {
-                  width: 138px;
+                .numberBox {
+                  min-width: 138px;
                   height: 28px;
-                  background: url($gxsorderDetailsNumber) no-repeat center;
-                  background-size: contain;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  position: relative;
                   margin-top: 20px;
 
-                  .numberText {
-                    width: 198px;
-                    font-size: 12px;
-                    margin-left: 32px;
-                    line-height: 28px;
+                  .numberBox-icon {
+                    width: 28px;
+                    height: 28px;
+                    background: url($gxsorderDetailsNumber) no-repeat left;
+                    background-size: contain;
+                    position: absolute;
+                    top:0;
+                    left: 0;
                   }
+                  .numberBox-text {
+                    min-width: 108px;
+                    height: 18px;
+                    line-height: 18px;
+                    background-image: linear-gradient(to left,#FFBB4D, #815821);
+                    font-size: 12px;
+                    padding-left: 33px;
+                    padding-right: 6px;
+                    text-align: center;
+                    border-radius: 4px;
+                  }
+
                 }
 
                 .btnBox {
@@ -402,22 +432,48 @@
                   background-size: contain;
                   margin-top: 28px;
                 }
-                .contentText{
-                  width: 220px;
+
+                .contentText {
+                  width: 268px;
                   height: 140px;
                   text-align: left;
+                  overflow: auto;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  margin-top: 20px;
+                  /* 宽度和高度 */
+                  &::-webkit-scrollbar {
+                    width: 2px;
+                    height: 2px;
+                  }
 
-                  .contentTextBox{
+                  /* 滑块 */
+                  &::-webkit-scrollbar-thumb {
+                    background: linear-gradient(to bottom, #ff0000, #0000ff);
+                  }
+
+                  /* 滑道 */
+                  &::-webkit-scrollbar-track {
+                    background: transparent;
+                  }
+
+
+                  .contentTextBox {
+                    width: 220px;
                     display: flex;
                     height: 17px;
                     line-height: 17px;
                     margin-top: 17px;
-                    .label{
+                    justify-content: center;
+
+                    .label {
                       width: 61px;
                       font-size: 12px;
                       color: #B8B8B8;
                     }
-                    .dataValue{
+
+                    .dataValue {
                       width: 137px;
                       font-size: 12px;
                     }
@@ -429,6 +485,7 @@
             }
 
           }
+
           .nameBox {
             width: 220px;
             height: 114px;
@@ -506,10 +563,11 @@
           }
         }
       }
-      .bottomMsg{
+
+      .bottomMsg {
         width: 1470px;
         text-align: center;
-        margin:10px 0;
+        margin: 10px 0;
       }
     }
   }

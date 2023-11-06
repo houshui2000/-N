@@ -24,12 +24,6 @@ import { removeItem } from '@/utils/storage.js'
 
 const { useUsersStore, loginStore } = useStore()
 const handleRealName = async () => {
-  // console.log(props.info)
-  // const res = await realNamePost(props.info)
-  // console.log(res)
-  // if (res.code===200){
-  //
-  // }
   useUsersStore.authenticationConFirmPopup = false
   useUsersStore.authenticationPopup = false
   useUsersStore.realNameZFBPopup = true
@@ -48,9 +42,6 @@ const handleRealName = async () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Alibaba PuHuiTi';
-  font-weight: 400;
-  color: white;
 
   .content {
     width: 398px;
@@ -61,7 +52,7 @@ const handleRealName = async () => {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    backdrop-filter: blur(2px);
     .text {
       width: 600px;
       height: 26px;
@@ -128,7 +119,7 @@ const handleRealName = async () => {
         height: 34px;
         line-height: 34px;
         text-align: center;
-        background: url($gxsauthenticationConfirmPopupBtn) #f7ba2a no-repeat center;
+        background: url($gxsauthenticationConfirmPopupBtn) no-repeat center;
         background-size: contain;
         cursor: pointer;
       }

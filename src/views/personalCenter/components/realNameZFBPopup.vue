@@ -2,7 +2,9 @@
   <div id='realNameZFBPopup'>
     <div class='content'>
       <div class='close' @click='useUsersStore.realNameZFBPopup=false'></div>
-      <div class='title'>实名认证</div>
+      <div class='text'>实名认证
+        <div class='border'></div>
+      </div>
       <div class='message'>请打开支付宝扫一扫下方二维码，完成实名认证</div>
       <div class='qrcodeBox'>
         <div class='qrcode'>
@@ -15,39 +17,43 @@
 </template>
 
 <script setup>
-import { reactive, ref,onMounted,nextTick } from 'vue'
+import { ref, onMounted,onUnmounted, nextTick } from 'vue'
 import { useStore } from '@/pinia/index.js'
-import { codeloginmobile } from '@/network/user.js'
-import { passwordEditCode, realNamePost, updatePassword } from '@/network/personalCenter.js'
-import { removeItem } from '@/utils/storage.js'
-import QRCode from 'qrcodejs2-fix';//在需要使用的vue文件中导入即可
+import QRCode from 'qrcodejs2-fix'
+import { getRealName } from '@/network/personalCenter.js'
+//在需要使用的vue文件中导入即可
 
 const { useUsersStore, loginStore } = useStore()
-// let props = defineProps(['info'])
-let codeUrl = ref('')
+const getTime=ref(null)
 const handleRealName = async () => {
-  const res = await realNamePost(useUsersStore.passwordEdit)
-  if (res.code === 200) {
-    codeUrl.value=res.data
-    new QRCode(document.getElementById("realNameQRCodeBox"), {
-      //需要编码的文字内容或者URL
-      text: codeUrl.value,
-      width: 150, //二维码宽
-      height: 150,//二维码高
-      colorLight:'transparent',
-      colorDark:'#D9D9D9',
-      correctLevel:0
-    });
-  }
+  new QRCode(document.getElementById('realNameQRCodeBox'), {
+    //需要编码的文字内容或者URL
+    text: useUsersStore.realNameQRCode,
+    width: 140, //二维码宽
+    height: 140,//二维码高
+    colorLight: 'transparent',
+    colorDark: '#D9D9D9',
+    correctLevel: 0
+  })
+  getTime.value=setInterval( async ()=>{
+    const res=await getRealName(useUsersStore.passwordEdit)
+    if(res.code===200){
 
+      // await useUsersStore.handleUserInfo()
+      // useUsersStore.realNameZFBPopup=false
+    }
+  },2000)
 }
-onMounted(()=>{
-  nextTick(()=>{
+onMounted(() => {
+  nextTick(() => {
     handleRealName()
   })
 
-})
 
+})
+onUnmounted(()=>{
+  clearInterval(getTime.value);
+})
 </script>
 
 <style lang='scss' scoped>
@@ -63,13 +69,11 @@ onMounted(()=>{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Alibaba PuHuiTi";
-    font-weight: 700;
     color: white;
     font-size: 12px;
 
     .content {
-      width: 600px;
+      width: 554px;
       height: 400px;
       background: url($gxsrealNameZFBPopup) no-repeat center;
       background-size: contain;
@@ -77,6 +81,7 @@ onMounted(()=>{
       display: flex;
       flex-direction: column;
       align-items: center;
+      backdrop-filter: blur(2px);
 
       .close {
         width: 20px;
@@ -89,8 +94,25 @@ onMounted(()=>{
         cursor: pointer;
       }
 
-      .title {
-        margin-top: 25px;
+      .text {
+        width: 600px;
+        height: 26px;
+        font-size: 20px;
+        font-weight: 500;
+        text-align: center;
+        margin-top: 32px;
+        position: relative;
+
+        .border {
+          width: 50px;
+          height: 2px;
+          background: url($gxspupupborderBottom) no-repeat center;
+          background-size: contain;
+          position: absolute;
+          margin-left: -25px;
+          left: 50%;
+          margin-top: 3px;
+        }
       }
 
       .message {
@@ -102,8 +124,8 @@ onMounted(()=>{
         height: 186px;
         background-clip: padding-box, border-box;
         background-origin: padding-box, border-box;
-        background:url($gxsborderrealNameqrcode) no-repeat center;
-        background-size:contain;
+        background: url($gxsborderrealNameqrcode) no-repeat center;
+        background-size: contain;
         overflow: hidden;
         margin-top: 39px;
         display: flex;
@@ -115,9 +137,9 @@ onMounted(()=>{
           height: 168px;
           background-clip: padding-box, border-box;
           background-origin: padding-box, border-box;
-         overflow: hidden;
-          background:url($gxsborderrealNameqrcode2) no-repeat center;
-          background-size:contain;
+          overflow: hidden;
+          background: url($gxsborderrealNameqrcode2) no-repeat center;
+          background-size: contain;
           display: flex;
           justify-content: center;
           align-items: center;
