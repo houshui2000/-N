@@ -175,7 +175,7 @@ watch(
   z-index: 2;
   border-radius: 4px;
   background: rgba(0, 0, 0, 0.7);
-  font: normal normal 400 12px 'Microsoft YaHei';
+  font: normal normal 400 12px 'PingFang SC';
   @include Myflex();
   width: 70px;
   height: 30px;
@@ -238,11 +238,11 @@ section {
       width: 222px;
       height: 100%;
       .title {
-        font: normal normal 700 16px 'Microsoft YaHei';
+        font: normal normal 700 16px 'PingFang SC';
       }
       .center {
         margin: 9px 0;
-        font: normal normal 400 14px 'Microsoft YaHei';
+        font: normal normal 400 14px 'PingFang SC';
       }
       .cardJ {
         // background-color: salmon;
@@ -259,7 +259,7 @@ section {
           overflow: hidden;
         }
         .cardJ_foter {
-          font: normal normal 400 12px 'Microsoft YaHei';
+          font: normal normal 400 12px 'PingFang SC';
         }
       }
     }

@@ -112,11 +112,12 @@
             color: #97A5E1;
           }
         }
-        .copyIcon{
+
+        .copyIcon {
           width: 22px;
           height: 22px;
-          background:url($gxsPersonalCopyIcon) no-repeat center;
-          background-size:contain;
+          background: url($gxsPersonalCopyIcon) no-repeat center;
+          background-size: contain;
           cursor: pointer;
         }
 

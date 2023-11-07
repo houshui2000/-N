@@ -144,7 +144,7 @@ watch(
 .top {
   position: relative;
   text-align: center;
-  font: normal normal 700 16px 'Microsoft YaHei';
+  font: normal normal 700 16px 'PingFang SC';
   color: white;
   .close {
     cursor: pointer;
@@ -189,7 +189,7 @@ section {
       height: 100%;
       padding: 0 0 0 35px;
       > p {
-        font: normal normal 700 14px 'Microsoft YaHei';
+        font: normal normal 700 14px 'PingFang SC';
         color: white;
       }
       .bianhao {
@@ -204,7 +204,7 @@ section {
             @include Myflex(flex-end);
           }
           &:last-child {
-            font: normal normal 400 14px 'Microsoft YaHei';
+            font: normal normal 400 14px 'PingFang SC';
             color: white;
             border-radius: 3.256px;
             width: calc(100% - 28px);
@@ -221,7 +221,7 @@ section {
         background: rgba(197, 141, 57, 0.5);
         @include Myflex();
         color: rgba(255, 206, 0, 0.93);
-        font: normal normal 400 14px 'Microsoft YaHei';
+        font: normal normal 400 14px 'PingFang SC';
         span {
           display: block;
           line-height: 24px;
@@ -285,7 +285,7 @@ section {
         margin-right: 13px;
       }
       > p {
-        font: normal normal 400 12px 'Microsoft YaHei';
+        font: normal normal 400 12px 'PingFang SC';
         color: white;
       }
       .radio_article {
@@ -330,7 +330,7 @@ section {
   height: 45.778px;
   // padding: 0px 46.952px 0px 46px;
   @include Myflex();
-  font: normal normal 700 16px 'Microsoft YaHei';
+  font: normal normal 700 16px 'PingFang SC';
   margin: auto;
   color: white;
 }

@@ -64,7 +64,7 @@ const listArr = ref({})
 const listOfInformationArr = ref([])
 const init = async () => {
   const res = await shopnewscategory()
-  nameRef.value = res.data[3].id
+  nameRef.value = res.data[0].id
   Fenye.value.total = res.data.total
   listArr.value = res.data
 
@@ -86,7 +86,7 @@ const listOfInformation = async () => {
 .information {
   margin: auto;
   padding-top: 32px;
-  width: 1473px;
+  width: 100%;
   .zixun {
     height: 36px;
     width: 138px;
@@ -109,7 +109,6 @@ const listOfInformation = async () => {
   }
   section {
     width: 1470px;
-
     margin: 30px auto;
     .section_top {
       // @include bordergradientMY(

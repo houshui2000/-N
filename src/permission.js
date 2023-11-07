@@ -1,7 +1,7 @@
-import router from "@/router";
+import { router, routes } from "@/router";
 import { getItem } from '@/utils/storage.js'
 import { useStore } from '@/pinia'
-import { NoLogin } from '@/router/InputTransfer.js'
+// import { NoLogin } from '@/router/InputTransfer.js'
 
 
 
@@ -16,7 +16,7 @@ const tie = (arr) => {
     }
   })
 }
-tie(NoLogin)
+tie(routes)
 
 router.beforeEach(async (to, from, next) => {
 

@@ -55,21 +55,20 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref,watchEffect,nextTick } from 'vue'
-import { useRoute } from 'vue-router'
-import router from '@/router/index.js'
+import { onMounted, reactive, ref, watchEffect, nextTick } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useStore } from '@/pinia/index.js'
-import { getItem, removeItem } from '@/utils/storage.js'
+import { removeItem } from '@/utils/storage.js'
 import passwordPopup from './components/passwordPopup.vue'
 import authenticationPopup from './components/authenticationPopup.vue'
 import realNameZFBPopup from './components/realNameZFBPopup.vue'
 import { userlogout } from '@/network/userInterface.js'
-import { Plus } from '@element-plus/icons-vue'
 import { uploadavatar } from '@/network/userInterface'
 import MessageBoxVue from '@/components/MessageBox/index.js'
 
 const { loginStore, useUsersStore } = useStore()
 const route = useRoute()
+const router = useRouter()
 const imageUrl = ref('')
 let indexActive = ref(0)
 let tabList = reactive([
@@ -99,7 +98,7 @@ const handleTabShow = (item, index) => {
       })
     }
     indexActive.value = index
-     router.push(item.pushLink)
+    router.push(item.pushLink)
   }
   let tabDom = document.querySelector('.icons')
   let tab = tabDom.getBoundingClientRect()
@@ -117,21 +116,20 @@ window.addEventListener('resize', function () {
 })
 watchEffect(() => {
   console.log(route.name)
-  indexActive.value=-1
-  if(route.name==='assetLibrary'){
-    nextTick(()=>{
-      handleTabShow(tabList[0],0)
-    })
-
-  }
-  if(route.name==='orderForm'){
-    nextTick(()=>{
-      handleTabShow(tabList[1],1)
+  indexActive.value = -1
+  if (route.name === 'assetLibrary') {
+    nextTick(() => {
+      handleTabShow(tabList[0], 0)
     })
   }
-  if(route.name==='personal'){
-    nextTick(()=>{
-      handleTabShow(tabList[2],2)
+  if (route.name === 'orderForm') {
+    nextTick(() => {
+      handleTabShow(tabList[1], 1)
+    })
+  }
+  if (route.name === 'personal') {
+    nextTick(() => {
+      handleTabShow(tabList[2], 2)
     })
   }
 })
@@ -146,7 +144,8 @@ onMounted(() => {
 })
 //退出登录
 const handleLoginExit = async () => {
-  let result = await userlogout()
+  await userlogout()
+  // let result =
   removeItem('token')
   loginStore.token = ''
   loginStore.userId = ''

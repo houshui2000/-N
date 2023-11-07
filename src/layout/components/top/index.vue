@@ -1,29 +1,29 @@
 <template>
-  <div id='navTop'>
+  <div id="navTop">
     <!--  左边  -->
-    <div class='navContent-bottom' ref='navBorder'></div>
-    <div class='left'>
-      <div class='logo'>
-        <div class='logoImg'></div>
+    <div class="navContent-bottom" ref="navBorder"></div>
+    <div class="left">
+      <div class="logo">
+        <div class="logoImg"></div>
       </div>
-      <div class='navContent'>
+      <div class="navContent">
         <div
-          class='navContent-box'
-          :data-dom='`slide${item.name}`'
-          :class='{ active: navIndex === item.name }'
-          v-for='(item, index) in navList'
-          :key='item.name'
-          ref='navContentbox'
-          @click='handleNavOpen(item, index)'
+          class="navContent-box"
+          :data-dom="`slide${item.name}`"
+          :class="{ active: navIndex === item.name }"
+          v-for="(item, index) in navList"
+          :key="item.name"
+          ref="navContentbox"
+          @click="handleNavOpen(item, index)"
         >
-          <span v-if='item.meta.immediate'>{{ item.meta.name }}</span>
+          <span v-if="item.meta.immediate">{{ item.meta.name }}</span>
         </div>
       </div>
     </div>
     <!--  右边  -->
-    <div class='right'>
+    <div class="right">
       <!-- <div class="search" @click="handleSeachShow"></div> -->
-      <div @click="router.push('/app')" class='download'></div>
+      <div @click="router.push('/app')" class="download"></div>
       <!-- <div class="cardMoneyBox">
         <div class="cardMoney"></div>
         <div class="fontsize">{{ useUsersStore.userInfo.dbalance }}</div>
@@ -35,40 +35,41 @@
         </div>
         <div class="fontsize">{{ useUsersStore.userInfo.dbalance }}</div>
       </div> -->
-      <div class='fen'></div>
-      <div class='adminUser'>
-        <div class='uploadText'>
-          <div @click='handleLogin' v-if='!loginStore.token'>登录</div>
-          <div v-if='loginStore.token'>{{ useUsersStore.userInfo.nickname }}</div>
+      <div class="fen"></div>
+      <div class="adminUser">
+        <div class="uploadText">
+          <div @click="handleLogin" v-if="!loginStore.token">
+            <div class="login">登录</div>
+          </div>
+          <div v-if="loginStore.token">{{ useUsersStore.userInfo.nickname }}</div>
         </div>
-        <div class='uploadImg' v-if='loginStore.token'>
-          <div class='dian'></div>
-          <div class='uploadPhoto'>
-            <img v-if='useUsersStore.userInfo.avatar' :src='`${loginStore.cossUrl}${useUsersStore.userInfo.avatar}`' />
+        <div class="uploadImg" v-if="loginStore.token">
+          <div class="dian"></div>
+          <div class="uploadPhoto">
+            <img v-if="useUsersStore.userInfo.avatar" :src="`${useUsersStore.userInfo.avatar}`" />
           </div>
         </div>
-        <div class='uploadContent' v-if='loginStore.token'>
-          <div class='uploadBox'>
-            <div class='uploadBox-img'>
-              <div class='avatarBox'>
-                <img :src='useUsersStore.userInfo.avatar' alt=''>
+        <div class="uploadContent" v-if="loginStore.token">
+          <div class="uploadBox">
+            <div class="uploadBox-img">
+              <div class="avatarBox">
+                <img :src="useUsersStore.userInfo.avatar" alt="" />
               </div>
             </div>
-            <div class='nickName'>{{ useUsersStore.userInfo.nickname }}</div>
+            <div class="nickName">{{ useUsersStore.userInfo.nickname }}</div>
           </div>
-          <div class='navBox'>
-            <div class='navDom' @click='handleNavDom(item.pushShow)' v-for='(item,index) in nav'>
-              <div class='icon'></div>
-              <div class='text'>{{ item.name }}</div>
-              <div class='vector'></div>
+          <div class="navBox">
+            <div class="navDom" @click="handleNavDom(item.pushShow)" v-for="(item, index) in nav" :key="index">
+              <div class="icon"></div>
+              <div class="text">{{ item.name }}</div>
+              <div class="vector"></div>
             </div>
           </div>
-          <div class='exit'>
-            <div @click="handleLoginExit()" style='display: flex;align-items: center'>
-              <div class='icon'></div>
+          <div class="exit">
+            <div @click="handleLoginExit()" style="display: flex; align-items: center">
+              <div class="icon"></div>
               退出登录
             </div>
-
           </div>
           <!--          <div class="promotionBtn"></div>-->
           <!--          <div class="IconBox">-->
@@ -97,7 +98,6 @@ import { useStore } from '@/pinia'
 import { removeItem } from '@/utils/storage.js'
 import { userlogout } from '@/network/userInterface.js'
 import { ToLogin, NoLogin } from '@/router/InputTransfer.js'
-// import router from '@/router/index.js'
 import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
@@ -134,12 +134,12 @@ let nav = ref([
     pushShow: '/personal'
   },
   {
-    name:'资产库',
-    pushShow:'/assetLibrary'
+    name: '资产库',
+    pushShow: '/assetLibrary'
   },
   {
-    name:'订单明细',
-    pushShow:'/orderForm'
+    name: '订单明细',
+    pushShow: '/orderForm'
   }
 ])
 // 个人中心跳转
@@ -165,8 +165,7 @@ const handleLoginExit = async () => {
 }
 //跳转个人中心
 
-onMounted(() => {
-})
+onMounted(() => {})
 const navBorder = ref(null)
 const navContentbox = ref([])
 /**动态路由提示切换 */
@@ -198,7 +197,7 @@ watch(
   }
 )
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #navTop {
   // min-width: 1920px;
   width: 100%;
@@ -388,9 +387,18 @@ watch(
         font-size: 14px;
         text-align: center;
         color: white;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        // overflow: hidden;
+        // white-space: nowrap;
+        // text-overflow: ellipsis;
+        @include Myflex();
+        .login {
+          width: 74px;
+          height: 30px;
+          border-radius: 2px;
+
+          @include bordergradientMY(linear-gradient(90deg, rgba(46, 65, 254, 0.8) 0%, rgba(223, 0, 200, 0.9) 100%));
+          @include Myflex();
+        }
       }
 
       .uploadImg {
@@ -463,7 +471,8 @@ watch(
             background-clip: padding-box, border-box;
             background-origin: padding-box, border-box;
             border: 2px solid transparent;
-            background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(142.59deg, #315EFF 30.5%, #C90091 85.93%);
+            background-image: linear-gradient(to top, #070d13, #070d13),
+              linear-gradient(142.59deg, #315eff 30.5%, #c90091 85.93%);
             border-radius: 50%;
             margin-left: 20px;
             display: flex;
@@ -481,7 +490,6 @@ watch(
               }
             }
           }
-
 
           .nickName {
             width: 198px;
@@ -507,7 +515,7 @@ watch(
             align-items: center;
             border-radius: 6px;
             margin-top: 8px;
-            transition: all .3s;
+            transition: all 0.3s;
             cursor: pointer;
 
             &:hover {
@@ -548,10 +556,9 @@ watch(
               background: url($gxsvectorIcon) no-repeat center;
               background-size: contain;
             }
-
           }
         }
-        .exit{
+        .exit {
           position: absolute;
           bottom: 0;
           width: 240px;
@@ -562,7 +569,7 @@ watch(
           font-size: 14px;
           font-weight: 400;
           color: #999999;
-          .icon{
+          .icon {
             width: 20px;
             height: 20px;
             background: url($gxsexitIcon) no-repeat center;
@@ -596,7 +603,6 @@ watch(
             }
 
             &:nth-child(2) .icon {
-
             }
 
             .icon {

@@ -87,14 +87,14 @@ section {
   padding: 0 51px;
   %ziti {
     color: #fff;
-    font: normal normal 400 14px 'Microsoft YaHei';
+    font: normal normal 400 14px 'PingFang SC';
   }
   .img {
     width: 139.394px;
     height: 133px;
   }
   .spice {
-    font: normal normal 700 20px 'Microsoft YaHei';
+    font: normal normal 700 20px 'PingFang SC';
     color: white;
     margin-top: 33px;
   }
@@ -104,7 +104,7 @@ section {
     margin-top: 10px;
   }
   .shuomimnh {
-    font: normal normal 400 12px 'Microsoft YaHei';
+    font: normal normal 400 12px 'PingFang SC';
     margin-top: 27px;
     color: rgba(255, 255, 255, 0.5);
   }

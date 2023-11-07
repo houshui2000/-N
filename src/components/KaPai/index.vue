@@ -34,7 +34,7 @@
   </div>
 </template>
 <script setup>
-import SvgIcon from '@/components/SvgIcon/index.vue'
+// import SvgIcon from '@/components/SvgIcon/index.vue'
 const props = defineProps({
   // price: {
   //   type: String,
@@ -119,14 +119,14 @@ const props = defineProps({
         border-radius: 6px;
         @include Myflex(space-between, flex-start);
         span {
-          font: normal normal 800 16px 'HYYakuHei';
+          font: normal normal 800 16px 'PingFang SC';
         }
         .mounch {
           margin: 0 9px 0 1px;
         }
       }
       .right_bott {
-        font: normal normal 800 14px 'HYYakuHei';
+        font: normal normal 800 14px 'PingFang SC';
       }
     }
     // .kia_bort_bot {

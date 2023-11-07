@@ -183,14 +183,14 @@ const onePieceBuyin = () => {
     .S_L_Top {
       > p {
         color: white;
-        font: normal normal 700 23px 'Microsoft YaHei';
+        font: normal normal 700 23px 'PingFang SC';
       }
       .S_l_center {
         @include Myflex(flex-start);
         flex-wrap: wrap;
         > p {
           position: relative;
-          font: normal normal 400 14px 'Microsoft YaHei';
+          font: normal normal 400 14px 'PingFang SC';
           color: rgba(235, 235, 235, 1);
           margin-right: 12px;
           margin-top: 21px;
@@ -220,7 +220,7 @@ const onePieceBuyin = () => {
         height: 38px;
         color: white;
         @include Myflex();
-        font: normal normal 600 14px 'Alibaba PuHuiTi';
+        font: normal normal 600 14px 'PingFang SC';
         border-radius: 5.36px;
         background: linear-gradient(-5deg, #1615f2 15.76%, #b8009a 79.59%);
       }
@@ -234,7 +234,7 @@ const onePieceBuyin = () => {
   > p {
     background: linear-gradient(90deg, rgba(235, 87, 220, 0.4) 30%, rgba(65, 81, 253, 0) 100%);
     width: 138px;
-    font: normal normal 600 14px 'Microsoft YaHei';
+    font: normal normal 600 14px 'PingFang SC';
     color: white;
     height: 32px;
     transform: translateX(85px);
@@ -329,7 +329,7 @@ const onePieceBuyin = () => {
           }
         }
         .mounch {
-          font: normal normal 800 14px 'HYYakuHei';
+          font: normal normal 800 14px 'PingFang SC';
           color: white;
           border-radius: 4px;
           border: 1px solid #000;

@@ -73,8 +73,11 @@ export default defineConfig((mode) => {
         plugins: [
           postCssPxToRem({
             rootValue: 10,
+            unitPrecision: 5,
             propList: ['*'],
-            mediaQuery: true
+            minPixelValue: 1,
+            mediaQuery: true,
+            // exclude: ['node_modules']
           })
         ],
         // plugins: [loder_pxtovw]

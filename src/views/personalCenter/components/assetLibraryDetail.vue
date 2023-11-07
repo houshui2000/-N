@@ -88,8 +88,8 @@ section {
   overflow: hidden;
   // padding: 0 51px;
   @include bordergradientMY(
-      linear-gradient(180deg, rgba(158, 100, 218, 0.5) 0%, rgba(93, 141, 218, 0.3) 100%),
-      linear-gradient(180deg, rgba(18, 39, 67, 0.9) 0%, rgba(3, 13, 21, 0.9) 100%)
+    linear-gradient(180deg, rgba(158, 100, 218, 0.5) 0%, rgba(93, 141, 218, 0.3) 100%),
+    linear-gradient(180deg, rgba(18, 39, 67, 0.9) 0%, rgba(3, 13, 21, 0.9) 100%)
   );
   .close {
     cursor: pointer;
@@ -105,7 +105,7 @@ section {
     left: 50%;
     top: 30px;
     transform: translateY(-50%);
-    font: normal normal 700 20px 'Microsoft YaHei';
+    font: normal normal 700 20px 'PingFang SC';
     color: white;
     z-index: 9;
     &::after {
@@ -127,12 +127,12 @@ section {
     border-right: 0;
     padding: 90px 67px 0 67px;
     > p {
-      font: normal normal 700 16px 'Microsoft YaHei';
+      font: normal normal 700 16px 'PingFang SC';
       color: white;
     }
     .ziliao {
       margin-top: 29px;
-      font: normal normal 400 12px 'Microsoft YaHei';
+      font: normal normal 400 12px 'PingFang SC';
       color: white;
       opacity: 0.8;
       .zi_xin {

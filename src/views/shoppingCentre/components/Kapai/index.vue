@@ -11,6 +11,14 @@
       <!-- 商城卡片 -->
       <div class="shoppingCentre">
         <div
+          v-html="
+            props.KaParVueitem.onSellingCount > 0
+              ? `在售<span style='margin-left: 5px;' >${props.KaParVueitem.onSellingCount}</span>`
+              : ` 已售罄`
+          "
+          class="right_bott"
+        ></div>
+        <div
           class="left_bott"
           :class="{
             none: props.KaParVueitem.onSellingCount === 0
@@ -20,14 +28,6 @@
           <span class="mounch">{{ props.KaParVueitem.minPrice }}</span>
           <span>起</span>
         </div>
-        <div
-          v-html="
-            props.KaParVueitem.onSellingCount > 0
-              ? `在售<span style='margin-left: 5px;' >${props.KaParVueitem.onSellingCount}</span>`
-              : ` 已售罄`
-          "
-          class="right_bott"
-        ></div>
       </div>
       <!-- 商城卡片 end-->
     </div>
@@ -124,14 +124,14 @@ const props = defineProps({
         border-radius: 6px;
         @include Myflex(space-between);
         span {
-          font: normal normal 800 16px 'HYYakuHei';
+          font: normal normal 800 16px 'PingFang SC';
         }
         .mounch {
           margin: 0 9px 0 1px;
         }
       }
       .right_bott {
-        font: normal normal 500 14px 'HYYakuHei';
+        font: normal normal 500 14px 'PingFang SC';
       }
     }
   }

@@ -109,7 +109,7 @@ section {
   }
   .title {
     padding: 50px 49px 40px 49px;
-    font: normal normal 400 14px 'Microsoft YaHei';
+    font: normal normal 400 14px 'PingFang SC';
     color: rgba(235, 235, 235, 1);
     text-align: center;
   }
@@ -132,7 +132,7 @@ section {
   .jiehsoa {
     width: 315px;
     height: 51px;
-    font: normal normal 400 12px 'Microsoft YaHei';
+    font: normal normal 400 12px 'PingFang SC';
     color: rgba(235, 235, 235, 1);
     margin: auto;
     -webkit-line-clamp: 3;

@@ -22,14 +22,14 @@
     <!--  -->
     <div class="footer_borrom">
       <Router-link v-for="(item, index) in helpCenterArrVue" :key="index" :to="`/helpCenter/${item.path}`">
-        <div class="tiaozhuan">
+        <div :style="{ borderRight: index == helpCenterArrVue.length - 1 ? 0 : '' }" class="tiaozhuan">
           <!-- :style="{ borderRight: index == helpCenterArrVue.length - 1 ? 0 : '' }" -->
           {{ item.meta.name }}
         </div>
       </Router-link>
-      <Router-link to="/information">
+      <!-- <Router-link to="/information">
         <div style="border: 0" class="tiaozhuan">资讯信息</div>
-      </Router-link>
+      </Router-link> -->
     </div>
   </footer>
 </template>

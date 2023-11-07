@@ -1,44 +1,52 @@
 <template>
-  <div id='login' v-if='loginStore.login==="32424"'>
-    <div class='content'>
-      <div class='close' @click='()=>loginStore.login=false'>X</div>
-      <div class='contentLogin'>
-        <div class='left'>
-
-        </div>
-        <div class='right'>
-          <div class='title'>{{ state ? '账号密码登录' : '手机号验证码登录' }}</div>
-          <div class='switch' @click='handleSwitchBtn'>切换</div>
-          <div class='inputBox'>
-            <div class='inputs' v-if='!state' >
-              <el-input v-model='phone' placeholder='请输入手机号' oninput="if(value.length > 11) value=value.slice(0, 11)" type='number' />
+  <div id="login" v-if="loginStore.login === '32424'">
+    <div class="content">
+      <div class="close" @click="() => (loginStore.login = false)">X</div>
+      <div class="contentLogin">
+        <div class="left"></div>
+        <div class="right">
+          <div class="title">{{ state ? '账号密码登录' : '手机号验证码登录' }}</div>
+          <div class="switch" @click="handleSwitchBtn">切换</div>
+          <div class="inputBox">
+            <div class="inputs" v-if="!state">
+              <el-input
+                v-model="phone"
+                placeholder="请输入手机号"
+                oninput="if(value.length > 11) value=value.slice(0, 11)"
+                type="number"
+              />
             </div>
-            <div class=''></div>
-            <div class='inputs' v-if='!state'>
-              <el-input v-model='code' type='number' oninput="if(value.length > 6) value=value.slice(0, 6)"  placeholder='请输入验证码'/>
-              <div class='text' @click='handleCodeTime()'>{{ codeTime >= 0 ? codeTime + 's' : '获取验证码' }}</div>
+            <div class=""></div>
+            <div class="inputs" v-if="!state">
+              <el-input
+                v-model="code"
+                type="number"
+                oninput="if(value.length > 6) value=value.slice(0, 6)"
+                placeholder="请输入验证码"
+              />
+              <div class="text" @click="handleCodeTime()">{{ codeTime >= 0 ? codeTime + 's' : '获取验证码' }}</div>
             </div>
-            <div class='inputs' v-if='state'>
-              <el-input v-model='admin' placeholder='请输入账号' type='number' />
+            <div class="inputs" v-if="state">
+              <el-input v-model="admin" placeholder="请输入账号" type="number" />
             </div>
-            <div class='inputs' v-if='state'>
-              <el-input v-model='password' placeholder='请输入密码' />
+            <div class="inputs" v-if="state">
+              <el-input v-model="password" placeholder="请输入密码" />
             </div>
           </div>
-          <div class='registerBox'>
-            <div v-if='state' @click="handleLoginBtn('retrievePassword')">忘记密码</div>
-            <div v-if='state' @click="handleLoginBtn('register')">没账号？去注册</div>
+          <div class="registerBox">
+            <div v-if="state" @click="handleLoginBtn('retrievePassword')">忘记密码</div>
+            <div v-if="state" @click="handleLoginBtn('register')">没账号？去注册</div>
           </div>
-          <div class='loginBtn' v-if='!state' @click="handleLoginBtn('phone')">立即登录</div>
-          <div class='loginBtn' v-if='state' @click="handleLoginBtn('password')">立即登录</div>
-<!--          <div class='otherLoginBox'>-->
-<!--            <div class='wxLogin' @click="handleLoginBtn('wx')">微信登录</div>-->
-<!--            <div class='qqLogin' @click="handleLoginBtn('qq')">QQ登录</div>-->
-<!--          </div>-->
+          <div class="loginBtn" v-if="!state" @click="handleLoginBtn('phone')">立即登录</div>
+          <div class="loginBtn" v-if="state" @click="handleLoginBtn('password')">立即登录</div>
+          <!--          <div class='otherLoginBox'>-->
+          <!--            <div class='wxLogin' @click="handleLoginBtn('wx')">微信登录</div>-->
+          <!--            <div class='qqLogin' @click="handleLoginBtn('qq')">QQ登录</div>-->
+          <!--          </div>-->
         </div>
-<!--        <div class='right'>-->
-<!--          <registerPopup/>-->
-<!--        </div>-->
+        <!--        <div class='right'>-->
+        <!--          <registerPopup/>-->
+        <!--        </div>-->
       </div>
     </div>
   </div>
@@ -48,48 +56,47 @@
 import { useStore } from '@/pinia'
 import LoginQQ from '@/components/Login/component/Loginqq.vue'
 // import registerPopup from '@/components/Login/component/registerPopup.vue'
-import { ref,reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import { codeloginmobile, logincode, loginmobile } from '@/network/user.js'
 import { setItem } from '@/utils/storage.js'
 import { registermobile } from '@/network/userInterface.js'
 
-const { loginStore,useUsersStore } = useStore()
+const { loginStore, useUsersStore } = useStore()
 let state = ref(false) //切换按钮 false手机号 、true密码账号
-let phone = ref('15650053503')
-let code = ref('123456')
+let phone = ref('')
+let code = ref('')
 let admin = ref('')
 let password = ref('')
 let codeTime = ref(-1)
 // let list=reactive([{},{}])
 //登录按钮
 const handleLoginBtn = async (res) => {
-  if(res==='wx' || res==='qq' || res==='register' || res==='retrievePassword') loginStore.registerState = res
-  if(res==='phone'){
-    let result = await logincode({mobile:phone.value,code:code.value})
-    console.log("token",result)
-    if (result.code===200){
-      setItem('token',result.data.token)
-      loginStore.token=result.data.token
-      setItem('userId',result.data.userId)
-      loginStore.userId=result.data.userId
-      loginStore.login=false
+  if (res === 'wx' || res === 'qq' || res === 'register' || res === 'retrievePassword') loginStore.registerState = res
+  if (res === 'phone') {
+    let result = await logincode({ mobile: phone.value, code: code.value })
+    console.log('token', result)
+    if (result.code === 200) {
+      setItem('token', result.data.token)
+      loginStore.token = result.data.token
+      setItem('userId', result.data.userId)
+      loginStore.userId = result.data.userId
+      loginStore.login = false
       await useUsersStore.handleUserInfo()
-    }else{
+    } else {
       alert(result.msg)
     }
-
   }
-  if(res==='password'){
-    let result =await loginmobile({mobile:admin.value,password:password.value})
-    console.log("token",result)
-    if (result.code===200){
-      setItem('token',result.data.token)
-      loginStore.token=result.data.token
-      setItem('userId',result.data.userId)
-      loginStore.userId=result.data.userId
-      loginStore.login=false
+  if (res === 'password') {
+    let result = await loginmobile({ mobile: admin.value, password: password.value })
+    console.log('token', result)
+    if (result.code === 200) {
+      setItem('token', result.data.token)
+      loginStore.token = result.data.token
+      setItem('userId', result.data.userId)
+      loginStore.userId = result.data.userId
+      loginStore.login = false
       await useUsersStore.handleUserInfo()
-    }else{
+    } else {
       alert(result.msg)
     }
   }
@@ -111,7 +118,7 @@ const handleCodeTime60 = () => {
   }
 }
 //验证码组件
-const handleCodeTime = async() => {
+const handleCodeTime = async () => {
   if (!state.value) {
     //手机号登录
     const phoneRegex = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
@@ -120,25 +127,19 @@ const handleCodeTime = async() => {
       if (codeTime.value >= 0) {
         return
       }
-      const result =await codeloginmobile({mobile:phone.value})
+      const result = await codeloginmobile({ mobile: phone.value })
       codeTime.value = 60
       setTimeout(handleCodeTime60, 1000)
-
     } else {
       console.log('手机号码格式不正确')
     }
-
   } else {
-//密码登录
+    //密码登录
   }
-
-
 }
-
-
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #login {
   position: fixed;
   top: 0;
@@ -182,7 +183,6 @@ const handleCodeTime = async() => {
           width: 350px;
           height: 360px;
           background: green;
-
         }
         .right {
           width: 450px;
@@ -231,7 +231,6 @@ const handleCodeTime = async() => {
                 text-align: right;
               }
             }
-
           }
 
           .registerBox {
@@ -263,7 +262,8 @@ const handleCodeTime = async() => {
             justify-content: center;
             align-items: center;
 
-            .wxLogin, .qqLogin {
+            .wxLogin,
+            .qqLogin {
               width: 100px;
               height: 40px;
               border: 1px solid #ccc;
@@ -274,15 +274,9 @@ const handleCodeTime = async() => {
               line-height: 40px;
             }
           }
-
         }
-
-
       }
     }
   }
-
-
-
 }
 </style>

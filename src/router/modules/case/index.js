@@ -59,23 +59,13 @@ export const childrenCase = [
       ...helpCenterArr
     ]
   },
-  {
-    path: '/app',
-    name: 'app',
-    component: () => import('@/views/app/index.vue'),
-    meta: {
-      name: 'app下载',
-      immediate: false, // 路由显示
-      gundong: true, // 实时左侧滚动组件false 开启，true关闭
-      scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
-    }
-  },
+ 
   {
     path: '/information',
     name: 'information',
     component: () => import('@/views/information/index.vue'),
     meta: {
-      name: '资讯信息',
+      name: '首页',
       immediate: true, // 路由显示
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
       scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭

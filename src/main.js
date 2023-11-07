@@ -2,7 +2,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import Config from '@/config/index.js'
 import '@/styles/index.scss' // global css
-import router from './router/index.js'
+import { router } from './router/index.js'
+
 import { createPinia } from 'pinia'
 import './permission'
 import ElementPlus from 'element-plus'
@@ -28,4 +29,4 @@ app.use(componentPligin)
 app.use(pinia); // 注册 pinia
 app.mount('#app')
 
-// HYYakuHei   Alibaba PuHuiTi
+// PingFang SC   Alibaba PuHuiTi
