@@ -12,64 +12,68 @@ export const userDataInfo = defineStore('userData', {
   state: () => {
     return {
       userInfo: {
-        "username": "",
-        "mobile": "",
-        "nickname": "",
-        "avatar": null,
-        "invitationCode": "",
-        "ownerInvitationCode": "",
-        "wxNickname": "",
-        "qqNickname": "",
-        "steamUrl": "",
-        "transformPlatformCode": null,
-        "dbalance": "",
-        "cbalance": "",
-        "boundQQ": false,
-        "realAuthentication": false,
-        "boundWx": false
+        'avatar': null,
+        'bind': false,
+        'boundQQ': false,
+        'boundWx': false,
+        'cBalance': '0.00',
+        'changedInvitationCode': false,
+        'dBalance': '0.00',
+        'invitationCode': null,
+        'mobile': '',
+        'nickname': '',
+        'ownerInvitationCode': '',
+        'qqNickname': '',
+        'steamUrl': '',
+        'tradePermission': -1,
+        'transformPlatformCode': null,
+        'username': null,
+        'wxNickname': ''
       },
       passwordPopup: false,
       authenticationPopup: false,
       authenticationConFirmPopup: false,
       realNameZFBPopup: false,
       passwordEdit: {
-        "certNo": '',
-        "username": ''
+        'certNo': '',
+        'username': ''
       },
-      realNameQRCode:''
+      realNameQRCode: ''
     }
   },
   actions: {
     //获取用户信息
-    async handleUserInfo () {
+    async handleUserInfo() {
       let result = await registermobile()
 
       if (result.code === 200) {
         this.userInfo = result.data
       } else {
-        alert(result.msg)
+
       }
     },
     //初始化userinfo
-    handleUserInfoInit () {
+    handleUserInfoInit() {
       console.log(555)
 
       this.userInfo = {
-        avatar: null,
-        boundQQ: false,
-        boundWx: false,
-        cbalance: '0.00',
-        dbalance: '0.00',
-        invitationCode: '',
-        mobile: '',
-        nickname: '',
-        ownerInvitationCode: '',
-        qqNickname: '',
-        realAuthentication: false,
-        steamUrl: '',
-        transformPlatformCode: null,
-        username: null,
-        wxNickname: ''
+        'avatar': null,
+        'bind': false,
+        'boundQQ': false,
+        'boundWx': false,
+        'cBalance': '0.00',
+        'changedInvitationCode': false,
+        'dBalance': '0.00',
+        'invitationCode': null,
+        'mobile': '13187653423',
+        'nickname': '',
+        'ownerInvitationCode': '',
+        'qqNickname': '',
+        'steamUrl': '',
+        'tradePermission': -1,
+        'transformPlatformCode': null,
+        'username': null,
+        'wxNickname': ''
       }
     }
   }

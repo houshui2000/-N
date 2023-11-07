@@ -42,9 +42,10 @@
           <div v-if='loginStore.token'>{{ useUsersStore.userInfo.nickname }}</div>
         </div>
         <div class='uploadImg' v-if='loginStore.token'>
-          <div class='dian'></div>
+<!--          <div class='dian'></div>-->
           <div class='uploadPhoto'>
-            <img v-if='useUsersStore.userInfo.avatar' :src='`${loginStore.cossUrl}${useUsersStore.userInfo.avatar}`' />
+            <!--            ${loginStore.cossUrl}-->
+            <img v-if='useUsersStore.userInfo.avatar' :src='`${useUsersStore.userInfo.avatar}`' />
           </div>
         </div>
         <div class='uploadContent' v-if='loginStore.token'>
@@ -64,7 +65,7 @@
             </div>
           </div>
           <div class='exit'>
-            <div @click="handleLoginExit()" style='display: flex;align-items: center'>
+            <div @click='handleLoginExit()' style='display: flex;align-items: center'>
               <div class='icon'></div>
               退出登录
             </div>
@@ -134,12 +135,12 @@ let nav = ref([
     pushShow: '/personal'
   },
   {
-    name:'资产库',
-    pushShow:'/assetLibrary'
+    name: '资产库',
+    pushShow: '/assetLibrary'
   },
   {
-    name:'订单明细',
-    pushShow:'/orderForm'
+    name: '订单明细',
+    pushShow: '/orderForm'
   }
 ])
 // 个人中心跳转
@@ -398,9 +399,10 @@ watch(
         height: 34px;
         //overflow: hidden;
         border-radius: 50%;
-        // background: url($gxsavatar) no-repeat center;
-        // background-color: saddlebrown;
-        // background-size: contain;
+        background-clip: padding-box, border-box;
+        background-origin: padding-box, border-box;
+        border: 1px solid transparent;
+        background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(142.59deg, #315EFF 30.5%, #C90091 85.93%);
         margin-left: 14px;
         position: relative;
 
@@ -475,6 +477,10 @@ watch(
               height: 38px;
               overflow: hidden;
               border-radius: 50%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
               img {
                 max-width: 100%;
                 max-height: 100%;
@@ -551,7 +557,8 @@ watch(
 
           }
         }
-        .exit{
+
+        .exit {
           position: absolute;
           bottom: 0;
           width: 240px;
@@ -562,7 +569,8 @@ watch(
           font-size: 14px;
           font-weight: 400;
           color: #999999;
-          .icon{
+
+          .icon {
             width: 20px;
             height: 20px;
             background: url($gxsexitIcon) no-repeat center;

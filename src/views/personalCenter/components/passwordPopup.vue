@@ -1,41 +1,43 @@
 <template>
-  <div id='passwordPopup' v-if='useUsersStore.passwordPopup'>
-    <div class='content'>
-      <div class='text'>修改密码
-        <div class='border'></div>
-      </div>
-      <div class='close' @click='useUsersStore.passwordPopup=false'></div>
-      <div class='domInput marginTop44'>
-        <div class='pText'>当前手机号：</div>
-        <div class='inputFrame' style='background:none'>{{ useUsersStore.userInfo.mobile.substring(0, 3)
-          }}****{{ useUsersStore.userInfo.mobile.substring(7) }}
+  <transition name='transition05s'>
+    <div id='passwordPopup' v-if='useUsersStore.passwordPopup'>
+      <div class='content'>
+        <div class='text'>修改密码
+          <div class='border'></div>
         </div>
-      </div>
-      <div class='domInput marginTop23'>
-        <div class='pText'>手机验证码：</div>
-        <div class='inputFrame '>
-          <input placeholder='请输入手机验证码' v-model='passwordEdit.code' maxlength='6'
-                 onkeyup="value=value.replace(/[^0-9]/g,'')">
+        <div class='close' @click='useUsersStore.passwordPopup=false'></div>
+        <div class='domInput marginTop44'>
+          <div class='pText'>当前手机号：</div>
+          <div class='inputFrame' style='background:none'>{{ useUsersStore.userInfo.mobile.substring(0, 3)
+            }}****{{ useUsersStore.userInfo.mobile.substring(7) }}
+          </div>
         </div>
-        <div class='textPass' @click='handleCodeTime()'>{{ codeTime >= 0 ? codeTime + 's' : '获取验证码' }}</div>
-      </div>
-      <div class='domInput marginTop23'>
-        <div class='pText'>输入新密码：</div>
-        <div class='inputFrame'>
-          <input placeholder='请输入新密码' type='password' v-model='passwordEdit.password' maxlength='16'
-                 onkeyup="value=value.replace(/[\W]/g,'')">
+        <div class='domInput marginTop23'>
+          <div class='pText'>手机验证码：</div>
+          <div class='inputFrame '>
+            <input placeholder='请输入手机验证码' v-model='passwordEdit.code' maxlength='6'
+                   onkeyup="value=value.replace(/[^0-9]/g,'')">
+          </div>
+          <div class='textPass' @click='handleCodeTime()'>{{ codeTime >= 0 ? codeTime + 's' : '获取验证码' }}</div>
         </div>
-      </div>
-      <div class='domInput marginTop23'>
-        <div class='pText'>确认密码：</div>
-        <div class='inputFrame'>
-          <input placeholder='请输入新密码' type='password' v-model='passwordEdit.passwordConfirm' maxlength='16'
-                 onkeyup="value=value.replace(/[\W]/g,'')">
+        <div class='domInput marginTop23'>
+          <div class='pText'>输入新密码：</div>
+          <div class='inputFrame'>
+            <input placeholder='请输入新密码' type='password' v-model='passwordEdit.password' maxlength='16'
+                   onkeyup="value=value.replace(/[\W]/g,'')">
+          </div>
         </div>
+        <div class='domInput marginTop23'>
+          <div class='pText'>确认密码：</div>
+          <div class='inputFrame'>
+            <input placeholder='请输入新密码' type='password' v-model='passwordEdit.passwordConfirm' maxlength='16'
+                   onkeyup="value=value.replace(/[\W]/g,'')">
+          </div>
+        </div>
+        <div class='passwordEditBtn' @click='handlePassword'>确认</div>
       </div>
-      <div class='passwordEditBtn' @click='handlePassword'>确认</div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script setup>

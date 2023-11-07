@@ -71,8 +71,8 @@
             <input class='inputSumbindingCode' v-model='admin.bindingCode' :disabled='adminInput.bindingCode'
                    placeholder='请输入邀请码'>
           </div>
-          <div class='inputBtn'>
-            <div class='inputBtn2' @click='handleEditInput("bindingCode")' :class='{active:!adminInput.bindingCode}'>
+          <div class='inputBtn' v-if='!useUsersStore.userInfo.invitationCode'>
+            <div class='inputBtn2'  @click='handleEditInput("bindingCode")' :class='{active:!adminInput.bindingCode}'>
               {{ adminInput.bindingCode ? '修改' : '保存' }}
             </div>
           </div>
@@ -95,7 +95,7 @@ let admin = ref({
   nickName: useUsersStore.userInfo.nickname,
   mobile: useUsersStore.userInfo.mobile,
   password: '******',
-  authentication: useUsersStore.userInfo.realAuthentication ? '已实名' : '未实名',
+  authentication: useUsersStore.userInfo.tradePermission>0 ? '已实名' : '未实名',
   invitationCode: useUsersStore.userInfo.ownerInvitationCode,//自己邀请码
   bindingCode: useUsersStore.userInfo.invitationCode//绑定邀请码
 })
