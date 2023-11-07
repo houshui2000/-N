@@ -60,7 +60,7 @@
 <script setup>
 import { onMounted, reactive, ref, watchEffect, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
-import router from '@/router/index.js'
+import { router } from '@/router/index.js'
 import { useStore } from '@/pinia/index.js'
 import { getItem, removeItem } from '@/utils/storage.js'
 import passwordPopup from './components/passwordPopup.vue'

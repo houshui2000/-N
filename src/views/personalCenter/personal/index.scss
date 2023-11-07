@@ -92,8 +92,9 @@
           background-size: contain;
         }
 
-        &:hover .inputBtn .inputBtn2 {
-          background: transparent;
+        &:hover .inputBtn {
+          border: 0;
+          background-image: linear-gradient(#B8009A, #1615F2);
         }
 
         .label {
@@ -119,12 +120,16 @@
           background: url($gxsPersonalCopyIcon) no-repeat center;
           background-size: contain;
           cursor: pointer;
+          margin-left: -100px;
         }
 
         .inputBtn {
           width: 66px;
           height: 30px;
-          background: linear-gradient(#B8009A, #1615F2);
+          background-clip: padding-box, border-box;
+          background-origin: padding-box, border-box;
+          border: 1px solid transparent;
+          background-image: linear-gradient(to top, #070d15, #070d15), linear-gradient(#B8009A, #1615F2);
           position: absolute;
           right: 15px;
           border-radius: 4px;
@@ -134,18 +139,22 @@
           font-size: 14px;
           cursor: pointer;
 
+          &.active {
+            border: 0;
+            background-image: linear-gradient(#B8009A, #1615F2);
+          }
+
           .inputBtn2 {
             width: 64px;
-            height: 28px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #000;
             border-radius: 4px;
             transition: all .3s;
 
             &.active {
-              background: transparent;
+              //background-image: linear-gradient(to top, transparent,transparent),linear-gradient(to left,#B8009A, #1615F2);;
             }
           }
         }

@@ -9,8 +9,8 @@
             <input class='inputSumnickName' v-model='admin.nickName' :disabled='adminInput.nickName'
                    placeholder='请输入昵称'>
           </div>
-          <div class='inputBtn'>
-            <div class='inputBtn2' @click='handleEditInput("nickName")' :class='{active:!adminInput.nickName}'>
+          <div class='inputBtn' :class='{active:!adminInput.nickName}'>
+            <div class='inputBtn2' @click='handleEditInput("nickName")'>
               {{ adminInput.nickName ? '修改' : '保存' }}
             </div>
           </div>
