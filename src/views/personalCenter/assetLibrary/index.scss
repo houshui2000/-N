@@ -1,15 +1,20 @@
 #assetLibrary {
   margin-top: 28px;
   width: 1473px;
-  height: 1178px;
-  background: url($gxsAssetLibraryBg) no-repeat center;
+  //height: 1178px;
+  //background: url($gxsAssetLibraryBg) no-repeat center;
   background-size: contain;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: 14px;
   color: #fff;
-  font-family: "PingFang SC";
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  border: 0.1rem solid transparent;
+  background-image: linear-gradient(to bottom, #0a1c2f, #070d13), linear-gradient(155.92deg, rgba(159, 98, 219, 0.5) 0%, rgba(126, 172, 186, 0.5) 48.67%, rgba(99, 149, 231, 0.5) 96.71%);
+  border-radius: 6px;
+  padding-bottom: 27px;
 
   .title {
     width: 1413px;
@@ -100,10 +105,14 @@
   }
 
   .contentBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .cardBox {
+      width: 1414px;
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      //justify-content: center;
 
       .card {
         width: 154px;
@@ -160,10 +169,16 @@
             height: 20px;
             margin-top: 5px;
             line-height: 20px;
-            background:url($gxsAssetLibraryNumber) no-repeat center;
-            background-size:contain;
+            //background:url($gxsAssetLibraryNumber) no-repeat center;
+            //background-size:contain;
+            background-image: linear-gradient(to left,#FFBB4D, #815821);
             font-size: 12px;
             text-align: center;
+            padding-left: 14px;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+
           }
         }
 

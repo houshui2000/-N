@@ -1,43 +1,45 @@
 <template>
-  <div id='passwordPopup' v-if='useUsersStore.authenticationPopup'>
-    <div class='content'>
-      <div class='text'>实名认证信息
-        <div class='border'></div>
-      </div>
-      <div class='close' @click='useUsersStore.authenticationPopup=false'></div>
-      <div class='messageTop'>
-        恨据中华人民共和国网络安全法》等相关法律法规要求，需要完成实名认证寸能进行数字资产的购买、转赠及内容发布等功能。进行实名认证前，需要你填写并授权姓名、身份证号等以要信息。
-      </div>
-      <div class='domInput marginTop28'>
-        <div class='label'>姓名：</div>
-        <div class='inputFrame '>
-          <input placeholder='请输入姓名' v-model='passwordEdit.username'>
+  <transition name='transition05s'>
+    <div id='passwordPopup' v-if='useUsersStore.authenticationPopup'>
+      <div class='content'>
+        <div class='text'>实名认证信息
+          <div class='border'></div>
         </div>
-      </div>
-      <div class='domInput marginTop24'>
-        <div class='label'>身份证：</div>
-        <div class='inputFrame'>
-          <input placeholder='请输入个人身份证号' v-model='passwordEdit.certNo'>
+        <div class='close' @click='useUsersStore.authenticationPopup=false'></div>
+        <div class='messageTop'>
+          恨据中华人民共和国网络安全法》等相关法律法规要求，需要完成实名认证寸能进行数字资产的购买、转赠及内容发布等功能。进行实名认证前，需要你填写并授权姓名、身份证号等以要信息。
         </div>
-      </div>
-      <div class='domInput marginTop35'>
-        <div class='label'>联系方式：</div>
-        <div class='inputFrame' style='background:none'>{{ useUsersStore.userInfo.mobile.substring(0, 3)
-          }}****{{ useUsersStore.userInfo.mobile.substring(7) }}
+        <div class='domInput marginTop28'>
+          <div class='label'>姓名：</div>
+          <div class='inputFrame '>
+            <input placeholder='请输入姓名' v-model='passwordEdit.username'>
+          </div>
         </div>
+        <div class='domInput marginTop24'>
+          <div class='label'>身份证：</div>
+          <div class='inputFrame'>
+            <input placeholder='请输入个人身份证号' v-model='passwordEdit.certNo'>
+          </div>
+        </div>
+        <div class='domInput marginTop35'>
+          <div class='label'>联系方式：</div>
+          <div class='inputFrame' style='background:none'>{{ useUsersStore.userInfo.mobile.substring(0, 3)
+            }}****{{ useUsersStore.userInfo.mobile.substring(7) }}
+          </div>
+        </div>
+        <div class='messageTop marginTop9'>
+          *实名认证仅限年满18周岁到60周岁（含)之间的中国大陆用户<br>
+          *您填写的实名认证信息，须和您的注册手机号所绑定的身份信息一致<br>
+          *未经您的授权，您的身份信息不会用于其他用途
+        </div>
+        <div class='passwordEditBtn' @click='handleEmpowerShow'>同意授权并认证</div>
       </div>
-      <div class='messageTop marginTop9'>
-        *实名认证仅限年满18周岁到60周岁（含)之间的中国大陆用户<br>
-        *您填写的实名认证信息，须和您的注册手机号所绑定的身份信息一致<br>
-        *未经您的授权，您的身份信息不会用于其他用途
+      <div class='confirmPopup'>
+        <div class='content2'></div>
       </div>
-      <div class='passwordEditBtn' @click='handleEmpowerShow'>同意授权并认证</div>
+      <authenticationConFirmPopup :info='passwordEdit' />
     </div>
-    <div class='confirmPopup'>
-      <div class='content2'></div>
-    </div>
-    <authenticationConFirmPopup :info='passwordEdit' />
-  </div>
+  </transition>
 </template>
 
 <script setup>
@@ -69,9 +71,9 @@ const handleEmpowerShow = async () => {
   }
   const res = await realNamePost(passwordEdit.value)
   if (res.code === 200) {
-    useUsersStore.realNameQRCode=res.data
-    useUsersStore.passwordEdit.certNo=passwordEdit.value.certNo
-    useUsersStore.passwordEdit.username=passwordEdit.value.username
+    useUsersStore.realNameQRCode = res.data
+    useUsersStore.passwordEdit.certNo = passwordEdit.value.certNo
+    useUsersStore.passwordEdit.username = passwordEdit.value.username
     useUsersStore.authenticationConFirmPopup = true
   }
 }

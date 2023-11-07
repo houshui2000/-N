@@ -1,68 +1,112 @@
 <template>
-  <div id='assetLibrary'>
-    <div class='title'>
-      <div class='left'>资产数量:<span>0</span></div>
-      <div class='right'>
-        <gxsSelect :options='options' :arrayValue='arrayValue' @handleEdit='handleSelectValue'></gxsSelect>
-        <div class='frameSort2'>
-          <input v-model='search' placeholder='请输入编号' />
-          <div class='searchIcon'></div>
+  <transition name="transition05s">
+    <div id='assetLibrary'>
+      <div class='title'>
+        <div class='left'>资产数量:<span>{{ total }}</span></div>
+        <div class='right'>
+          <gxsSelect :options='options' :arrayValue='arrayValue' @handleEdit='handleSelectValue'></gxsSelect>
+          <div class='frameSort2'>
+            <input v-model='assetInfo.issueName' placeholder='请输入卡牌名称'  @keyup.enter='assetLibrary' />
+            <div class='searchIcon' @click='assetLibrary'></div>
+          </div>
+          <div class='question' @click='handleOpenShow'></div>
         </div>
-        <div class='question'></div>
       </div>
-    </div>
-    <div class='contentBox'>
-      <div class='cardBox'>
-        <div class='card' v-for='item in 32'>
-          <div class='cardContent'>
-            <div class='cardImg'>
-              <img src='@/assets/images/myAccount/linshiImage.png' alt=''>
+      <div class='contentBox'>
+        <div class='cardBox'>
+          <div class='card' v-for='(item,index) in assetList' :key='"asset"+index'>
+            <div class='cardContent'>
+              <div class='cardImg'>
+                <img :src='item.productUrl' alt=''>
+              </div>
+              <div class='text'>{{ item.productName }}</div>
+              <div class='number' :title='item.cardNo'>
+                {{ item.cardNo }}
+              </div>
             </div>
-            <div class='text'>阿克苏加快速度</div>
-            <div class='number'>12354-2454112</div>
+          </div>
+        </div>
+        <!--    分页   -->
+        <div class='paginationBox'>
+          <div class='fen_xi'>
+            <!--     v-if='assetList.length!==0'     -->
+            <el-pagination background v-model:current-page='assetInfo.currentPage'
+                           v-model:page-size='assetInfo.pageSize' layout='prev, pager, next' :total='total'
+                           @current-change='handleCurrentChange' />
           </div>
         </div>
       </div>
-      <!--    分页   -->
-      <div class='paginationBox'>
-        <div class='fen_xi'>
-        <el-pagination background layout='prev, pager, next' :total='1000' />
-        </div>
-      </div>
+      <assetLibraryDetail v-model:errDialoVueUpdate='errDialoVueUpdate' title='查证' />
+      <assetgrameRulePopup :show='assetPlay' :textHtml='textHtml' @close='handleAssetgrameRulePopupClose' ></assetgrameRulePopup>
     </div>
-    <assetLibraryDetail v-model:errDialoVueUpdate='errDialoVueUpdate' title='查证' />
-  </div>
+  </transition>
 </template>
 
 <script setup>
-import { ref,reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import assetLibraryDetail from '../components/assetLibraryDetail.vue'
+import assetgrameRulePopup from '../components/assetgrameRulePopup.vue'
 import gxsSelect from '../components/gxsSelect.vue'
-const  errDialoVueUpdate= ref(false)
+import { getAssetList } from '@/network/personalCenter.js'
+
+const errDialoVueUpdate = ref(false)
 const value = ref('卡牌编号正序')
 const options = ref([
-  { values: 1, label: '卡牌编号正序'},
-  { values: 2, label: '卡牌编号倒序'}
+  { values: 'desc', label: '时间倒序排序' },
+  { values: 'asc', label: '时间正序排序' }
 ])
-let search = ref('')
+const assetInfo = ref({
+  currentPage: 1,
+  pageSize: 32,
+  sort: 'time',
+  direction: 'desc',
+  issueName: ''
+})
+const total = ref(0)
+const  assetPlay=ref(false)
+const textHtml=ref('')
+const handleAssetgrameRulePopupClose =()=>{
+  assetPlay.value=false
+}
 
+
+let assetList = ref([])
 // { values: 5, label: '登记中' },
 const arrayValue = reactive({
-  values: 1,
-  label: '全部状态'
+  values: 'desc',
+  label: '时间倒序排序'
 })
 const handleSelectValue = (val) => {
   console.log('val', val)
   arrayValue.label = val.label
   arrayValue.values = val.values
+  assetInfo.value.direction = arrayValue.values
+  assetLibrary()
 }
+const assetLibrary = async () => {
+  let result = await getAssetList(assetInfo.value)
+  if (result.code === 200) {
+    assetList.value = result.data.records
+    total.value = result.data.total
+  }
+}
+const handleCurrentChange = (val) => {
+  assetList.value.currentPage = val
+  assetLibrary()
+}
+//打开玩法说明弹窗
+const handleOpenShow =()=>{
+  assetPlay.value=true
+}
+onMounted(() => {
+  assetLibrary()
+})
 </script>
 
 <style lang='scss' scoped>
 :deep(.el-input__inner) {
   box-shadow: none !important;
   color: white;
-  font-family: "PingFang SC";
   font-size: 12px;
 }
 
@@ -76,6 +120,7 @@ const handleSelectValue = (val) => {
 :deep(.el-input .el-input__wrapper.is-focus) {
   box-shadow: none !important;
 }
+
 @import '@/styles/other/paginations.scss';
 @import "./index.scss";
 </style>

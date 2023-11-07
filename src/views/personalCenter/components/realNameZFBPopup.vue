@@ -1,30 +1,31 @@
 <template>
-  <div id='realNameZFBPopup'>
-    <div class='content'>
-      <div class='close' @click='useUsersStore.realNameZFBPopup=false'></div>
-      <div class='text'>实名认证
-        <div class='border'></div>
-      </div>
-      <div class='message'>请打开支付宝扫一扫下方二维码，完成实名认证</div>
-      <div class='qrcodeBox'>
-        <div class='qrcode'>
-          <div id='realNameQRCodeBox'></div>
+  <transition name='transition05s'>
+    <div id='realNameZFBPopup'>
+      <div class='content'>
+        <div class='close' @click='useUsersStore.realNameZFBPopup=false'></div>
+        <div class='text'>实名认证
+          <div class='border'></div>
+        </div>
+        <div class='message'>请打开支付宝扫一扫下方二维码，完成实名认证</div>
+        <div class='qrcodeBox'>
+          <div class='qrcode'>
+            <div id='realNameQRCodeBox'></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
+  </transition>
 </template>
 
 <script setup>
-import { ref, onMounted,onUnmounted, nextTick } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { useStore } from '@/pinia/index.js'
 import QRCode from 'qrcodejs2-fix'
 import { getRealName } from '@/network/personalCenter.js'
 //在需要使用的vue文件中导入即可
 
 const { useUsersStore, loginStore } = useStore()
-const getTime=ref(null)
+const getTime = ref(null)
 const handleRealName = async () => {
   new QRCode(document.getElementById('realNameQRCodeBox'), {
     //需要编码的文字内容或者URL
@@ -35,14 +36,14 @@ const handleRealName = async () => {
     colorDark: '#D9D9D9',
     correctLevel: 0
   })
-  getTime.value=setInterval( async ()=>{
-    const res=await getRealName(useUsersStore.passwordEdit)
-    if(res.code===200){
+  getTime.value = setInterval(async () => {
+    const res = await getRealName(useUsersStore.passwordEdit)
+    if (res.code === 200) {
 
       // await useUsersStore.handleUserInfo()
       // useUsersStore.realNameZFBPopup=false
     }
-  },2000)
+  }, 2000)
 }
 onMounted(() => {
   nextTick(() => {
@@ -51,8 +52,8 @@ onMounted(() => {
 
 
 })
-onUnmounted(()=>{
-  clearInterval(getTime.value);
+onUnmounted(() => {
+  clearInterval(getTime.value)
 })
 </script>
 

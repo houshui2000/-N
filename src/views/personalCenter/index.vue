@@ -1,74 +1,78 @@
 <template>
-  <div id="myAccount">
-    <div class="content">
-      <!--   tabs    -->
-      <div class="tabBox">
-        <div class="bg">
-          <div class="icons">
-            <div class="iconsAfter"></div>
-          </div>
-          <div class="avatar">
-            <div class="photo">
-              <div class="photoBox">
-                <div @click="dianjiUpload" class="img">
-                  <img
-                    v-if="useUsersStore.userInfo.avatar"
-                    :src="`${loginStore.cossUrl}${useUsersStore.userInfo.avatar}`"
-                  />
-                </div>
-                <el-upload
-                  class="avatar-uploader"
-                  action="#"
-                  :show-file-list="false"
-                  :on-success="handleAvatarSuccess"
-                  :http-request="uploadHttpRequest"
-                  :before-upload="beforeAvatarUpload"
-                >
-                  <!-- <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-                  <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon> -->
-                </el-upload>
-              </div>
+  <transition name='transition05s'>
+    <div id='myAccount'>
+      <div class='content'>
+        <!--   tabs    -->
+        <div class='tabBox'>
+          <div class='bg'>
+            <div class='icons'>
+              <div class='iconsAfter'></div>
             </div>
-          </div>
-          <div class="nickName">{{ useUsersStore.userInfo.nickname }}</div>
-          <div class="tabs">
-            <div class="bg">
-              <div class="tabsText">
-                <div class="text" v-for="(item, index) in tabList" :key="'tabList' + item.id">
-                  <div class="TabName" @click="handleTabShow(item, index)">{{ item.name }}</div>
-                  <div class="icon" v-if="item.id === 1"></div>
+            <div class='avatar'>
+              <div class='photo'>
+                <div class='photoBox'>
+                  <div @click='dianjiUpload' class='img'>
+                    <img
+                      v-if='useUsersStore.userInfo.avatar'
+                      :src='`${useUsersStore.userInfo.avatar}`'
+                    />
+                  </div>
+                  <el-upload
+                    :limit='1'
+                    class='avatar-uploader'
+                    action='#'
+                    :show-file-list='false'
+                    :on-success='handleAvatarSuccess'
+                    :http-request='uploadHttpRequest'
+                    :before-upload='beforeAvatarUpload'
+                  >
+                    <!-- <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+                    <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon> -->
+                  </el-upload>
                 </div>
               </div>
             </div>
+            <div class='nickName'>{{ useUsersStore.userInfo.nickname }}</div>
+            <div class='tabs'>
+              <div class='bg'>
+                <div class='tabsText'>
+                  <div class='text' v-for='(item, index) in tabList' :key="'tabList' + item.id">
+                    <div class='TabName' @click='handleTabShow(item, index)'>{{ item.name }}</div>
+                    <div class='icon' v-if='item.id === 1'></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='exitBtn' @click='handleLoginExit'>退出登录</div>
           </div>
-          <div class="exitBtn" @click="handleLoginExit">退出登录</div>
         </div>
+        <div class='box'>
+          <router-view></router-view>
+        </div>
+        <passwordPopup />
+        <authenticationPopup />
+        <realNameZFBPopup v-if='useUsersStore.realNameZFBPopup' />
       </div>
-      <div class="box">
-        <router-view></router-view>
-      </div>
-      <passwordPopup />
-      <authenticationPopup />
-      <realNameZFBPopup v-if="useUsersStore.realNameZFBPopup" />
     </div>
-  </div>
+  </transition>
 </template>
 
 <script setup>
 import { onMounted, reactive, ref, watchEffect, nextTick } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
+import router from '@/router/index.js'
 import { useStore } from '@/pinia/index.js'
-import { removeItem } from '@/utils/storage.js'
+import { getItem, removeItem } from '@/utils/storage.js'
 import passwordPopup from './components/passwordPopup.vue'
 import authenticationPopup from './components/authenticationPopup.vue'
 import realNameZFBPopup from './components/realNameZFBPopup.vue'
 import { userlogout } from '@/network/userInterface.js'
+import { Plus } from '@element-plus/icons-vue'
 import { uploadavatar } from '@/network/userInterface'
 import MessageBoxVue from '@/components/MessageBox/index.js'
 
 const { loginStore, useUsersStore } = useStore()
 const route = useRoute()
-const router = useRouter()
 const imageUrl = ref('')
 let indexActive = ref(0)
 let tabList = reactive([
@@ -109,7 +113,7 @@ const handleTabShow = (item, index) => {
   tabDom.style.left = lefts + 'px'
 }
 
-window.addEventListener('resize', function () {
+window.addEventListener('resize', function() {
   // 执行需要的操作
   // console.log('窗口大小已改变');
   handleTabShow(-1)
@@ -121,6 +125,7 @@ watchEffect(() => {
     nextTick(() => {
       handleTabShow(tabList[0], 0)
     })
+
   }
   if (route.name === 'orderForm') {
     nextTick(() => {
@@ -144,8 +149,7 @@ onMounted(() => {
 })
 //退出登录
 const handleLoginExit = async () => {
-  await userlogout()
-  // let result =
+  let result = await userlogout()
   removeItem('token')
   loginStore.token = ''
   loginStore.userId = ''
@@ -192,10 +196,12 @@ const dianjiUpload = () => {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 @import 'index.scss';
+
 .photoBox {
   position: relative;
+
   .img {
     position: absolute;
     left: 0;
