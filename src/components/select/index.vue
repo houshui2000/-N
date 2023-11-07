@@ -64,6 +64,7 @@ const Click_top = () => {
   articleDom()
 }
 const article = ref(null)
+const option = ref(null)
 const articleXinxi = {
   height: ''
 }
@@ -86,8 +87,9 @@ const articletransition = (e) => {
 }
 /**初始化 dom 高度信息 */
 const creatDom = () => {
-  let offsetheight = article.value.firstElementChild.offsetHeight
+  let offsetheight = article.value.firstElementChild.firstElementChild.offsetHeight
   if (!offsetheight) return
+
   articleXinxi.height = offsetheight * props.mallHomepage.length + 2 + 'px'
 }
 const articleDom = () => {
@@ -152,6 +154,7 @@ watch(
     transition: height 0.5s;
     border-radius: 4px;
     box-sizing: content-box;
+    transform: translateX(-1px);
     &:hover {
       overflow-y: overlay;
     }
@@ -183,43 +186,6 @@ watch(
       left: 0;
       top: 0;
       width: 208px;
-      // transform: translateY(-2px);
-      // overflow-y: hidden;
-      // overflow-x: hidden;
-      // position: absolute;
-      // width: calc(100%);
-      // margin-right: calc(100% - 100vw);
-      // max-height: 200px;
-      // z-index: 999;
-      // transition: height 0.5s;
-      // border-radius: 4px;
-      // background-color: saddlebrown;
-      // &:hover {
-      //   overflow-y: overlay;
-      // }
-      // /*滚动条样式*/
-      // &::-webkit-scrollbar {
-      //   width: 3px;
-      // }
-      // // 滚轮样式
-      // &::-webkit-scrollbar-thumb {
-      //   border-radius: 10px;
-      //   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-      //   // background-color: rgba($color: rgba(255, 255, 255, 0.2), $alpha: 0.6) !important;
-      //   background: linear-gradient(180deg, #de01ca 0%, #3340fe 100%);
-
-      //   display: none;
-      // }
-      // &:hover::-webkit-scrollbar-thumb {
-      //   display: block;
-      // }
-
-      // // 滚轮背景
-      // &::-webkit-scrollbar-track {
-      //   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-      //   border-radius: 0;
-      //   background: #000819;
-      // }
     }
     .option {
       height: 40px;

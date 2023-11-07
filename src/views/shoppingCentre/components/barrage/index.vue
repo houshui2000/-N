@@ -22,7 +22,7 @@
             </div>
             <div class="name danyi">{{ `${danmu.user}获得` }}</div>
             <div class="card">
-              <img class="equalProportions" src="@/assets/images/carggo/ceshi.png" alt="" />
+              <img class="" src="@/assets/images/carggo/ceshi.png" alt="" />
             </div>
           </div>
         </div>

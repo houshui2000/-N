@@ -34,6 +34,7 @@ init()
 </script>
 <style lang="scss" scoped>
 .informationTwo {
+  padding-top: 14px;
   margin: auto;
 
   color: white;

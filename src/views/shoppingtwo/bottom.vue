@@ -151,7 +151,14 @@ watch(
   box-shadow: none;
   height: 50px;
   border-radius: 4px;
-  @include bordergradientMY(linear-gradient(180deg, rgba(244, 158, 255, 0.6) 0%, rgba(89, 110, 223, 0.6) 100%));
+  // @include bordergradientMY(linear-gradient(180deg, rgba(244, 158, 255, 0.6) 0%, rgba(89, 110, 223, 0.6) 100%));
+  @include bordergradientMY(
+    linear-gradient(180deg, rgba(244, 158, 255, 0.6) 0%, rgba(89, 110, 223, 0.6) 100%),
+    linear-gradient(180deg, rgba(28, 0, 45, 0.8) 0%, rgba(24, 0, 30, 0.8) 0.01%, rgba(0, 9, 54, 0.8) 100%)
+  );
+  .el-input__inner {
+    color: white;
+  }
 }
 .footer {
   // padding-top: 54px;
@@ -184,16 +191,30 @@ watch(
 
       .input_select {
         margin-right: 20px;
-        width: 234px;
+        width: 244px;
         border-radius: 4px;
-        @include bordergradientMY(linear-gradient(180deg, rgba(244, 158, 255, 0.6) 0%, rgba(89, 110, 223, 0.6) 100%));
-        :deep(.article) {
+        @include bordergradientMY(
+          linear-gradient(180deg, rgba(244, 158, 255, 0.6) 0%, rgba(89, 110, 223, 0.6) 100%),
+          linear-gradient(180deg, rgba(28, 0, 45, 0.8) 0%, rgba(24, 0, 30, 0.8) 0.01%, rgba(0, 9, 54, 0.8) 100%)
+        );
+        :deep(section) {
           border: 1px solid transparent;
-          border-radius: 8px;
-          background-clip: padding-box, border-box;
-          background-origin: padding-box, border-box;
+          @include bordergradientMY(
+            linear-gradient(0deg, rgba(48, 35, 82, 0.9) 0%, rgba(36, 54, 77, 0.9) 100%),
+            linear-gradient(180deg, #241328 0%, #000c2c 100%)
+          );
+          // background: var(--Linear, linear-gradient(180deg, rgba(28, 0, 45, 0.80) 0%, rgba(24, 0, 30, 0.80) 0.01%, rgba(0, 9, 54, 0.80) 100%));
+          .article {
+            width: 244px;
+          }
         }
-
+        :deep(.option) {
+          &:hover {
+            color: white;
+            // background: linear-gradient(90deg, #633d6b -1.59%, #000c2c 99.97%);
+            background: linear-gradient(180deg, rgba(245, 158, 255, 0.05) 0.01%, rgba(99, 125, 255, 0.05) 100%);
+          }
+        }
         .top_icon {
           position: absolute;
           right: 10px;

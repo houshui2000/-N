@@ -60,8 +60,11 @@
               <span>{{ item.onSellingCount }}</span>
             </p>
             <div class="mounch">
-              <span>￥{{ item.minPrice }}</span>
-              <span>起</span>
+              <span>
+                <i>￥</i>
+                {{ item.minPrice }}
+              </span>
+              <span class="qi" style="color: rgba(255, 255, 255, 0.7)">起</span>
             </div>
           </div>
         </div>
@@ -127,15 +130,16 @@ const onePieceBuyin = () => {
     background: url('@/assets/images/shoppingCentre/shopp_TWo.png') no-repeat scroll left top/ 100% 100%;
     .fenxiang {
       position: absolute;
-      right: 33px;
-      top: -10px;
+      right: 0px;
+      top: 0px;
       width: 72px;
       height: 30px;
     }
     .img {
       position: absolute;
       left: 50%;
-      top: 50%;
+      @include Myflex();
+      top: 40%;
       transform: translate(-50%, -50%);
       width: 420px;
       height: 353px;
@@ -144,6 +148,7 @@ const onePieceBuyin = () => {
       perspective: 1000px;
 
       > img {
+        width: 200px;
         animation: infinite shiver 10s linear;
         @keyframes shiver {
           0% {
@@ -165,6 +170,10 @@ const onePieceBuyin = () => {
       }
     }
     .di_guang {
+      position: absolute;
+      left: 50%;
+      bottom: 67px;
+      transform: translateX(-50%);
       width: 414px;
       height: 407px;
       background: url('@/assets/images/shoppingCentre/Di_zuo.png') no-repeat scroll left top/ 100% 100%;
@@ -200,8 +209,11 @@ const onePieceBuyin = () => {
           height: 55px;
           padding: 0 12px;
           border-radius: 8px;
+          // background: linear-gradient(180deg, rgba(18, 39, 67, 0.59) 0%, rgba(3, 13, 21, 0.59) 100%);
+
           @include bordergradientMY(
-            linear-gradient(180deg, rgba(157, 102, 217, 0.5) 0%, rgba(102, 152, 227, 0.5) 100%)
+            linear-gradient(180deg, rgba(157, 102, 217, 0.8) 0%, rgba(102, 152, 227, 0.8) 100%),
+            linear-gradient(180deg, rgba(18, 39, 67, 0.59) 0%, rgba(3, 13, 21, 0.59) 100%)
           );
         }
       }
@@ -224,7 +236,7 @@ const onePieceBuyin = () => {
         @include Myflex();
         font: normal normal 600 14px 'PingFang SC';
         border-radius: 5.36px;
-        background: linear-gradient(-5deg, #1615f2 15.76%, #b8009a 79.59%);
+        background: linear-gradient(-45deg, #1615f2 15.76%, #b8009a 79.59%);
       }
     }
   }
@@ -261,7 +273,7 @@ const onePieceBuyin = () => {
     align-items: flex-end;
     /*滚动条样式*/
     &::-webkit-scrollbar {
-      width: 10px;
+      width: 4px;
     }
 
     // 滚轮样式
@@ -276,7 +288,7 @@ const onePieceBuyin = () => {
       box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
       border-radius: 0;
       // background: rgba(0, 0, 0, 0.1);
-      background-color: #282a52;
+      background-color: rgba(12, 18, 39, 1);
     }
     .Xilie_da {
       position: relative;
@@ -304,8 +316,7 @@ const onePieceBuyin = () => {
       background-clip: padding-box, border-box;
       background-origin: padding-box, border-box;
       background-image: linear-gradient(149deg, #200924 45.99%, #0e1045 69.44%, #000a2c 85.48%),
-        linear-gradient(180deg, rgba(196, 1, 176, 0.3) 0%, rgba(40, 58, 226, 0.3) 100%);
-
+        linear-gradient(180deg, rgba(158, 100, 218, 1) 0%, rgba(117, 162, 203, 1) 100%);
       width: 278.4px;
       height: 150px;
       @include Myflex(space-between);
@@ -341,6 +352,12 @@ const onePieceBuyin = () => {
           padding: 6px 10px;
           @include Myflex(space-between);
           span {
+            font: normal normal 800 14px 'PingFang SC';
+            i {
+              font: normal normal 600 12px 'PingFang SC';
+            }
+          }
+          .qi {
             font: normal normal 400 12px 'PingFang SC';
           }
         }

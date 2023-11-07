@@ -2,7 +2,8 @@
   <div class="lianxi">
     <!-- 联系我们 -->
     <div class="lianx_left">
-      <div class="left_one">关于我们</div>
+      <div class="left_one">关于sad我们</div>
+      <div style="opacity: 0.5" class="left_one">关于sad我们</div>
     </div>
     <div class="linaxi_right">asdsa</div>
   </div>
@@ -28,16 +29,18 @@
       font: normal normal 400 14px 'PingFang SC';
       color: white;
       @include Myflex();
+      margin-bottom: 30px;
     }
   }
   .linaxi_right {
+    // opacity: ;
     width: 1220px;
     height: 524px;
     padding: 25px;
-    border-radius: 8px;
+    border-radius: 2px;
     @include bordergradientMY(
       linear-gradient(180deg, rgba(44, 34, 68, 1) 0%, rgba(33, 44, 67, 0.9) 100%),
-      linear-gradient(180deg, #241328 0%, #000c2c 100%)
+      linear-gradient(180deg, #070d13 0%, #070d13 100%)
     );
   }
 }

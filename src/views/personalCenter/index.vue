@@ -1,30 +1,27 @@
 <template>
-  <transition name='transition05s'>
-    <div id='myAccount'>
-      <div class='content'>
+  <transition name="transition05s">
+    <div id="myAccount">
+      <div class="content">
         <!--   tabs    -->
-        <div class='tabBox'>
-          <div class='bg'>
-            <div class='icons'>
-              <div class='iconsAfter'></div>
+        <div class="tabBox">
+          <div class="bg">
+            <div class="icons">
+              <div class="iconsAfter"></div>
             </div>
-            <div class='avatar'>
-              <div class='photo'>
-                <div class='photoBox'>
-                  <div @click='dianjiUpload' class='img'>
-                    <img
-                      v-if='useUsersStore.userInfo.avatar'
-                      :src='`${useUsersStore.userInfo.avatar}`'
-                    />
+            <div class="avatar">
+              <div class="photo">
+                <div class="photoBox">
+                  <div @click="dianjiUpload" class="img">
+                    <img v-if="useUsersStore.userInfo.avatar" :src="`${useUsersStore.userInfo.avatar}`" />
                   </div>
                   <el-upload
-                    :limit='1'
-                    class='avatar-uploader'
-                    action='#'
-                    :show-file-list='false'
-                    :on-success='handleAvatarSuccess'
-                    :http-request='uploadHttpRequest'
-                    :before-upload='beforeAvatarUpload'
+                    :limit="1"
+                    class="avatar-uploader"
+                    action="#"
+                    :show-file-list="false"
+                    :on-success="handleAvatarSuccess"
+                    :http-request="uploadHttpRequest"
+                    :before-upload="beforeAvatarUpload"
                   >
                     <!-- <img v-if="imageUrl" :src="imageUrl" class="avatar" />
                     <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon> -->
@@ -32,26 +29,26 @@
                 </div>
               </div>
             </div>
-            <div class='nickName'>{{ useUsersStore.userInfo.nickname }}</div>
-            <div class='tabs'>
-              <div class='bg'>
-                <div class='tabsText'>
-                  <div class='text' v-for='(item, index) in tabList' :key="'tabList' + item.id">
-                    <div class='TabName' @click='handleTabShow(item, index)'>{{ item.name }}</div>
-                    <div class='icon' v-if='item.id === 1'></div>
+            <div class="nickName">{{ useUsersStore.userInfo.nickname }}</div>
+            <div class="tabs">
+              <div class="bg">
+                <div class="tabsText">
+                  <div class="text" v-for="(item, index) in tabList" :key="'tabList' + item.id">
+                    <div class="TabName" @click="handleTabShow(item, index)">{{ item.name }}</div>
+                    <div class="icon" v-if="item.id === 1"></div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class='exitBtn' @click='handleLoginExit'>退出登录</div>
+            <div class="exitBtn" @click="handleLoginExit">退出登录</div>
           </div>
         </div>
-        <div class='box'>
+        <div class="box">
           <router-view></router-view>
         </div>
         <passwordPopup />
         <authenticationPopup />
-        <realNameZFBPopup v-if='useUsersStore.realNameZFBPopup' />
+        <realNameZFBPopup v-if="useUsersStore.realNameZFBPopup" />
       </div>
     </div>
   </transition>
@@ -60,7 +57,7 @@
 <script setup>
 import { onMounted, reactive, ref, watchEffect, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
-import router from '@/router/index.js'
+import { router } from '@/router/index.js'
 import { useStore } from '@/pinia/index.js'
 import { getItem, removeItem } from '@/utils/storage.js'
 import passwordPopup from './components/passwordPopup.vue'
@@ -113,7 +110,7 @@ const handleTabShow = (item, index) => {
   tabDom.style.left = lefts + 'px'
 }
 
-window.addEventListener('resize', function() {
+window.addEventListener('resize', function () {
   // 执行需要的操作
   // console.log('窗口大小已改变');
   handleTabShow(-1)
@@ -125,7 +122,6 @@ watchEffect(() => {
     nextTick(() => {
       handleTabShow(tabList[0], 0)
     })
-
   }
   if (route.name === 'orderForm') {
     nextTick(() => {
@@ -196,7 +192,7 @@ const dianjiUpload = () => {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 @import 'index.scss';
 
 .photoBox {

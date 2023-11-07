@@ -42,17 +42,17 @@ watch(
   .top {
     width: 1920px;
     height: 219.763px;
-    background: url('@/assets/images/carggo/Rectangle 1602_ce.png') no-repeat scroll left bottom/ 100% 100%;
+    background: url('@/assets/images/all/Rectangle4565.png') no-repeat scroll left bottom/ 100% 100%;
   }
   section {
     width: 1470px;
     height: 60px;
-
     margin: 30px auto;
+
     .section_top {
       @include bordergradientMY(
         linear-gradient(90deg, rgba(83, 56, 119, 0.9) 0%, rgba(53, 81, 125, 0.9) 100%),
-        linear-gradient(180deg, rgba(60, 63, 130, 0.1) 0%, rgba(4, 4, 7, 0.54) 100%)
+        linear-gradient(180deg, rgba(60, 63, 130, 0.7) 0%, rgba(4, 4, 7, 0.8) 100%)
       );
       height: 100%;
       @include Myflex(flex-start);
@@ -68,7 +68,7 @@ watch(
           bottom: 0;
           transform: translateX(-50%);
           width: 50%;
-          height: 4px;
+          height: 2px;
           border-radius: 5px;
           background: linear-gradient(149deg, rgb(213, 5, 205) 45.99%, rgb(53, 63, 253) 85.48%);
         }
@@ -77,13 +77,12 @@ watch(
         font: normal normal 400 14px ' PingFang SC';
         color: white;
         display: inline-block;
-        background-color: saddlebrown;
         height: 100%;
         // width: 300px;
         padding: 20px 12px;
         @include Myflex();
         margin-right: 100px;
-        background: linear-gradient(180deg, rgba(223, 0, 201, 0) 0%, rgba(0, 21, 94, 0.3) 100%);
+        // background: linear-gradient(180deg, rgba(223, 0, 201, 0) 0%, rgba(0, 21, 94, 0.3) 100%);
       }
     }
     .section_bottom {

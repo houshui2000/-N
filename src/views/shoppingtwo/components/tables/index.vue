@@ -28,20 +28,22 @@
           </td>
 
           <td>
-            <p class="kapaiming_bina">
+            <p style="padding-left: 25px" class="kapaiming_bina">
               <SvgIcon size="20px" icon-class="bianhao" />
-              <span class="bianhao">{{ item.cardNo }}</span>
+              <el-tooltip class="box-item" effect="dark" :content="item.cardNo" placement="top-start">
+                <span class="bianhao danyi">{{ item.cardNo }}</span>
+              </el-tooltip>
             </p>
           </td>
           <td>
-            <p style="" class="kapaiming_bina">
+            <p class="kapaiming_bina">
               <span style="color: white">{{ item.price ? '￥' + item.price : '---' }}</span>
             </p>
           </td>
           <td>
             <div class="zhifu">
               <!-- status : true 买入 || false : 支付中 -->
-              <div @click="PayFun(item)" v-if="!item.status" class="zhiFU_one">支付中</div>
+              <div @click="PayFun(item)" v-if="item.status" class="zhiFU_one">支付中</div>
               <div @click="PayFun(item)" v-else class="zhiFU_one_mai">买入</div>
             </div>
           </td>
@@ -89,13 +91,13 @@ table {
   width: 1470px;
   flex-shrink: 0;
   border-radius: 61px;
-  // border: 1px solid var(--Linear, #9f62db);
-  background: #070d13;
   border-collapse: separate;
   border-spacing: 0;
   border-radius: 10px;
-  @include bordergradientMY();
-
+  @include bordergradientMY(
+    linear-gradient(180deg, rgba(83, 56, 119, 0.5) 0%, rgba(53, 81, 125, 0.3) 100%),
+    linear-gradient(149deg, #070d13 45.99%, #070d13 85.48%)
+  );
   thead {
     height: 56px;
     font: normal normal 400 14px 'PingFang SC';
@@ -103,7 +105,7 @@ table {
     color: #fefefe;
     tr {
       display: block;
-      border-bottom: 1px solid #414971;
+      border-bottom: 1px solid rgba(39, 49, 85, 1);
       background: linear-gradient(180deg, #241328 0%, #000c2c 100%);
       td {
         width: 20% !important;
@@ -135,7 +137,8 @@ table {
           display: block;
           width: calc(1470px - 160px);
           height: 1px;
-          border-bottom: 1px solid #414971;
+          // border-bottom: 1px solid #414971;
+          border-bottom: 1px solid rgba(51, 56, 80, 1);
         }
       }
       td {
@@ -147,7 +150,7 @@ table {
           width: 100%;
           height: 100%;
           @include Myflex(flex-start);
-          padding-left: 125px;
+          padding-left: 110px;
           img {
             width: 69px;
             height: 83.114px;
@@ -164,12 +167,14 @@ table {
           @include Myflex(center);
           span {
             display: block;
-            @include Myflex(center);
+            padding-top: 45px;
+            padding-left: 5px;
             height: 100%;
             > img {
               width: 20px;
               height: 20px;
               margin-right: 5px;
+              background-color: salmon;
             }
             &:last-child {
               text-align: left;
@@ -177,7 +182,7 @@ table {
           }
         }
         .kapaiming_bina {
-          padding-left: 35px;
+          padding-left: 55px;
           width: 70%;
           height: 100%;
           margin-left: 20px;
@@ -185,25 +190,21 @@ table {
           color: white;
           font: normal normal 400 14px 'PingFang SC';
           .bianhao {
+            display: block;
+            max-width: 100px;
             background-color: saddlebrown;
             max-width: 122px;
             padding: 0 3px;
             height: 18px;
-
             border-radius: 3.256px;
             background: linear-gradient(269deg, #ffbb4d 0.83%, #815821 101.44%);
           }
-          // span {
-          //   display: block;
-          //   // margin-left: 10px;
-          //   background-color: saddlebrown;
-          // }
         }
         .zhifu {
           font: normal normal 400 12px 'PingFang SC';
           color: #fefefe;
           @include Myflex(flex-start);
-          padding-left: 100px;
+          padding-left: 110px;
           height: 100%;
           > div {
             width: 74px;
@@ -213,7 +214,7 @@ table {
 
           .zhiFU_one {
             cursor: pointer;
-            border-radius: 6px;
+            border-radius: 2px;
             background: linear-gradient(90deg, #2d42ff 0%, #df00c9 96.64%);
           }
 
@@ -221,10 +222,9 @@ table {
             cursor: pointer;
 
             position: relative;
-            border-radius: 5px;
-            @include bordergradientMY(
-              linear-gradient(180deg, rgba(157, 102, 217, 0.5) 0%, rgba(102, 152, 227, 0.5) 100%)
-            );
+            border-radius: 2px;
+
+            @include bordergradientMY(linear-gradient(90deg, rgba(46, 65, 255, 0.8) 0%, rgba(223, 1, 201, 0.8) 100%));
           }
         }
       }

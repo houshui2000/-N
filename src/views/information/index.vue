@@ -101,7 +101,6 @@ const listOfInformation = async () => {
 }
 .information {
   margin: auto;
-  padding-top: 32px;
   width: 100%;
   .zixun {
     height: 36px;

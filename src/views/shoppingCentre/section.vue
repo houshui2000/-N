@@ -1,5 +1,9 @@
 <template>
   <div class="section">
+    <!-- <Teleport to="body">
+      <div class="asda">大大</div>
+      <div class="asdasdada">大大</div>
+    </Teleport> -->
     <div class="section_left">
       <Section_left :LeftData="LeftData" @LeftData="LeftDataFuncation($event)" />
     </div>
@@ -77,12 +81,16 @@ const LeftDataFuncation = (e) => {
 </script>
 <style lang="scss" scoped>
 .section {
+  position: relative;
   width: 1664px;
   min-height: 1200px;
   margin: auto;
   padding-top: 57px;
   @include Myflex(space-between, flex-start);
   .section_left {
+    // position: sticky;
+    // top: 0px;
+    // left: 0;
     width: 270px;
     border-radius: 6px;
     border: 1px solid #1a2a40;

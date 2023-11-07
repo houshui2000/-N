@@ -41,11 +41,13 @@
     <div class="S_L_LetBie">
       <p @click="showhide = !showhide">
         <span>类别</span>
-        <span v-show="showhide">
-          <el-icon size="10"><ArrowDownBold /></el-icon>
+        <span class="sadas" v-show="showhide">
+          <el-icon><ArrowDownBold /></el-icon>
+          <!-- <el-icon><ArrowUpBold /></el-icon> -->
         </span>
-        <span v-show="!showhide">
-          <el-icon size="10"><ArrowUpBold /></el-icon>
+        <span class="sadas" v-show="!showhide">
+          <!-- <el-icon size="10"><ArrowUpBold /></el-icon> -->
+          <el-icon><ArrowUpBold /></el-icon>
         </span>
       </p>
       <div ref="LeiBie_xia" class="LeiBie_xia">
@@ -141,6 +143,9 @@ watch(
         linear-gradient(0deg, rgba(48, 35, 82, 0.9) 0%, rgba(36, 54, 77, 0.9) 100%),
         linear-gradient(180deg, #070d13 -1.45%, #070d13 100%)
       );
+      .el-input__inner {
+        color: white;
+      }
     }
   }
 }
@@ -171,11 +176,16 @@ watch(
 //
 .S_L_LetBie {
   @extend %mt;
+  padding: 20px 25px 45px 25px;
+
   font: normal normal 400 14px 'PingFang SC';
   color: white;
   > p {
     cursor: pointer;
     @include Myflex(space-between);
+  }
+  .sadas {
+    @include Myflex();
   }
   .show {
     transform: scaleY(1) !important;
@@ -188,29 +198,43 @@ watch(
       display: none;
     }
     .lei {
-      margin-top: 20px;
+      margin-bottom: 20px;
       position: relative;
       @include Myflex(flex-start);
+      &:last-child {
+        margin-bottom: 0px;
+      }
       .wenzi {
         margin-left: 14px;
         height: 20px;
         font: normal normal 400 14px 'PingFang SC';
         line-height: 20px;
       }
+      :deep(.el-checkbox-group) {
+        @include Myflex();
+      }
       :deep(.el-checkbox__input.is-checked .el-checkbox__inner) {
         background-color: transparent;
+        @include Myflex();
         border-color: #4f4f4f !important;
       }
       :deep(.el-checkbox__inner) {
+        width: 20px;
+        height: 20px;
         background-color: transparent;
-        border: 1px solid #4f4f4f;
+        border: 1px solid rgb(51, 51, 51);
+      }
+      :deep(.el-checkbox__inner::after) {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(45deg) scaleY(1);
       }
       .shu {
         position: absolute;
         right: 8px;
         top: 50%;
         transform: translateY(-50%);
-        font: normal normal 400 12px 'PingFang SC';
+        font: normal normal 700 12px 'PingFang SC';
         color: #666;
       }
     }
@@ -227,16 +251,12 @@ watch(
 
   :deep(section) {
     border: 1px solid transparent;
+    transform: translate(-1px, -2px);
+
     @include bordergradientMY(
       linear-gradient(0deg, rgba(48, 35, 82, 0.9) 0%, rgba(36, 54, 77, 0.9) 100%),
       linear-gradient(180deg, #070d13 -1.45%, #070d13 100%)
     );
-    // border-radius: 2px;
-    // background-clip: padding-box, border-box;
-    // background-origin: padding-box, border-box;
-    // 000717
-    // background-image: linear-gradient(180deg, #070d13 -1.45%, #070d13 100%),
-    //   linear-gradient(0deg, rgba(48, 35, 82, 0.5) 0%, rgba(36, 54, 77, 0.5) 100%);
   }
 }
 .top_icon {

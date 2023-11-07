@@ -7,7 +7,9 @@
       <img class="equalProportions" :src="props.KaParVueitem.productUrl" alt="" />
     </div>
     <div class="kapai_bottom">
-      <p class="txt_cut">{{ props.KaParVueitem.productName }}</p>
+      <p class="txt_cut">
+        {{ props.KaParVueitem.productName }}
+      </p>
       <!-- 商城卡片 -->
       <div class="shoppingCentre">
         <div
@@ -26,7 +28,7 @@
         >
           <span>￥</span>
           <span class="mounch">{{ props.KaParVueitem.minPrice }}</span>
-          <span>起</span>
+          <span class="qi">起</span>
         </div>
       </div>
       <!-- 商城卡片 end-->
@@ -55,7 +57,7 @@ const props = defineProps({
 .kapai {
   position: relative;
   width: 100%;
-  border-radius: 6px;
+  border-radius: 4px;
   height: 100%;
   background: linear-gradient(149deg, #200924 45.99%, #0e1045 69.44%, #000a2c 85.48%);
   border: 1px solid #303a66;
@@ -73,11 +75,12 @@ const props = defineProps({
   .chinaKexo {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 12px;
     width: 87px;
     height: 28px;
     @include Myflex();
-
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
     font: normal normal 600 12px 'PingFang SC';
     background: linear-gradient(96deg, #c4fbfe 0%, #99d2ff 31.55%, #fff 63.3%, #f295ff 103.92%);
   }
@@ -94,7 +97,12 @@ const props = defineProps({
     width: 100%;
     border-bottom: 1px solid #303a66;
     height: 220px;
+    padding-top: 5px;
+    @include Myflex();
     background: url('@/assets/images/shoppingCentre/beijing.png') no-repeat scroll left top/ 100% 100%;
+    img {
+      height: 194px;
+    }
   }
   .kapai_bottom {
     padding: 15px 14px;
@@ -122,16 +130,24 @@ const props = defineProps({
         background: linear-gradient(90deg, #2d42ff 0%, #df00c9 96.64%);
         // fill: linear-gradient(270deg, rgba(220, 158, 0, 0.00) 0.09%, rgba(220, 158, 0, 0.54) 77.46%, #EFAD02 96.55%);
 
-        border-radius: 6px;
+        border-radius: 2px;
         @include Myflex(space-between);
         span {
+          color: rgba(255, 255, 255, 0.9);
+
           font: normal normal 800 16px 'PingFang SC';
         }
         .mounch {
           margin: 0 9px 0 1px;
         }
+        .qi {
+          color: rgba(255, 255, 255, 0.8);
+          font: normal normal 400 12px 'PingFang SC';
+        }
       }
       .right_bott {
+        color: rgba(255, 255, 255, 0.8);
+
         font: normal normal 500 14px 'PingFang SC';
       }
     }
@@ -139,8 +155,8 @@ const props = defineProps({
   .hot {
     // background-color: #ea3a52;
     position: absolute;
-    left: -5px;
-    top: -5px;
+    left: 11px;
+    top: 11px;
     width: 38px;
     height: 30px;
     font: normal normal 600 12px 'PingFang SC';

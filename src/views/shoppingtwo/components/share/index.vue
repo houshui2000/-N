@@ -19,7 +19,7 @@
       <div @click="upload" class="download">下载</div>
       <section>
         <div class="img">
-          <img class="equalProportions" :src="realPictures" alt="" />
+          <img class="" :src="realPictures" alt="" />
         </div>
         <div class="section_bottom">
           <div class="bottom_left">
@@ -170,7 +170,7 @@ watch(
   cursor: pointer;
   position: absolute;
   color: white;
-  right: 29px;
+  right: 12px;
   top: 12px;
   z-index: 2;
   border-radius: 4px;
@@ -200,9 +200,9 @@ section {
   color: white;
   height: 546px;
 
-  // border: 3px solid #561895;
+  border: 3px solid #561895;
   // @include bordergradientMY();
-  // border-radius: 30px;
+  border-radius: 15px;
   background-color: transparent;
   overflow: hidden;
   // background: linear-gradient(180deg, #122743 -1.45%, #030d15 100%);
@@ -212,12 +212,12 @@ section {
 
   > .img {
     position: absolute;
-    left: 0;
+    left: -3px;
+    top: 0px;
     // background: linear-gradient(180deg, #122743 -1.45%, #030d15 100%);
     background-color: transparent;
-    top: 2px;
-    width: 100%;
-    height: 100%;
+    width: 390px;
+    height: 565px;
     z-index: 1;
     img {
       width: 100%;
@@ -232,8 +232,9 @@ section {
     z-index: 2;
     height: 176px;
     background-color: rgba(0, 0, 0, 0.5);
+    // background-color: saddlebrown;
     @include Myflex(space-between);
-    padding: 25px 18px;
+    padding: 25px 17px 17px 17px;
     .bottom_left {
       width: 222px;
       height: 100%;
@@ -266,17 +267,25 @@ section {
     .bottom_right {
       width: 132px;
       height: 132px;
-      @include bordergradientMY();
-      border-radius: 8px;
+      background: url('@/assets/images/shoppingCentre/erweima.png') no-repeat scroll left top/ 100% 100%;
+      // @include bordergradientMY(
+      //   linear-gradient(180deg, rgba(83, 56, 119, 1) 0%, rgba(53, 81, 125, 1) 100%),
+      //   linear-gradient(180deg, rgba(36, 19, 40, 0.5) 0%, rgba(36, 19, 40, 0.5) 100%)
+      // );
+      border-radius: 2px;
       @include Myflex();
       .img {
-        @include bordergradientMY();
+        // @include bordergradientMY(
+        //   linear-gradient(180deg, rgba(83, 56, 119, 0.7) 0%, rgba(53, 81, 125, 0.6) 100%),
+        //   linear-gradient(180deg, #241328 0%, #000c2c 100%)
+        // );
         width: 111.092px;
         border-radius: 8px;
         height: 112.286px;
+        @include Myflex();
         .erweima {
-          width: 100% !important;
-          height: 100% !important;
+          width: 107% !important;
+          height: 106% !important;
           border-radius: 4px;
         }
       }

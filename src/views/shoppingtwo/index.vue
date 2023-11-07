@@ -1,5 +1,5 @@
 <template>
-  <div @click="ass" class="kapai">
+  <div class="kapai">
     <!-- <div class="crumbs">
       <span @click="router.push('/shoppingCentre')">
         商城
@@ -36,7 +36,6 @@ const route = useRoute()
 // const router = useRouter()
 const creatData = ref({}) // 系列的数据
 const creatDataAll = ref([]) // 系列的所有数据
-const ass = () => {}
 const init = async () => {
   const res = await shopcardxdetail({
     vaultId: route.params.vaultId
@@ -63,7 +62,7 @@ watch(
 .kapai {
   // padding-top: 84px;
   width: 1470px;
-
+  padding-top: 14px;
   margin: auto;
   .crumbs {
     font: normal normal 400 14px 'PingFang SC';

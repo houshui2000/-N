@@ -41,13 +41,13 @@
           <div @click="handleLogin" v-if="!loginStore.token">
             <div class="login">登录</div>
           </div>
-          <div v-if="loginStore.token">{{ useUsersStore.userInfo.nickname }}</div>
+          <div class="danyi" v-if="loginStore.token">{{ useUsersStore.userInfo.nickname }}</div>
         </div>
-        <div class='uploadImg' v-if='loginStore.token'>
-<!--          <div class='dian'></div>-->
-          <div class='uploadPhoto'>
+        <div class="uploadImg" v-if="loginStore.token">
+          <!--          <div class='dian'></div>-->
+          <div class="uploadPhoto">
             <!--            ${loginStore.cossUrl}-->
-            <img v-if='useUsersStore.userInfo.avatar' :src='`${useUsersStore.userInfo.avatar}`' />
+            <img v-if="useUsersStore.userInfo.avatar" :src="`${useUsersStore.userInfo.avatar}`" />
           </div>
         </div>
         <div class="uploadContent" v-if="loginStore.token">
@@ -66,9 +66,9 @@
               <div class="vector"></div>
             </div>
           </div>
-          <div class='exit'>
-            <div @click="handleLoginExit()" style='display: flex;align-items: center'>
-              <div class='icon'></div>
+          <div class="exit">
+            <div @click="handleLoginExit()" style="display: flex; align-items: center">
+              <div class="icon"></div>
               退出登录
             </div>
           </div>
@@ -211,7 +211,7 @@ watch(
   width: 100%;
 
   height: 70px;
-  background: rgba(#000, 0.6);
+  background: rgba(#040407, 0.6);
   background-size: contain;
   display: flex;
   justify-content: space-between;
@@ -219,7 +219,7 @@ watch(
   top: 0px;
   left: 0;
   z-index: 1000;
-
+  border-bottom: 1px solid #404870;
   .navContent-bottom {
     width: 32px;
     height: 2px;
@@ -376,7 +376,7 @@ watch(
     }
 
     .adminUser {
-      width: 146px;
+      // width: 146px;
       min-height: 70px;
       display: flex;
       align-items: center;
@@ -388,7 +388,8 @@ watch(
       }
 
       .uploadText {
-        width: 101px;
+        // width: 101px;
+        max-width: 101px;
         height: 70px;
         line-height: 70px;
         font-weight: 600;
@@ -417,7 +418,8 @@ watch(
         background-clip: padding-box, border-box;
         background-origin: padding-box, border-box;
         border: 1px solid transparent;
-        background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(142.59deg, #315EFF 30.5%, #C90091 85.93%);
+        background-image: linear-gradient(to top, #070d13, #070d13),
+          linear-gradient(142.59deg, #315eff 30.5%, #c90091 85.93%);
         margin-left: 14px;
         position: relative;
 
