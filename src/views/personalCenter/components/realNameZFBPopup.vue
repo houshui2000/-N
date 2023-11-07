@@ -30,8 +30,8 @@ const handleRealName = async () => {
   new QRCode(document.getElementById('realNameQRCodeBox'), {
     //需要编码的文字内容或者URL
     text: useUsersStore.realNameQRCode,
-    width: 140, //二维码宽
-    height: 140,//二维码高
+    width: 160, //二维码宽
+    height: 160,//二维码高
     colorLight: 'transparent',
     colorDark: '#D9D9D9',
     correctLevel: 0
