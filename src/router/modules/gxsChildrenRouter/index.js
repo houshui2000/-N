@@ -1,4 +1,15 @@
 const gxsChildrenRouter = [
+  // {
+  //   path: '/downloadApp',//app下载页
+  //   name: 'downloadApp',
+  //   component: () => import('@/views/downloadPage/index.vue'),
+  //   props: true,
+  //   meta: {
+  //     immediate: false, // 路由显示
+  //     name: 'app下载页',
+  //     scrollTheSubtitles: true // 滚动字幕开启，关闭
+  //   },
+  // },
 
   {
     path: '/myAccount',//个人中心

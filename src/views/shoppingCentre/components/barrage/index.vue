@@ -13,7 +13,8 @@
       ref="danmakuRef"
       randomChannel
     >
-      <template v-slot:dm="{ index, danmu }">
+      <!-- index, -->
+      <template v-slot:dm="{ danmu }">
         <div class="barrageItemBox">
           <div class="huizheng">
             <div class="avatar">

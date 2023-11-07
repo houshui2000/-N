@@ -12,8 +12,9 @@
               <el-input
                 v-model="phone"
                 placeholder="请输入手机号"
-                oninput="if(value.length > 11) value=value.slice(0, 11)"
-                type="number"
+                maxlength="11"
+                onkeyup="value=value.replace(/[^0-9]/g,'')"
+                type="text"
               />
             </div>
             <div class=""></div>

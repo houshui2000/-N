@@ -22,8 +22,8 @@
     </div>
     <!--  右边  -->
     <div class="right">
-      <!-- <div class="search" @click="handleSeachShow"></div> -->
       <div @click="router.push('/app')" class="download"></div>
+
       <!-- <div class="cardMoneyBox">
         <div class="cardMoney"></div>
         <div class="fontsize">{{ useUsersStore.userInfo.dbalance }}</div>

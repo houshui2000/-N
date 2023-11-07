@@ -29,7 +29,8 @@
                       v-model="passwordInfo.mobile"
                       placeholder="请输入手机号"
                       @blur="handlePasswordInfoAdminBlur"
-                      oninput="if(value.length > 11) {value=value.slice(0, 11)}"
+                      maxlength='11'
+                      onkeyup="value=value.replace(/[^0-9]/g,'')"
                     />
                     <div class="verification">{{ passwordInfoVerificationAdmin }}</div>
                   </div>
@@ -38,7 +39,8 @@
                       v-model="passwordInfo.password"
                       type="password"
                       placeholder="请输入密码"
-                      oninput="if(value.length > 16) value=value.slice(0, 16)"
+                      maxlength='16'
+                      onkeyup="value=value.replace(/[\W]/g,'')"
                       @blur="handlePasswordInfoPasswordBlur"
                     />
                     <div class="verification">{{ passwordInfoVerificationPassword }}</div>
@@ -51,7 +53,8 @@
                       v-model="mobileInfo.mobile"
                       placeholder="请输入手机号"
                       @blur="handleMobileInfoBlur"
-                      oninput="if(value.length > 11) {value=value.slice(0, 11)}"
+                      maxlength='11'
+                      onkeyup="value=value.replace(/[^0-9]/g,'')"
                     />
                     <div class="verification">{{ mobileInfoVerification }}</div>
                   </div>
@@ -59,8 +62,8 @@
                     <input
                       v-model="mobileInfo.code"
                       placeholder="请输入验证码"
-                      type="number"
-                      oninput="if(value.length > 6) value=value.slice(0, 6)"
+                      maxlength='6'
+                      onkeyup="value=value.replace(/[^0-9]/g,'')"
                     />
                     <div class="code" @click="handleCodeTime()">
                       {{ codeTime >= 0 ? codeTime + 's' : '获取验证码' }}
@@ -78,7 +81,8 @@
                       v-model="registerInfo.mobile"
                       type="number"
                       placeholder="请输入手机号"
-                      oninput="if(value.length > 11) value=value.slice(0, 11)"
+                      maxlength='11'
+                      onkeyup="value=value.replace(/[^0-9]/g,'')"
                       @blur="handleRegisterInfoBlur"
                     />
                     <div class="verification">{{ registerInfoVerification }}</div>
@@ -88,7 +92,8 @@
                       v-model="registerInfo.code"
                       type="number"
                       placeholder="请输入验证码"
-                      oninput="if(value.length > 6) value=value.slice(0, 6)"
+                      maxlength='6'
+                      onkeyup="value=value.replace(/[^0-9]/g,'')"
                     />
                     <div class="code" @click="handleCodeTime()">
                       {{ registerCodeTime >= 0 ? registerCodeTime + 's' : '获取验证码' }}
@@ -98,18 +103,22 @@
                     <input
                       v-model="registerInfo.password"
                       placeholder="请输入不超过16位的密码"
-                      oninput="if(value.length > 16) value=value.slice(0, 16)"
+                      maxlength='11'
+                      onkeyup="value=value.replace(/[\W]/g,'')"
                     />
                   </div>
                   <div class="inputBox marginTop18">
                     <input
                       v-model="registerInfo.nickname"
                       placeholder="请输入昵称（选填）"
-                      oninput="if(value.length > 12) value=value.slice(0, 12)"
+                      minlength='2'
+                      maxlength='11'
+                      onkeyup="value=value.replace(/[^\w\u4E00-\u9FA5]/g, '')"
                     />
                   </div>
                   <div class="inputBox marginTop18">
-                    <input v-model="registerInfo.invitationCode" placeholder="请输入推荐码（选填）" />
+                    <input v-model="registerInfo.invitationCode" placeholder="请输入推荐码（选填）" maxlength='11'
+                           onkeyup="value=value.replace(/[\W]/g,'')" />
                   </div>
                 </div>
                 <!--      找回密码          -->
@@ -122,8 +131,8 @@
                     <input
                       v-model="resettingInfo.mobile"
                       placeholder="请输入手机号"
-                      type="number"
-                      oninput="if(value.length > 11) value=value.slice(0, 11)"
+                      maxlength='11'
+                      onkeyup="value=value.replace(/[^0-9]/g,'')"
                       @blur="handleResettingInfoBlur"
                     />
                     <div class="verification">{{ resettingInfoVerification }}</div>
@@ -132,8 +141,8 @@
                     <input
                       v-model="resettingInfo.code"
                       placeholder="请输入验证码"
-                      type="number"
-                      oninput="if(value.length > 6) value=value.slice(0, 6)"
+                      maxlength='6'
+                      onkeyup="value=value.replace(/[^0-9]/g,'')"
                     />
                     <div class="code" @click="handleCodeTime()">
                       {{ resettingCodeTime >= 0 ? resettingCodeTime + 's' : '获取验证码' }}
@@ -145,7 +154,8 @@
                       placeholder="请输入不超过16位的密码"
                       @blur="handleResettingInfoPassWordBlur"
                       type="password"
-                      oninput="if(value.length > 16) value=value.slice(0, 16)"
+                      maxlength='16'
+                      onkeyup="value=value.replace(/[\W]/g,'')"
                     />
                     <div class="verification">{{ resettingInfoVerificationPassword }}</div>
                   </div>
@@ -155,7 +165,8 @@
                       placeholder="请输入再次输入密码"
                       @blur="handleResettingInfoPassWordAgainBlur"
                       type="password"
-                      oninput="if(value.length > 16) value=value.slice(0, 16)"
+                      maxlength='16'
+                      onkeyup="value=value.replace(/[\W]/g,'')"
                     />
                     <div class="verification">{{ resettingInfoVerificationPasswordAgain }}</div>
                   </div>
