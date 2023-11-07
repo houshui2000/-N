@@ -14,20 +14,23 @@
       <div class='domInput marginTop23'>
         <div class='pText'>手机验证码：</div>
         <div class='inputFrame '>
-          <input placeholder='请输入手机验证码' v-model='passwordEdit.code' type='number'>
+          <input placeholder='请输入手机验证码' v-model='passwordEdit.code' maxlength='6'
+                 onkeyup="value=value.replace(/[^0-9]/g,'')">
         </div>
         <div class='textPass' @click='handleCodeTime()'>{{ codeTime >= 0 ? codeTime + 's' : '获取验证码' }}</div>
       </div>
       <div class='domInput marginTop23'>
         <div class='pText'>输入新密码：</div>
         <div class='inputFrame'>
-          <input placeholder='请输入新密码' type='password' v-model='passwordEdit.password'>
+          <input placeholder='请输入新密码' type='password' v-model='passwordEdit.password' maxlength='16'
+                 onkeyup="value=value.replace(/[\W]/g,'')">
         </div>
       </div>
       <div class='domInput marginTop23'>
         <div class='pText'>确认密码：</div>
         <div class='inputFrame'>
-          <input placeholder='请输入新密码' type='password' v-model='passwordEdit.passwordConfirm'>
+          <input placeholder='请输入新密码' type='password' v-model='passwordEdit.passwordConfirm' maxlength='16'
+                 onkeyup="value=value.replace(/[\W]/g,'')">
         </div>
       </div>
       <div class='passwordEditBtn' @click='handlePassword'>确认</div>
