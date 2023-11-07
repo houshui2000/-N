@@ -11,7 +11,7 @@
           <div class='switch' @click='handleSwitchBtn'>切换</div>
           <div class='inputBox'>
             <div class='inputs' v-if='!state' >
-              <el-input v-model='phone' placeholder='请输入手机号' oninput="if(value.length > 11) value=value.slice(0, 11)" type='number' />
+              <el-input v-model='phone' placeholder='请输入手机号' maxlength='11'  onkeyup="value=value.replace(/[^0-9]/g,'')" type='text' />
             </div>
             <div class=''></div>
             <div class='inputs' v-if='!state'>

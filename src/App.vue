@@ -10,29 +10,11 @@
 import LoginOne from '@/components/LoginOne/index.vue'
 import MenyOnTheRightVue from '@/components/menuOnTheRight/index.vue'
 </script>
-
-<style scoped lang="scss">
-body {
-  width: 1920px;
-}
-.CIjing {
-  width: 1920px;
-  // background-color: cadetblue;
-  background: url('@/assets/images/all/bei.png') no-repeat;
-  position: relative;
-  background-size: 100% 100%;
-  aside {
-    position: absolute;
-    right: 0;
-    top: 120px;
-    z-index: 1;
-    width: 358px;
-    height: 899px;
-    background: url('@/assets/images/carggo/aside.png') no-repeat scroll left top/ 100% 100%;
-  }
-}
-</style>
 <style lang="scss">
+:deep(.el-picker-panel__footer){
+  background-color: red!important;
+}
+
 /* 禁止复制代码 */
 pre {
   -webkit-user-select: none;
@@ -71,5 +53,27 @@ body::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 0;
   background: rgba(0, 0, 0, 0.1);
+}
+</style>
+
+<style scoped lang="scss">
+body {
+  width: 1920px;
+}
+.CIjing {
+  width: 1920px;
+  // background-color: cadetblue;
+  background: url('@/assets/images/all/bei.png') no-repeat;
+  position: relative;
+  background-size: 100% 100%;
+  aside {
+    position: absolute;
+    right: 0;
+    top: 120px;
+    z-index: 1;
+    width: 358px;
+    height: 899px;
+    background: url('@/assets/images/carggo/aside.png') no-repeat scroll left top/ 100% 100%;
+  }
 }
 </style>
