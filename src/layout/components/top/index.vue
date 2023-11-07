@@ -91,7 +91,7 @@
   </div>
 </template>
 <script setup>
-import { ref, computed, nextTick, onMounted, watch } from 'vue'
+import { ref, computed, nextTick, onMounted, onUnmounted, watch } from 'vue'
 // import SvgIcon from '@/components/SvgIcon/index.vue'
 import Login from '@/components/Login/index.vue'
 import { useStore } from '@/pinia'
@@ -165,7 +165,12 @@ const handleLoginExit = async () => {
 }
 //跳转个人中心
 
-onMounted(() => {})
+onMounted(() => {
+  window.addEventListener('resize', navContenBottomDOM)
+})
+onUnmounted(() => {
+  window.removeEventListener('resize', navContenBottomDOM)
+})
 const navBorder = ref(null)
 const navContentbox = ref([])
 /**动态路由提示切换 */
@@ -175,12 +180,14 @@ const navContenBottomDOM = () => {
       return item
     }
   })
+
   if (!genuineDOm) {
     navBorder.value.style.left = '-100px'
     return
   }
   const { left, bottom, width } = genuineDOm.getBoundingClientRect()
-  navBorder.value.style.left = left + width / 2 - 10 + 'px'
+  navBorder.value.style.width = width + 'px'
+  navBorder.value.style.left = left + 'px'
   navBorder.value.style.top = bottom - 10 + 'px'
 }
 watch(

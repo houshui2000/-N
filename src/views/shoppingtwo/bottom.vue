@@ -115,7 +115,6 @@ const init = async () => {
   })
 
   Fenye.value.pages = res.data.total
-  console.log(res.data)
 
   creatData.value = res.data
 }

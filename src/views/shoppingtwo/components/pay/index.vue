@@ -112,7 +112,7 @@ const shopquickbuyPay = async () => {
 const creatDataAll = ref({})
 const init = async () => {
   // route.params.vaultId
-  const res = await buyminxpricecard({ vaultId: 3 })
+  const res = await buyminxpricecard({ vaultId: route.params.vaultId })
   creatDataAll.value = res.data
 }
 watch(

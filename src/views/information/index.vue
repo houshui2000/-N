@@ -25,8 +25,16 @@
             <!~~ {{ item.title }} ~~>
           </p>-->
           <div class="xin_xi_center">
-            <div class="img"></div>
-            <div class="center_right">dasdas</div>
+            <div class="img">
+              <img :src="loginStore.cossUrl + item.imgUrl" alt="" />
+            </div>
+            <div class="center_right">
+              <div class="top">
+                <span>置顶</span>
+                {{ item.title }}
+              </div>
+              <div class="center_right_top">asdd</div>
+            </div>
           </div>
           <div class="xinix">{{ item.publishTime }}</div>
         </div>
@@ -34,6 +42,7 @@
         <div class="fenye">
           <div class="fen_xi">
             <el-pagination
+              v-if="listOfInformationArr?.records?.length !== Fenye.total"
               :page-size="Fenye.size"
               v-model:current-page="Fenye.currentPage"
               :pager-count="11"
@@ -53,6 +62,8 @@ import MissWakeupPage from '@/components/missingWakeupPage/index.vue'
 import LunBoVue from './components/LunBo/index.vue'
 import { shopnewscategory, shopnews } from '@/network/information'
 import { useRouter } from 'vue-router'
+import { useStore } from '@/pinia'
+const { loginStore } = useStore()
 const router = useRouter()
 const nameRef = ref('')
 const Fenye = ref({
@@ -64,9 +75,9 @@ const listArr = ref({})
 const listOfInformationArr = ref([])
 const init = async () => {
   const res = await shopnewscategory()
-  nameRef.value = res.data[0].id
-  Fenye.value.total = res.data.total
+
   listArr.value = res.data
+  nameRef.value = res.data[0].id
 
   listOfInformation()
 }
@@ -78,11 +89,16 @@ const listOfInformation = async () => {
     size: Fenye.value.size,
     categoryId: nameRef.value
   })
+  Fenye.value.total = res.data.total
+
   listOfInformationArr.value = res.data
 }
 </script>
 <style lang="scss" scoped>
 @import '@/styles/other/paginations.scss';
+:deep(.el-carousel__indicators) {
+  display: none;
+}
 .information {
   margin: auto;
   padding-top: 32px;
@@ -173,13 +189,39 @@ const listOfInformation = async () => {
             width: 160px;
             height: 120px;
             border-radius: 6px;
-            @include bordergradientMY(linear-gradient(180deg, rgba(45, 38, 81, 0.9) 0%, rgba(46, 37, 81, 0.9) 100%));
+            // @include bordergradientMY(linear-gradient(180deg, rgba(139, 98, 162, 1) 0%, rgba(46, 37, 81, 0.9) 100%));
+            img {
+              width: 100%;
+              border-radius: 6px;
+              height: 100%;
+              // @include bordergradientMY(
+              //   linear-gradient(180deg, rgba(83, 56, 119, 0.5) 0%, rgba(53, 81, 125, 0.3) 100%)
+              // );
+              @include bordergradientMY(linear-gradient(180deg, rgba(139, 98, 162, 1) 0%, rgba(61, 76, 156, 1) 100%));
+            }
           }
           .center_right {
             width: calc(100% - 160px);
             padding-left: 36px;
             height: 100%;
             // background-color: sandybrown;
+            .top {
+              font: normal normal 400 18px 'PingFang SC';
+              color: white;
+              height: 35px;
+              span {
+                padding: 4px;
+                border-radius: 4px;
+                font: normal normal 400 12px 'PingFang SC';
+                background: #ed614c;
+                margin-right: 10px;
+              }
+            }
+            .center_right_top {
+              height: calc(100% - 35px);
+              background-color: wheat;
+              overflow: hidden;
+            }
           }
         }
         .xinix {

@@ -56,7 +56,7 @@ export function shopquickbuy (data) {
 */
 export function buyminxpricecard (params) {
   return service({
-    url: '/buy/min-price-card',
+    url: '/shop/buy/min-price-card',
     method: 'GET', params
   })
 }

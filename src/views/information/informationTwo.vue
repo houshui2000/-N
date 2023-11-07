@@ -6,7 +6,7 @@
         { name: '咨询详情', path: route.params.id }
       ]"
     />
-    <div class="center"></div>
+    <div v-html="adsad" class="center"></div>
     <!-- <div class="nav">咨询 > 咨询详情</div> -->
   </div>
   <!--  v-html="adsad" -->
@@ -44,7 +44,7 @@ init()
     height: 300px;
     width: 100%;
     border-radius: 6px;
-    background-color: saddlebrown;
+    padding: 15px;
     @include bordergradientMY(linear-gradient(180deg, rgba(45, 38, 81, 0.9) 0%, rgba(46, 37, 81, 0.9) 100%));
   }
 }

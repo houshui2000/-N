@@ -4,12 +4,11 @@
       {{ computedTitle }}
       <slot name="top_icon_true" :dropdownMenu="dropdownMenu"></slot>
     </div>
-    <section>
+    <section ref="article">
       <div
         :class="{
           articleXuan: !dropdownMenu
         }"
-        ref="article"
         class="article"
       >
         <!--  v-if="dropdownMenu" -->
@@ -55,6 +54,7 @@ onMounted(() => {
   creatDom()
   articleDom()
   articletransition()
+  article.value.style.border = '0px solid transparent'
   document.addEventListener('click', handleDocumentClick)
   article.value.addEventListener('transitionend', articletransition)
 })
@@ -79,22 +79,25 @@ const mallHomepageClick = (item) => {
 }
 const articletransition = (e) => {
   if (!dropdownMenu.value || !e) return
-  if (e.propertyName == 'height') article.value.style.overflowY = 'hidden'
+  if (e.propertyName == 'height') {
+    article.value.style.border = '0px solid transparent'
+  }
+  // article.value.style.overflowY = 'hidden'
 }
 /**初始化 dom 高度信息 */
 const creatDom = () => {
   let offsetheight = article.value.firstElementChild.offsetHeight
   if (!offsetheight) return
-  articleXinxi.height = offsetheight * props.mallHomepage.length + 10 + 'px'
+  articleXinxi.height = offsetheight * props.mallHomepage.length + 2 + 'px'
 }
 const articleDom = () => {
   if (dropdownMenu.value) {
     // border: 1px solid transparent;
     article.value.style.height = 0
-    article.value.style.border = '0px solid transparent'
+    // article.value.style.border = '0px solid transparent'
   } else {
     article.value.style.border = '1px solid transparent'
-    article.value.style.overflowY = 'auto'
+    // article.value.style.overflowY = 'auto'
     article.value.style.height = articleXinxi.height
   }
 }
@@ -133,54 +136,101 @@ watch(
     height: 48px;
     padding: 14px;
     font: normal normal 400 14px 'PingFang SC';
+    border-radius: 2px;
     color: white;
   }
   section {
+    position: relative;
     width: 100%;
-    .articleXuan {
+    transform: translateY(-2px);
+    overflow-y: hidden;
+    overflow-x: hidden;
+    position: absolute;
+    margin-right: calc(100% - 100vw);
+    max-height: 200px;
+    z-index: 999;
+    transition: height 0.5s;
+    border-radius: 4px;
+    box-sizing: content-box;
+    &:hover {
+      overflow-y: overlay;
+    }
+    /*滚动条样式*/
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+    // 滚轮样式
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      // background-color: rgba($color: rgba(255, 255, 255, 0.2), $alpha: 0.6) !important;
+      background: linear-gradient(180deg, #de01ca 0%, #3340fe 100%);
+
+      display: none;
+    }
+    &:hover::-webkit-scrollbar-thumb {
+      display: block;
+    }
+
+    // 滚轮背景
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      border-radius: 0;
+      background: #000819;
     }
     .article {
-      transform: translateY(-2px);
-      overflow-y: hidden;
-      overflow-x: hidden;
       position: absolute;
-      width: calc(100% + 5px);
-      // padding-right: 8px;
-      max-height: 300px;
-      z-index: 999;
-      transition: height 0.5s;
-      // padding-top: 8px;
+      left: 0;
+      top: 0;
+      width: 208px;
+      // transform: translateY(-2px);
+      // overflow-y: hidden;
+      // overflow-x: hidden;
+      // position: absolute;
+      // width: calc(100%);
+      // margin-right: calc(100% - 100vw);
+      // max-height: 200px;
+      // z-index: 999;
+      // transition: height 0.5s;
+      // border-radius: 4px;
+      // background-color: saddlebrown;
+      // &:hover {
+      //   overflow-y: overlay;
+      // }
+      // /*滚动条样式*/
+      // &::-webkit-scrollbar {
+      //   width: 3px;
+      // }
+      // // 滚轮样式
+      // &::-webkit-scrollbar-thumb {
+      //   border-radius: 10px;
+      //   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      //   // background-color: rgba($color: rgba(255, 255, 255, 0.2), $alpha: 0.6) !important;
+      //   background: linear-gradient(180deg, #de01ca 0%, #3340fe 100%);
 
-      /*滚动条样式*/
-      &::-webkit-scrollbar {
-        width: 3px;
-      }
-      // 滚轮样式
-      &::-webkit-scrollbar-thumb {
-        border-radius: 10px;
-        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-        background-color: rgba($color: rgba(255, 255, 255, 0.2), $alpha: 0.6) !important;
-      }
+      //   display: none;
+      // }
+      // &:hover::-webkit-scrollbar-thumb {
+      //   display: block;
+      // }
 
-      // 滚轮背景
-      &::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-        border-radius: 0;
-        background: #000819;
-      }
+      // // 滚轮背景
+      // &::-webkit-scrollbar-track {
+      //   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      //   border-radius: 0;
+      //   background: #000819;
+      // }
     }
     .option {
       height: 40px;
-      width: calc(100%);
-      // background-color: salmon;  background-color: #000819;
-      background-color: #000819;
       font: normal normal 400 14px 'PingFang SC';
-      color: white;
+      color: rgba(255, 255, 255, 0.8);
       padding: 0 15px;
       overflow: hidden;
       @include Myflex();
       &:hover {
-        background-color: wheat;
+        color: white;
+        background: linear-gradient(90deg, #241328 -1.59%, #000c2c 99.97%);
       }
     }
   }

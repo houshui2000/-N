@@ -1,6 +1,6 @@
 <template>
   <div class="kapai">
-    <div v-if="props.KaParVueitem.hotPushStatus" class="hot">hot</div>
+    <div v-if="props.KaParVueitem.hotPushStatus" class="hot">HOT</div>
     <div class="xiaoxingxing"></div>
     <div class="chinaKexo">中国可信NFT</div>
     <div class="img">
@@ -94,6 +94,7 @@ const props = defineProps({
     width: 100%;
     border-bottom: 1px solid #303a66;
     height: 220px;
+    background: url('@/assets/images/shoppingCentre/beijing.png') no-repeat scroll left top/ 100% 100%;
   }
   .kapai_bottom {
     padding: 15px 14px;
@@ -136,17 +137,20 @@ const props = defineProps({
     }
   }
   .hot {
-    background-color: #ea3a52;
+    // background-color: #ea3a52;
     position: absolute;
     left: -5px;
     top: -5px;
     width: 38px;
-    height: 38px;
+    height: 30px;
     font: normal normal 600 12px 'PingFang SC';
     color: white;
     @include Myflex();
-    -webkit-clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+    background: url('@/assets/images/all/hot.png') no-repeat scroll left top/ 100% 100%;
+
+    // transform: rotate(30deg);
+    // -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    // clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   }
 }
 </style>

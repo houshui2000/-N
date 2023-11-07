@@ -42,5 +42,5 @@ export const mallHomepage = [
     label: '价格倒序排序',
     sort: false
   },
-
+  //
 ]

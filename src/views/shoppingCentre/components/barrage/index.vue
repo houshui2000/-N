@@ -6,7 +6,7 @@
       style="height: 100%; width: 100%"
       :channels="2"
       :speeds="80"
-      :top="16"
+      :top="36"
       :right="46"
       :debounce="2000"
       useSlot
@@ -20,10 +20,9 @@
             <div class="avatar">
               <img src="@/assets/images/carggo/ceshi.png" alt="" />
             </div>
-            <div class="name">{{ `${danmu.user}获得` }}</div>
+            <div class="name danyi">{{ `${danmu.user}获得` }}</div>
             <div class="card">
-              <!-- <img :src="danmu.hd" alt="" /> -->
-              <img src="@/assets/images/carggo/ceshi.png" alt="" />
+              <img class="equalProportions" src="@/assets/images/carggo/ceshi.png" alt="" />
             </div>
           </div>
         </div>

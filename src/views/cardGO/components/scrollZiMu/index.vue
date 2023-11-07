@@ -1,9 +1,10 @@
 <template>
   <div class="zuiwai">
+    <img class="img" src="@/assets/images/carggo/Gongao.png" alt="" />
     <div ref="lunbo" class="lunbo">
       <div style="display: flex; justify-content: center; align-items: center" ref="spanRef">
         <!-- <span class="img"> -->
-        <img class="img" src="@/assets/images/carggo/Gongao.png" alt="" />
+
         <!-- </span> -->
         <span class="wenzi">
           {{ title }}
@@ -39,13 +40,25 @@ const scroll = () => {
 .zuiwai {
   $LunBo_height: 40px;
   position: fixed;
-  left: 0px;
-  top: 71px;
+  left: 50%;
+  top: 80px;
+  color: aliceblue;
+  transform: translateX(-50%);
+  border-radius: 100px;
   z-index: 50;
-  width: 100%;
+  width: 90%;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.4);
   height: $LunBo_height;
+  @include Myflex(flex-start);
+  padding-left: 30px;
+  .img {
+    position: relative;
+    width: 17px;
+    height: 17px;
+    // margin-top: 3px;
+    margin-right: 13px;
+  }
   .lunbo {
     position: absolute;
     left: 54%;
@@ -54,7 +67,6 @@ const scroll = () => {
     overflow: hidden;
     z-index: 9;
     width: 100%;
-
     height: $LunBo_height;
     > div {
       display: inline;
@@ -65,13 +77,6 @@ const scroll = () => {
       height: $LunBo_height;
       line-height: $LunBo_height;
 
-      .img {
-        position: relative;
-        width: 17px;
-        height: 17px;
-        // margin-top: 3px;
-        margin-right: 13px;
-      }
       .wenzi {
         // margin-top: -5px;
         transform: translateX(-5px);

@@ -85,7 +85,9 @@ const { loginStore } = useStore()
 const route = useRoute()
 const router = useRouter()
 const props = defineProps({
+  // 卡牌购买
   creatData: { type: Object, required: true },
+  // 其他系列
   creatDataAll: { type: Object, required: true }
 })
 const dialogVisiblePay = ref(false) //支付弹框

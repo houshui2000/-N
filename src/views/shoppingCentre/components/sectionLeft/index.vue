@@ -125,7 +125,7 @@ watch(
   color: white;
 }
 %mt {
-  padding: 34px 25px;
+  padding: 34px 25px 20px 25px;
   border-bottom: 1px solid #1a2a40;
   > p {
     font: normal normal 500 14px 'PingFang SC';
@@ -136,24 +136,28 @@ watch(
     :deep(.el-input__wrapper) {
       box-shadow: none;
       height: 48px;
-      border-radius: 8px;
-      @include bordergradientMY(linear-gradient(180deg, rgba(45, 38, 81, 0.9) 0%, rgba(46, 37, 81, 0.9) 100%));
+      border-radius: 2px;
+      @include bordergradientMY(
+        linear-gradient(0deg, rgba(48, 35, 82, 0.9) 0%, rgba(36, 54, 77, 0.9) 100%),
+        linear-gradient(180deg, #070d13 -1.45%, #070d13 100%)
+      );
     }
   }
 }
 .S_L_top {
   @extend %mt;
-
+  :deep(.el-input) {
+    width: 213px;
+  }
   .input {
     position: relative;
-
     .icon {
-      width: 15px;
-      height: 15px;
+      width: 20px;
+      height: 20px;
       position: absolute;
-      right: 25px;
+      right: 15px;
       top: 50%;
-      transform: translateY(-100%);
+      transform: translateY(-50%);
     }
   }
 }
@@ -177,8 +181,6 @@ watch(
     transform: scaleY(1) !important;
   }
   .LeiBie_xia {
-    // transform: scaleY(0);
-    // transtions: 1s;
     transition: 1s;
     overflow: hidden;
     transform-origin: center top;
@@ -217,17 +219,24 @@ watch(
 .input_select {
   width: 213px;
   height: 48px;
-  border-radius: 8px;
-  @include bordergradientMY();
+  border-radius: 2px;
+  @include bordergradientMY(
+    linear-gradient(0deg, rgba(48, 35, 82, 0.9) 0%, rgba(36, 54, 77, 0.9) 100%),
+    linear-gradient(180deg, #070d13 -1.45%, #070d13 100%)
+  );
 
-  :deep(.article) {
+  :deep(section) {
     border: 1px solid transparent;
-    border-radius: 8px;
-    background-clip: padding-box, border-box;
-    background-origin: padding-box, border-box;
+    @include bordergradientMY(
+      linear-gradient(0deg, rgba(48, 35, 82, 0.9) 0%, rgba(36, 54, 77, 0.9) 100%),
+      linear-gradient(180deg, #070d13 -1.45%, #070d13 100%)
+    );
+    // border-radius: 2px;
+    // background-clip: padding-box, border-box;
+    // background-origin: padding-box, border-box;
     // 000717
-    background-image: linear-gradient(180deg, #070d13 -1.45%, #070d13 100%),
-      linear-gradient(0deg, rgba(159, 100, 219, 0.5) 0%, rgba(117, 163, 203, 0.5) 100%);
+    // background-image: linear-gradient(180deg, #070d13 -1.45%, #070d13 100%),
+    //   linear-gradient(0deg, rgba(48, 35, 82, 0.5) 0%, rgba(36, 54, 77, 0.5) 100%);
   }
 }
 .top_icon {
