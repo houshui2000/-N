@@ -1,40 +1,42 @@
 <template>
-  <div id='orderDetailsPopup'>
-    <div class='orderDetailsPopup'>
-      <div class='titleIcon'></div>
-      <div class='titleText'>待支付</div>
-      <div class='imgBox'>
-        <img src='https://img.zhisheji.com/bbs/forum/201401/05/153945tbr7pg5torfzptso.jpg'>
-      </div>
-      <div class='name'>MASTER KILLER</div>
-      <div class='number'>
-        <div class='numberText'>002-2023-A20-01</div>
-      </div>
-      <div class='btnBox'>
-        <div class='close'>取消支付</div>
-        <div class='payBtn'>去支付</div>
-      </div>
-      <div class='border'></div>
-      <div class='contentText'>
-        <div class='contentTextBox'>
-          <div  class='label'>订单编号</div>
-          <div  class='dataValue'>2233225533322222225</div>
+  <transition name='transition05s'>
+    <div id='orderDetailsPopup'>
+      <div class='orderDetailsPopup'>
+        <div class='titleIcon'></div>
+        <div class='titleText'>待支付</div>
+        <div class='imgBox'>
+          <img src='https://img.zhisheji.com/bbs/forum/201401/05/153945tbr7pg5torfzptso.jpg'>
         </div>
-        <div class='contentTextBox'>
-          <div  class='label'>订单编号</div>
-          <div  class='dataValue'>2233225533322222225</div>
+        <div class='name'>MASTER KILLER</div>
+        <div class='number'>
+          <div class='numberText'>002-2023-A20-01</div>
         </div>
-        <div class='contentTextBox'>
-          <div  class='label'>订单编号</div>
-          <div  class='dataValue'>2233225533322222225</div>
+        <div class='btnBox'>
+          <div class='close'>取消支付</div>
+          <div class='payBtn'>去支付</div>
         </div>
-        <div class='contentTextBox'>
-          <div  class='label'>订单编号</div>
-          <div  class='dataValue'>2233225533322222225</div>
+        <div class='border'></div>
+        <div class='contentText'>
+          <div class='contentTextBox'>
+            <div class='label'>订单编号</div>
+            <div class='dataValue'>2233225533322222225</div>
+          </div>
+          <div class='contentTextBox'>
+            <div class='label'>订单编号</div>
+            <div class='dataValue'>2233225533322222225</div>
+          </div>
+          <div class='contentTextBox'>
+            <div class='label'>订单编号</div>
+            <div class='dataValue'>2233225533322222225</div>
+          </div>
+          <div class='contentTextBox'>
+            <div class='label'>订单编号</div>
+            <div class='dataValue'>2233225533322222225</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script setup>
@@ -53,7 +55,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "PingFang SC";
   font-weight: 400;
   font-size: 14px;
   color: white;
@@ -147,22 +148,25 @@
       background-size: contain;
       margin-top: 28px;
     }
-    .contentText{
+
+    .contentText {
       width: 220px;
       height: 140px;
       text-align: left;
 
-      .contentTextBox{
+      .contentTextBox {
         display: flex;
         height: 17px;
         line-height: 17px;
         margin-top: 17px;
-        .label{
+
+        .label {
           width: 61px;
           font-size: 12px;
           color: #B8B8B8;
         }
-        .dataValue{
+
+        .dataValue {
           width: 137px;
           font-size: 12px;
         }

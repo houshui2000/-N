@@ -78,3 +78,11 @@ export function orderCancel(data) {
     data
   })
 }
+//资产库
+export function getAssetList(params) {
+  return service({
+    url: 'asset',
+    method: 'get',
+    params
+  })
+}
