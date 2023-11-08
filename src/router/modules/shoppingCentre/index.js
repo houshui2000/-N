@@ -11,7 +11,7 @@ const shoppingCentrechildren = [
       name: '商城',
       immediate: true, // 路由显示
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
-      scrollTheSubtitles: false // 滚动字幕 false 开启，true关闭
+      scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
     },
   },
   {

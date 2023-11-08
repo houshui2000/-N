@@ -1,48 +1,47 @@
 <template>
-  <transition name='transition05s'>
-    <div class='eror_all'>
+  <transition name="transition05s">
+    <div class="eror_all">
       <!-- 表格详情 -->
       <el-dialog
-        :modelValue='errDialoVueUpdate'
+        :modelValue="errDialoVueUpdate"
         @update:errDialoVueUpdate="$emit('update:errDialoVueUpdate', $event)"
-        title='Tips'
-        :lock-scroll='false'
-        :close-on-click-modal='false'
-        :showClose='false'
+        title="Tips"
+        :lock-scroll="false"
+        :close-on-click-modal="false"
+        :showClose="false"
         @close="$emit('update:errDialoVueUpdate', false)"
       >
         <template #header>
-          <div class='top'></div>
+          <div class="top"></div>
         </template>
         <section>
-          <div @click="$emit('update:errDialoVueUpdate', false)" class='close'>
-            <SvgIcon size='20px' icon-class='close' />
+          <div @click="$emit('update:errDialoVueUpdate', false)" class="close">
+            <SvgIcon Height="15px" size="20px" icon-class="close" />
           </div>
-          <div class='title'>{{ props.title }}</div>
-          <div v-if="props.title !== '查证'" class='section_left'>
+          <div class="title">{{ props.title }}</div>
+          <div v-if="props.title !== '查证'" class="section_left">
             <p>查证信息</p>
-            <div class='ziliao'>
-              <div v-for='(item, index) in 12' :key='index' class='zi_xin'>
-                <div class='zili_left'>{{ item }}</div>
-                <div class='ziliao_right'>小数点大家阿达四点三</div>
+            <div class="ziliao">
+              <div v-for="(item, index) in 12" :key="index" class="zi_xin">
+                <div class="zili_left">{{ item }}</div>
+                <div class="ziliao_right">小数点大家阿达四点三</div>
               </div>
-              <div v-for='(item, index) in 1' :key='index' class='zi_xin'>
-                <div class='zili_left'>xx11sadasx</div>
-                <div class='ziliao_right'>
+              <div v-for="(item, index) in 1" :key="index" class="zi_xin">
+                <div class="zili_left">xx11sadasx</div>
+                <div class="ziliao_right">
                   小数点大家阿达四点三小数点大家阿达四点三小数点大家阿达四点三小数点大家阿达四点三小数点大家阿达四点三小数点大家阿达四点三
                 </div>
               </div>
             </div>
           </div>
-          <div v-else class='section_left'>
-            <div class='img'></div>
+          <div v-else class="section_left">
+            <div class="img"></div>
           </div>
           <!-- <div class="section_right"></div> -->
         </section>
       </el-dialog>
     </div>
   </transition>
-
 </template>
 <script setup>
 import { toRefs } from 'vue'
@@ -55,8 +54,8 @@ import { toRefs } from 'vue'
 const props = defineProps({
   errDialoVueUpdate: { type: Boolean, required: true },
   detail: {
-    type: Object, default: () => {
-    }
+    type: Object,
+    default: () => {}
   },
   img: { type: String, default: '' },
   title: { type: String, default: '查证' }
@@ -64,7 +63,7 @@ const props = defineProps({
 const { errDialoVueUpdate } = toRefs(props)
 const $emit = defineEmits(['update:errDialoVueUpdate'])
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .dialog-footer button:first-child {
   margin-right: 10px;
 }

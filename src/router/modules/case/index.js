@@ -59,7 +59,7 @@ export const childrenCase = [
       ...helpCenterArr
     ]
   },
- 
+
   {
     path: '/information',
     name: 'information',
@@ -68,7 +68,7 @@ export const childrenCase = [
       name: '首页',
       immediate: true, // 路由显示
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
-      scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
+      scrollTheSubtitles: false // 滚动字幕 false 开启，true关闭
     }
   },
   {

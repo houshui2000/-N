@@ -19,7 +19,10 @@ body {
 .CIjing {
   width: 1920px;
   // background-color: cadetblue;
-  background: #0e121b url('@/assets/images/all/bei.png') no-repeat;
+  // background: #0e121b url('@/assets/images/all/bei.png') no-repeat;
+  // background-color: rgba(14, 18, 27, 0.9);
+  background: url('@/assets/images/all/bei.png') no-repeat scroll left top/ 100% 100%;
+
   // background-color: saddlebrown;
   position: relative;
   background-size: 100% 100%;
@@ -30,8 +33,8 @@ body {
     z-index: 1;
     width: 233px;
     height: 625px;
-    background: url('@/assets/images/carggo/aside.png') no-repeat scroll left top/ 100% 100%;
-    // background-color: rgba(255, 255, 255, 0.1);
+    // background: url('@/assets/images/carggo/aside.png') no-repeat scroll left top/ 100% 100%;
+    // background-color: rgba(255, 255, 255, 0.8);
   }
 }
 </style>

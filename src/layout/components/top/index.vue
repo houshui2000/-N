@@ -46,7 +46,6 @@
         <div class="uploadImg" v-if="loginStore.token">
           <!--          <div class='dian'></div>-->
           <div class="uploadPhoto">
-            <!--            ${loginStore.cossUrl}-->
             <img v-if="useUsersStore.userInfo.avatar" :src="`${useUsersStore.userInfo.avatar}`" />
           </div>
         </div>

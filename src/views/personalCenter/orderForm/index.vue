@@ -1,169 +1,190 @@
 <template>
-  <transition name='transition05s'>
-    <div id='orderForm'>
-      <div class='title'>
-        <div class='left'>
-          <gxsSelect :options='options' :arrayValue='arrayValue' @handleEdit='handleSelectValue'></gxsSelect>
-          <div class='CreateDateTime' @click='handleCreateDateTimeShow'>
-            <div class='text'>创建时间检索</div>
+  <transition name="transition05s">
+    <div id="orderForm">
+      <div class="title">
+        <div class="left">
+          <gxsSelect :options="options" :arrayValue="arrayValue" @handleEdit="handleSelectValue"></gxsSelect>
+          <div class="CreateDateTime" @click="handleCreateDateTimeShow">
+            <div class="text">创建时间检索</div>
             <el-date-picker
-              class='CreateDateTimePicker'
-              popper-class='CreateDateTimePickerKuang'
-              v-model='createTime'
-              type='datetimerange'
-              start-placeholder='开始时间'
-              end-placeholder='结束时间'
-              format='YYYY-MM-DD HH:mm:ss'
-              date-format='YYYY-MM-DD'
-              time-format='hh:mm:ss'
-              @change='handleCreateDateTime'
+              class="CreateDateTimePicker"
+              popper-class="CreateDateTimePickerKuang"
+              v-model="createTime"
+              type="datetimerange"
+              start-placeholder="开始时间"
+              end-placeholder="结束时间"
+              format="YYYY-MM-DD HH:mm:ss"
+              date-format="YYYY-MM-DD"
+              time-format="hh:mm:ss"
+              @change="handleCreateDateTime"
             />
           </div>
-          <div class='PayDateTime' @click='handlePayDateTimeShow'>
-            <div class='text'>支付时间检索</div>
+          <div class="PayDateTime" @click="handlePayDateTimeShow">
+            <div class="text">支付时间检索</div>
             <el-date-picker
-              class='PayDateTimePicker'
-              popper-class='CreateDateTimePickerKuang'
-              v-model='payTime'
-              type='datetimerange'
-              start-placeholder='开始时间'
-              end-placeholder='结束时间'
-              format='YYYY-MM-DD HH:mm:ss'
-              date-format='YYYY-MM-DD'
-              time-format='hh:mm:ss'
-              @change='handlePayTime'
+              class="PayDateTimePicker"
+              popper-class="CreateDateTimePickerKuang"
+              v-model="payTime"
+              type="datetimerange"
+              start-placeholder="开始时间"
+              end-placeholder="结束时间"
+              format="YYYY-MM-DD HH:mm:ss"
+              date-format="YYYY-MM-DD"
+              time-format="hh:mm:ss"
+              @change="handlePayTime"
             />
           </div>
         </div>
-        <div class='right'>
-          <div class='frameSort2'>
-            <input v-model='orderInfo.key' placeholder='请输入名称' @keyup.enter='handleOrderList' />
-            <div class='searchIcon' @click.stop='handleOrderList'></div>
+        <div class="right">
+          <div class="frameSort2">
+            <input v-model="orderInfo.key" placeholder="请输入名称" @keyup.enter="handleOrderList" />
+            <div class="searchIcon" @click.stop="handleOrderList"></div>
           </div>
         </div>
       </div>
-      <div class='orderDetails'>
-        <div class='orderTitleBg'>
-          <div class='text'>资产</div>
-          <div class='text'>交易金额</div>
-          <div class='text'>支付方式</div>
-          <div class='text'>创建时间</div>
-          <div class='text'>支付时间</div>
-          <div class='text'>状态</div>
+      <div class="orderDetails">
+        <div class="orderTitleBg">
+          <div class="text">资产</div>
+          <div class="text">交易金额</div>
+          <div class="text">支付方式</div>
+          <div class="text">创建时间</div>
+          <div class="text">支付时间</div>
+          <div class="text">状态</div>
         </div>
-        <div class='borderFrame'></div>
-        <div class='orderList'>
-          <div class='orderListBox' v-for='(item,index) in orderList'>
-            <div class='head'>
+        <div class="borderFrame"></div>
+        <div class="orderList">
+          <div class="orderListBox" v-for="(item, index) in orderList">
+            <div class="head">
               订单号: {{ item.orderNo }}
-              <div class='copyIcon' @click='handleCopyIcon(item.orderNo)'></div>
+              <div class="copyIcon" @click="handleCopyIcon(item.orderNo)"></div>
             </div>
-            <div class='content'>
-              <div class='cardImgBox' @mouseenter='handleMouseover(index)' @mouseleave='handleMouseout(index)'>
-                <div class='cardImg'>
-                  <img v-if='item.productUrl' :src='`${loginStore.cossUrl}${item.productUrl}`' />
+            <div class="content">
+              <div class="cardImgBox" @mouseenter="handleMouseover(index)" @mouseleave="handleMouseout(index)">
+                <div class="cardImg">
+                  <img v-if="item.productUrl" :src="`${item.productUrl}`" />
                 </div>
-                <div class='orderDetailsBox' v-if='index===indexDetail' @mouseenter='handleMouseover(index)'>
-                  <div class='orderDetailsPopup' :class='{dzb:item.payStatus===0}' @mouseleave='handleMouseout(index)'>
-                    <div class='titleIcon'
-                         :class='{active0:item.payStatus===0,active1:item.payStatus===1,activef1:item.payStatus===-1,activef2:item.payStatus===-2,active2:item.payStatus===2}'></div>
-                    <div class='titleText'>
-                      <span v-if='item.payStatus===0'>待支付</span>
-                      <span v-if='item.payStatus===1'>登记中</span>
-                      <span v-if='item.payStatus===-1' style='color: #909399'>已取消</span>
-                      <span v-if='item.payStatus===-2' style='color: #1CC46C'>已退款</span>
-                      <span v-if='item.payStatus===2' style='color: #1CC46C'>交易成功</span>
+                <div class="orderDetailsBox" v-if="index === indexDetail" @mouseenter="handleMouseover(index)">
+                  <div
+                    class="orderDetailsPopup"
+                    :class="{ dzb: item.payStatus === 0 }"
+                    @mouseleave="handleMouseout(index)"
+                  >
+                    <div
+                      class="titleIcon"
+                      :class="{
+                        active0: item.payStatus === 0,
+                        active1: item.payStatus === 1,
+                        activef1: item.payStatus === -1,
+                        activef2: item.payStatus === -2,
+                        active2: item.payStatus === 2
+                      }"
+                    ></div>
+                    <div class="titleText">
+                      <span v-if="item.payStatus === 0">待支付</span>
+                      <span v-if="item.payStatus === 1">登记中</span>
+                      <span v-if="item.payStatus === -1" style="color: #909399">已取消</span>
+                      <span v-if="item.payStatus === -2" style="color: #1cc46c">已退款</span>
+                      <span v-if="item.payStatus === 2" style="color: #1cc46c">交易成功</span>
                     </div>
-                    <div class='imgBox'>
-                      <img v-if='item.productUrl' :src='`${loginStore.cossUrl}${item.productUrl}`' />
+                    <div class="imgBox">
+                      <img v-if="item.productUrl" :src="`${loginStore.cossUrl}${item.productUrl}`" />
                     </div>
-                    <div class='name'>{{ item.productName }}</div>
-                    <div class='numberBox'>
-                      <div class='numberBox-text'>
-                        <div class='numberBox-icon'></div>
+                    <div class="name">{{ item.productName }}</div>
+                    <div class="numberBox">
+                      <div class="numberBox-text">
+                        <div class="numberBox-icon"></div>
                         {{ item.cardNo }}
                       </div>
                     </div>
-                    <div class='btnBox' v-if='item.payStatus===0'>
-                      <div class='close' @click='handlePayClose(item.orderNo)'>取消支付</div>
-                      <div class='payBtn'>去支付</div>
+                    <div class="btnBox" v-if="item.payStatus === 0">
+                      <div class="close" @click="handlePayClose(item.orderNo)">取消支付</div>
+                      <div class="payBtn">去支付</div>
                     </div>
-                    <div class='border'></div>
-                    <div class='contentText'>
-                      <div class='contentTextBox'>
-                        <div class='label'>订单编号</div>
-                        <div class='dataValue'>{{ item.orderNo }}</div>
+                    <div class="border"></div>
+                    <div class="contentText">
+                      <div class="contentTextBox">
+                        <div class="label">订单编号</div>
+                        <div class="dataValue">{{ item.orderNo }}</div>
                       </div>
-                      <div class='contentTextBox'>
-                        <div class='label'>创建时间</div>
-                        <div class='dataValue'>{{ item.createTime }}</div>
+                      <div class="contentTextBox">
+                        <div class="label">创建时间</div>
+                        <div class="dataValue">{{ item.createTime }}</div>
                       </div>
-                      <div class='contentTextBox' v-if='item.payStatus===-1'>
-                        <div class='label'>取消时间</div>
-                        <div class='dataValue'>{{ item.currentStatusTime }}</div>
+                      <div class="contentTextBox" v-if="item.payStatus === -1">
+                        <div class="label">取消时间</div>
+                        <div class="dataValue">{{ item.currentStatusTime }}</div>
                       </div>
-                      <div class='contentTextBox' v-if='item.payTime===1 || item.payTime===2 || item.payTime===-2'>
-                        <div class='label'>支付时间</div>
-                        <div class='dataValue'>{{ item.currentStatusTime }}</div>
+                      <div
+                        class="contentTextBox"
+                        v-if="item.payTime === 1 || item.payTime === 2 || item.payTime === -2"
+                      >
+                        <div class="label">支付时间</div>
+                        <div class="dataValue">{{ item.currentStatusTime }}</div>
                       </div>
-                      <div class='contentTextBox' v-if='item.payStatus===-2'>
-                        <div class='label'>退款时间</div>
-                        <div class='dataValue'>{{ item.currentStatusTime }}</div>
+                      <div class="contentTextBox" v-if="item.payStatus === -2">
+                        <div class="label">退款时间</div>
+                        <div class="dataValue">{{ item.currentStatusTime }}</div>
                       </div>
-                      <div class='contentTextBox'>
-                        <div class='label'>支付方式</div>
-                        <div class='dataValue'>{{ item.payType === 0 ? '支付宝' : '微信' }}
-                          <span v-if='item.payStatus===-2'>(已退款)</span>
+                      <div class="contentTextBox">
+                        <div class="label">支付方式</div>
+                        <div class="dataValue">
+                          {{ item.payType === 0 ? '支付宝' : '微信' }}
+                          <span v-if="item.payStatus === -2">(已退款)</span>
                         </div>
                       </div>
-                      <div class='contentTextBox'>
-                        <div class='label'>交易金额</div>
-                        <div class='dataValue'>￥{{ item.payAmount }}</div>
+                      <div class="contentTextBox">
+                        <div class="label">交易金额</div>
+                        <div class="dataValue">￥{{ item.payAmount }}</div>
                       </div>
-                      <div class='contentTextBox' v-if='item.payStatus===-2'>
-                        <div class='label'>退款金额</div>
-                        <div class='dataValue'>￥{{ item.payAmount }}</div>
+                      <div class="contentTextBox" v-if="item.payStatus === -2">
+                        <div class="label">退款金额</div>
+                        <div class="dataValue">￥{{ item.payAmount }}</div>
                       </div>
-                      <div class='contentTextBox' v-if='item.payStatus===2'>
-                        <div class='label'>登记时间</div>
-                        <div class='dataValue'>{{ item.currentStatusTime }}</div>
+                      <div class="contentTextBox" v-if="item.payStatus === 2">
+                        <div class="label">登记时间</div>
+                        <div class="dataValue">{{ item.currentStatusTime }}</div>
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
 
-              <div class='nameBox'>
-                <div class='name'>{{ item.productName }}</div>
-                <div class='number'>
-                  <div class='icon'></div>
-                  <div class='text'>{{ item.cardNo }}</div>
+              <div class="nameBox">
+                <div class="name">{{ item.productName }}</div>
+                <div class="number">
+                  <div class="icon"></div>
+                  <div class="text">{{ item.cardNo }}</div>
                 </div>
               </div>
-              <div class='money'>￥{{ item.payAmount }}</div>
-              <div class='payment'>{{ item.payType === 0 ? '支付宝' : '微信' }}</div>
-              <div class='createTime'>{{ item.createTime }}</div>
-              <div class='payTime'>{{ item.payTime ? item.payTime : '-' }}</div>
-              <div class='payBox'>
-                <div class='state'>
-                  <span v-if='item.payStatus===0'>待支付</span>
-                  <span v-if='item.payStatus===1'>登记中</span>
-                  <span v-if='item.payStatus===-1'>已取消</span>
-                  <span v-if='item.payStatus===-2'>退款</span>
-                  <span v-if='item.payStatus===2'>交易成功</span>
+              <div class="money">￥{{ item.payAmount }}</div>
+              <div class="payment">{{ item.payType === 0 ? '支付宝' : '微信' }}</div>
+              <div class="createTime">{{ item.createTime }}</div>
+              <div class="payTime">{{ item.payTime ? item.payTime : '-' }}</div>
+              <div class="payBox">
+                <div class="state">
+                  <span v-if="item.payStatus === 0">待支付</span>
+                  <span v-if="item.payStatus === 1">登记中</span>
+                  <span v-if="item.payStatus === -1">已取消</span>
+                  <span v-if="item.payStatus === -2">退款</span>
+                  <span v-if="item.payStatus === 2">交易成功</span>
                 </div>
-                <div class='btn' v-if='item.payStatus===0'>去支付</div>
+                <div class="btn" v-if="item.payStatus === 0">去支付</div>
               </div>
             </div>
           </div>
-          <div class='bottomMsg' v-if='orderList.length===0'>暂无明细</div>
+          <div class="bottomMsg" v-if="orderList.length === 0">暂无明细</div>
         </div>
       </div>
-      <div class='fen_xi'>
-        <el-pagination background v-model:current-page='orderInfo.current'
-                       v-model:page-size='orderInfo.size' layout='prev, pager, next' :total='total'
-                       v-if='orderList.length!==0' @current-change='handleCurrentChange' />
+      <div class="fen_xi">
+        <el-pagination
+          background
+          v-model:current-page="orderInfo.current"
+          v-model:page-size="orderInfo.size"
+          layout="prev, pager, next"
+          :total="total"
+          v-if="orderList.length !== 0"
+          @current-change="handleCurrentChange"
+        />
       </div>
     </div>
   </transition>
@@ -248,9 +269,7 @@ const handleOrderList = async () => {
     orderList.value = data
     total.value = res.data.total
     console.log(orderList)
-
   }
-
 }
 const timeZhuan = (time) => {
   const date = new Date(time)
@@ -277,7 +296,7 @@ const handleCreateDateTime = () => {
 }
 const handlePayTime = () => {
   if (!payTime.value) {
-    payTime.createTimes = null
+    payTime.value.createTimes = null
   } else {
     let str = ''
     for (let i = 0; i < payTime.value.length; i++) {
@@ -305,10 +324,9 @@ const handlePayClose = async (orderNo) => {
 onMounted(() => {
   handleOrderList()
 })
-
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 :deep(.el-date-range-picker) {
   background: #018ef8;
 }
@@ -318,5 +336,5 @@ onMounted(() => {
 }
 
 @import '@/styles/other/paginations.scss';
-@import "index.scss";
+@import 'index.scss';
 </style>

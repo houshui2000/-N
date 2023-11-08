@@ -20,12 +20,9 @@
 import BarrageVue from '../barrage/index.vue'
 // import { indexbanner } from '@/network/api'
 import { ref } from 'vue'
-// import Banner from '../barrage/index.vue'
 const carouselUtem = ref([])
 const creat = async () => {
-  // const res = await indexbanner()
   const kaCe = new URL('../../../../assets/images/carggo/Rectangle 1602_ce.png', import.meta.url).href
-  // if (res.code === 200) {
   carouselUtem.value = [{ url: kaCe }]
   // }
 }

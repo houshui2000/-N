@@ -14,7 +14,7 @@
         <div class="top">
           选择支付方式
           <div @click="$emit('update:dialogVisiblePay', false)" class="close">
-            <SvgIcon size="20px " icon-class="close" />
+            <SvgIcon size="20px" Height="20px" icon-class="close" />
           </div>
         </div>
       </template>
@@ -22,12 +22,7 @@
         <div class="sectoion_top">
           <div class="top_left">
             <!-- {{ props.creatDataAll.issuePrice }}-->
-            <img
-              v-if="creatDataAll.productUrl"
-              class="equalProportions"
-              :src="loginStore.cossUrl + creatDataAll.productUrl"
-              alt=""
-            />
+            <img v-if="creatDataAll.productUrl" class="equalProportions" :src="creatDataAll.productUrl" alt="" />
           </div>
           <div class="top_right">
             <p>{{ creatDataAll.cardId }}</p>
@@ -83,9 +78,9 @@ import SvgIcon from '@/components/SvgIcon/index.vue'
 import errDialoVue from '../errdialo/index.vue'
 import { useRoute } from 'vue-router'
 import { shopquickbuy, buyminxpricecard } from '@/network/shoppingCentre/shoppingtwo.js'
-import { useStore } from '@/pinia'
+// import { useStore } from '@/pinia'
 const route = useRoute()
-const { loginStore } = useStore()
+// const { loginStore } = useStore()
 
 const props = defineProps({
   dialogVisiblePay: { type: Boolean, required: true }

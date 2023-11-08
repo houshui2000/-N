@@ -52,7 +52,7 @@
           </div>
         </div>
       </div>
-      <MissWakeupPage v-if="listOfInformationArr?.records?.length == 0" />
+      <MissWakeupPage :title="'暂无数据'" titleTwo="" v-if="listOfInformationArr?.records?.length == 0" />
     </section>
   </div>
 </template>

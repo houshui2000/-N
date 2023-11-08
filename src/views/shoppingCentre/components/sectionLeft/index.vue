@@ -5,7 +5,7 @@
       <div class="input">
         <el-input v-model.trim="search.name" class="w-50 m-2" placeholder="找寻理想的资产" />
         <div class="icon">
-          <SvgIcon size="20" icon-class="sousuo" />
+          <SvgIcon Height="15" size="20" icon-class="sousuo" />
         </div>
       </div>
     </div>
@@ -17,10 +17,10 @@
           <template #top_icon_true="{ dropdownMenu }">
             <div class="top_icon">
               <!-- {{ dropdownMenu }} -->
-              <p v-show="dropdownMenu">
+              <p v-show="!dropdownMenu">
                 <el-icon><ArrowUpBold /></el-icon>
               </p>
-              <p v-show="!dropdownMenu">
+              <p v-show="dropdownMenu">
                 <el-icon><ArrowDownBold /></el-icon>
               </p>
             </div>

@@ -9,7 +9,7 @@
       >
         <!-- background: `url(${props.creatData.productUrl}) no-repeat scroll left top/ 100% 100%` -->
         <div style="cursor: pointer" @click="fenxiangdialog = !fenxiangdialog" class="fenxiang">
-          <SvgIcon size="55px" icon-class="fenxiang" />
+          <SvgIcon size="55px" Height="55px" icon-class="fenxiang" />
         </div>
         <div class="img">
           <img class="equalProportions" :src="props.creatData.productUrl" alt="" />
@@ -130,7 +130,7 @@ const onePieceBuyin = () => {
     background: url('@/assets/images/shoppingCentre/shopp_TWo.png') no-repeat scroll left top/ 100% 100%;
     .fenxiang {
       position: absolute;
-      right: 0px;
+      right: 15px;
       top: 0px;
       width: 72px;
       height: 30px;
@@ -192,14 +192,18 @@ const onePieceBuyin = () => {
     background: linear-gradient(180deg, rgba(18, 39, 67, 0.59) 0%, rgba(3, 13, 21, 0.59) 100%);
     box-shadow: 0px 4.85072px 15.76483px 0px rgba(0, 0, 0, 0.43);
     .S_L_Top {
+      width: 100%;
       > p {
         color: white;
         font: normal normal 700 23px 'PingFang SC';
       }
       .S_l_center {
-        @include Myflex(flex-start);
+        @include Myflex(flex-start, flex-start);
+        flex-direction: column;
+        margin-top: 17px;
         flex-wrap: wrap;
         > p {
+          display: inline-block;
           position: relative;
           font: normal normal 400 14px 'PingFang SC';
           color: rgba(235, 235, 235, 1);
@@ -209,7 +213,6 @@ const onePieceBuyin = () => {
           height: 55px;
           padding: 0 12px;
           border-radius: 8px;
-          // background: linear-gradient(180deg, rgba(18, 39, 67, 0.59) 0%, rgba(3, 13, 21, 0.59) 100%);
 
           @include bordergradientMY(
             linear-gradient(180deg, rgba(157, 102, 217, 0.8) 0%, rgba(102, 152, 227, 0.8) 100%),

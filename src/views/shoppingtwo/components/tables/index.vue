@@ -4,8 +4,8 @@
       <thead>
         <tr>
           <td>资产</td>
-          <td>用户昵称</td>
           <td>资产编号</td>
+          <td>用户昵称</td>
           <td>价格</td>
           <td>操作</td>
         </tr>
@@ -18,21 +18,21 @@
               <img :src="item.productUrl" alt="" />
             </div>
           </td>
+
+          <td>
+            <p style="padding-left: 25px" class="kapaiming_bina">
+              <SvgIcon size="20px" Height="20px" icon-class="bianhao" />
+              <el-tooltip class="box-item" effect="dark" :content="item.cardNo" placement="top-start">
+                <span class="bianhao danyi">{{ item.cardNo }}</span>
+              </el-tooltip>
+            </p>
+          </td>
           <td>
             <p class="kapaiming">
               <span>
                 <img :src="item.avatar" alt="" />
               </span>
               <span>{{ item.nickname ? item.nickname : '---' }}</span>
-            </p>
-          </td>
-
-          <td>
-            <p style="padding-left: 25px" class="kapaiming_bina">
-              <SvgIcon size="20px" icon-class="bianhao" />
-              <el-tooltip class="box-item" effect="dark" :content="item.cardNo" placement="top-start">
-                <span class="bianhao danyi">{{ item.cardNo }}</span>
-              </el-tooltip>
             </p>
           </td>
           <td>

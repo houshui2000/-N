@@ -140,6 +140,7 @@ watch(
     font: normal normal 400 14px 'PingFang SC';
     border-radius: 2px;
     color: white;
+    @include Myflex(flex-start);
   }
   section {
     position: relative;
@@ -193,7 +194,7 @@ watch(
       color: rgba(255, 255, 255, 0.8);
       padding: 0 15px;
       overflow: hidden;
-      @include Myflex();
+      @include Myflex(flex-start);
       &:hover {
         color: white;
         background: linear-gradient(90deg, #241328 -1.59%, #000c2c 99.97%);

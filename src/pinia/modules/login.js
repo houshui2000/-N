@@ -11,6 +11,8 @@ export const loginDataInfo = defineStore('loginDataInfo', {
       token: getItem('token'),
       userId: getItem('userId'),
       cossUrl: 'http://cardjing.oss-cn-qingdao.aliyuncs.com/'
+      // cossUrl: ''
+
     }
   },
 

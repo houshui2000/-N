@@ -19,7 +19,7 @@
       <BOttomVue />
     </section>
     <div v-else class="quexing">
-      <MissWakeupPage />
+      <MissWakeupPage :title="'暂无数据'" :titleTwo="'敬请期待!'" />
     </div>
   </div>
 </template>

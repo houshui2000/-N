@@ -15,10 +15,10 @@
               <selectVue v-model:orderColumn="mallHomepagName.asc" :mallHomepage="mallHomepageTTwo">
                 <template #top_icon_true="{ dropdownMenu }">
                   <div class="top_icon">
-                    <p v-show="dropdownMenu">
+                    <p v-show="!dropdownMenu">
                       <el-icon><ArrowUpBold /></el-icon>
                     </p>
-                    <p v-show="!dropdownMenu">
+                    <p v-show="dropdownMenu">
                       <el-icon><ArrowDownBold /></el-icon>
                     </p>
                   </div>
@@ -32,7 +32,7 @@
         <div class="input">
           <el-input v-model.lazy="mallHomepagName.orders" class="w-50 m-2" placeholder="请输入编号" />
           <div class="icon">
-            <SvgIcon size="20" icon-class="sousuo" />
+            <SvgIcon size="15" Height="20" icon-class="sousuo" />
           </div>
         </div>
       </div>
@@ -85,13 +85,13 @@ const mallHomepageTTwo = [
     id: 0,
     value: 'true',
     name: 'true',
-    label: '根据资产编号正序排序'
+    label: '资产编号正序'
   },
   {
     id: 1,
     value: 'false',
     name: 'false',
-    label: '(默认)根据资产编号倒序排序'
+    label: '资产编号倒序'
   }
 ]
 const mallHomepagName = ref({
@@ -149,7 +149,7 @@ watch(
 :deep(.el-input__wrapper) {
   background-color: transparent;
   box-shadow: none;
-  height: 50px;
+  height: 40px;
   border-radius: 4px;
   // @include bordergradientMY(linear-gradient(180deg, rgba(244, 158, 255, 0.6) 0%, rgba(89, 110, 223, 0.6) 100%));
   @include bordergradientMY(
@@ -158,6 +158,8 @@ watch(
   );
   .el-input__inner {
     color: white;
+    font-size: 12px;
+    transform: translateY(-1px);
   }
 }
 .footer {
@@ -191,12 +193,16 @@ watch(
 
       .input_select {
         margin-right: 20px;
-        width: 244px;
+        width: 154px;
         border-radius: 4px;
         @include bordergradientMY(
           linear-gradient(180deg, rgba(244, 158, 255, 0.6) 0%, rgba(89, 110, 223, 0.6) 100%),
           linear-gradient(180deg, rgba(28, 0, 45, 0.8) 0%, rgba(24, 0, 30, 0.8) 0.01%, rgba(0, 9, 54, 0.8) 100%)
         );
+        :deep(.top) {
+          height: 40px;
+          font: normal normal 400 12px 'PingFang SC';
+        }
         :deep(section) {
           border: 1px solid transparent;
           @include bordergradientMY(
@@ -205,7 +211,7 @@ watch(
           );
           // background: var(--Linear, linear-gradient(180deg, rgba(28, 0, 45, 0.80) 0%, rgba(24, 0, 30, 0.80) 0.01%, rgba(0, 9, 54, 0.80) 100%));
           .article {
-            width: 244px;
+            width: 154px;
           }
         }
         :deep(.option) {

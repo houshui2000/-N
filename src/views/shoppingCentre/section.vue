@@ -1,9 +1,5 @@
 <template>
   <div class="section">
-    <!-- <Teleport to="body">
-      <div class="asda">大大</div>
-      <div class="asdasdada">大大</div>
-    </Teleport> -->
     <div class="section_left">
       <Section_left :LeftData="LeftData" @LeftData="LeftDataFuncation($event)" />
     </div>
@@ -11,7 +7,7 @@
       <section_right :INterOb="creatData.records" />
     </div>
     <div class="section_right" v-else>
-      <MissWakeupPage />
+      <MissWakeupPage :title="'暂无藏品'" :titleTwo="'敬请期待!'" />
     </div>
   </div>
   <div

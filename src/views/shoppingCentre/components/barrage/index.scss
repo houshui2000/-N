@@ -4,10 +4,12 @@
   width: 100vw;
   box-sizing: border-box;
   padding-top: 10px;
+  transform: translateY(-70px);
 
   .barrageItemBox {
     position: relative;
     background: linear-gradient(270deg, rgba(220, 158, 0, 0) 0.09%, rgba(54, 18, 68, 0.54) 77.46%, #4c0c5c 96.55%);
+
     width: 150px;
     padding: 0 10px;
     min-width: 100px;
