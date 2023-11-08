@@ -49,7 +49,7 @@
 
           </div>
           <div class='inputBtn'>
-            <div class='inputBtn2' @click='handleAuthenticationPopupShow'>
+            <div class='inputBtn2' @click='handleBankCardPopupShow'>
               编辑
             </div>
           </div>
@@ -93,6 +93,33 @@
         </div>
       </div>
     </div>
+    <!--    绑定银行卡列表弹窗    -->
+    <BankCardPopup
+      :bankCardShow='bankCardShow'
+      @handleCloseEmit='handleBankCardCloseEmit'
+      @handleUnBindingEmit='handleUnBindingEmit'
+      @handleBankCardEmit='handleBankCardEmit'
+    >
+    </BankCardPopup>
+    <!--  解绑银行卡  -->
+    <BankCardUnBindingPopup
+      :bankCardUnBindingShow='bankCardUnBindingShow'
+      @handleBankCardUnBindingCloseEmit='handleBankCardUnBindingCloseEmit'
+      @handleBankCardUnBindingConfirmEmit='handleBankCardUnBindingConfirmEmit'>
+    </BankCardUnBindingPopup>
+    <!--  绑定银行卡  -->
+    <BankCardBindingPopup
+      :bankCardBindingShow='bankCardBindingShow'
+      @handleBankCardBindingCloseEmit='handleBankCardBindingCloseEmit'
+      @handleBankCardBindingConfirm='handleBankCardBindingConfirm'
+    >
+    </BankCardBindingPopup>
+    <bank-card-binding-code-popup
+      :bankCardBindingCodeShow='bankCardBindingCodeShow'
+      :ids='orderId'
+      @handleBankCardBindingCodeCloseEmit='handleBankCardBindingCodeCloseEmit'
+    >
+    </bank-card-binding-code-popup>
   </div>
 </template>
 
@@ -103,8 +130,17 @@ import { useStore } from '@/pinia/index.js'
 import { bindInvitationCodePost, invitationCodePost, nicknameEdit } from '@/network/personalCenter.js'
 import MessageBoxVue from '@/components/MessageBox/index.js'
 import SvgIcon from '@/components/SvgIcon/index.vue'
+import BankCardPopup from '@/views/personalCenter/components/bankCardPopup.vue'
+import BankCardUnBindingPopup from '@/views/personalCenter/components/bankCardUnBindingPopup.vue'
+import BankCardBindingPopup from '@/views/personalCenter/components/bankCardBindingPopup.vue'
+import BankCardBindingCodePopup from '@/views/personalCenter/components/bankCardBindingCodePopup.vue'
 
 const { useUsersStore } = useStore()
+let bankCardShow = ref(false)//控制绑定银行卡列表弹窗
+let bankCardUnBindingShow = ref(false) //控制绑定银行卡
+let bankCardBindingShow = ref(false) //绑定银行卡
+let bankCardBindingCodeShow=ref(false) //控制验证码显示
+let orderId=ref('')//订单id
 let admin = ref({
   nickName: useUsersStore.userInfo.nickname,
   mobile: useUsersStore.userInfo.mobile,
@@ -186,10 +222,41 @@ const handleAuthenticationPopupShow = () => {
   useUsersStore.certNo = ''
   useUsersStore.username = ''
 }
-// if(item==='password'){
-//
+//打开银行卡列表
+const handleBankCardPopupShow = () => {
+  bankCardShow.value = true
+}
+//打开银行卡子组件传值
+const handleUnBindingEmit = (val) => {
+  bankCardShow.value = false
+  bankCardUnBindingShow.value = true
+}
+//打开添加银行卡绑定弹窗
+const handleBankCardEmit = () => {
+  bankCardShow.value = false
+  bankCardBindingShow.value = true
+}
+//添加银行卡弹窗关闭按钮
+const handleBankCardBindingCloseEmit = () => {
+  bankCardShow.value = true
+  bankCardBindingShow.value = false
+}
+//添加银行卡成功传参
+const handleBankCardBindingConfirm =(val)=>{
+  orderId.value=val
+  bankCardBindingCodeShow.value = true
+  bankCardBindingShow.value=false
+}
+//关闭验证码弹窗
+const handleBankCardBindingCodeCloseEmit=()=>{
+  bankCardShow.value = true
+  bankCardBindingCodeShow.value = false
+}
+// //绑定银行卡短信验证成功
+// const handleBankCardBindingCodeConfirmEmit =()=>{
+//   bankCardShow.value = true
+//   bankCardBindingCodeShow.value = false
 // }
-
 const handleCopyIcon = () => {
   const textField = document.createElement('textarea')
   textField.innerText = admin.value.invitationCode
@@ -201,6 +268,20 @@ const handleCopyIcon = () => {
     message: '复制成功',
     type: 'success'
   })
+}
+//关闭绑定银行卡列表弹窗
+const handleBankCardCloseEmit = (val) => {
+  bankCardShow.value = val
+}
+//关闭/取消弹窗
+const handleBankCardUnBindingCloseEmit = (val) => {
+  bankCardShow.value = true
+  bankCardUnBindingShow.value = val
+
+}
+//确认解绑
+const handleBankCardUnBindingConfirmEmit = () => {
+  console.log('点击确认')
 }
 onUnmounted(() => {
 
