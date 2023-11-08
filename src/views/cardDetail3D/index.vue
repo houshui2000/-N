@@ -5,7 +5,7 @@
       <div class="zhengshu">证书</div>
     </div>
     <div class="xinix">
-      <p class="title">毁灭者2000</p>
+      <p class="title">毁灭者2sadad000</p>
       <div class="bian">
         <SvgIcon size="20px" Height="20px" icon-class="bianhao" />
         <span>XXXXXX</span>
