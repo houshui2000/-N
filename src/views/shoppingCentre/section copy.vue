@@ -1,17 +1,14 @@
 <template>
   <div class="section">
     <div class="section_left">
-      <div ref="sticky" class="sticky">
-        <Section_left :LeftData="LeftData" @LeftData="LeftDataFuncation($event)" />
-      </div>
+      <Section_left :LeftData="LeftData" @LeftData="LeftDataFuncation($event)" />
     </div>
-    <div class="section_right">
-      <div v-if="creatData.records?.length > 0" class="section_right_one">
-        <section_right :INterOb="creatData.records" />
-      </div>
-      <div class="section_right_one" v-else>
-        <MissWakeupPage :title="'暂无藏品'" :titleTwo="'敬请期待!'" />
-      </div>
+
+    <div v-if="creatData.records?.length > 0" class="section_right">
+      <section_right :INterOb="creatData.records" />
+    </div>
+    <div class="section_right" v-else>
+      <MissWakeupPage :title="'暂无藏品'" :titleTwo="'敬请期待!'" />
     </div>
   </div>
   <div
@@ -43,24 +40,11 @@ const FenYe = {
   total: 0,
   current: 1
 }
-let blocktextcenter = {
-  top: 0,
-  height: 0,
-  sectionleft: 0
-}
 onMounted(() => {
   MYIntersectionObserver(xianshi_geng.value, () => {
     FenYe.size += 10
-    // init(),
+    init()
   })
-  const block = document.querySelector('.block.text-center')
-  const section_left = document.querySelector('.section_left')
-  blocktextcenter.top = block.offsetTop
-  blocktextcenter.height = block.offsetHeight
-  console.log(section_left.getBoundingClientRect().left)
-
-  blocktextcenter.sectionleft = section_left.getBoundingClientRect().left
-  window.addEventListener('scroll', scrollMy)
 })
 const creatData = ref({})
 const init = async () => {
@@ -90,24 +74,6 @@ const LeftDataFuncation = (e) => {
     init()
   }, 500)
 }
-
-const sticky = ref(null)
-const scrollMy = () => {
-  let s = document.documentElement.scrollTop || document.body.scrollTop
-  console.log(s)
-
-  if (s >= blocktextcenter.top + blocktextcenter.height / 2) {
-    // console.log(blocktextcenter)
-    sticky.value.style.position = 'fixed'
-    sticky.value.style.top = 79 + 'px'
-    sticky.value.style.left = blocktextcenter.sectionleft + 'px'
-  } else {
-    sticky.value.style.position = 'absolute'
-    sticky.value.style.top = 0 + 'px'
-    sticky.value.style.left = 0 + 'px'
-  }
-  // console.log(sectionRight.value.offsetTop)
-}
 </script>
 <style lang="scss" scoped>
 .section {
@@ -121,33 +87,14 @@ const scrollMy = () => {
     // position: sticky;
     // top: 0px;
     // left: 0;
-    position: relative;
     width: 270px;
-    min-height: 600px;
     border-radius: 6px;
-    .sticky {
-      // position: fixed;
-      // top: 0px;
-      // left: 0px;
-      border-radius: 6px;
-      backdrop-filter: blur(2px);
-      background: #000819;
-
-      border: 1px solid #1a2a40;
-      position: absolute;
-      left: 0;
-      top: 20px;
-      width: 270px;
-      // height: 100%;
-      // height: 300px;
-      // background-color: saddlebrown;
-    }
+    border: 1px solid #1a2a40;
+    background: #000819;
+    backdrop-filter: blur(2px);
   }
   .section_right {
     width: 1372px;
-    .section_right_one {
-      width: 100%;
-    }
   }
 }
 .xianshi_geng {

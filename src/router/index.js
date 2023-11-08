@@ -22,13 +22,14 @@ export const routes = [{
 
   ]
 }, {
-  path: '/cardDetail3D',//3D
+  path: '/cardDetail3D/:id',//3D
   name: 'cardDetail3D',
   component: () => import('@/views/cardDetail3D/index.vue'),
   props: true,
   meta: {
     immediate: false, // 路由显示
-    name: 'app下载页',
+    name: '3D',
+    rightDao: true, // 右侧菜单栏 true 关闭 false 开启
     scrollTheSubtitles: true // 滚动字幕开启，关闭
   },
 }, {
@@ -38,6 +39,7 @@ export const routes = [{
   meta: {
     name: 'app下载',
     immediate: false, // 路由显示
+    rightDao: true, // 右侧菜单栏 true 关闭 false 开启
     gundong: true, // 实时左侧滚动组件false 开启，true关闭
     scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
   }

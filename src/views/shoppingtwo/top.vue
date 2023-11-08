@@ -28,12 +28,14 @@
         </div>
         <!-- 支付 -->
         <div class="S_L_Zhi">
-          <p>
+          <p v-if="props.creatData?.buyRestrict !== 0 && props.creatData?.buyRestrict">
             * 该系列每人限购
             <span>{{ props.creatData.buyRestrict }}</span>
             份
           </p>
-          <div @click="onePieceBuyin" class="maifu">一键买入</div>
+          <div @click="onePieceBuyin" class="maifu">
+            {{ props.creatData.buyRestrict === 0 ? '已售罄' : '一键买入' }}
+          </div>
         </div>
       </div>
     </div>
@@ -102,6 +104,9 @@ const onePieceBuyin = () => {
       title: '请先登陆'
     })
     loginStore.login = true
+    return
+  }
+  if (props.creatData.buyRestrict == 0) {
     return
   }
   dialogVisiblePay.value = true

@@ -29,14 +29,16 @@ input[type="number"] {
 
 /*滚动条样式*/
 div::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 // 滚轮样式
 div::-webkit-scrollbar-thumb {
   border-radius: 10px;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  background-color: rgba($color: #fff, $alpha: .6) !important;
+  // background-color: rgba($color: #fff, $alpha: .6) !important;
+  background: linear-gradient(180deg, #de01ca 0%, #3340fe 100%);
+
 }
 
 // 滚轮背景

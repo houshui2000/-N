@@ -160,7 +160,7 @@ watch(
       width: 20px;
       height: 20px;
       position: absolute;
-      right: 15px;
+      right: 20px;
       top: 50%;
       transform: translateY(-50%);
     }

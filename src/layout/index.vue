@@ -1,8 +1,9 @@
 <template>
   <div id="homePC">
     <NavVue />
-<!--    <Carousel v-if="!route.meta.gundong" />-->
+    <!-- <Carousel v-if="!route.meta.gundong" /> -->
     <ScrollZiMuVue
+      @click="scrollTo"
       v-if="!route.meta.scrollTheSubtitles"
       title="党政干部队伍建设的《三大纪律》分别为：一切从实际出发、正确执行党的政策、实行民主集中制。《八项注意》分别为：同劳动同食堂、待人和气、办事公道、买卖公平、如实反映情况、提高政治水平、工作要同群众商量、没有调查没有发言权。"
     />
@@ -10,15 +11,20 @@
       <router-view />
     </div>
     <FooterVue />
+    <uploadAvatarVue v-model:errDialoVueUpdate="dialogVisiblePay" />
   </div>
 </template>
-<script setup>
+<script setup name="layout">
 import NavVue from './components/top/index.vue'
 import FooterVue from './components/footer/index.vue'
-import Carousel from '@/components/Carousel/index.vue'
+// import Carousel from '@/components/Carousel/index.vue'
 import { useRoute } from 'vue-router'
-import ScrollZiMuVue from '@/views/cardGO/components/scrollZiMu/index.vue'
+import uploadAvatarVue from './components/gongaoDealo/index.vue'
+import ScrollZiMuVue from './components/ScrollZiMu/index.vue'
+import { ref } from 'vue'
 const route = useRoute()
+const dialogVisiblePay = ref(false) //公告弹框
+
 // watchEffect(() => {
 //   if (route.query.code) {
 //     console.log('dayin', route.query.code)
@@ -27,6 +33,9 @@ const route = useRoute()
 //     })
 //   }
 // })
+const scrollTo = () => {
+  dialogVisiblePay.value = !dialogVisiblePay.value
+}
 </script>
 <style lang="scss" scoped>
 #homePC {

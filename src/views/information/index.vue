@@ -6,7 +6,7 @@
       <div class="section_top">
         <p
           v-for="(item, index) in listArr"
-          @click="(nameRef = item.id), listOfInformation()"
+          @click="(nameRef = item.id), listOfInformation(), sessionStoragesetItem('categoryId', item.id)"
           :class="{ active: nameRef == item.id }"
           :key="index"
         >
@@ -16,7 +16,7 @@
       <div v-if="listOfInformationArr?.records?.length > 0" class="section_bottom">
         <div
           v-for="(item, index) in listOfInformationArr.records"
-          @click="router.push(`/informationTwo/${item.id}`)"
+          @click="xin_xi_tiao(item)"
           :key="index"
           class="Xin_xi_tiao"
         >
@@ -26,7 +26,7 @@
           </p>-->
           <div class="xin_xi_center">
             <div class="img">
-              <img :src="loginStore.cossUrl + item.imgUrl" alt="" />
+              <img :src="item.imgUrl" alt="" />
             </div>
             <div class="center_right">
               <div class="top">
@@ -39,10 +39,9 @@
           <div class="xinix">{{ item.publishTime }}</div>
         </div>
 
-        <div class="fenye">
+        <div v-if="listOfInformationArr?.records?.length !== Fenye.total" class="fenye">
           <div class="fen_xi">
             <el-pagination
-              v-if="listOfInformationArr?.records?.length !== Fenye.total"
               :page-size="Fenye.size"
               v-model:current-page="Fenye.currentPage"
               :pager-count="11"
@@ -62,8 +61,9 @@ import MissWakeupPage from '@/components/missingWakeupPage/index.vue'
 import LunBoVue from './components/LunBo/index.vue'
 import { shopnewscategory, shopnews } from '@/network/information'
 import { useRouter } from 'vue-router'
-import { useStore } from '@/pinia'
-const { loginStore } = useStore()
+import { sessionStoragesetItem, sessionStoragegetItem } from '@/utils/storage'
+// import { useStore } from '@/pinia'
+// const { loginStore } = useStore()
 const router = useRouter()
 const nameRef = ref('')
 const Fenye = ref({
@@ -75,13 +75,19 @@ const listArr = ref({})
 const listOfInformationArr = ref([])
 const init = async () => {
   const res = await shopnewscategory()
-
   listArr.value = res.data
-  nameRef.value = res.data[0].id
-
+  const number = sessionStoragegetItem('categoryId') || res.data[0].id
+  const index = res.data.findIndex((item) => item.id === Number(number))
+  nameRef.value = res.data[index].id
   listOfInformation()
 }
 init()
+
+const xin_xi_tiao = (item) => {
+  sessionStoragesetItem('categoryId', nameRef.value)
+  router.push(`/informationTwo/${item.id}`)
+}
+
 // 资讯列表
 const listOfInformation = async () => {
   const res = await shopnews({
@@ -126,6 +132,7 @@ const listOfInformation = async () => {
     width: 1470px;
     margin: 30px auto;
     .section_top {
+      cursor: pointer;
       // @include bordergradientMY(
       //   linear-gradient(90deg, rgba(83, 56, 119, 0.9) 0%, rgba(53, 81, 125, 0.9) 100%),
       //   linear-gradient(180deg, rgba(60, 63, 130, 0.1) 0%, rgba(4, 4, 7, 0.54) 100%)
@@ -164,11 +171,13 @@ const listOfInformation = async () => {
     .section_bottom {
       margin-top: 23px;
       padding: 11px 0;
-      background-color: saddlebrown;
       @include bordergradientMY(linear-gradient(90deg, rgba(83, 56, 119, 0.9) 0%, rgba(53, 81, 125, 0.9) 100%));
       .Xin_xi_tiao {
         border-bottom: 1px solid rgb(42, 49, 76);
         padding: 24px 51px;
+        &:last-child {
+          border-bottom: 0px solid rgb(42, 49, 76);
+        }
         // > p {
         //   font: normal normal 400 16px ' PingFang SC';
         //   color: white;

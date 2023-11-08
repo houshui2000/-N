@@ -242,8 +242,8 @@ watch(
       align-items: center;
 
       .logoImg {
-        width: 119px;
-        height: 24.3px;
+        width: 48px;
+        height: 47px;
         background: white;
         background: url($gxslogo) no-repeat center;
         background-size: contain;

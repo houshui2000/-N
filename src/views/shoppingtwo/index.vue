@@ -40,7 +40,11 @@ const init = async () => {
   const res = await shopcardxdetail({
     vaultId: route.params.vaultId
   })
+  console.log(res.data)
+
   creatData.value = res.data
+
+  // 左侧其他系列
   const norId = await shopotherproducts({})
   creatDataAll.value = norId.data
 }

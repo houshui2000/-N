@@ -36,7 +36,7 @@
           </div>
         </div>
       </div>
-      <assetLibraryDetail v-model:errDialoVueUpdate='errDialoVueUpdate' title='查证' />
+      <!-- <assetLibraryDetail v-model:errDialoVueUpdate='errDialoVueUpdate' title='查证' /> -->
       <assetgrameRulePopup :show='assetPlay' :textHtml='textHtml' @close='handleAssetgrameRulePopupClose' ></assetgrameRulePopup>
     </div>
   </transition>
@@ -44,12 +44,12 @@
 
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
-import assetLibraryDetail from '../components/assetLibraryDetail.vue'
+// import assetLibraryDetail from '../components/assetLibraryDetail.vue'
 import assetgrameRulePopup from '../components/assetgrameRulePopup.vue'
 import gxsSelect from '../components/gxsSelect.vue'
 import { getAssetList } from '@/network/personalCenter.js'
 
-const errDialoVueUpdate = ref(false)
+// const errDialoVueUpdate = ref(false)
 const value = ref('卡牌编号正序')
 const options = ref([
   { values: 'desc', label: '时间倒序排序' },

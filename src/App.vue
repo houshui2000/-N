@@ -4,12 +4,14 @@
     <aside></aside>
     <router-view />
     <LoginOne />
-    <MenyOnTheRightVue />
+    <MenyOnTheRightVue v-if="!route.meta?.rightDao" />
   </div>
 </template>
 <script setup>
 import LoginOne from '@/components/LoginOne/index.vue'
 import MenyOnTheRightVue from '@/components/menuOnTheRight/index.vue'
+import { useRoute } from 'vue-router'
+const route = useRoute()
 </script>
 
 <style scoped lang="scss">

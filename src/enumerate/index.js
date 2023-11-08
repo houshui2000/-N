@@ -11,7 +11,7 @@ export const mallHomepage = [
     id: 1,
     value: '1',
     name: 'css.on_shelf_time',
-    label: '(默认)上架时间倒序排序',
+    label: '上架时间倒序排序',
     sort: false
   },
   {

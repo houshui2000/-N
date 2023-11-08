@@ -33,3 +33,40 @@ export function shopbulletcomment () {
     method: 'GET',
   })
 }
+
+
+/**
+ * 资产查证
+ * qrCodeId
+*/
+export function assetcheck (params) {
+  return service({
+    url: '/asset/check',
+    method: 'GET', params
+  })
+}
+
+
+/**
+ * 资产证书
+ * qrCodeId
+*/
+export function assetcert (params) {
+  return service({
+    url: '/asset/cert',
+    method: 'GET', params
+  })
+}
+
+
+
+/**
+ * 炫酷3D图
+ * qrCodeId
+*/
+export function asset3d (params) {
+  return service({
+    url: '/asset/3d',
+    method: 'GET', params
+  })
+}

@@ -19,23 +19,74 @@
             <SvgIcon Height="15px" size="20px" icon-class="close" />
           </div>
           <div class="title">{{ props.title }}</div>
-          <div v-if="props.title !== '查证'" class="section_left">
+          <div v-if="props.title == '查证'" class="section_left">
             <p>查证信息</p>
             <div class="ziliao">
-              <div v-for="(item, index) in 12" :key="index" class="zi_xin">
-                <div class="zili_left">{{ item }}</div>
-                <div class="ziliao_right">小数点大家阿达四点三</div>
+              <div class="zi_xin">
+                <div class="zili_left">产品名称</div>
+                <div class="ziliao_right">{{ props.detail.productName }}</div>
               </div>
-              <div v-for="(item, index) in 1" :key="index" class="zi_xin">
-                <div class="zili_left">xx11sadasx</div>
-                <div class="ziliao_right">
-                  小数点大家阿达四点三小数点大家阿达四点三小数点大家阿达四点三小数点大家阿达四点三小数点大家阿达四点三小数点大家阿达四点三
-                </div>
+              <!--  -->
+              <div class="zi_xin">
+                <div class="zili_left">发行价格</div>
+                <div class="ziliao_right">No -- {{ props.detail.prevBlockHash }}</div>
+              </div>
+              <!--  -->
+              <div class="zi_xin">
+                <div class="zili_left">发行批次</div>
+                <div class="ziliao_right">{{ props.detail.releaseBatch }}</div>
+              </div>
+              <!--  -->
+              <div class="zi_xin">
+                <div class="zili_left">资产序号</div>
+                <div class="ziliao_right">{{ props.detail.productNumber }}</div>
+              </div>
+              <!--  -->
+              <div class="zi_xin">
+                <div class="zili_left">持有人姓名</div>
+                <div class="ziliao_right">{{ props.detail.prevBlockHash }}</div>
+              </div>
+              <!--  -->
+              <div class="zi_xin">
+                <div class="zili_left">发行年份</div>
+                <div class="ziliao_right">{{ props.detail.releaseYear }}</div>
+              </div>
+              <!--  -->
+              <div class="zi_xin">
+                <div class="zili_left">发行数量</div>
+                <div class="ziliao_right">{{ props.detail.releaseTotal }}</div>
+              </div>
+              <!--  -->
+              <div class="zi_xin">
+                <div class="zili_left">区块Hash</div>
+                <div class="ziliao_right">{{ props.detail.blockHash }}</div>
+              </div>
+              <!--  -->
+              <div class="zi_xin">
+                <div class="zili_left">区块高度</div>
+                <div class="ziliao_right">{{ props.detail.blockHeight }}</div>
+              </div>
+              <!--  -->
+              <div class="zi_xin">
+                <div class="zili_left">上一区块Hash</div>
+                <div class="ziliao_right">{{ props.detail.prevBlockHash }}</div>
+              </div>
+              <!--  -->
+              <div class="zi_xin">
+                <div class="zili_left">发行权力介绍</div>
+                <div class="ziliao_right">{{ props.detail.releaseRight }}</div>
+              </div>
+              <!--  -->
+              <div class="zi_xin">
+                <div class="zili_left">备注</div>
+                <div class="ziliao_right">{{ props.detail.issueContent }}</div>
               </div>
             </div>
           </div>
           <div v-else class="section_left">
-            <div class="img"></div>
+            <div class="img">
+              <img src="@/assets/images/ka/zheng.png" alt="" />
+            </div>
           </div>
           <!-- <div class="section_right"></div> -->
         </section>
@@ -76,7 +127,7 @@ const $emit = defineEmits(['update:errDialoVueUpdate'])
     width: 600px;
     height: 660px;
     padding: 0;
-
+    background: transparent;
     header {
       display: none;
     }
@@ -91,15 +142,16 @@ section {
   width: 100%;
   height: 660px;
   position: relative;
-  // @include Myflex(flex-start);
   border-radius: 4px;
-  background-color: #040917;
-  overflow: hidden;
-  // padding: 0 51px;
+  // overflow: hidden;
   @include bordergradientMY(
     linear-gradient(180deg, rgba(158, 100, 218, 0.5) 0%, rgba(93, 141, 218, 0.3) 100%),
     linear-gradient(180deg, rgba(18, 39, 67, 0.9) 0%, rgba(3, 13, 21, 0.9) 100%)
   );
+
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  // background: url('@/assets/images/shoppingCentre/pay_load.png') no-repeat scroll left bottom/ 100% 100%;
 
   .close {
     cursor: pointer;
@@ -115,7 +167,7 @@ section {
     position: absolute;
     left: 50%;
     top: 30px;
-    transform: translateY(-50%);
+    transform: translateX(-50%);
     font: normal normal 700 20px 'PingFang SC';
     color: white;
     z-index: 9;
@@ -139,9 +191,10 @@ section {
     height: 100%;
     border-right: 0;
     padding: 90px 67px 0 67px;
+    font: normal normal 400 16px 'PingFang SC';
 
     > p {
-      font: normal normal 700 16px 'PingFang SC';
+      font: normal normal 400 16px 'PingFang SC';
       color: white;
     }
 
@@ -149,7 +202,11 @@ section {
       margin-top: 29px;
       font: normal normal 400 12px 'PingFang SC';
       color: white;
-      opacity: 0.8;
+      padding-bottom: 20px;
+      opacity: 0.9;
+      height: 480px;
+      overflow: auto;
+      padding-right: 10px;
 
       .zi_xin {
         width: 100%;
@@ -162,6 +219,9 @@ section {
 
         .ziliao_right {
           width: calc(100% - 166px);
+
+          word-wrap: break-word;
+          word-break: normal;
         }
       }
     }
@@ -169,8 +229,10 @@ section {
     .img {
       width: 338px;
       height: 479px;
-      background-color: wheat;
       margin: auto;
+      img {
+        max-width: 100%;
+      }
     }
   }
 }
