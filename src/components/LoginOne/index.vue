@@ -198,12 +198,12 @@
                   确 定
                 </div>
                 <!--       用户协议       -->
-                <div class="checkboxBox" :class="{ 'apply-shake': agreementShow }" v-if="otherBtn !== 'resetting'">
+                <div class="checkboxBox" style='font-size: 12px' :class="{ 'apply-shake': agreementShow }" v-if="otherBtn !== 'resetting'">
                   <el-checkbox v-model="agreement" class="checkboxBox-checkbox"></el-checkbox>
                   我已满18周岁，并且同意
-                  <span>《用户协议》</span>
+                  <span style='fontSize: 12px'>《用户协议》</span>
                   和
-                  <span>《隐私协议》</span>
+                  <span  style='fontSize: 12px'>《隐私协议》</span>
                 </div>
               </div>
             </div>

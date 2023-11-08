@@ -45,8 +45,9 @@
           height: 30px;
           border: 1.8px solid  #485869;
           transform: rotateZ(45deg);
-          background: black;
+          background: #0c141d;
           transition: all .3s;
+          z-index: 100;
         }
         .nickName{
           height: 20px;

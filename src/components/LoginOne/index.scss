@@ -216,10 +216,11 @@
               .code {
                 width: 150px;
                 height: 46px;
+                line-height: 46px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-size: 16px;
+                font-size: 14px;
                 color: #00F0FF;
                 cursor: pointer;
               }
@@ -234,6 +235,7 @@
               justify-content: center;
               align-items: center;
               cursor: pointer;
+              font-size: 20px;
             }
 
             .registerBtn {

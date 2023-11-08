@@ -9,16 +9,23 @@
 
   .personalBg {
     width: 717px;
-    height: 474px;
-    background: url($gxsPersonalBg) no-repeat center;
-    background-size: contain;
+    //height: 474px;
+    //background: url($gxsPersonalBg) no-repeat center;
+    //background-size: 100% 100%;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    border: 1px solid transparent;
+    background-image: linear-gradient(to top, #070D13, #070D13), linear-gradient(155.92deg, rgba(159, 98, 219, 0.5) 0%, rgba(126, 172, 186, 0.5) 48.67%, rgba(99, 149, 231, 0.5) 96.71%);
+    overflow: hidden;
+    border-radius: 6px;
+    border-image-source: linear-gradient(155.92deg, rgba(159, 98, 219, 0.5) 0%, rgba(126, 172, 186, 0.5) 48.67%, rgba(99, 149, 231, 0.5) 96.71%);
     display: flex;
     justify-content: center;
     position: relative;
 
     .content {
       width: 629px;
-      margin-top: 28px;
+      padding: 28px 0px;
 
       .title {
         width: 138px;
@@ -29,50 +36,9 @@
         padding-left: 11px;
       }
 
-      .prompt {
-        position: absolute;
-        margin-left: 150px;
-        font-size: 12px;
-        color: #F27750;
-        top: 144px;
-
-        .text {
-          width: 41px;
-          height: 17px;
-          background: url($gxsPersonalPromotion) no-repeat center;
-          background-size: contain;
-          margin-left: 20px;
-          cursor: pointer;
-        }
-      }
-
-      .prompt {
-        position: absolute;
-        margin-left: 150px;
-        font-size: 12px;
-        color: #F27750;
-        top: 144px;
-
-        .text {
-          width: 41px;
-          height: 17px;
-          background: url($gxsPersonalPromotion) no-repeat center;
-          background-size: contain;
-          margin-left: 20px;
-          cursor: pointer;
-        }
-      }
-
-      .bindingPrompt {
-        position: absolute;
-        margin-left: 150px;
-        font-size: 12px;
-        color: #F27750;
-        top: 224px;
-      }
 
       .inputBox {
-        margin-top: 20px;
+        margin-top: 30px;
         width: 629px;
         height: 60px;
         display: flex;
@@ -81,6 +47,41 @@
         background-size: contain;
         transition: all .3s;
         position: relative;
+        &.marginTop28{
+          margin-top: 28px;
+        }
+        .prompt {
+          height: 30px;
+          line-height: 30px;
+          position: absolute;
+          margin-left: 150px;
+          font-size: 12px;
+          color: #FF3030;
+          //top: 158px;
+          left: 0;
+          top: 60px;
+          display: flex;
+          align-items: center;
+
+
+          .text {
+            height: 12px;
+            margin-left: 10px;
+            display: flex;
+            justify-content: left;
+          }
+        }
+
+        .bindingPrompt {
+          height: 30px;
+          line-height: 30px;
+          position: absolute;
+          margin-left: 150px;
+          font-size: 12px;
+          color: #FF3030;
+          top: 60px;
+        }
+
 
         &:hover {
           background: url($gxsPersonalInputActive) no-repeat center;
