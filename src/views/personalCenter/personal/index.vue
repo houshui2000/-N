@@ -3,7 +3,7 @@
     <div class='personalBg'>
       <div class='content'>
         <div class='title'>账号管理</div>
-        <div class='inputBox ' :class='{active:!adminInput.nickName}'>
+        <div class='inputBox marginTop28' :class='{active:!adminInput.nickName}'>
           <div class='label'>用户昵称</div>
           <div>
             <input class='inputSumnickName' v-model='admin.nickName' :disabled='adminInput.nickName'
@@ -43,12 +43,23 @@
             </div>
           </div>
         </div>
+        <div class='inputBox '>
+          <div class='label'>添加银行卡</div>
+          <div>
+
+          </div>
+          <div class='inputBtn'>
+            <div class='inputBtn2' @click='handleAuthenticationPopupShow'>
+              编辑
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class='personalBg'>
       <div class='content'>
         <div class='title'>邀请码</div>
-        <div class='inputBox ' :class='{active:!adminInput.invitationCode}'>
+        <div class='inputBox marginTop28' :class='{active:!adminInput.invitationCode}'>
           <div class='label'>邀请码</div>
           <div style='display: flex'>
             <input class='inputSuminvitationCode' v-model='admin.invitationCode' :disabled='adminInput.invitationCode'>
@@ -60,10 +71,12 @@
               {{ adminInput.invitationCode ? '修改' : '保存' }}
             </div>
           </div>
-        </div>
-        <div class='prompt'>
-          *只可以修改一次
-          <span class='text'>去推广</span>
+          <div class='prompt'>
+            *只可以修改一次
+            <div class='text'>
+              <SvgIcon size='50px' Height='100%' icon-class='personalPromotion' />
+            </div>
+          </div>
         </div>
         <div class='inputBox ' :class='{active:!adminInput.bindingCode}'>
           <div class='label'>绑定邀请码</div>
@@ -72,12 +85,12 @@
                    placeholder='请输入邀请码'>
           </div>
           <div class='inputBtn' v-if='!useUsersStore.userInfo.invitationCode'>
-            <div class='inputBtn2'  @click='handleEditInput("bindingCode")' :class='{active:!adminInput.bindingCode}'>
+            <div class='inputBtn2' @click='handleEditInput("bindingCode")' :class='{active:!adminInput.bindingCode}'>
               {{ adminInput.bindingCode ? '修改' : '保存' }}
             </div>
           </div>
+          <div class='bindingPrompt'>*只可以绑定一次</div>
         </div>
-        <div class='bindingPrompt'>*只可以绑定一次</div>
       </div>
     </div>
   </div>
@@ -89,13 +102,14 @@ import { ElMessage } from 'element-plus'
 import { useStore } from '@/pinia/index.js'
 import { bindInvitationCodePost, invitationCodePost, nicknameEdit } from '@/network/personalCenter.js'
 import MessageBoxVue from '@/components/MessageBox/index.js'
+import SvgIcon from '@/components/SvgIcon/index.vue'
 
 const { useUsersStore } = useStore()
 let admin = ref({
   nickName: useUsersStore.userInfo.nickname,
   mobile: useUsersStore.userInfo.mobile,
   password: '******',
-  authentication: useUsersStore.userInfo.tradePermission>0 ? '已实名' : '未实名',
+  authentication: useUsersStore.userInfo.tradePermission > 0 ? '已实名' : '未实名',
   invitationCode: useUsersStore.userInfo.ownerInvitationCode,//自己邀请码
   bindingCode: useUsersStore.userInfo.invitationCode//绑定邀请码
 })
