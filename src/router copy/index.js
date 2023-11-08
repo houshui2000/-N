@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { childrenCase } from './modules/case/index.js'
-import shoppingCentrechildren from './modules/shoppingCentre'
-import gxsChildrenRouter from './modules/gxsChildrenRouter/index.js'
-// import { ToLogin, NoLogin } from './InputTransfer.js'
+
+import { ToLogin, NoLogin } from './InputTransfer.js'
 export const routes = [{
   path: '/',
   name: 'container',
@@ -14,15 +12,11 @@ export const routes = [{
       path: '/',
       redirect: 'information'
     },
-    // ...ToLogin,
-    // ...NoLogin
-    ...childrenCase,
-    ...shoppingCentrechildren,
-    ...gxsChildrenRouter
-
+    ...ToLogin,
+    ...NoLogin
   ]
 }, {
-  path: '/cardDetail3D',//3D
+  path: '/cardDetail3D',//app下载页
   name: 'cardDetail3D',
   component: () => import('@/views/cardDetail3D/index.vue'),
   props: true,

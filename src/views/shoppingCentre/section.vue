@@ -3,6 +3,7 @@
     <div class="section_left">
       <Section_left :LeftData="LeftData" @LeftData="LeftDataFuncation($event)" />
     </div>
+
     <div v-if="creatData.records?.length > 0" class="section_right">
       <section_right :INterOb="creatData.records" />
     </div>
@@ -60,8 +61,8 @@ const init = async () => {
     categoryIds: LeftData.value.categoryIds.join(',')
   })
   // creatData.records
+  console.log(res.data)
   creatData.value = res.data
-  console.log(creatData.value.total)
 }
 init()
 let time = null

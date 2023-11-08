@@ -7,6 +7,7 @@ const gxsChildrenRouter = [
     component: () => import('@/views/personalCenter/index.vue'),
     props: true,
     redirect: 'assetLibrary',
+
     meta: {
       immediate: false, // 路由显示
       name: '个人中心',

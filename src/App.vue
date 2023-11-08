@@ -1,7 +1,7 @@
 <template>
   <div class="CIjing">
     <!-- <aside></aside> -->
-    <!--    <aside></aside>-->
+    <aside></aside>
     <router-view />
     <LoginOne />
     <MenyOnTheRightVue />
@@ -30,10 +30,10 @@ body {
     position: absolute;
     right: 0;
     top: 120px;
-    z-index: 1;
+    z-index: 0;
     width: 233px;
     height: 625px;
-    // background: url('@/assets/images/carggo/aside.png') no-repeat scroll left top/ 100% 100%;
+    background: url('@/assets/images/all/aside.png') no-repeat scroll left top/ 100% 100%;
     // background-color: rgba(255, 255, 255, 0.8);
   }
 }
