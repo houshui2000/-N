@@ -86,3 +86,35 @@ export function getAssetList(params) {
     params
   })
 }
+// 获取银行卡列表
+export function GET_BankCardList(params) {
+  return service({
+    url: 'bank-card/list',
+    method: 'get',
+    params
+  })
+}
+//获取银行id的列表
+export function GET_BankIdList(params) {
+  return service({
+    url: 'bank-card/can-use-list',
+    method: 'get',
+    params
+  })
+}
+//绑定银行卡
+export function POST_bankCardBinding(data) {
+  return service({
+    url: 'bank-card/send/bind-code',
+    method: 'post',
+    data
+  })
+}
+//绑定银行卡-短信验证码验证
+export function POST_bankCardBindingCode(data) {
+  return service({
+    url: 'bank-card/check-code',
+    method: 'post',
+    data
+  })
+}
