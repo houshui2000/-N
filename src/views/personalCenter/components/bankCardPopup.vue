@@ -15,8 +15,8 @@
           </div>
           <div class='cardList'>
             <div class='cardList-y' v-for='(item,index) in bankCardList' :key='index'>
-              <div class='name'>中国银行</div>
-              <div class='number'>6223****************2323</div>
+              <div class='name'>{{ item.bankName }}</div>
+              <div class='number'>{{ item.bankCardNo?item.bankCardNo.replace(/(?<=\d{4})\d+(?=\d{4})/," ******** "):'' }}</div>
               <div class='btn' @click='handleBankCardUnBindingShow'>解绑</div>
             </div>
           </div>

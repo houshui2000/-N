@@ -15,7 +15,7 @@
       <div class='contentBox'>
         <div class='cardBox'>
           <div class='card' v-for='(item,index) in assetList' :key='"asset"+index'>
-            <div class='cardContent'>
+            <div class='cardContent' @click='handleThereJSShow(item)'>
               <div class='cardImg'>
                 <img :src='item.productUrl' alt=''>
               </div>
@@ -48,6 +48,7 @@ import { ref, reactive, onMounted } from 'vue'
 import assetgrameRulePopup from '../components/assetgrameRulePopup.vue'
 import gxsSelect from '../components/gxsSelect.vue'
 import { getAssetList } from '@/network/personalCenter.js'
+import { router } from '@/router/index.js'
 
 // const errDialoVueUpdate = ref(false)
 const value = ref('卡牌编号正序')
@@ -97,6 +98,12 @@ const handleCurrentChange = (val) => {
 //打开玩法说明弹窗
 const handleOpenShow =()=>{
   assetPlay.value=true
+}
+//跳转thereJS
+const handleThereJSShow=(item)=>{
+  // router.push('cardDetail3D')
+// router.push(`/cardDetail3D/${item.qrCodeId}`)
+  window.open(`/cardDetail3D/${item.qrCodeId}`)
 }
 onMounted(() => {
   assetLibrary()

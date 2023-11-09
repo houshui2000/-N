@@ -32,14 +32,16 @@ const handleRealName = async () => {
     text: useUsersStore.realNameQRCode,
     width: 160, //二维码宽
     height: 160,//二维码高
-    colorLight: 'transparent',
+    colorLight: '#000',
     colorDark: '#D9D9D9',
     correctLevel: 0
   })
   getTime.value = setInterval(async () => {
     const res = await getRealName(useUsersStore.passwordEdit)
     if (res.code === 200) {
+        if(res.data==="T"){
 
+        }
       // await useUsersStore.handleUserInfo()
       // useUsersStore.realNameZFBPopup=false
     }

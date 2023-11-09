@@ -37,7 +37,7 @@
           <div>
             <input class='inputSumnickName' v-model='admin.authentication' disabled>
           </div>
-          <div class='inputBtn'>
+          <div class='inputBtn' v-if='useUsersStore.userInfo.tradePermission<=0'>
             <div class='inputBtn2' @click='handleAuthenticationPopupShow'>
               去实名
             </div>
