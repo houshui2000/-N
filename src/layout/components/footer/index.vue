@@ -42,8 +42,8 @@ const helpCenterArrVue = computed(() => [...helpCenterArr])
 footer {
   padding: 50px 0;
   width: 1920px;
-  height: 308px;
-  background: #16191f;
+  height: 230px;
+  background: #070d13;
   @include Myflex();
   .footer_top {
     // width: ;

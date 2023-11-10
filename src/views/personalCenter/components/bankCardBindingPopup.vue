@@ -21,17 +21,20 @@
             </div>
           </div>
           <div class='addFrom'>
-            <div class='label'>银行：</div>
+            <div class='label'>银行：{{selectOptionList.length!==0}}</div>
             <div class='addFromDom'>
               <div class='selectBox'>
                 <div class='selectInput'>
-                  <input v-model='cardBankInfo.bankName' placeholder='请选择银行' disabled>
+                  <input v-model='cardBankInfo.bankName' placeholder='请选择银行' @input='handleBankNameClick'>
                 </div>
                 <div class='arrowBox' @click='handleSelectList'>
                   <div class='icon' :class='{active:selectShow}'></div>
                 </div>
-                <div class='listBox' :class='{active:!selectShow}'>
+                <div class='listBox' :class='{active:(!selectShow && selectOptionList.length===0)}'>
                   <div class='listDom' v-for='(item,index) in selectList' @click='handleSelectValue(item)' :key='"select"+item.id'>{{item.name}}</div>
+                </div>
+                <div class='listBox' :class='{active:selectOptionList.length!==0}'>
+                  <div class='listDom' v-for='(item,index) in selectOptionList' @click='handleSelectValue(item)' :key='"selectOptionList"+item.id'>{{item.name}}</div>
                 </div>
               </div>
             </div>
@@ -68,14 +71,15 @@ let selectShow=ref(false) //下拉列表是否显示
 let bankCardBindingCodeShow =ref(true)
 
 let cardBankInfo=ref({
-  bankCardNo: "6232510000009999",
-  certNo: "372301199905244112",
-  mobile: "15650053503",
-  username: "高钰鑫",
+  bankCardNo: "",
+  certNo: "",
+  mobile: "",
+  username: "",
   bankId:"",
   bankName:''
 })
 let selectList=ref([])
+let selectOptionList=ref([])
 const handleBankCardBindingClose = () => {
   emit('handleBankCardBindingCloseEmit')
 }
@@ -92,6 +96,28 @@ const handleBankCardBindingConfirm =async()=>{
 const handleSelectList =async ()=>{
     selectShow.value=!selectShow.value
 
+}
+//银行卡模糊查询
+const handleBankNameClick =(e)=>{
+  // if(cardBankInfo.value.bankName===''){
+  //   selectOptionList.value=[]
+  //   return
+  // }
+  let count=0
+  let selectOptionList=[]
+  selectList.value.forEach(res=>{
+    if(res.name.indexOf(cardBankInfo.value.bankName)!==-1){
+      selectOptionList.push(res)
+      console.log(res)
+      count++
+    }
+  })
+  if(count!==0){
+    selectOptionList.value=selectOptionList
+  }else {
+    selectOptionList.value=[]
+  }
+  console.log("selectOptionList.value",selectOptionList,selectOptionList.value)
 }
 //选择下拉值
 const handleSelectValue =(val)=>{

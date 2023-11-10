@@ -94,7 +94,7 @@ onUnmounted(() => {
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
     border: 0px solid transparent;
-    background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(155.92deg, rgba(159, 98, 219, 0.5) 0%, rgba(126, 172, 186, 0.5) 48.67%, rgba(99, 149, 231, 0.5) 96.71%);
+    background-image: linear-gradient(to top,#182331,#0d1318), linear-gradient(155.92deg, rgba(159, 98, 219, 0.5) 0%, rgba(126, 172, 186, 0.5) 48.67%, rgba(99, 149, 231, 0.5) 96.71%);
     left: 0;
     top: 36px;
     z-index: 1;
@@ -105,7 +105,7 @@ onUnmounted(() => {
       background-clip: padding-box, border-box;
       background-origin: padding-box, border-box;
       border: 1px solid transparent;
-      background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(155.92deg, rgba(159, 98, 219, 0.5) 0%, rgba(126, 172, 186, 0.5) 48.67%, rgba(99, 149, 231, 0.5) 96.71%);
+      background-image: linear-gradient(to bottom, #182331, #0d1318), linear-gradient(155.92deg, rgba(159, 98, 219, 0.5) 0%, rgba(126, 172, 186, 0.5) 48.67%, rgba(99, 149, 231, 0.5) 96.71%);
 
     }
 
@@ -116,7 +116,7 @@ onUnmounted(() => {
       padding-left: 22px;
       //text-align: center;
       color: rgba(#fff,.7);
-      background-color: #09192a;
+      //background-color: #09192a;
       transition: color .3s;
       &:hover{
         color: rgba(#fff,1);
