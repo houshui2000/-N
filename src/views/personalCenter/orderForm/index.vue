@@ -5,7 +5,10 @@
         <div class="left">
           <gxsSelect :options="options" :arrayValue="arrayValue" @handleEdit="handleSelectValue"></gxsSelect>
           <div class="CreateDateTime" @click="handleCreateDateTimeShow">
-            <div class="text">创建时间检索</div>
+            <div class="text">
+              创建时间检索
+              <div class="icon"></div>
+            </div>
             <el-date-picker
               class="CreateDateTimePicker"
               popper-class="CreateDateTimePickerKuang"
@@ -20,7 +23,10 @@
             />
           </div>
           <div class="PayDateTime" @click="handlePayDateTimeShow">
-            <div class="text">支付时间检索</div>
+            <div class="text">
+              支付时间检索
+              <div class="icon"></div>
+            </div>
             <el-date-picker
               class="PayDateTimePicker"
               popper-class="CreateDateTimePickerKuang"
@@ -87,7 +93,8 @@
                       <span v-if="item.payStatus === 2" style="color: #1cc46c">交易成功</span>
                     </div>
                     <div class="imgBox">
-                      <img v-if="item.productUrl" :src="`${loginStore.cossUrl}${item.productUrl}`" />
+                      <!--       ${loginStore.cossUrl} -->
+                      <img v-if="item.productUrl" :src="`${item.productUrl}`" />
                     </div>
                     <div class="name">{{ item.productName }}</div>
                     <div class="numberBox">
@@ -128,7 +135,7 @@
                       <div class="contentTextBox">
                         <div class="label">支付方式</div>
                         <div class="dataValue">
-                          {{ item.payType === 0 ? '支付宝' : '微信' }}
+                          {{ item.payType === 0 ? "支付宝" : "微信" }}
                           <span v-if="item.payStatus === -2">(已退款)</span>
                         </div>
                       </div>
@@ -157,9 +164,9 @@
                 </div>
               </div>
               <div class="money">￥{{ item.payAmount }}</div>
-              <div class="payment">{{ item.payType === 0 ? '支付宝' : '微信' }}</div>
+              <div class="payment">{{ item.payType === 0 ? "支付宝" : "微信" }}</div>
               <div class="createTime">{{ item.createTime }}</div>
-              <div class="payTime">{{ item.payTime ? item.payTime : '-' }}</div>
+              <div class="payTime">{{ item.payTime ? item.payTime : "-" }}</div>
               <div class="payBox">
                 <div class="state">
                   <span v-if="item.payStatus === 0">待支付</span>
@@ -168,7 +175,7 @@
                   <span v-if="item.payStatus === -2">退款</span>
                   <span v-if="item.payStatus === 2">交易成功</span>
                 </div>
-                <div class="btn" v-if="item.payStatus === 0">去支付</div>
+                <div class="btn" v-if="item.payStatus === 0" @click="handlePayShow">去支付</div>
               </div>
             </div>
           </div>
@@ -186,18 +193,20 @@
           @current-change="handleCurrentChange"
         />
       </div>
+      <union-pay-popup></union-pay-popup>
     </div>
   </transition>
 </template>
 
 <script setup>
-import { reactive, ref, onMounted } from 'vue'
-import { ElMessage } from 'element-plus'
-import gxsSelect from '../components/gxsSelect.vue'
-import orderDetailsPopup from '../components/orderDetailsPopup.vue'
-import { GetorderList, orderCancel } from '@/network/personalCenter.js'
-import MessageBoxVue from '@/components/MessageBox/index.js'
-import { useStore } from '@/pinia/index.js'
+import { reactive, ref, onMounted } from "vue"
+import { ElMessage } from "element-plus"
+import gxsSelect from "../components/gxsSelect.vue"
+import orderDetailsPopup from "../components/orderDetailsPopup.vue"
+import { GetorderList, orderCancel } from "@/network/personalCenter.js"
+import MessageBoxVue from "@/components/MessageBox/index.js"
+import { useStore } from "@/pinia/index.js"
+import UnionPayPopup from "@/views/personalCenter/components/unionPayPopup.vue"
 
 const { loginStore, useUsersStore } = useStore()
 
@@ -211,8 +220,8 @@ let orderInfo = ref({
   payStatus: null
 })
 let total = ref(0)
-let createTime = ref('')
-let payTime = ref('')
+let createTime = ref("")
+let payTime = ref("")
 let indexDetail = ref(-1)
 
 const handleMouseover = (indexV) => {
@@ -222,40 +231,40 @@ const handleMouseout = () => {
   indexDetail.value = -1
 }
 const handleCreateDateTimeShow = () => {
-  document.querySelector('.CreateDateTimePicker').querySelector('input').focus()
+  document.querySelector(".CreateDateTimePicker").querySelector("input").focus()
 }
 const handlePayDateTimeShow = () => {
-  document.querySelector('.PayDateTimePicker').querySelector('input').focus()
+  document.querySelector(".PayDateTimePicker").querySelector("input").focus()
 }
 const handleCopyIcon = (item) => {
-  const textField = document.createElement('textarea')
+  const textField = document.createElement("textarea")
   textField.innerText = item
   document.body.appendChild(textField)
   textField.select()
-  document.execCommand('copy')
+  document.execCommand("copy")
   textField.remove()
   ElMessage({
-    message: '复制成功',
-    type: 'success'
+    message: "复制成功",
+    type: "success"
   })
 }
 //下拉框
 const options = reactive([
-  { values: null, label: '全部状态' },
-  { values: 0, label: '待支付' },
-  { values: -1, label: '已取消' },
-  { values: 1, label: '登记中' },
-  { values: 2, label: '交易成功' },
-  { values: -2, label: '已退款' }
+  { values: null, label: "全部状态" },
+  { values: 0, label: "待支付" },
+  { values: -1, label: "已取消" },
+  { values: 1, label: "登记中" },
+  { values: 2, label: "交易成功" },
+  { values: -2, label: "已退款" }
 ])
 // { values: 5, label: '登记中' },
 const arrayValue = reactive({
   values: null,
-  label: '全部状态'
+  label: "全部状态"
 })
 
 const handleSelectValue = (val) => {
-  console.log('val', val)
+  console.log("val", val)
   arrayValue.label = val.label
   arrayValue.values = val.values
   orderInfo.value.payStatus = val.values
@@ -274,11 +283,11 @@ const handleOrderList = async () => {
 const timeZhuan = (time) => {
   const date = new Date(time)
   const year = date.getFullYear()
-  const month = (date.getMonth() + 1).toString().padStart(2, '0') // 月份从0开始，所以需要加1，并补0
-  const day = date.getDate().toString().padStart(2, '0') // 补0
-  const hours = date.getHours().toString().padStart(2, '0') // 补0
-  const minutes = date.getMinutes().toString().padStart(2, '0') // 补0
-  const seconds = date.getSeconds().toString().padStart(2, '0') // 补0
+  const month = (date.getMonth() + 1).toString().padStart(2, "0") // 月份从0开始，所以需要加1，并补0
+  const day = date.getDate().toString().padStart(2, "0") // 补0
+  const hours = date.getHours().toString().padStart(2, "0") // 补0
+  const minutes = date.getMinutes().toString().padStart(2, "0") // 补0
+  const seconds = date.getSeconds().toString().padStart(2, "0") // 补0
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
 }
 //选择时间
@@ -286,9 +295,9 @@ const handleCreateDateTime = () => {
   if (!createTime.value) {
     orderInfo.value.createTimes = null
   } else {
-    let str = ''
+    let str = ""
     for (let i = 0; i < createTime.value.length; i++) {
-      str += timeZhuan(createTime.value[i]) + ','
+      str += timeZhuan(createTime.value[i]) + ","
     }
     orderInfo.value.createTimes = str.slice(0, -1)
   }
@@ -298,9 +307,9 @@ const handlePayTime = () => {
   if (!payTime.value) {
     payTime.value.createTimes = null
   } else {
-    let str = ''
+    let str = ""
     for (let i = 0; i < payTime.value.length; i++) {
-      str += timeZhuan(payTime.value[i]) + ','
+      str += timeZhuan(payTime.value[i]) + ","
     }
     orderInfo.value.payTime = str.slice(0, -1)
   }
@@ -316,9 +325,13 @@ const handlePayClose = async (orderNo) => {
   if (res.code === 200) {
     await handleOrderList()
     MessageBoxVue({
-      title: '取消成功'
+      title: "取消成功"
     })
   }
+}
+//待支付弹窗
+const handlePayShow = () => {
+  console.log("lipu")
 }
 
 onMounted(() => {
@@ -335,6 +348,6 @@ onMounted(() => {
   background-color: #000;
 }
 
-@import '@/styles/other/paginations.scss';
-@import 'index.scss';
+@import "@/styles/other/paginations.scss";
+@import "index.scss";
 </style>

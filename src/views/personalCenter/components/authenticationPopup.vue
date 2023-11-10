@@ -5,9 +5,9 @@
         <div class='text'>实名认证信息
           <div class='border'></div>
         </div>
-        <div class='close' @click='useUsersStore.authenticationPopup=false'></div>
+        <div class='close' @click='handleClose'></div>
         <div class='messageTop'>
-          根据《中华人民共和国网络安全法》等相关法律法规要求，需要完成实名认证寸能进行数字资产的购买、转赠及内容发布等功能。进行实名认证前，需要你填写并授权姓名、身份证号等以要信息。
+          根据《中华人民共和国网络安全法》等相关法律法规要求，需要完成实名认证才能进行数字资产的购买、转赠及内容发布等功能。进行实名认证前，需要你填写并授权姓名、身份证号等必要信息。
         </div>
         <div class='domInput marginTop28'>
           <div class='label'>姓名：</div>
@@ -43,7 +43,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useStore } from '@/pinia/index.js'
 import authenticationConFirmPopup from '../components/authenticationConfirmPopup.vue'
 import MessageBoxVue from '@/components/MessageBox/index.js'
@@ -77,6 +77,13 @@ const handleEmpowerShow = async () => {
     useUsersStore.authenticationConFirmPopup = true
   }
 }
+const handleClose = () => {
+  passwordEdit.value.certNo = ''
+  passwordEdit.value.username = ''
+  useUsersStore.authenticationPopup = false
+}
+
+
 </script>
 
 <style lang='scss' scoped>

@@ -1,5 +1,8 @@
 #assetLibrary {
-  margin-top: 28px;
+  :global(.el-input__inner) {
+
+  }
+    margin-top: 28px;
   width: 1473px;
   //height: 1178px;
   //background: url($gxsAssetLibraryBg) no-repeat center;
@@ -21,9 +24,11 @@
     height: 36px;
     display: flex;
     justify-content: space-between;
-    margin-top: 23px;
+    margin-top: 20px;
 
     .left {
+      height: 36px;
+      line-height: 36px;
       span {
         margin-left: 10px;
       }
@@ -119,12 +124,15 @@
         height: 235px;
         margin-left: 26px;
         margin-top: 26px;
-        border-radius: 10px;
+        border-radius: 6px;
         cursor: pointer;
         background: linear-gradient(90deg, #2D42FF 0%, #DF00C9 96.64%);
         display: flex;
         align-items: center;
         justify-content: center;
+        &:nth-child(-n+8) {
+          margin-top: 20px;
+        }
 
         &:nth-child(8n+1) {
           margin-left: 0;
@@ -134,7 +142,7 @@
           width: 152px;
           height: 233px;
           background: #000;
-          border-radius: 10px;
+          border-radius: 6px;
           overflow: hidden;
           display: flex;
           flex-direction: column;
@@ -145,6 +153,7 @@
             height: 176px;
             //background: url($gxsAssetLibraryLinShiImage) no-repeat center;
             background-size: contain;
+            border-radius: 6px;
             overflow: hidden;
             &:hover img{
               transform: scale(1.1);
@@ -163,6 +172,39 @@
             text-align: center;
             margin-top: 5px;
           }
+          .cardIdBox{
+            width: 132px;
+            margin-top: 2px;
+            height: 24px;
+            line-height: 24px;
+            position: relative;
+            display: flex;
+            .cardIdIcon{
+              width: 24px;
+              height: 24px;
+              background:url($gxsOrderCardId) no-repeat center;
+              background-size:contain;
+              position: absolute;
+              top: 50%;
+              margin-top: -12px;
+              z-index: 3;
+            }
+            .cardIdText{
+              width: 132px;
+              height: 20px;
+              background-image: linear-gradient(to left,#FFBB4D, #815821);
+              font-size: 12px;
+              overflow: hidden;
+              text-overflow:ellipsis;
+              white-space: nowrap;
+              position: absolute;
+              top: 50%;
+              margin-top: -10px;
+              padding-left: 32px;
+              border-radius: 2px;
+            }
+
+          }
 
           .number {
             width: 112px;
@@ -173,12 +215,18 @@
             //background-size:contain;
             background-image: linear-gradient(to left,#FFBB4D, #815821);
             font-size: 12px;
-            text-align: center;
+            //text-align: center;
             padding-left: 14px;
             overflow: hidden;
             text-overflow:ellipsis;
             white-space: nowrap;
-
+            display: flex;
+            .cardId{
+              width: 16px;
+              height: 16px;
+              background:url($gxsOrderCardId) no-repeat center;
+              background-size:contain;
+            }
           }
         }
 

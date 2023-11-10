@@ -58,16 +58,30 @@
         align-items: flex-start;
         position: relative;
         font-size: 12px;
+        :deep(.el-input__wrapper ){
+          background-color: red;
+        }
 
         .text {
           width: 163px;
           height: 36px;
           line-height: 36px;
-          text-align: center;
+          //text-align: center;
+          padding-left: 22px;
           position: absolute;
           z-index: 100;
           background: url($gxsAssetLibraryFrame2) black no-repeat center;
           background-size: contain;
+          .icon{
+            width: 16px;
+            height: 16px;
+            background:url($gxsOrderGoPackDateTimeIcon) no-repeat center;
+            background-size:contain;
+            position: absolute;
+            top: 50%;
+            margin-top: -8px;
+            right: 14px;
+          }
 
         }
 
@@ -96,11 +110,22 @@
           width: 163px;
           height: 36px;
           line-height: 36px;
-          text-align: center;
+          //text-align: center;
+          padding-left: 22px;
           position: absolute;
           z-index: 100;
           background: url($gxsAssetLibraryFrame2) black no-repeat center;
           background-size: contain;
+          .icon{
+            width: 16px;
+            height: 16px;
+            background:url($gxsOrderGoPackDateTimeIcon) no-repeat center;
+            background-size:contain;
+            position: absolute;
+            top: 50%;
+            margin-top: -8px;
+            right: 14px;
+          }
         }
 
 
@@ -501,20 +526,34 @@
             }
 
             .number {
+              height: 28px;
               margin-top: 33px;
               display: flex;
-
+              position: relative;
               .icon {
-                width: 16px;
-                height: 16px;
-                background: url($gxsOrderCardId) no-repeat center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 28px;
+                height: 28px;
+                background: url($gxsorderDetailsNumber) no-repeat center;
                 background-size: contain;
+                z-index: 2;
               }
 
               .text {
-                width: 160px;
+                height: 18px;
+                line-height: 18px;
+                padding-left: 28px;
+                padding-right: 7px;
+                min-width: 100px;
                 margin-left: 5px;
-                color: #00D1FF;
+                color: #fff;
+                background-image: linear-gradient(to left,#FFBB4D, #815821);
+                position: absolute;
+                top: 50%;
+                margin-top: -9px;
+                border-radius: 2px;
               }
             }
           }

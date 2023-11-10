@@ -112,8 +112,15 @@ onUnmounted(() => {
     .optionBox {
       width: 134px;
       height: 36px;
-      border-bottom: 1px solid #ccc;
-      text-align: center;
+      border-bottom: 1px solid #232323;
+      padding-left: 22px;
+      //text-align: center;
+      color: rgba(#fff,.7);
+      background-color: #09192a;
+      transition: color .3s;
+      &:hover{
+        color: rgba(#fff,1);
+      }
 
       &:last-child {
         border-bottom: 0;
