@@ -11,7 +11,7 @@
             </div>
             <el-date-picker
               class="CreateDateTimePicker"
-              popper-class="CreateDateTimePickerKuang"
+              popper-class="CreateDateTimePickerKuang_CreationTime_retrieval"
               v-model="createTime"
               type="datetimerange"
               start-placeholder="开始时间"
@@ -29,7 +29,7 @@
             </div>
             <el-date-picker
               class="PayDateTimePicker"
-              popper-class="CreateDateTimePickerKuang"
+              popper-class="CreateDateTimePickerKuang_CreationTime_retrieval"
               v-model="payTime"
               type="datetimerange"
               start-placeholder="开始时间"
@@ -59,7 +59,7 @@
         </div>
         <div class="borderFrame"></div>
         <div class="orderList">
-          <div class="orderListBox" v-for="(item, index) in orderList">
+          <div class="orderListBox" v-for="(item, index) in orderList" :key="item.orderNo">
             <div class="head">
               订单号: {{ item.orderNo }}
               <div class="copyIcon" @click="handleCopyIcon(item.orderNo)"></div>
@@ -105,7 +105,7 @@
                     </div>
                     <div class="btnBox" v-if="item.payStatus === 0">
                       <div class="close" @click="handlePayClose(item.orderNo)">取消支付</div>
-                      <div class="payBtn">去支付</div>
+                      <div class="payBtn" @click="goPay(item.orderNo)">去支查付</div>
                     </div>
                     <div class="border"></div>
                     <div class="contentText">
@@ -175,7 +175,7 @@
                   <span v-if="item.payStatus === -2">退款</span>
                   <span v-if="item.payStatus === 2">交易成功</span>
                 </div>
-                <div class="btn" v-if="item.payStatus === 0" @click="handlePayShow">去支付</div>
+                <div class="btn" v-if="item.payStatus === 0" @click="handlePayShow(item)">去支付</div>
               </div>
             </div>
           </div>
@@ -205,13 +205,13 @@ import errDialoVue from "./component/errdialo/index.vue"
 import { ElMessage } from "element-plus"
 import gxsSelect from "../components/gxsSelect.vue"
 import { useRoute } from "vue-router"
-import orderDetailsPopup from "../components/orderDetailsPopup.vue"
-import { GetorderList, orderCancel } from "@/network/personalCenter.js"
+// import orderDetailsPopup from "../components/orderDetailsPopup.vue"
+import { GetorderList, orderCancel, shopbuyPay } from "@/network/personalCenter.js"
 import MessageBoxVue from "@/components/MessageBox/index.js"
-import { useStore } from "@/pinia/index.js"
+// import { useStore } from "@/pinia/index.js"
 import UnionPayPopup from "@/views/personalCenter/components/unionPayPopup.vue"
 const route = useRoute()
-const { loginStore, useUsersStore } = useStore()
+// const { loginStore, useUsersStore } = useStore()
 const errDialoVueUpdate = ref(false) //支付成功弹框
 
 let orderList = ref([])
@@ -269,7 +269,6 @@ const arrayValue = reactive({
 })
 
 const handleSelectValue = (val) => {
-  console.log("val", val)
   arrayValue.label = val.label
   arrayValue.values = val.values
   orderInfo.value.payStatus = val.values
@@ -277,12 +276,12 @@ const handleSelectValue = (val) => {
 }
 const handleOrderList = async () => {
   let res = await GetorderList(orderInfo.value)
-  console.log(res)
+  console.log(res.data.records)
+
   let data = res.data.records
   if (res.code === 200) {
     orderList.value = data
     total.value = res.data.total
-    console.log(orderList)
   }
 }
 const timeZhuan = (time) => {
@@ -334,9 +333,24 @@ const handlePayClose = async (orderNo) => {
     })
   }
 }
+
+//去支付
+const goPay = async (orderNo) => {
+  const res = await orderCancel({ orderNo })
+  if (res.code === 200) {
+    await handleOrderList()
+    MessageBoxVue({
+      title: "取消成功"
+    })
+  }
+}
 //待支付弹窗
-const handlePayShow = () => {
-  console.log("lipu")
+const handlePayShow = async (item) => {
+  const res = await shopbuyPay({
+    orderNo: item.orderNo
+  })
+  console.log(res.data)
+  window.location.href = res.data
 }
 
 onMounted(() => {
@@ -356,15 +370,57 @@ watch(
   }
 )
 </script>
-
+<!-- <style lang="scss">
+.CreateDateTimePickerKuang_CreationTime_retrieval {
+  box-shadow: 0 0 0 0 !important;
+  border: 1px solid #4a5173 !important;
+  background-color: saddlebrown;
+}
+.CreateDateTimePickerKuang_CreationTime_retrieval {
+  .el-picker-panel {
+    background-color: rgba(5, 13, 23, 1);
+  }
+  .el-picker-panel__footer {
+    background-color: rgba(5, 13, 23, 1);
+  }
+  .el-date-range-picker__time-header {
+    border-bottom: 1px solid #4a5173 !important;
+  }
+  .el-input__wrapper {
+    background-color: transparent;
+    box-shadow: 0 0 0 0;
+    border: 1px solid #4a5173;
+  }
+  .el-button.is-plain {
+    background: linear-gradient(90deg, #2d42ff 0%, #df00c9 96.64%);
+    color: white;
+    border: 0;
+  }
+  .el-date-table th {
+    border-bottom: 1px solid #4a5173 !important;
+  }
+  .el-date-range-picker__content.is-left {
+    border-right: 1px solid #4a5173 !important;
+  }
+  .el-picker-panel__footer {
+    border-top: 1px solid #4a5173 !important;
+  }
+  .el-popper__arrow {
+    &::before {
+      border: 0 !important;
+      background-color: #4a5173 !important;
+    }
+  }
+}
+</style> -->
 <style lang="scss" scoped>
-:deep(.el-date-range-picker) {
-  background: #018ef8;
-}
+// :deep(.el-date-range-picker) {
+//   background: #018ef8;
+// }
 
-::v-deep .el-picker-panel__body {
-  background-color: #000;
-}
+// ::v-deep .el-picker-panel__body {
+//   background-color: #000;
+// }
 
 @import "@/styles/other/paginations.scss";
 @import "index.scss";

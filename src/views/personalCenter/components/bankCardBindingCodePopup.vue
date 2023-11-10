@@ -1,24 +1,24 @@
 <template>
-  <transition name='transition05s'>
-    <div id='bankCardBindingCodePopup' v-if='bankCardBindingCodeShow'>
-      <div class='content'>
-        <div class='title'>
+  <transition name="transition05s">
+    <div id="bankCardBindingCodePopup" v-if="bankCardBindingCodeShow">
+      <div class="content">
+        <div class="title">
           请输入验证码
-          <div class='border'></div>
+          <div class="border"></div>
         </div>
-        <div class='contain'>
-          <div class='addFrom'>
-            <div class='label'>验证码：</div>
-            <div class='addFromDom'>
-              <input v-model='codeInfo.code' placeholder='请输入手机验证码'>
+        <div class="contain">
+          <div class="addFrom">
+            <div class="label">验证码：</div>
+            <div class="addFromDom">
+              <input v-model="codeInfo.code" placeholder="请输入手机验证码" />
             </div>
           </div>
         </div>
 
-        <div class='close' @click='handelClose'></div>
-        <div class='btnBox'>
-          <div class='btnBox-close' @click='handelClose'>取消</div>
-          <div class='btnBox-confirm' @click='handleBtn'>确认</div>
+        <div class="close" @click="handelClose"></div>
+        <div class="btnBox">
+          <div class="btnBox-close" @click="handelClose">取消</div>
+          <div class="btnBox-confirm" @click="handleBtn">确认</div>
         </div>
       </div>
     </div>
@@ -26,37 +26,35 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { POST_bankCardBindingCode } from '@/network/personalCenter.js'
+import { ref, onMounted } from "vue"
+import { POST_bankCardBindingCode } from "@/network/personalCenter.js"
 
 let codeInfo = ref({
-  code: '',
-  orderId: ''
+  code: "",
+  orderId: ""
 })
-const props = defineProps(['bankCardBindingCodeShow', 'ids'])
-const emit = defineEmits(['handleBankCardBindingCodeCloseEmit'])
+const props = defineProps(["bankCardBindingCodeShow", "ids"])
+const emit = defineEmits(["handleBankCardBindingCodeCloseEmit"])
 const handelClose = () => {
-  emit('handleBankCardBindingCodeCloseEmit')
+  emit("handleBankCardBindingCodeCloseEmit")
 }
 const handleBtn = async () => {
-  console.log(props.ids)
   codeInfo.value.orderId = props.ids
   let result = await POST_bankCardBindingCode(codeInfo.value)
-  if(result.code===200){
-    emit('handleBankCardBindingCodeCloseEmit')
+  if (result.code === 200) {
+    emit("handleBankCardBindingCodeCloseEmit")
   }
 }
-
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #bankCardBindingCodePopup {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, .8);
+  background: rgba(0, 0, 0, 0.8);
   z-index: 10005;
   display: flex;
   justify-content: center;
@@ -71,7 +69,13 @@ const handleBtn = async () => {
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
     border: 1px solid transparent;
-    background-image: linear-gradient(to bottom, rgba(18, 39, 67, 1), rgba(3, 13, 21, 1)), linear-gradient(155.92deg, rgba(159, 98, 219, 0.5) 0%, rgba(126, 172, 186, 0.5) 48.67%, rgba(99, 149, 231, 0.5) 96.71%);
+    background-image: linear-gradient(to bottom, rgba(18, 39, 67, 1), rgba(3, 13, 21, 1)),
+      linear-gradient(
+        155.92deg,
+        rgba(159, 98, 219, 0.5) 0%,
+        rgba(126, 172, 186, 0.5) 48.67%,
+        rgba(99, 149, 231, 0.5) 96.71%
+      );
     overflow: hidden;
     border-radius: 6px;
     backdrop-filter: blur(10px);
@@ -95,7 +99,6 @@ const handleBtn = async () => {
         left: 50%;
         margin-top: 10px;
       }
-
     }
 
     .close {
@@ -110,7 +113,6 @@ const handleBtn = async () => {
     }
 
     .contain {
-
       margin-top: 12px;
       display: flex;
 
@@ -142,13 +144,11 @@ const handleBtn = async () => {
             color: #fff;
 
             &::placeholder {
-              color: rgba(#fff, .6);
+              color: rgba(#fff, 0.6);
             }
           }
-
         }
       }
-
     }
 
     .btnBox {
@@ -180,6 +180,5 @@ const handleBtn = async () => {
       }
     }
   }
-
 }
 </style>

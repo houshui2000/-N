@@ -7,22 +7,14 @@
     </div>
   </div>
 </template>
-<!-- <script setup>
-import { inject, computed } from 'vue'
-const creatData = inject('creatData')
-let url = 'http://cardjing.oss-cn-qingdao.aliyuncs.com/'
-const IMgURl = computed(() => {
-  return JSON.parse(creatData.value.imgTextUrl).map((item) => url + item)
-})
-</script> -->
 <script setup>
-import { inject, computed } from 'vue'
-const creatData = inject('creatData')
-import { useStore } from '@/pinia/index'
-const { loginStore } = useStore()
-// let url =
+import { inject, computed } from "vue"
+// import { useStore } from "@/pinia/index"
+const creatData = inject("creatData")
+// const { loginStore } = useStore()
+// let url =loginStore.cossUrl +
 const IMgURl = computed(() => {
-  return JSON.parse(creatData.value.imgTextUrl).map((item) => loginStore.cossUrl + item)
+  return JSON.parse(creatData.value.imgTextUrl).map((item) => item)
 })
 </script>
 <style lang="scss" scoped>
@@ -34,8 +26,10 @@ const IMgURl = computed(() => {
   border-radius: 4px;
   @include bordergradientMY();
   .setction {
+    padding: 25px;
     width: 100%;
     overflow: auto;
+    color: white;
     height: 100%;
   }
 }

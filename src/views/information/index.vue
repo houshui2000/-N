@@ -8,10 +8,11 @@
         <p
           v-for="(item, index) in listArr"
           @click="(nameRef = item.id), listOfInformation(), sessionStoragesetItem('categoryId', item.id)"
-          :class="{ active: nameRef == item.id }"
           :key="index"
         >
+          <!--  :class="{ active: nameRef == item.id }" -->
           {{ item.name }}
+          <span :style="{ opacity: nameRef !== item.id ? '0' : '1' }"></span>
         </p>
       </div>
       <div v-if="listOfInformationArr?.records?.length > 0" class="section_bottom">
@@ -103,7 +104,6 @@ const listOfInformation = async () => {
     categoryId: nameRef.value
   })
   Fenye.value.total = res.data.total
-  console.log(res)
 
   listOfInformationArr.value = res.data
 }
@@ -148,11 +148,35 @@ const listOfInformation = async () => {
       height: 100%;
       @include Myflex();
       padding: 0 69px;
-      .active {
-        transition: all 0.5s;
+      // .active {
+      //   transition: all 0.5s;
+      //   position: relative;
+      //   &::after {
+      //     content: "";
+      //     display: inline-block;
+      //     position: absolute;
+      //     left: 50%;
+      //     bottom: -5px;
+      //     transform: translateX(-50%);
+      //     width: 50%;
+      //     height: 2px;
+      //     border-radius: 5px;
+      //     background: linear-gradient(149deg, rgb(213, 5, 205) 45.99%, rgb(53, 63, 253) 85.48%);
+      //   }
+      // }
+      > p {
+        font: normal normal 400 14px " PingFang SC";
+        color: white;
         position: relative;
-        &::after {
-          content: "";
+        display: inline-block;
+        height: 100%;
+        // opacity: ;
+        margin-right: 80px;
+        padding: 0px 12px;
+        @include Myflex();
+        margin-right: 100px;
+        span {
+          transition: all 1s;
           display: inline-block;
           position: absolute;
           left: 50%;
@@ -162,18 +186,10 @@ const listOfInformation = async () => {
           height: 2px;
           border-radius: 5px;
           background: linear-gradient(149deg, rgb(213, 5, 205) 45.99%, rgb(53, 63, 253) 85.48%);
+
+          //   transition: all 0.5s;
+          //   position: relative;
         }
-      }
-      > p {
-        font: normal normal 400 14px " PingFang SC";
-        color: white;
-        position: relative;
-        display: inline-block;
-        height: 100%;
-        margin-right: 80px;
-        padding: 0px 12px;
-        @include Myflex();
-        margin-right: 100px;
       }
     }
     .section_bottom {

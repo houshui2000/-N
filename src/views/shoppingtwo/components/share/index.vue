@@ -54,43 +54,42 @@
   </div>
 </template>
 <script setup name="uploadXia">
-import { toRefs, watch, ref, nextTick } from 'vue'
-import html2canvas from 'html2canvas'
-import QRCode from 'qrcode'
+import { toRefs, watch, ref, nextTick } from "vue"
+import html2canvas from "html2canvas"
+import QRCode from "qrcode"
 const props = defineProps({
   dialogVisiblePay: { type: Boolean, required: true },
   creatData: { type: Object, required: true }
 })
-// console.log(props.creatData)
 
 const realPictures = ref(
-  new URL('../../../../assets/images/shoppingCentre/missingWakeupPage.png', import.meta.url).href
+  new URL("../../../../assets/images/shoppingCentre/missingWakeupPage.png", import.meta.url).href
 ) // 真正的图片
 const toBase64 = (imgUrl) => {
   // 一定要设置为let，不然图片不显示
   const image = new Image()
   // 解决跨域问题
-  image.setAttribute('crossOrigin', 'anonymous')
+  image.setAttribute("crossOrigin", "anonymous")
   const imageUrl = imgUrl
   image.src = imageUrl
   // image.onload为异步加载
   image.onload = () => {
-    var canvas = document.createElement('canvas')
+    var canvas = document.createElement("canvas")
     canvas.width = image.width
     canvas.height = image.height
-    var context = canvas.getContext('2d')
+    var context = canvas.getContext("2d")
     context.drawImage(image, 0, 0, image.width, image.height)
     var quality = 0.8
     // 这里的dataurl就是base64类型
     // 使用toDataUrl将图片转换成jpeg的格式,不要把图片压缩成png，因为压缩成png后base64的字符串可能比不转换前的长！
-    const dataurl = canvas.toDataURL('image/jpeg', quality)
+    const dataurl = canvas.toDataURL("image/jpeg", quality)
 
     realPictures.value = dataurl
   }
 }
 
 const { dialogVisiblePay, creatData } = toRefs(props)
-const $emit = defineEmits(['update:dialogVisiblePay'])
+const $emit = defineEmits(["update:dialogVisiblePay"])
 
 let one = 0 // 来检测只生成一次二维码
 const erweima = ref(null)
@@ -99,22 +98,20 @@ const show = () => {
   QRCode.toCanvas(erweima.value, window.location.href)
   // upload()
 
-  // console.log(toBase64(creatData.value.productUrl))
-
   // toBase64('http://172.16.1.38:5173/src/assets/images/carggotoBase64(creatData.value.productUrl)/ceshi_xia.png')
 }
 const section = ref(null)
-const imgLoad = ref('')
+const imgLoad = ref("")
 /**生成图片 */
 const upload = () => {
-  let eldialog = document.querySelector('.share_all .el-dialog section')
+  let eldialog = document.querySelector(".share_all .el-dialog section")
   html2canvas(eldialog).then((canvas) => {
     imgLoad.value = canvas.toDataURL()
     downloadFile(canvas.toDataURL(), creatData.value.authorName)
   })
 }
-const downloadFile = (url, downloadName = '图片下载') => {
-  const link = document.createElement('a')
+const downloadFile = (url, downloadName = "图片下载") => {
+  const link = document.createElement("a")
 
   fetch(url)
     .then((res) => res.blob())
@@ -127,9 +124,7 @@ const downloadFile = (url, downloadName = '图片下载') => {
     })
 }
 const closeMy = () => {
-  console.log(6666)
-
-  realPictures.value = new URL('../../../../assets/images/shoppingCentre/missingWakeupPage.png', import.meta.url).href
+  realPictures.value = new URL("../../../../assets/images/shoppingCentre/missingWakeupPage.png", import.meta.url).href
 }
 watch(
   dialogVisiblePay,
@@ -175,7 +170,7 @@ watch(
   z-index: 2;
   border-radius: 4px;
   background: rgba(0, 0, 0, 0.7);
-  font: normal normal 400 12px 'PingFang SC';
+  font: normal normal 400 12px "PingFang SC";
   @include Myflex();
   width: 70px;
   height: 30px;
@@ -239,11 +234,11 @@ section {
       width: 222px;
       height: 100%;
       .title {
-        font: normal normal 700 16px 'PingFang SC';
+        font: normal normal 700 16px "PingFang SC";
       }
       .center {
         margin: 9px 0;
-        font: normal normal 400 14px 'PingFang SC';
+        font: normal normal 400 14px "PingFang SC";
       }
       .cardJ {
         // background-color: salmon;
@@ -260,14 +255,14 @@ section {
           overflow: hidden;
         }
         .cardJ_foter {
-          font: normal normal 400 12px 'PingFang SC';
+          font: normal normal 400 12px "PingFang SC";
         }
       }
     }
     .bottom_right {
       width: 132px;
       height: 132px;
-      background: url('@/assets/images/shoppingCentre/erweima.png') no-repeat scroll left top/ 100% 100%;
+      background: url("@/assets/images/shoppingCentre/erweima.png") no-repeat scroll left top/ 100% 100%;
       // @include bordergradientMY(
       //   linear-gradient(180deg, rgba(83, 56, 119, 1) 0%, rgba(53, 81, 125, 1) 100%),
       //   linear-gradient(180deg, rgba(36, 19, 40, 0.5) 0%, rgba(36, 19, 40, 0.5) 100%)

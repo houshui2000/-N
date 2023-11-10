@@ -29,7 +29,7 @@
                       v-model="passwordInfo.mobile"
                       placeholder="请输入手机号"
                       @blur="handlePasswordInfoAdminBlur"
-                      maxlength='11'
+                      maxlength="11"
                       onkeyup="value=value.replace(/[^0-9]/g,'')"
                     />
                     <div class="verification">{{ passwordInfoVerificationAdmin }}</div>
@@ -39,7 +39,7 @@
                       v-model="passwordInfo.password"
                       type="password"
                       placeholder="请输入密码"
-                      maxlength='16'
+                      maxlength="16"
                       onkeyup="value=value.replace(/[\W]/g,'')"
                       @blur="handlePasswordInfoPasswordBlur"
                     />
@@ -53,7 +53,7 @@
                       v-model="mobileInfo.mobile"
                       placeholder="请输入手机号"
                       @blur="handleMobileInfoBlur"
-                      maxlength='11'
+                      maxlength="11"
                       onkeyup="value=value.replace(/[^0-9]/g,'')"
                     />
                     <div class="verification">{{ mobileInfoVerification }}</div>
@@ -62,11 +62,11 @@
                     <input
                       v-model="mobileInfo.code"
                       placeholder="请输入验证码"
-                      maxlength='6'
+                      maxlength="6"
                       onkeyup="value=value.replace(/[^0-9]/g,'')"
                     />
                     <div class="code" @click="handleCodeTime()">
-                      {{ codeTime >= 0 ? codeTime + 's' : '获取验证码' }}
+                      {{ codeTime >= 0 ? codeTime + "s" : "获取验证码" }}
                     </div>
                   </div>
                 </div>
@@ -81,46 +81,44 @@
                       v-model="registerInfo.mobile"
                       type="number"
                       placeholder="请输入手机号"
-                      maxlength='11'
+                      maxlength="11"
                       onkeyup="value=value.replace(/[^0-9]/g,'')"
                       @blur="handleRegisterInfoBlur"
                     />
                     <div class="verification">{{ registerInfoVerification }}</div>
                   </div>
                   <div class="inputBox codeBox marginTop18">
-                    <input
-                      v-model="registerInfo.code"
-                      type="number"
-                      placeholder="请输入验证码"
-                      maxlength='6'
-                      onkeyup="value=value.replace(/[^0-9]/g,'')"
-                    />
+                    <input v-model="registerInfo.code" type="number" placeholder="请输入验证码" maxlength="6" />
                     <div class="code" @click="handleCodeTime()">
-                      {{ registerCodeTime >= 0 ? registerCodeTime + 's' : '获取验证码' }}
+                      {{ registerCodeTime >= 0 ? registerCodeTime + "s" : "获取验证码" }}
                     </div>
                   </div>
                   <div class="inputBox marginTop18">
                     <input
                       v-model="registerInfo.password"
                       placeholder="请输入不超过16位的密码"
-                      maxlength='11'
+                      maxlength="11"
+                      type="password"
                     />
-<!--                    onkeyup="value=value.replace(/\W/g,'')"-->
+                    <!--                    onkeyup="value=value.replace(/\W/g,'')"-->
                   </div>
                   <div class="inputBox marginTop18">
                     <input
                       v-model="registerInfo.nickname"
                       placeholder="请输入昵称（选填）"
-                      minlength='2'
-                      maxlength='11'
-
+                      minlength="2"
+                      maxlength="11"
                     />
-<!--                    onkeyup="value=value.replace(/[^\w\u4E00-\u9FA5]/g, '')"-->
+                    <!--                    onkeyup="value=value.replace(/[^\w\u4E00-\u9FA5]/g, '')"-->
                   </div>
                   <div class="inputBox marginTop18">
-                    <input v-model="registerInfo.invitationCode" placeholder="请输入推荐码（选填）" maxlength='11'
-                            />
-<!--                    onkeyup="value=value.replace(/[\W]/g,'')"-->
+                    <input
+                      oninput="if(/[\u4E00-\u9FA5]/g.test(value)){value=''}"
+                      v-model="registerInfo.invitationCode"
+                      placeholder="请输入推荐码（选填）"
+                      maxlength="11"
+                    />
+                    <!--                    onkeyup="value=value.replace(/[\W]/g,'')"-->
                   </div>
                 </div>
                 <!--      找回密码          -->
@@ -133,7 +131,7 @@
                     <input
                       v-model="resettingInfo.mobile"
                       placeholder="请输入手机号"
-                      maxlength='11'
+                      maxlength="11"
                       onkeyup="value=value.replace(/[^0-9]/g,'')"
                       @blur="handleResettingInfoBlur"
                     />
@@ -143,11 +141,11 @@
                     <input
                       v-model="resettingInfo.code"
                       placeholder="请输入验证码"
-                      maxlength='6'
+                      maxlength="6"
                       onkeyup="value=value.replace(/[^0-9]/g,'')"
                     />
                     <div class="code" @click="handleCodeTime()">
-                      {{ resettingCodeTime >= 0 ? resettingCodeTime + 's' : '获取验证码' }}
+                      {{ resettingCodeTime >= 0 ? resettingCodeTime + "s" : "获取验证码" }}
                     </div>
                   </div>
                   <div class="inputBox marginTop18">
@@ -156,8 +154,7 @@
                       placeholder="请输入不超过16位的密码"
                       @blur="handleResettingInfoPassWordBlur"
                       type="password"
-                      maxlength='16'
-                      onkeyup="value=value.replace(/\W/g,'')"
+                      maxlength="16"
                     />
                     <div class="verification">{{ resettingInfoVerificationPassword }}</div>
                   </div>
@@ -167,7 +164,7 @@
                       placeholder="请输入再次输入密码"
                       @blur="handleResettingInfoPassWordAgainBlur"
                       type="password"
-                      maxlength='16'
+                      maxlength="16"
                       onkeyup="value=value.replace(/[\W]/g,'')"
                     />
                     <div class="verification">{{ resettingInfoVerificationPasswordAgain }}</div>
@@ -200,12 +197,17 @@
                   确 定
                 </div>
                 <!--       用户协议       -->
-                <div class="checkboxBox" style='font-size: 12px' :class="{ 'apply-shake': agreementShow }" v-if="otherBtn !== 'resetting'">
+                <div
+                  class="checkboxBox"
+                  style="font-size: 12px"
+                  :class="{ 'apply-shake': agreementShow }"
+                  v-if="otherBtn !== 'resetting'"
+                >
                   <el-checkbox v-model="agreement" class="checkboxBox-checkbox"></el-checkbox>
                   我已满18周岁，并且同意
-                  <span style='fontSize: 12px'>《用户协议》</span>
+                  <span style="fontsize: 12px">《用户协议》</span>
                   和
-                  <span  style='fontSize: 12px'>《隐私协议》</span>
+                  <span style="fontsize: 12px">《隐私协议》</span>
                 </div>
               </div>
             </div>
@@ -216,9 +218,9 @@
   </Transition>
 </template>
 
-<script setup>
-import { useStore } from '@/pinia'
-import { ref, reactive } from 'vue'
+<script setup name="loginMyad">
+import { useStore } from "@/pinia"
+import { ref, reactive, watch } from "vue"
 import {
   codeloginmobile,
   logincode,
@@ -227,8 +229,8 @@ import {
   registernormal,
   resetpasswordBtn,
   resetpassword
-} from '@/network/user.js'
-import { setItem } from '@/utils/storage.js'
+} from "@/network/user.js"
+import { setItem } from "@/utils/storage.js"
 
 const { loginStore, useUsersStore } = useStore()
 // 校验规则
@@ -241,7 +243,7 @@ const handleStateBtn = (res) => {
   handleLoginShowInit()
 }
 
-let otherBtn = ref('other')
+let otherBtn = ref("other")
 let codeTime = ref(-1)
 let registerCodeTime = ref(-1)
 let resettingCodeTime = ref(-1)
@@ -249,38 +251,38 @@ let agreement = ref(false) //是否同意协议
 let agreementShow = ref(false)
 // 手机号密码登录接口数据
 let passwordInfo = reactive({
-  mobile: '',
-  password: ''
+  mobile: "",
+  password: ""
   // mobile: '',
   // password: ''
 })
 // 手机验证码登录接口数据
 let mobileInfo = reactive({
-  mobile: '',
-  code: ''
+  mobile: "",
+  code: ""
 })
 // 注册接口数据初始化函数
 const registerInfoInit = () => ({
-  mobile: '',
-  password: '',
-  code: '',
-  nickname: '',
-  invitationCode: ''
+  mobile: "",
+  password: "",
+  code: "",
+  nickname: "",
+  invitationCode: ""
 })
 // 注册接口数据
 let registerInfo = reactive(registerInfoInit())
 // 找回密码
 const resettingInfoInit = () => ({
-  mobile: '',
-  password: '',
-  code: '',
-  passwordAgain: ''
+  mobile: "",
+  password: "",
+  code: "",
+  passwordAgain: ""
 })
 //重置密码接口数据
 let resettingInfo = reactive(resettingInfoInit())
 //协议校验
 const handleAgreement = () => {
-  if (!agreement.value && !(otherBtn.value === 'resetting')) {
+  if (!agreement.value && !(otherBtn.value === "resetting")) {
     agreementShow.value = true
     setTimeout(() => {
       agreementShow.value = false
@@ -291,17 +293,16 @@ const handleAgreement = () => {
 //登录按钮
 const handleLoginBtn = async () => {
   // 手机密码登录
-  if (stateBtn.value === 1 && otherBtn.value === 'other') {
-    if (passwordInfo.mobile === '' || passwordInfo.password === '') {
+  if (stateBtn.value === 1 && otherBtn.value === "other") {
+    if (passwordInfo.mobile === "" || passwordInfo.password === "") {
       return
     }
     if (handleAgreement()) return
     let result = await loginmobile(passwordInfo)
-    console.log('登录', result)
     if (result.code === 200) {
-      setItem('token', result.data.token)
+      setItem("token", result.data.token)
       loginStore.token = result.data.token
-      setItem('userId', result.data.userId)
+      setItem("userId", result.data.userId)
       loginStore.userId = result.data.userId
       loginStore.login = false
       await useUsersStore.handleUserInfo()
@@ -310,16 +311,16 @@ const handleLoginBtn = async () => {
     }
   }
   // 手机验证码登录
-  if (stateBtn.value === 2 && otherBtn.value === 'other') {
-    if (mobileInfo.mobile === '' || mobileInfo.code === '') {
+  if (stateBtn.value === 2 && otherBtn.value === "other") {
+    if (mobileInfo.mobile === "" || mobileInfo.code === "") {
       return
     }
     if (handleAgreement()) return
     let result = await logincode(mobileInfo)
     if (result.code === 200) {
-      setItem('token', result.data.token)
+      setItem("token", result.data.token)
       loginStore.token = result.data.token
-      setItem('userId', result.data.userId)
+      setItem("userId", result.data.userId)
       loginStore.userId = result.data.userId
       loginStore.login = false
       await useUsersStore.handleUserInfo()
@@ -328,64 +329,60 @@ const handleLoginBtn = async () => {
     }
   }
   // 注册账号
-  if (otherBtn.value === 'register') {
+  if (otherBtn.value === "register") {
     // for (let val of Object.values(registerInfo)) {
-    //   console.log(val)
     //   if(val==='') {
     //     handleRegisterInfoBlur()
     //     return
     //   }
     // }
     // if(registerInfo.mobile===)
-    console.log('我执行了')
     if (handleAgreement()) return
     const result = await registernormal(registerInfo)
     if (result.code === 200) {
-      console.log('注册成功')
-      otherBtn.value = 'other'
+      otherBtn.value = "other"
       Object.assign(registerInfo, registerInfoInit())
     }
   }
   //忘记密码
-  if (otherBtn.value === 'resetting') {
+  if (otherBtn.value === "resetting") {
     const result = await resetpasswordBtn(resettingInfo)
     if (result.code === 200) {
-      console.log('修改成功')
-      otherBtn.value = 'other'
+      otherBtn.value = "other"
       Object.assign(resettingInfo, resettingInfoInit())
     }
   }
 }
 // 格式化本地
 const handleLoginShowInit = () => {
-  passwordInfo.mobile = ''
-  passwordInfo.password = ''
-  mobileInfo.mobile = ''
-  mobileInfo.code = ''
-  mobileInfoVerification.value = ''
-  registerInfoVerification.value = ''
-  passwordInfoVerificationAdmin.value = ''
-  passwordInfoVerificationPassword.value = ''
+  passwordInfo.mobile = ""
+  passwordInfo.password = ""
+  mobileInfo.mobile = ""
+  mobileInfo.code = ""
+  mobileInfoVerification.value = ""
+  registerInfoVerification.value = ""
+  passwordInfoVerificationAdmin.value = ""
+  passwordInfoVerificationPassword.value = ""
 }
 
 //注册页面显示
 const handleRegisterShow = () => {
-  otherBtn.value = 'register'
+  otherBtn.value = "register"
   handleLoginShowInit()
 }
 //注册返回
 const handleOtherShow = () => {
-  otherBtn.value = 'other'
+  otherBtn.value = "other"
   Object.assign(registerInfo, registerInfoInit())
-  registerInfoVerification.value = ''
+  registerInfoVerification.value = ""
 }
 // 忘记密码
 const handleResettingShow = () => {
-  otherBtn.value = 'resetting'
+  otherBtn.value = "resetting"
   Object.assign(resettingInfo, resettingInfoInit())
-  resettingInfoVerification.value = ''
-  resettingInfoVerificationPassword.value = ''
-  resettingInfoVerificationPasswordAgain.value = ''
+  resettingInfoVerification.value = ""
+  resettingInfoVerificationPassword.value = ""
+  resettingInfoVerificationPasswordAgain.value = ""
   handleLoginShowInit()
 }
 // 倒计时
@@ -409,36 +406,33 @@ const handleResettingCodeTime60 = () => {
 }
 //验证码组件
 const handleCodeTime = async () => {
-  console.log("执行")
-  if (stateBtn.value === 2 && otherBtn.value === 'other') {
+  if (stateBtn.value === 2 && otherBtn.value === "other") {
     //手机号登录
     if (phoneRegex.test(mobileInfo.mobile)) {
       if (codeTime.value >= 0) {
         return
       }
-      const result = codeloginmobile({ mobile: mobileInfo.mobile })
+      codeloginmobile({ mobile: mobileInfo.mobile })
       codeTime.value = 60
       setTimeout(handleCodeTime60, 1000)
     }
-  } else if (otherBtn.value === 'register') {
+  } else if (otherBtn.value === "register") {
     //注册
     if (phoneRegex.test(registerInfo.mobile)) {
       if (registerCodeTime.value >= 0) {
         return
       }
-      const result = registermobile({ mobile: registerInfo.mobile })
-      console.log("lianqi")
+      registermobile({ mobile: registerInfo.mobile })
       registerCodeTime.value = 60
       setTimeout(handleRegisterCodeTime60, 1000)
     }
-  } else if (otherBtn.value === 'resetting') {
+  } else if (otherBtn.value === "resetting") {
     // 修改密码
     if (phoneRegex.test(resettingInfo.mobile)) {
-      console.log('手机号码格式正确')
       if (resettingCodeTime.value >= 0) {
         return
       }
-      const result = resetpassword({ mobile: resettingInfo.mobile })
+      resetpassword({ mobile: resettingInfo.mobile })
       resettingCodeTime.value = 60
       setTimeout(handleResettingCodeTime60, 1000)
     }
@@ -447,83 +441,106 @@ const handleCodeTime = async () => {
 
 //    ===================   校验  =========================
 // 账号密码校验
-let passwordInfoVerificationAdmin = ref('')
-let passwordInfoVerificationPassword = ref('')
+let passwordInfoVerificationAdmin = ref("")
+let passwordInfoVerificationPassword = ref("")
 const handlePasswordInfoAdminBlur = () => {
-  if (passwordInfo.mobile === '') {
-    passwordInfoVerificationAdmin.value = '手机号不能为空'
+  if (passwordInfo.mobile === "") {
+    passwordInfoVerificationAdmin.value = "手机号不能为空"
   } else if (!phoneRegex.test(passwordInfo.mobile)) {
-    passwordInfoVerificationAdmin.value = '手机号输入错误'
+    passwordInfoVerificationAdmin.value = "手机号输入错误"
   } else {
-    passwordInfoVerificationAdmin.value = ''
+    passwordInfoVerificationAdmin.value = ""
   }
 }
 const handlePasswordInfoPasswordBlur = () => {
-  if (passwordInfo.password === '') {
-    passwordInfoVerificationPassword.value = '密码不能为空'
+  if (passwordInfo.password === "") {
+    passwordInfoVerificationPassword.value = "密码不能为空"
   } else {
-    passwordInfoVerificationPassword.value = ''
+    passwordInfoVerificationPassword.value = ""
   }
 }
 
 //    手机验证码登录
-let mobileInfoVerification = ref('')
+let mobileInfoVerification = ref("")
 // 校验规则
 const handleMobileInfoBlur = () => {
-  if (mobileInfo.mobile === '') {
-    mobileInfoVerification.value = '手机号不能为空'
+  if (mobileInfo.mobile === "") {
+    mobileInfoVerification.value = "手机号不能为空"
   } else if (!phoneRegex.test(mobileInfo.mobile)) {
-    mobileInfoVerification.value = '手机号输入错误'
+    mobileInfoVerification.value = "手机号输入错误"
   } else {
-    mobileInfoVerification.value = ''
+    mobileInfoVerification.value = ""
   }
 }
-let registerInfoVerification = ref('')
+let registerInfoVerification = ref("")
 const handleRegisterInfoBlur = () => {
-  if (registerInfo.mobile === '') {
-    registerInfoVerification.value = '手机号不能为空'
+  if (registerInfo.mobile === "") {
+    registerInfoVerification.value = "手机号不能为空"
   } else if (!phoneRegex.test(registerInfo.mobile)) {
-    registerInfoVerification.value = '手机号输入错误'
+    registerInfoVerification.value = "手机号输入错误"
   } else {
-    registerInfoVerification.value = ''
+    registerInfoVerification.value = ""
   }
 }
-let resettingInfoVerification = ref('')
+let resettingInfoVerification = ref("")
 const handleResettingInfoBlur = () => {
-  if (resettingInfo.mobile === '') {
-    resettingInfoVerification.value = '手机号不能为空'
+  if (resettingInfo.mobile === "") {
+    resettingInfoVerification.value = "手机号不能为空"
   } else if (!phoneRegex.test(resettingInfo.mobile)) {
-    resettingInfoVerification.value = '手机号输入错误'
+    resettingInfoVerification.value = "手机号输入错误"
   } else {
-    resettingInfoVerification.value = ''
+    resettingInfoVerification.value = ""
   }
 }
-let resettingInfoVerificationPassword = ref('')
-let resettingInfoVerificationPasswordAgain = ref('')
+let resettingInfoVerificationPassword = ref("")
+let resettingInfoVerificationPasswordAgain = ref("")
 const handleResettingInfoPassWordBlur = () => {
-  if (resettingInfo.password === '') {
-    resettingInfoVerificationPassword.value = '密码不能为空'
+  if (resettingInfo.password === "") {
+    resettingInfoVerificationPassword.value = "密码不能为空"
   } else if (!(resettingInfo.password === resettingInfo.passwordAgain)) {
-    resettingInfoVerificationPassword.value = '两次密码不一致'
-    resettingInfoVerificationPasswordAgain.value = '两次密码不一致'
+    resettingInfoVerificationPassword.value = "两次密码不一致"
+    resettingInfoVerificationPasswordAgain.value = "两次密码不一致"
   } else {
-    resettingInfoVerificationPasswordAgain.value = ''
-    resettingInfoVerificationPassword.value = ''
+    resettingInfoVerificationPasswordAgain.value = ""
+    resettingInfoVerificationPassword.value = ""
   }
 }
 const handleResettingInfoPassWordAgainBlur = () => {
-  if (resettingInfo.passwordAgain === '') {
-    resettingInfoVerificationPasswordAgain.value = '密码不能为空'
+  if (resettingInfo.passwordAgain === "") {
+    resettingInfoVerificationPasswordAgain.value = "密码不能为空"
   } else if (!(resettingInfo.password === resettingInfo.passwordAgain)) {
-    resettingInfoVerificationPassword.value = '两次密码不一致'
-    resettingInfoVerificationPasswordAgain.value = '两次密码不一致'
+    resettingInfoVerificationPassword.value = "两次密码不一致"
+    resettingInfoVerificationPasswordAgain.value = "两次密码不一致"
   } else {
-    resettingInfoVerificationPassword.value = ''
-    resettingInfoVerificationPasswordAgain.value = ''
+    resettingInfoVerificationPassword.value = ""
+    resettingInfoVerificationPasswordAgain.value = ""
   }
 }
+// // 请输入推荐码（选填）
+// const oninputreferralCode = () => {
+//   let zheng =
+//     //  @input="oninputreferralCode($event)"
+//     /^(?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])+$/
+//   // registerInfo.invitationCode = 222
+// }
+watch(
+  () => loginStore.login,
+  (newVal) => {
+    if (newVal) return
+    handleOtherShow()
+    stateBtn.value = 1
+    // mobileInfo.mobile = ""
+    // mobileInfo.code = ""
+    // passwordInfo.mobile = ""
+    // passwordInfo.password = ""
+    handleLoginShowInit()
+  },
+  {
+    deep: true
+  }
+)
 </script>
 
 <style lang="scss" scoped>
-@import './index.scss';
+@import "./index.scss";
 </style>

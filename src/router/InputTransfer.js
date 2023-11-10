@@ -15,11 +15,24 @@ export const ToLogin = [
       scrollTheSubtitles: true // 滚动字幕开启，关闭
     },
   },
+
   ...gxsChildrenRouter
 ]
 
 // 无登陆
 export const NoLogin = [
+  {
+    path: '/app',
+    name: 'app',
+    component: () => import('@/views/app/index.vue'),
+    meta: {
+      name: 'app下载',
+      immediate: false, // 路由显示
+      rightDao: true, // 右侧菜单栏 true 关闭 false 开启
+      gundong: true, // 实时左侧滚动组件false 开启，true关闭
+      scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
+    },
+  },
   ...childrenCase,
   ...shoppingCentrechildren
 ]

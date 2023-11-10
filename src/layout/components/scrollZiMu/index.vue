@@ -3,27 +3,18 @@
     <img class="img" src="@/assets/images/carggo/Gongao.png" alt="" />
     <div ref="lunbo" class="lunbo">
       <div style="display: flex; justify-content: center; align-items: center" ref="spanRef">
-        <!-- <span class="img"> -->
-        <!-- <div class="ql-snow">
-          <div class="ql-editor" v-html="props.title"></div>
-        </div> -->
-        <!-- </span> -->
-        <!-- {{ title }} -->
-        <div v-html="props.title" class="wenzi"></div>
+        <span class="wenzi">{{ props.title }}</span>
       </div>
     </div>
   </div>
 </template>
 <script setup>
-import { onMounted, ref } from "vue"
+import { watch, ref, nextTick } from "vue"
 const props = defineProps({
   title: { type: String, required: true }
 })
+
 const lunbo = ref()
-onMounted(() => {
-  spanRef.value.style.width = `${spanRef.value.offsetWidth + 50}px`
-  requestAnimationFrame(scroll)
-})
 const spanRef = ref()
 const scroll = () => {
   if (!spanRef.value) return
@@ -36,6 +27,17 @@ const scroll = () => {
   spanRef.value.style.left = `${offsetLeft}px`
   requestAnimationFrame(scroll)
 }
+
+watch(
+  () => props.title,
+  () => {
+    nextTick(() => {
+      spanRef.value.style.width = `${spanRef.value.offsetWidth + 50}px`
+      requestAnimationFrame(scroll)
+      // scroll()
+    })
+  }
+)
 </script>
 <style lang="scss" scoped>
 .zuiwai {

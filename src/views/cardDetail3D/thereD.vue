@@ -261,7 +261,6 @@ const createCubeThere = () => {
 //   //   cube.material.color = new THREE.Color(val)
 //   // })
 //   // folder.addColor(MyColor, "color").onChange((e) => {
-//   //   console.log(new THREE.Color(e))
 //   //   direction.color = new THREE.Color(e)
 //   // })
 //   const folderRight = gui.addFolder('右侧灯光')
@@ -273,7 +272,6 @@ const createCubeThere = () => {
 
 //   // gui.add(materialFan, "roughness", -10, 10) // 回归起点
 //   // // gui.add(materialFan, "metalness", -10, 10) // 回归起点
-//   // console.log(materialFan.clearcoat)
 // }
 const PcIosAn = () => {
   if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {

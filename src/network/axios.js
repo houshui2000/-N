@@ -4,7 +4,6 @@ import MessageBoxVue from '@/components/MessageBox/index.js'
 import { useRouter } from 'vue-router'
 import { useStore } from '@/pinia'
 import { removeItem } from '@/utils/storage.js'
-const router = useRouter()
 
 
 const service = axios.create({
@@ -42,7 +41,6 @@ service.interceptors.response.use((res) => {
     return Promise.reject(new Error(msg))
   }
 }, (err) => {
-  console.log(err.response.data)
 
   if (err.response.status == 401) {
     initialize()
@@ -58,6 +56,7 @@ const initialize = () => {
 
   const { loginStore, useUsersStore } = useStore()
   // 清理token
+  const router = useRouter()
   removeItem('token')
   router.push('/shoppingCentre')
   useUsersStore.handleUserInfoInit()

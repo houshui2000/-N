@@ -23,8 +23,8 @@
   </div>
 </template>
 <script setup>
-import NavVue from '@/layout/components/top/index.vue'
-import { ref } from 'vue'
+import NavVue from "@/layout/components/top/index.vue"
+import { ref } from "vue"
 let pagex = 0,
   pageY = 0,
   yidongY = 0,
@@ -53,7 +53,6 @@ const Mymouseleave = () => {
   ren_mie.value.style.transform = `translate(0,0)`
 }
 const Mymouseenter = (e) => {
-  // console.log(e.offsetX)
   pagex = e.clientX
   pageY = e.clientY
 
@@ -63,7 +62,7 @@ const Mymouseenter = (e) => {
 </script>
 <style lang="scss" scoped>
 .app {
-  background: url('@/assets/images/all/backgrou.png') no-repeat scroll left bottom/ 100% 100%;
+  background: url("@/assets/images/all/backgrou.png") no-repeat scroll left bottom/ 100% 100%;
   position: relative;
   overflow: hidden;
   width: 100vw;
@@ -97,10 +96,10 @@ const Mymouseenter = (e) => {
     height: 280px;
     @include Myflex();
     .kajing_p {
-      font: normal normal 800 200px 'PingFang SC';
+      font: normal normal 800 200px "PingFang SC";
     }
     .chaoliu {
-      font: normal normal 400 20px 'PingFang SC';
+      font: normal normal 400 20px "PingFang SC";
     }
   }
   .saoma {
@@ -116,7 +115,7 @@ const Mymouseenter = (e) => {
     .xiazai {
       width: 14px;
       height: 140px;
-      font: normal normal 400 14px 'PingFang SC';
+      font: normal normal 400 14px "PingFang SC";
       letter-spacing: 5px;
       writing-mode: vertical-lr;
     }
@@ -131,7 +130,7 @@ const Mymouseenter = (e) => {
       width: 486px;
       height: 100%;
       @include Myflex();
-      font: normal normal 400 14px 'PingFang SC';
+      font: normal normal 400 14px "PingFang SC";
     }
   }
 }

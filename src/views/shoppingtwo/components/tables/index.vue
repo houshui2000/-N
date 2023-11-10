@@ -21,7 +21,7 @@
 
           <td style="width: 30%">
             <p style="padding-left: 25px" class="kapaiming_bina">
-              <SvgIcon size="20px" Height="20px" icon-class="bianhao" />
+              <SvgIcon size="25px" Height="25px" icon-class="bianhao" />
               <el-tooltip class="box-item" effect="dark" :content="item.cardNo" placement="top-start">
                 <span class="bianhao danyi">{{ item.cardNo }}</span>
               </el-tooltip>
@@ -42,9 +42,10 @@
           </td>
           <td>
             <div class="zhifu">
-              <!-- status : true 买入 || false : 支付中 -->
-              <div @click="PayFun(item)" v-if="!item.status" class="zhiFU_one">支付中</div>
-              <div @click="PayFun(item)" v-else class="zhiFU_one_mai">买入</div>
+              <!-- payStatus : 0 买入 || 1 : 支付中 -->
+
+              <div @click="PayFun(item)" v-if="item.payStatus" class="zhiFU_one">{{ item.status }}支付中</div>
+              <div @click="PayFun(item)" v-else class="zhiFU_one_mai">{{ item.status }}买入</div>
             </div>
           </td>
         </tr>
@@ -59,18 +60,18 @@
     <!-- <detailVue v-model:errDialoVueUpdate="errDialoVueUpdate" :errDialoVueXinagqing="errDialoVueXinagqing" /> -->
   </div>
 </template>
-<script setup>
+<script setup name="tablesasdsa">
 import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
 
 import SvgIcon from "@/components/SvgIcon/index.vue"
 // import { ref } from 'vue'
 import MessageBoxVue from "@/components/MessageBox/index.js"
+import { shopquickbuy } from "@/network/shoppingCentre/shoppingtwo"
 
 // import detailVue from '../detail/index.vue'
 const drops = defineProps({
   records: { type: Array, required: true }
 })
-// console.log(drops.records, 'drops.records')
 
 // const errDialoVueUpdate = ref(false) //详情弹框
 // const errDialoVueXinagqing = ref({}) //详情弹框
@@ -79,14 +80,21 @@ const $emit = defineEmits(["PayFun"])
  * 表格操作按钮
  * status : true 买入 || false : 支付中
  */
-const PayFun = (item) => {
-  if (!item.status) {
+const PayFun = async (item) => {
+  if (item.payStatus) {
+    // logger.log(item.payStatus)
     MessageBoxVue({
       title: "该卡牌在支付中，请选择可买入的卡牌叭~"
     })
     return
   }
   //
+  const res = await shopquickbuy({
+    cardId: item.cardId, // 跳转页面的id 1
+    payChanelId: 3 // 支付通道 1 是支付宝
+  })
+  window.location.href = res.data
+
   $emit("PayFun")
 }
 </script>

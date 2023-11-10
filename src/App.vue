@@ -1,6 +1,5 @@
 <template>
   <div class="CIjing">
-    <!-- <aside></aside> -->
     <aside></aside>
     <router-view />
     <LoginOne />
@@ -8,15 +7,10 @@
   </div>
 </template>
 <script setup>
-import {onMounted} from 'vue'
-import LoginOne from '@/components/LoginOne/index.vue'
-import MenyOnTheRightVue from '@/components/menuOnTheRight/index.vue'
-import { useRoute } from 'vue-router'
+import LoginOne from "@/components/LoginOne/index.vue"
+import MenyOnTheRightVue from "@/components/menuOnTheRight/index.vue"
+import { useRoute } from "vue-router"
 const route = useRoute()
-onMounted(() => {
-  document.body.style.setProperty('--el-bg-color-overlay', 'rgba(5, 13, 23, 1)');
-  document.body.style.setProperty('--el-input-bg-color', 'rgba(5, 13, 23, 1)');
-})
 </script>
 
 <style scoped lang="scss">
@@ -28,7 +22,7 @@ body {
   // background-color: cadetblue;
   // background: #0e121b url('@/assets/images/all/bei.png') no-repeat;
   // background-color: rgba(14, 18, 27, 0.9);
-  background: url('@/assets/images/all/bei.png') no-repeat scroll left top/ 100% 100%;
+  background: url("@/assets/images/all/bei.png") no-repeat scroll left top/ 100% 100%;
 
   // background-color: saddlebrown;
   position: relative;
@@ -40,7 +34,7 @@ body {
     z-index: 0;
     width: 233px;
     height: 625px;
-    background: url('@/assets/images/all/aside.png') no-repeat scroll left top/ 100% 100%;
+    background: url("@/assets/images/all/aside.png") no-repeat scroll left top/ 100% 100%;
     // background-color: rgba(255, 255, 255, 0.8);
   }
 }

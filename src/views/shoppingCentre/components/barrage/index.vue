@@ -42,8 +42,8 @@ right：弹幕水平间距(px)
 */ -->
 
 <script setup>
-import vueDanmaku from 'vue3-danmaku'
-import { getCurrentInstance, onMounted, reactive, ref } from 'vue'
+import vueDanmaku from "vue3-danmaku"
+import { getCurrentInstance, onMounted, reactive, ref } from "vue"
 // import { shopbulletcomment } from '@/network/shoppingCentre/shoppingCentre.js'
 const { proxy } = getCurrentInstance()
 const danmakuRef = ref(null)
@@ -53,13 +53,12 @@ onMounted(() => {
 })
 const danmus = reactive({
   data: [
-    { avatar: proxy.$config.$testmao, hd: proxy.$config.$tteshd, user: '大熊' },
-    { avatar: proxy.$config.$testmao, hd: proxy.$config.$tteshd, user: '大熊妈妈二舅姥爷的表弟' }
+    { avatar: proxy.$config.$testmao, hd: proxy.$config.$tteshd, user: "大熊" },
+    { avatar: proxy.$config.$testmao, hd: proxy.$config.$tteshd, user: "大熊妈妈二舅姥爷的表弟" }
   ]
 })
 // const creat = async () => {
 //   const res = await shopbulletcomment()
-//   // console.log(res)
 //   // danmus.data = res
 // }
 // setTimeout(() => {
@@ -68,5 +67,5 @@ const danmus = reactive({
 </script>
 
 <style scoped lang="scss">
-@import 'index.scss';
+@import "index.scss";
 </style>

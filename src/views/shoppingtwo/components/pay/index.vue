@@ -59,11 +59,11 @@
 import { toRefs, ref, watch } from "vue"
 import SvgIcon from "@/components/SvgIcon/index.vue"
 // import errDialoVue from "../errdialo/index.vue"
-import { useRoute } from "vue-router"
-import { shopquickbuy, buyminxpricecard } from "@/network/shoppingCentre/shoppingtwo.js"
+// import { useRoute } from "vue-router"
+import { shopquickbuy } from "@/network/shoppingCentre/shoppingtwo.js"
 import { shoppaychannel } from "@/network/pay.js"
 // import { useStore } from '@/pinia'
-const route = useRoute()
+// const route = useRoute()
 // const { loginStore } = useStore()
 
 const props = defineProps({

@@ -17,12 +17,12 @@
   </div>
 </template>
 <script setup>
-import BarrageVue from '../barrage/index.vue'
+import BarrageVue from "../barrage/index.vue"
 // import { indexbanner } from '@/network/api'
-import { ref } from 'vue'
+import { ref } from "vue"
 const carouselUtem = ref([])
 const creat = async () => {
-  const kaCe = new URL('../../../../assets/images/carggo/Rectangle 1602_ce.png', import.meta.url).href
+  const kaCe = new URL("../../../../assets/images/shoppingCentre/shangcheng.png", import.meta.url).href
   carouselUtem.value = [{ url: kaCe }]
   // }
 }

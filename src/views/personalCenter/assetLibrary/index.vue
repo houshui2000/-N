@@ -25,7 +25,9 @@
               <div class="text">{{ item.productName }}</div>
               <div class="cardIdBox">
                 <div class="cardIdIcon"></div>
-                <div class="cardIdText" :title="item.cardNo">{{ item.cardNo }}4</div>
+                <el-tooltip class="box-item" effect="dark" :content="item.cardNo" placement="top-start">
+                  <div class="cardIdText" :title="item.cardNo">{{ item.cardNo }}</div>
+                </el-tooltip>
               </div>
             </div>
           </div>
@@ -61,10 +63,10 @@ import { ref, reactive, onMounted } from "vue"
 import assetgrameRulePopup from "../components/assetgrameRulePopup.vue"
 import gxsSelect from "../components/gxsSelect.vue"
 import { getAssetList } from "@/network/personalCenter.js"
-import { router } from "@/router/index.js"
+// import { router } from "@/router/index.js"
 
 // const errDialoVueUpdate = ref(false)
-const value = ref("卡牌编号正序")
+// const value = ref("卡牌编号正序")
 const options = ref([
   { values: "desc", label: "时间倒序排序" },
   { values: "asc", label: "时间正序排序" }
@@ -90,7 +92,6 @@ const arrayValue = reactive({
   label: "时间倒序排序"
 })
 const handleSelectValue = (val) => {
-  console.log("val", val)
   arrayValue.label = val.label
   arrayValue.values = val.values
   assetInfo.value.direction = arrayValue.values
@@ -108,9 +109,9 @@ const handleCurrentChange = (val) => {
   assetLibrary()
 }
 //打开玩法说明弹窗
-const handleOpenShow = () => {
-  assetPlay.value = true
-}
+// const handleOpenShow = () => {
+//   assetPlay.value = true
+// }
 //跳转thereJS
 const handleThereJSShow = (item) => {
   // router.push('cardDetail3D')

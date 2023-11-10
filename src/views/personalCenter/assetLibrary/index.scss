@@ -1,8 +1,7 @@
 #assetLibrary {
-  :global(.el-input__inner) {
+  :global(.el-input__inner) {}
 
-  }
-    margin-top: 28px;
+  margin-top: 28px;
   width: 1473px;
   //height: 1178px;
   //background: url($gxsAssetLibraryBg) no-repeat center;
@@ -12,10 +11,13 @@
   align-items: center;
   font-size: 14px;
   color: #fff;
-  background-clip: padding-box, border-box;
-  background-origin: padding-box, border-box;
+  background-clip: padding-box,
+  border-box;
+  background-origin: padding-box,
+  border-box;
   border: 0.1rem solid transparent;
-  background-image: linear-gradient(to bottom, #0a1c2f, #070d13), linear-gradient(155.92deg, rgba(159, 98, 219, 0.5) 0%, rgba(126, 172, 186, 0.5) 48.67%, rgba(99, 149, 231, 0.5) 96.71%);
+  background-image: linear-gradient(to bottom, #0a1c2f, #070d13),
+  linear-gradient(155.92deg, rgba(159, 98, 219, 0.5) 0%, rgba(126, 172, 186, 0.5) 48.67%, rgba(99, 149, 231, 0.5) 96.71%);
   border-radius: 6px;
   padding-bottom: 27px;
 
@@ -29,6 +31,7 @@
     .left {
       height: 36px;
       line-height: 36px;
+
       span {
         margin-left: 10px;
       }
@@ -58,9 +61,7 @@
           margin-top: -5px;
         }
 
-        .text {
-
-        }
+        .text {}
       }
 
       .frameSort2 {
@@ -113,6 +114,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .cardBox {
       width: 1414px;
       display: flex;
@@ -130,6 +132,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
         &:nth-child(-n+8) {
           margin-top: 20px;
         }
@@ -155,10 +158,12 @@
             background-size: contain;
             border-radius: 6px;
             overflow: hidden;
-            &:hover img{
+
+            &:hover img {
               transform: scale(1.1);
             }
-            img{
+
+            img {
               transition: transform .3s;
               width: 100%;
               height: 100%;
@@ -172,30 +177,33 @@
             text-align: center;
             margin-top: 5px;
           }
-          .cardIdBox{
+
+          .cardIdBox {
             width: 132px;
             margin-top: 2px;
             height: 24px;
             line-height: 24px;
             position: relative;
             display: flex;
-            .cardIdIcon{
+
+            .cardIdIcon {
               width: 24px;
               height: 24px;
-              background:url($gxsOrderCardId) no-repeat center;
-              background-size:contain;
+              background: url($gxsOrderCardId) no-repeat center;
+              background-size: contain;
               position: absolute;
               top: 50%;
               margin-top: -12px;
               z-index: 3;
             }
-            .cardIdText{
+
+            .cardIdText {
               width: 132px;
               height: 20px;
-              background-image: linear-gradient(to left,#FFBB4D, #815821);
+              background-image: linear-gradient(to left, #FFBB4D, #815821);
               font-size: 12px;
               overflow: hidden;
-              text-overflow:ellipsis;
+              text-overflow: ellipsis;
               white-space: nowrap;
               position: absolute;
               top: 50%;
@@ -213,26 +221,28 @@
             line-height: 20px;
             //background:url($gxsAssetLibraryNumber) no-repeat center;
             //background-size:contain;
-            background-image: linear-gradient(to left,#FFBB4D, #815821);
+            background-image: linear-gradient(to left, #FFBB4D, #815821);
             font-size: 12px;
             //text-align: center;
             padding-left: 14px;
             overflow: hidden;
-            text-overflow:ellipsis;
+            text-overflow: ellipsis;
             white-space: nowrap;
             display: flex;
-            .cardId{
+
+            .cardId {
               width: 16px;
               height: 16px;
-              background:url($gxsOrderCardId) no-repeat center;
-              background-size:contain;
+              background: url($gxsOrderCardId) no-repeat center;
+              background-size: contain;
             }
           }
         }
 
       }
     }
-    .paginationBox{
+
+    .paginationBox {
       width: 1473px;
       display: flex;
       justify-content: center;

@@ -5,10 +5,12 @@
         <Section_left :LeftData="LeftData" @LeftData="LeftDataFuncation($event)" />
       </div>
     </div>
+
     <div class="section_right">
       <div v-if="creatData.records?.length > 0" class="section_right_one">
         <section_right :INterOb="creatData.records" />
       </div>
+
       <div class="section_right_one" v-else>
         <MissWakeupPage :title="'暂无藏品'" :titleTwo="'敬请期待!'" />
       </div>
@@ -74,7 +76,6 @@ onMounted(() => {
   blocktextcenter.height = block.offsetHeight
 
   blocktextcenter.sectionleft = section_left.getBoundingClientRect().left
-  // console.log(blocktextcenter.sectionLeft_top)
 
   window.addEventListener("scroll", scrollMy)
 })

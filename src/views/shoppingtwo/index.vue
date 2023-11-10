@@ -45,7 +45,6 @@ const init = async () => {
   const res = await shopcardxdetail({
     vaultId: route.query.vaultId
   })
-  console.log(res.data)
 
   creatData.value = res.data
 

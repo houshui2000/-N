@@ -1,59 +1,74 @@
 <template>
-  <transition name='transition05s'>
-    <div id='passwordPopup' v-if='useUsersStore.passwordPopup'>
-      <div class='content'>
-        <div class='text'>修改密码
-          <div class='border'></div>
+  <transition name="transition05s">
+    <div id="passwordPopup" v-if="useUsersStore.passwordPopup">
+      <div class="content">
+        <div class="text">
+          修改密码
+          <div class="border"></div>
         </div>
-        <div class='close' @click='useUsersStore.passwordPopup=false'></div>
-        <div class='domInput marginTop44'>
-          <div class='pText'>当前手机号：</div>
-          <div class='inputFrame' style='background:none'>{{ useUsersStore.userInfo.mobile.substring(0, 3)
-            }}****{{ useUsersStore.userInfo.mobile.substring(7) }}
+        <div class="close" @click="useUsersStore.passwordPopup = false"></div>
+        <div class="domInput marginTop44">
+          <div class="pText">当前手机号：</div>
+          <div class="inputFrame" style="background: none">
+            {{ useUsersStore.userInfo.mobile.substring(0, 3) }}****{{ useUsersStore.userInfo.mobile.substring(7) }}
           </div>
         </div>
-        <div class='domInput marginTop23'>
-          <div class='pText'>手机验证码：</div>
-          <div class='inputFrame '>
-            <input placeholder='请输入手机验证码' v-model='passwordEdit.code' maxlength='6'
-                   onkeyup="value=value.replace(/[^0-9]/g,'')">
+        <div class="domInput marginTop23">
+          <div class="pText">手机验证码：</div>
+          <div class="inputFrame">
+            <input
+              placeholder="请输入手机验证码"
+              v-model="passwordEdit.code"
+              maxlength="6"
+              onkeyup="value=value.replace(/[^0-9]/g,'')"
+            />
           </div>
-          <div class='textPass' @click='handleCodeTime()'>{{ codeTime >= 0 ? codeTime + 's' : '获取验证码' }}</div>
+          <div class="textPass" @click="handleCodeTime()">{{ codeTime >= 0 ? codeTime + "s" : "获取验证码" }}</div>
         </div>
-        <div class='domInput marginTop23'>
-          <div class='pText'>输入新密码：</div>
-          <div class='inputFrame'>
-            <input placeholder='请输入新密码' type='password' v-model='passwordEdit.password' maxlength='16'
-                   onkeyup="value=value.replace(/[\W]/g,'')">
+        <div class="domInput marginTop23">
+          <div class="pText">输入新密码：</div>
+          <div class="inputFrame">
+            <input
+              placeholder="请输入新密码"
+              type="password"
+              v-model="passwordEdit.password"
+              maxlength="16"
+              onkeyup="value=value.replace(/[\W]/g,'')"
+            />
           </div>
         </div>
-        <div class='domInput marginTop23'>
-          <div class='pText'>确认密码：</div>
-          <div class='inputFrame'>
-            <input placeholder='请输入新密码' type='password' v-model='passwordEdit.passwordConfirm' maxlength='16'
-                   onkeyup="value=value.replace(/[\W]/g,'')">
+        <div class="domInput marginTop23">
+          <div class="pText">确认密码：</div>
+          <div class="inputFrame">
+            <input
+              placeholder="请输入新密码"
+              type="password"
+              v-model="passwordEdit.passwordConfirm"
+              maxlength="16"
+              onkeyup="value=value.replace(/[\W]/g,'')"
+            />
           </div>
         </div>
-        <div class='passwordEditBtn' @click='handlePassword'>确认</div>
+        <div class="passwordEditBtn" @click="handlePassword">确认</div>
       </div>
     </div>
   </transition>
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
-import { useStore } from '@/pinia/index.js'
-import { codeloginmobile } from '@/network/user.js'
-import { passwordEditCode, updatePassword } from '@/network/personalCenter.js'
-import { removeItem } from '@/utils/storage.js'
-import MessageBoxVue from '@/components/MessageBox/index.js'
+import { reactive, ref } from "vue"
+import { useStore } from "@/pinia/index.js"
+import { codeloginmobile } from "@/network/user.js"
+import { passwordEditCode, updatePassword } from "@/network/personalCenter.js"
+import { removeItem } from "@/utils/storage.js"
+import MessageBoxVue from "@/components/MessageBox/index.js"
 
 const { useUsersStore, loginStore } = useStore()
 
 let passwordEdit = ref({
-  code: '',
-  password: '',
-  passwordConfirm: ''
+  code: "",
+  password: "",
+  passwordConfirm: ""
 })
 let codeTime = ref(-1)
 // 倒计时
@@ -67,29 +82,28 @@ const handleCodeTime60 = () => {
 const handleCodeTime = async () => {
   const result = await passwordEditCode({ mobile: useUsersStore.userInfo.mobile })
   MessageBoxVue({
-    title: '发送成功'
+    title: "发送成功"
   })
   codeTime.value = 60
   setTimeout(handleCodeTime60, 1000)
 }
 //修改密码按钮
 const handlePassword = async () => {
-  console.log(passwordEdit.value.code)
   if (!passwordEdit.value.code) {
     MessageBoxVue({
-      title: '手机验证码不能为空'
+      title: "手机验证码不能为空"
     })
     return
   }
   if (!passwordEdit.value.password || !passwordEdit.value.passwordConfirm) {
     MessageBoxVue({
-      title: '密码不能为空'
+      title: "密码不能为空"
     })
     return
   }
   if (passwordEdit.value.password !== passwordEdit.value.passwordConfirm) {
     MessageBoxVue({
-      title: '两次密码不一致'
+      title: "两次密码不一致"
     })
     return
   }
@@ -97,19 +111,19 @@ const handlePassword = async () => {
   if (result.code === 200) {
     useUsersStore.passwordPopup = false
     loginStore.login = true
-    removeItem('token')
+    removeItem("token")
   }
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #passwordPopup {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(#000, .8);
+  background: rgba(#000, 0.8);
   z-index: 10000;
   display: flex;
   justify-content: center;
@@ -186,7 +200,6 @@ const handlePassword = async () => {
         height: 40px;
         line-height: 40px;
         font-size: 14px;
-
       }
 
       .textPass {
@@ -202,7 +215,6 @@ const handlePassword = async () => {
         text-align: center;
         background: url($gxsPersonalpasswordCodeBtn) no-repeat center;
         background-size: 100% 100%;
-
       }
 
       &.marginTop44 {
@@ -233,12 +245,11 @@ const handlePassword = async () => {
           color: white;
 
           &::placeholder {
-            color: rgba(#fff, .6);
+            color: rgba(#fff, 0.6);
           }
         }
       }
     }
-
   }
 }
 </style>

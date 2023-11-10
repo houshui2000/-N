@@ -74,7 +74,6 @@ const init = async () => {
     qrCodeId: route.query.id
   })
   Myimg.value = assetcertRes.data
-  // console.log(assetcertRes)
 
   // Promise.allSettled([
   //   assetcheck({

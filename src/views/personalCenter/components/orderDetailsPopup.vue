@@ -1,37 +1,37 @@
 <template>
-  <transition name='transition05s'>
-    <div id='orderDetailsPopup'>
-      <div class='orderDetailsPopup'>
-        <div class='titleIcon'></div>
-        <div class='titleText'>待支付</div>
-        <div class='imgBox'>
-          <img src='https://img.zhisheji.com/bbs/forum/201401/05/153945tbr7pg5torfzptso.jpg'>
+  <transition name="transition05s">
+    <div id="orderDetailsPopup">
+      <div class="orderDetailsPopup">
+        <div class="titleIcon"></div>
+        <div class="titleText">待支付</div>
+        <div class="imgBox">
+          <img src="https://img.zhisheji.com/bbs/forum/201401/05/153945tbr7pg5torfzptso.jpg" />
         </div>
-        <div class='name'>MASTER KILLER</div>
-        <div class='number'>
-          <div class='numberText'>002-2023-A20-01</div>
+        <div class="name">MASTER KILLER</div>
+        <div class="number">
+          <div class="numberText">002-2023-A20-01</div>
         </div>
-        <div class='btnBox'>
-          <div class='close'>取消支付</div>
-          <div class='payBtn'>去支付</div>
+        <div class="btnBox">
+          <div class="close">取消支付</div>
+          <div class="payBtn">去支付</div>
         </div>
-        <div class='border'></div>
-        <div class='contentText'>
-          <div class='contentTextBox'>
-            <div class='label'>订单编号</div>
-            <div class='dataValue'>2233225533322222225</div>
+        <div class="border"></div>
+        <div class="contentText">
+          <div class="contentTextBox">
+            <div class="label">订单编号</div>
+            <div class="dataValue">2233225533322222225</div>
           </div>
-          <div class='contentTextBox'>
-            <div class='label'>订单编号</div>
-            <div class='dataValue'>2233225533322222225</div>
+          <div class="contentTextBox">
+            <div class="label">订单编号</div>
+            <div class="dataValue">2233225533322222225</div>
           </div>
-          <div class='contentTextBox'>
-            <div class='label'>订单编号</div>
-            <div class='dataValue'>2233225533322222225</div>
+          <div class="contentTextBox">
+            <div class="label">订单编号</div>
+            <div class="dataValue">2233225533322222225</div>
           </div>
-          <div class='contentTextBox'>
-            <div class='label'>订单编号</div>
-            <div class='dataValue'>2233225533322222225</div>
+          <div class="contentTextBox">
+            <div class="label">订单编号</div>
+            <div class="dataValue">2233225533322222225</div>
           </div>
         </div>
       </div>
@@ -39,18 +39,16 @@
   </transition>
 </template>
 
-<script setup>
+<script setup></script>
 
-</script>
-
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #orderDetailsPopup {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(#000, .8);
+  background: rgba(#000, 0.8);
   z-index: 10000;
   display: flex;
   justify-content: center;
@@ -79,7 +77,7 @@
     .titleText {
       height: 20px;
       line-height: 20px;
-      color: #FAB74C;
+      color: #fab74c;
       margin-top: 7px;
     }
 
@@ -91,7 +89,7 @@
       background-origin: padding-box, border-box;
       border: 1px solid transparent;
       border-radius: 3.8px;
-      background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(180deg, #F59EFF 0.01%, #637DFF 100%);
+      background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(180deg, #f59eff 0.01%, #637dff 100%);
       overflow: hidden;
 
       img {
@@ -126,7 +124,8 @@
       justify-content: space-between;
       margin-top: 24px;
 
-      .close, .payBtn {
+      .close,
+      .payBtn {
         width: 100px;
         height: 36px;
         text-align: center;
@@ -163,7 +162,7 @@
         .label {
           width: 61px;
           font-size: 12px;
-          color: #B8B8B8;
+          color: #b8b8b8;
         }
 
         .dataValue {

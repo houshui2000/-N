@@ -80,14 +80,14 @@
   </div>
 </template>
 <script setup>
-import { ref, computed, nextTick, onMounted, onUnmounted, watch } from 'vue'
+import { ref, computed, nextTick, onMounted, onUnmounted, watch } from "vue"
 // import SvgIcon from '@/components/SvgIcon/index.vue'
-import Login from '@/components/Login/index.vue'
-import { useStore } from '@/pinia'
-import { removeItem } from '@/utils/storage.js'
-import { userlogout } from '@/network/userInterface.js'
-import { ToLogin, NoLogin } from '@/router/InputTransfer.js'
-import { useRouter, useRoute } from 'vue-router'
+import Login from "@/components/Login/index.vue"
+import { useStore } from "@/pinia"
+import { removeItem } from "@/utils/storage.js"
+import { userlogout } from "@/network/userInterface.js"
+import { ToLogin, NoLogin } from "@/router/InputTransfer.js"
+import { useRouter, useRoute } from "vue-router"
 
 const router = useRouter()
 const route = useRoute()
@@ -106,7 +106,7 @@ let navList = computed(() => {
   const res = rout.filter((item) => item.meta.immediate)
   return res
 })
-let navIndex = ref('')
+let navIndex = ref("")
 const handleNavOpen = (item) => {
   router.push(item.path)
 
@@ -119,16 +119,16 @@ const handleNavOpen = (item) => {
 }
 let nav = ref([
   {
-    name: '个人中心',
-    pushShow: '/personal'
+    name: "个人中心",
+    pushShow: "/personal"
   },
   {
-    name: '资产库',
-    pushShow: '/assetLibrary'
+    name: "资产库",
+    pushShow: "/assetLibrary"
   },
   {
-    name: '订单明细',
-    pushShow: '/orderForm'
+    name: "订单明细",
+    pushShow: "/orderForm"
   }
 ])
 // 个人中心跳转
@@ -143,20 +143,20 @@ const handleLogin = () => {
 const handleLoginExit = async () => {
   // let result = await userlogout()
   await userlogout()
-  removeItem('token')
-  loginStore.token = ''
-  loginStore.userId = ''
-  removeItem('userId')
+  removeItem("token")
+  loginStore.token = ""
+  loginStore.userId = ""
+  removeItem("userId")
   useUsersStore.handleUserInfoInit()
   loginStore.login = true
 }
 //跳转个人中心
 
 onMounted(() => {
-  window.addEventListener('resize', navContenBottomDOM)
+  window.addEventListener("resize", navContenBottomDOM)
 })
 onUnmounted(() => {
-  window.removeEventListener('resize', navContenBottomDOM)
+  window.removeEventListener("resize", navContenBottomDOM)
 })
 const navBorder = ref(null)
 const navContentbox = ref([])
@@ -169,18 +169,18 @@ const navContenBottomDOM = () => {
   })
 
   if (!genuineDOm) {
-    navBorder.value.style.left = '-100px'
+    navBorder.value.style.left = "-100px"
     return
   }
   const { left, bottom, width } = genuineDOm.getBoundingClientRect()
-  navBorder.value.style.width = width + 'px'
-  navBorder.value.style.left = left + 'px'
-  navBorder.value.style.top = bottom - 10 + 'px'
+  navBorder.value.style.width = width + "px"
+  navBorder.value.style.left = left + "px"
+  navBorder.value.style.top = bottom - 10 + "px"
 }
 watch(
   () => router,
   () => {
-    navIndex.value = 'slide' + route.name
+    navIndex.value = "slide" + route.name
     nextTick(() => {
       navContenBottomDOM()
     })

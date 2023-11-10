@@ -34,6 +34,7 @@ const gxsChildrenRouter = [
         component: () => import('@/views/personalCenter/orderForm/index.vue'),
         props: true,
         meta: {
+          name: '订单明细',
           immediate: false, // 路由显示
           gundong: true, // 实时左侧滚动组件false 开启，true关闭
           scrollTheSubtitles: true // 滚动字幕开启，关闭

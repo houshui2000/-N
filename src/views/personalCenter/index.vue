@@ -1,8 +1,8 @@
 <template>
-  <transition name="transition05s">
-    <div id="myAccount">
-      <div class="content">
-        <!--   tabs    -->
+  <div id="myAccount">
+    <div class="content">
+      <!--   tabs    -->
+      <transition name="transition05s">
         <div class="tabBox">
           <div class="bg">
             <div class="icons">
@@ -43,15 +43,17 @@
             <div class="exitBtn" @click="handleLoginExit">退出登录</div>
           </div>
         </div>
-        <div class="box">
-          <router-view></router-view>
-        </div>
-        <passwordPopup />
-        <authenticationPopup />
-        <realNameZFBPopup v-if="useUsersStore.realNameZFBPopup" />
+      </transition>
+
+      <!--  -->
+      <div class="box">
+        <router-view></router-view>
       </div>
+      <passwordPopup />
+      <authenticationPopup />
+      <realNameZFBPopup v-if="useUsersStore.realNameZFBPopup" />
     </div>
-  </transition>
+  </div>
 </template>
 
 <script setup>
@@ -59,12 +61,12 @@ import { onMounted, reactive, ref, watchEffect, nextTick } from "vue"
 import { useRoute } from "vue-router"
 import { router } from "@/router/index.js"
 import { useStore } from "@/pinia/index.js"
-import { getItem, removeItem } from "@/utils/storage.js"
+import { removeItem } from "@/utils/storage.js"
 import passwordPopup from "./components/passwordPopup.vue"
 import authenticationPopup from "./components/authenticationPopup.vue"
 import realNameZFBPopup from "./components/realNameZFBPopup.vue"
 import { userlogout } from "@/network/userInterface.js"
-import { Plus } from "@element-plus/icons-vue"
+// import { Plus } from "@element-plus/icons-vue"
 import { uploadavatar } from "@/network/userInterface"
 import MessageBoxVue from "@/components/MessageBox/index.js"
 
@@ -105,18 +107,15 @@ const handleTabShow = (item, index) => {
   let tab = tabDom.getBoundingClientRect()
   let tabBg = document.querySelector(".tabs .bg").getBoundingClientRect()
   let tabText = document.querySelectorAll(".TabName")[indexActive.value].getBoundingClientRect()
-  console.log(tab.width / Math.sqrt(2))
   let lefts = tabText.left - tabBg.left + tabText.width / 2 - tab.width / Math.sqrt(2) / 2
   tabDom.style.left = lefts + "px"
 }
 
 window.addEventListener("resize", function () {
   // 执行需要的操作
-  // console.log('窗口大小已改变');
   handleTabShow(-1)
 })
 watchEffect(() => {
-  console.log(route.name)
   indexActive.value = -1
   if (route.name === "assetLibrary") {
     nextTick(() => {
@@ -136,7 +135,6 @@ watchEffect(() => {
 })
 
 const handleAvatarSuccess = (response, uploadFile) => {
-  // console.log('上传地址', URL.createObjectURL(uploadFile.raw))
   imageUrl.value = URL.createObjectURL(uploadFile.raw)
 }
 
@@ -145,22 +143,19 @@ onMounted(() => {
 })
 //退出登录
 const handleLoginExit = async () => {
-  let result = await userlogout()
+  await userlogout()
   removeItem("token")
   loginStore.token = ""
   loginStore.userId = ""
   removeItem("userId")
   useUsersStore.handleUserInfoInit()
   loginStore.login = true
-  console.log("退出登录")
 }
 // const getToken = () => {
 //   getItem('token')
 // }
 
 const uploadHttpRequest = async (params) => {
-  console.log(params)
-
   const _file = params.file
   let formData = new FormData()
   formData.set("file", _file)
@@ -169,11 +164,8 @@ const uploadHttpRequest = async (params) => {
   await useUsersStore.handleUserInfo()
 }
 const beforeAvatarUpload = (rawFile) => {
-  console.log(rawFile.type)
-
   if (rawFile.type !== "image/jpeg" && rawFile.type !== "image/png") {
     // ElMessage.error('请上传图片!')
-    console.log("请上传图片")
 
     MessageBoxVue({ title: "请上传图片!" })
 

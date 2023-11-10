@@ -36,7 +36,6 @@ const init = async () => {
     return
   }
   const res = await shopnewsdetail({ id: route.query.id })
-  console.log(res)
 
   asd.value = res.data
 }

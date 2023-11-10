@@ -1,60 +1,110 @@
 <template>
-  <transition name='transition05s'>
-    <div id='bankCardBindingPopup' v-if='props.bankCardBindingShow'>
-      <div class='content'>
-        <div class='title'>
-          添加银行卡
-          <div class='border'></div>
+  <transition name="transition05s">
+    <div id="bankCardBindingPopup" v-if="props.bankCardBindingShow">
+      <div class="content">
+        <div class="title">
+          添加卡
+          <div class="border"></div>
         </div>
-        <div class='close' @click='handleBankCardBindingClose'></div>
-        <div class='addFormBox'>
-          <div class='addFrom'>
-           <div class='label'>真实姓名：</div>
-            <div class='addFromDom'>
-              <input v-model='cardBankInfo.username' placeholder='请输入真实姓名'>
+        <div class="close" @click="handleBankCardBindingClose"></div>
+        <div class="addFormBox">
+          <div class="addFrom">
+            <div class="label">真实姓名：</div>
+            <div class="addFromDom">
+              <input v-model="cardBankInfo.username" placeholder="请输入真实姓名" />
             </div>
           </div>
-          <div class='addFrom'>
-            <div class='label'>身份证号：</div>
-            <div class='addFromDom'>
-              <input v-model='cardBankInfo.certNo' placeholder='请输入身份证编号'>
+          <div class="addFrom">
+            <div class="label">身份证号：</div>
+            <div class="addFromDom">
+              <input v-model="cardBankInfo.certNo" placeholder="请输入身份证编号" />
             </div>
           </div>
-          <div class='addFrom'>
-            <div class='label'>银行：</div>
-            <div class='addFromDom'>
-              <div class='selectBox'>
-                <div class='selectInput'>
-                  <input v-model='cardBankInfo.bankName' placeholder='请选择银行' @input='handleBankNameClick'>
+          <!-- <div class="addFrom">
+            <div class="label">：</div>
+            <div class="addFromDom">
+              <div class="selectBox">
+                <div class="selectInput">
+                  <input v-model="cardBankInfo.bankName" placeholder="请选择" @input="handleBankNameClick" />
                 </div>
-                <div class='arrowBox' @click='handleSelectList'>
-                  <div class='icon' :class='{active:selectShow}'></div>
+                <div class="arrowBox" @click="handleSelectList">
+                  <div class="icon" :class="{ active: selectShow }"></div>
                 </div>
-                <div class='listBox' :class='{active:(!selectShow || selectOptionList.length===0)}'>
-                  <div class='listDom' v-for='item in selectList' @click='handleSelectValue(item)' :key='"select"+item.id'>{{item.name}}</div>
+                <div class="listBox" :class="{ active: !selectShow || !(selectOptionList.length === 0) }">
+                  <div
+                    class="listDom"
+                    v-for="item in selectList"
+                    @click="handleSelectValue(item)"
+                    :key="'select' + item.id"
+                  >
+                    {{ item.name }}
+                  </div>
                 </div>
-                <div class='listBox' :class='{active:!(selectOptionList.length!==0)}'>
-                  <div class='listDom' v-for='(item,index) in selectOptionList' @click='handleSelectValue(item)' :key='"selectOptionList"+index'>{{item.name}}</div>
+                <div class="listBox" :class="{ active: !(selectOptionList.length !== 0) }">
+                  <div
+                    class="listDom"
+                    v-for="(item, index) in selectOptionList"
+                    @click="handleSelectValue(item)"
+                    :key="'selectOptionList' + index"
+                  >
+                    {{ item.name }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>-->
+          <div class="addFrom">
+            <div class="label">银行：</div>
+            <div class="addFromDom">
+              <div class="selectBox">
+                <div class="selectInput">
+                  <input v-model="cardBankInfo.bankName" placeholder="请选择银行" @input="handleBankNameClick" />
+                </div>
+                <div class="arrowBox" @click="handleSelectList">
+                  <div class="icon" :class="{ active: selectShow }"></div>
+                </div>
+                <div
+                  class="listBox"
+                  :class="{ active: !selectShow || !(selectOptionList.length === 0) || cardBankInfo.bankName !== '' }"
+                >
+                  <div
+                    class="listDom"
+                    v-for="item in selectList"
+                    @click="handleSelectValue(item)"
+                    :key="'select' + item.id"
+                  >
+                    {{ item.name }}
+                  </div>
+                </div>
+                <div class="listBox" :class="{ active: !(selectOptionList.length !== 0) }">
+                  <div
+                    class="listDom"
+                    v-for="(item, index) in selectOptionList"
+                    @click="handleSelectValue(item)"
+                    :key="'selectOptionList' + index"
+                  >
+                    {{ item.name }}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class='addFrom'>
-            <div class='label'>银行卡号：</div>
-            <div class='addFromDom'>
-              <input v-model='cardBankInfo.bankCardNo' placeholder='请输入银行卡号'>
+          <div class="addFrom">
+            <div class="label">卡号：</div>
+            <div class="addFromDom">
+              <input v-model="cardBankInfo.bankCardNo" placeholder="请输入卡号" />
             </div>
           </div>
-          <div class='addFrom'>
-            <div class='label'>银行预留手机：</div>
-            <div class='addFromDom'>
-              <input v-model='cardBankInfo.mobile' placeholder='请输入银行预留手机号'>
+          <div class="addFrom">
+            <div class="label">预留手机：</div>
+            <div class="addFromDom">
+              <input v-model="cardBankInfo.mobile" placeholder="请输入预留手机号" />
             </div>
           </div>
         </div>
-        <div class='btnBox'>
-          <div class='btnBox-close' @click='handleBankCardBindingClose'>取消</div>
-          <div class='btnBox-confirm' @click='handleBankCardBindingConfirm'>确认</div>
+        <div class="btnBox">
+          <div class="btnBox-close" @click="handleBankCardBindingClose">取消</div>
+          <div class="btnBox-confirm" @click="handleBankCardBindingConfirm">确认</div>
         </div>
       </div>
     </div>
@@ -62,85 +112,80 @@
 </template>
 
 <script setup>
-import { ref,onMounted } from 'vue'
-import { GET_BankIdList, POST_bankCardBinding } from '@/network/personalCenter.js'
+import { ref, onMounted } from "vue"
+import { GET_BankIdList, POST_bankCardBinding } from "@/network/personalCenter.js"
 
-const props = defineProps(['bankCardBindingShow'])
-const emit = defineEmits(['handleBankCardBindingCloseEmit','handleBankCardBindingConfirm'])
-let selectShow=ref(false) //下拉列表是否显示
-let bankCardBindingCodeShow =ref(true)
+const props = defineProps(["bankCardBindingShow"])
+const emit = defineEmits(["handleBankCardBindingCloseEmit", "handleBankCardBindingConfirm"])
+let selectShow = ref(false) //下拉列表是否显示
+// let bankCardBindingCodeShow = ref(true)
 
-let cardBankInfo=ref({
+let cardBankInfo = ref({
   bankCardNo: "",
   certNo: "",
   mobile: "",
   username: "",
-  bankId:"",
-  bankName:''
+  bankId: "",
+  bankName: ""
 })
-let selectList=ref([])
-let selectOptionList=ref([])
+let selectList = ref([])
+let selectOptionList = ref([])
 const handleBankCardBindingClose = () => {
-  emit('handleBankCardBindingCloseEmit')
+  emit("handleBankCardBindingCloseEmit")
 }
-//请求银行
-const handleBankCardBindingConfirm =async()=>{
-  console.log("请求银行",cardBankInfo.value)
+//请求
+const handleBankCardBindingConfirm = async () => {
   let result = await POST_bankCardBinding(cardBankInfo.value)
-  if(result.code===200){
-    emit('handleBankCardBindingConfirm',result.data)
+  if (result.code === 200) {
+    emit("handleBankCardBindingConfirm", result.data)
   }
-
 }
 //获取下拉列表的数据
-const handleSelectList =async ()=>{
-    selectShow.value=!selectShow.value
-
+const handleSelectList = async () => {
+  selectShow.value = !selectShow.value
 }
-//银行卡模糊查询
-const handleBankNameClick =(e)=>{
-  if(cardBankInfo.value.bankName===''){
-    selectOptionList.value=[]
+//卡模糊查询
+const handleBankNameClick = () => {
+  if (cardBankInfo.value.bankName === "") {
+    selectOptionList.value = []
     return
   }
-  let count=0
-  selectOptionList.value.length=0
-  let list=[]
-  selectList.value.forEach(res=>{
-    if(res.name.indexOf(cardBankInfo.value.bankName)!==-1){
+  let count = 0
+  selectOptionList.value.length = 0
+  let list = []
+  selectList.value.forEach((res) => {
+    if (res.name.indexOf(cardBankInfo.value.bankName) !== -1) {
       list.push(res)
       count++
     }
   })
-  if(count!==0){
-    selectOptionList.value=list
+  if (count !== 0) {
+    selectOptionList.value = list
   }
 }
 //选择下拉值
-const handleSelectValue =(val)=>{
-  cardBankInfo.value.bankId=val.id
-  cardBankInfo.value.bankName=val.name
-  selectOptionList.value=[]
-  selectShow.value=false
+const handleSelectValue = (val) => {
+  cardBankInfo.value.bankId = val.id
+  cardBankInfo.value.bankName = val.name
+  selectOptionList.value = []
+  selectShow.value = false
 }
-onMounted(async ()=>{
-  let result = await GET_BankIdList({name:"中国"})
-  if(result.code){
-    console.log(result.data)
-    selectList.value=result.data
+onMounted(async () => {
+  let result = await GET_BankIdList({ name: "中国" })
+  if (result.code) {
+    selectList.value = result.data
   }
 })
-
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #bankCardBindingPopup {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, .8);
+  background: rgba(0, 0, 0, 0.8);
   z-index: 10000;
   display: flex;
   justify-content: center;
@@ -155,7 +200,13 @@ onMounted(async ()=>{
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
     border: 1px solid transparent;
-    background-image: linear-gradient(to bottom, rgba(18, 39, 67, 1), rgba(3, 13, 21, 1)), linear-gradient(155.92deg, rgba(159, 98, 219, 0.5) 0%, rgba(126, 172, 186, 0.5) 48.67%, rgba(99, 149, 231, 0.5) 96.71%);
+    background-image: linear-gradient(to bottom, rgba(18, 39, 67, 1), rgba(3, 13, 21, 1)),
+      linear-gradient(
+        155.92deg,
+        rgba(159, 98, 219, 0.5) 0%,
+        rgba(126, 172, 186, 0.5) 48.67%,
+        rgba(99, 149, 231, 0.5) 96.71%
+      );
     overflow: hidden;
     border-radius: 6px;
     backdrop-filter: blur(10px);
@@ -179,7 +230,6 @@ onMounted(async ()=>{
         left: 50%;
         margin-top: 10px;
       }
-
     }
 
     .close {
@@ -210,88 +260,86 @@ onMounted(async ()=>{
           line-height: 40px;
           text-align: right;
         }
-        .addFromDom{
+        .addFromDom {
           margin-left: 10px;
           width: 361px;
           height: 40px;
-          background:url($gxsBankCardPopupInput) no-repeat center;
-          background-size:100% 100%;
+          background: url($gxsBankCardPopupInput) no-repeat center;
+          background-size: 100% 100%;
 
-          .selectBox{
+          .selectBox {
             width: 361px;
             position: relative;
-            .selectInput{
+            .selectInput {
               width: 361px;
               height: 40px;
               line-height: 40px;
             }
-            .arrowBox{
+            .arrowBox {
               position: absolute;
               top: 50%;
               margin-top: -10px;
               right: 0;
               width: 39px;
               height: 20px;
-              border-left: 1px solid #4B6A80;
+              border-left: 1px solid #4b6a80;
               display: flex;
               justify-content: center;
               align-items: center;
               cursor: pointer;
 
-              .icon{
+              .icon {
                 width: 10px;
                 height: 6px;
-                background:url($gxsBankCardArrow) no-repeat center;
-                background-size:contain;
+                background: url($gxsBankCardArrow) no-repeat center;
+                background-size: contain;
                 transform: rotateZ(0deg);
-                transition: transform .3s;
+                transition: transform 0.3s;
 
-                &.active{
+                &.active {
                   transform: rotateZ(180deg);
-              }
+                }
               }
             }
-            .listBox{
+            .listBox {
               width: 361px;
               height: auto;
               position: absolute;
               left: 0;
-              top:40px;
+              top: 40px;
               border-bottom-left-radius: 6px;
               border-bottom-right-radius: 6px;
               overflow: hidden;
               box-shadow: 0px 0px 10px #000;
-              transition: height .3s;
-              &.active{
+              transition: height 0.3s;
+              &.active {
                 height: 0;
               }
-              .listDom{
+              .listDom {
                 width: 361px;
                 height: 40px;
                 line-height: 40px;
                 padding-left: 13px;
                 background-color: #122743;
-                border-bottom: 1px solid rgba(#fff,.6);
+                border-bottom: 1px solid rgba(#fff, 0.6);
                 cursor: pointer;
-                &:last-child{
+                &:last-child {
                   border-bottom: 0;
                 }
               }
             }
           }
-          input{
+          input {
             width: 100%;
             height: 100%;
             padding-left: 13px;
             color: #fff;
-            &::placeholder{
-              color: rgba(#fff,.6);
+            &::placeholder {
+              color: rgba(#fff, 0.6);
             }
           }
-
         }
       }
-
     }
 
     .btnBox {
@@ -321,6 +369,5 @@ onMounted(async ()=>{
       }
     }
   }
-
 }
 </style>

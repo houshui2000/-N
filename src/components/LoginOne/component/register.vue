@@ -1,46 +1,52 @@
 <template>
-  <div id='registerBox'>
-    <div class='inputBox'>
-      <div class='inputs'>
-        <el-input v-model='phone' placeholder='请输入手机号' type='number' />
+  <div id="registerBox">
+    <div class="inputBox">
+      <div class="inputs">
+        <el-input v-model="phone" placeholder="请输入手机号" type="number" />
       </div>
-      <div class='inputs'>
-        <el-input v-model='phoneCode' placeholder='请输入验证码' type='number' />
-        <div class='text' @click='handleCodeTime()'>{{ codeTime >= 0 ? codeTime + 's' : '获取验证码' }}</div>
+      <div class="inputs">
+        <el-input v-model="phoneCode" placeholder="请输入验证码" type="number" />
+        <div class="text" @click="handleCodeTime()">{{ codeTime >= 0 ? codeTime + "s" : "获取验证码" }}</div>
       </div>
-      <div class='inputs'>
-        <el-input v-model='password' placeholder='请输入不超过16位密码' type='number' />
+      <div class="inputs">
+        <el-input v-model="password" placeholder="请输入不超过16位密码" type="number" />
       </div>
-      <div class='inputs' v-if='loginStore.registerState==="register"'>
-        <el-input v-model='nickName' placeholder='请输入昵称（选填）' />
+      <div class="inputs" v-if="loginStore.registerState === 'register'">
+        <el-input v-model="nickName" placeholder="请输入昵称（选填）" />
       </div>
 
-      <div class='agreementBox' v-if='loginStore.registerState==="register"'>
-        <el-checkbox v-model='agreement'></el-checkbox>
-        <div class='text'>我已满18周岁，并同意《<span>用户协议</span>》《<span>隐私协议</span>》</div>
+      <div class="agreementBox" v-if="loginStore.registerState === 'register'">
+        <el-checkbox v-model="agreement"></el-checkbox>
+        <div class="text">
+          我已满18周岁，并同意《
+          <span>用户协议</span>
+          》《
+          <span>隐私协议</span>
+          》
+        </div>
       </div>
-      <div class='registerBtn' v-if='loginStore.registerState==="register"' @click='handleRegisterBtn'>注册</div>
-      <div class='registerBtn' v-if='loginStore.registerState==="retrievePassword"' @click='handleRetrievePassword'>确认</div>
-      <div class=''></div>
+      <div class="registerBtn" v-if="loginStore.registerState === 'register'" @click="handleRegisterBtn">注册</div>
+      <div class="registerBtn" v-if="loginStore.registerState === 'retrievePassword'" @click="handleRetrievePassword">
+        确认
+      </div>
+      <div class=""></div>
     </div>
-
-
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useStore } from '@/pinia'
-import { registermobile, registernormal, resetpassword } from '@/network/user.js'
+import { ref } from "vue"
+import { useStore } from "@/pinia"
+import { registermobile, registernormal, resetpassword } from "@/network/user.js"
 
 const { loginStore } = useStore()
 let agreement = ref(false) //用户协议选择
 
-let phone = ref('') //手机号
-let phoneCode = ref('') //手机验证码
-let password = ref('') //密码
-let nickName = ref('') //昵称
-let recommendCode = ref('') //推荐码
+let phone = ref("") //手机号
+let phoneCode = ref("") //手机验证码
+let password = ref("") //密码
+let nickName = ref("") //昵称
+let recommendCode = ref("") //推荐码
 let codeTime = ref(-1) //倒计时
 
 // 倒计时
@@ -55,48 +61,42 @@ const handleCodeTime = async () => {
   //手机号登录
   const phoneRegex = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
   if (phoneRegex.test(phone.value)) {
-    console.log('手机号码格式正确')
     if (codeTime.value >= 0) {
       return
     }
-    if(loginStore.registerState==='register'){
+    if (loginStore.registerState === "register") {
       let result = await registermobile({ mobile: phone.value })
     }
-    if(loginStore.registerState==='retrievePassword'){
+    if (loginStore.registerState === "retrievePassword") {
       let result = await resetpassword({ mobile: phone.value })
     }
 
     codeTime.value = 60
     setTimeout(handleCodeTime60, 1000)
   } else {
-    console.log('手机号码格式不正确')
   }
 }
 
 const handleRegisterBtn = async () => {
   if (!agreement.value) return
   const result = await registernormal({
-    'mobile': phone.value,
-    'password': password.value,
-    'code': phoneCode.value,
-    'nickname': nickName.value,
-    'invitationCode': recommendCode.value
+    mobile: phone.value,
+    password: password.value,
+    code: phoneCode.value,
+    nickname: nickName.value,
+    invitationCode: recommendCode.value
   })
-  console.log('接口', result)
   if (result.code === 200) {
-    console.log('注册成功')
-    loginStore.registerState="other"
+    loginStore.registerState = "other"
   }
-
 }
 
-const handleRetrievePassword = async () =>{
+const handleRetrievePassword = async () => {
   // const result= await userresepassword({
   //   "code":phoneCode.value ,
   //   "password": password.value,
   //   "mobile": phone.value
   // })
-  // console.log(result)
   // if(result.code===200){
   //   loginStore.registerState="other"
   // }else{
@@ -105,7 +105,7 @@ const handleRetrievePassword = async () =>{
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #registerBox {
   .inputBox {
     width: 400px;

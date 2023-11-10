@@ -7,8 +7,8 @@
   </div>
 </template>
 <script setup>
-import { shopbuynotice } from '@/network/shoppingCentre/shoppingtwo'
-import { ref } from 'vue'
+import { shopbuynotice } from "@/network/shoppingCentre/shoppingtwo"
+import { ref } from "vue"
 //shop/buy-notice
 const aaa = ref()
 const init = async () => {
@@ -26,9 +26,11 @@ init()
   border-radius: 4px;
   @include bordergradientMY();
   .setction {
+    padding: 25px;
     width: 100%;
     overflow: auto;
     height: 100%;
+    color: white;
   }
 }
 .scrollStyle {

@@ -5,7 +5,7 @@
       <div class="contentLogin">
         <div class="left"></div>
         <div class="right">
-          <div class="title">{{ state ? '账号密码登录' : '手机号验证码登录' }}</div>
+          <div class="title">{{ state ? "账号密码登录" : "手机号验证码登录" }}</div>
           <div class="switch" @click="handleSwitchBtn">切换</div>
           <div class="inputBox">
             <div class="inputs" v-if="!state">
@@ -25,7 +25,7 @@
                 oninput="if(value.length > 6) value=value.slice(0, 6)"
                 placeholder="请输入验证码"
               />
-              <div class="text" @click="handleCodeTime()">{{ codeTime >= 0 ? codeTime + 's' : '获取验证码' }}</div>
+              <div class="text" @click="handleCodeTime()">{{ codeTime >= 0 ? codeTime + "s" : "获取验证码" }}</div>
             </div>
             <div class="inputs" v-if="state">
               <el-input v-model="admin" placeholder="请输入账号" type="number" />
@@ -54,32 +54,31 @@
 </template>
 
 <script setup>
-import { useStore } from '@/pinia'
-import LoginQQ from '@/components/Login/component/Loginqq.vue'
+import { useStore } from "@/pinia"
+import LoginQQ from "@/components/Login/component/Loginqq.vue"
 // import registerPopup from '@/components/Login/component/registerPopup.vue'
-import { ref, reactive } from 'vue'
-import { codeloginmobile, logincode, loginmobile } from '@/network/user.js'
-import { setItem } from '@/utils/storage.js'
-import { registermobile } from '@/network/userInterface.js'
+import { ref, reactive } from "vue"
+import { codeloginmobile, logincode, loginmobile } from "@/network/user.js"
+import { setItem } from "@/utils/storage.js"
+import { registermobile } from "@/network/userInterface.js"
 
 const { loginStore, useUsersStore } = useStore()
 let state = ref(false) //切换按钮 false手机号 、true密码账号
-let phone = ref('')
-let code = ref('')
-let admin = ref('')
-let password = ref('')
+let phone = ref("")
+let code = ref("")
+let admin = ref("")
+let password = ref("")
 let codeTime = ref(-1)
 // let list=reactive([{},{}])
 //登录按钮
 const handleLoginBtn = async (res) => {
-  if (res === 'wx' || res === 'qq' || res === 'register' || res === 'retrievePassword') loginStore.registerState = res
-  if (res === 'phone') {
+  if (res === "wx" || res === "qq" || res === "register" || res === "retrievePassword") loginStore.registerState = res
+  if (res === "phone") {
     let result = await logincode({ mobile: phone.value, code: code.value })
-    console.log('token', result)
     if (result.code === 200) {
-      setItem('token', result.data.token)
+      setItem("token", result.data.token)
       loginStore.token = result.data.token
-      setItem('userId', result.data.userId)
+      setItem("userId", result.data.userId)
       loginStore.userId = result.data.userId
       loginStore.login = false
       await useUsersStore.handleUserInfo()
@@ -87,13 +86,12 @@ const handleLoginBtn = async (res) => {
       alert(result.msg)
     }
   }
-  if (res === 'password') {
+  if (res === "password") {
     let result = await loginmobile({ mobile: admin.value, password: password.value })
-    console.log('token', result)
     if (result.code === 200) {
-      setItem('token', result.data.token)
+      setItem("token", result.data.token)
       loginStore.token = result.data.token
-      setItem('userId', result.data.userId)
+      setItem("userId", result.data.userId)
       loginStore.userId = result.data.userId
       loginStore.login = false
       await useUsersStore.handleUserInfo()
@@ -105,10 +103,10 @@ const handleLoginBtn = async (res) => {
 //切换按钮
 const handleSwitchBtn = () => {
   state.value = !state.value
-  phone.value = ''
-  code.value = ''
-  admin.value = ''
-  password.value = ''
+  phone.value = ""
+  code.value = ""
+  admin.value = ""
+  password.value = ""
 }
 
 // 倒计时
@@ -124,7 +122,6 @@ const handleCodeTime = async () => {
     //手机号登录
     const phoneRegex = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
     if (phoneRegex.test(phone.value)) {
-      console.log('手机号码格式正确')
       if (codeTime.value >= 0) {
         return
       }
@@ -132,7 +129,6 @@ const handleCodeTime = async () => {
       codeTime.value = 60
       setTimeout(handleCodeTime60, 1000)
     } else {
-      console.log('手机号码格式不正确')
     }
   } else {
     //密码登录

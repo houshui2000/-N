@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted } from "vue"
 // import {getBannner} from "@/network/api.js";
 
 let btnActive = ref(true)
@@ -44,7 +44,6 @@ const handleBtnShow = () => {
 
 const handleBannerShow = () => {
   // getBannner().then(res=>{
-  //   console.log(res)
   // })
 }
 

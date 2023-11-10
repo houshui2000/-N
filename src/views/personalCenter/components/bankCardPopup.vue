@@ -1,71 +1,75 @@
 <template>
-  <transition name='transition05s'>
-    <div id='bankCardPopup' v-if='props.bankCardShow'>
-      <div class='content' >
-        <div class='title'>
+  <transition name="transition05s">
+    <div id="bankCardPopup" v-if="props.bankCardShow">
+      <div class="content">
+        <div class="title">
           银行卡列表
-          <div class='border'></div>
+          <div class="border"></div>
         </div>
-        <div class='close' @click='handleClose'></div>
-        <div class='contain'>
-          <div class='header'>
-            <div class='name'>银行名称</div>
-            <div class='number'>卡号</div>
-            <div class='btn'>操作</div>
+        <div class="close" @click="handleClose"></div>
+        <div class="contain">
+          <div class="header">
+            <div class="name">银行名称</div>
+            <div class="number">卡号</div>
+            <!-- <div class="btn">操作</div> -->
           </div>
-          <div class='cardList'>
-            <div class='cardList-y' v-for='(item,index) in bankCardList' :key='index'>
-              <div class='name'>{{ item.bankName }}</div>
-              <div class='number'>{{ item.bankCardNo?item.bankCardNo.replace(/(?<=\d{4})\d+(?=\d{4})/," ******** "):'' }}</div>
-              <div class='btn' @click='handleBankCardUnBindingShow'>解绑</div>
+          <div class="cardList">
+            <div class="cardList-y" v-for="(item, index) in bankCardList" :key="index">
+              <div class="name">{{ item.bankName }}</div>
+              <div class="number">
+                {{ item.bankCardNo ? item.bankCardNo.replace(/(?<=\d{4})\d+(?=\d{4})/, " ******** ") : "" }}
+              </div>
+              <!-- @click='handleBankCardUnBindingShow' -->
+              <!--   <div class="btn">
+                <!~~ 解绑 ~~>
+              </div>-->
             </div>
           </div>
         </div>
-        <div class='bindingBtn' @click='handleBankCardShow'>绑定新卡</div>
+        <div class="bindingBtn" @click="handleBankCardShow">绑定新卡</div>
       </div>
     </div>
   </transition>
 </template>
 
 <script setup>
-import { GET_BankCardList } from '@/network/personalCenter.js'
-import { ref,onMounted } from 'vue'
+import { GET_BankCardList } from "@/network/personalCenter.js"
+import { ref, onMounted } from "vue"
 
-let bankCardList=ref([])
-let bankCardUnBindingShow=ref(true)
-const props = defineProps(['bankCardShow'])
-const emit = defineEmits(['handleCloseEmit','handleUnBindingEmit','handleBankCardEmit'])
+let bankCardList = ref([])
+// let bankCardUnBindingShow = ref(true)
+const props = defineProps(["bankCardShow"])
+const emit = defineEmits(["handleCloseEmit", "handleUnBindingEmit", "handleBankCardEmit"])
 const handleClose = () => {
-  emit('handleCloseEmit', false)
+  emit("handleCloseEmit", false)
 }
-const handleGetBankCardList=async ()=>{
- let result = await GET_BankCardList()
-  if(result.code===200){
-    bankCardList.value=result.data
+const handleGetBankCardList = async () => {
+  let result = await GET_BankCardList()
+  if (result.code === 200) {
+    bankCardList.value = result.data
   }
 }
 //打开解绑确认弹窗
-const handleBankCardUnBindingShow=()=>{
-  bankCardUnBindingShow.value=true
-  emit('handleUnBindingEmit')
+// const handleBankCardUnBindingShow = () => {
+//   bankCardUnBindingShow.value = true
+//   emit("handleUnBindingEmit")
+// }
+const handleBankCardShow = () => {
+  emit("handleBankCardEmit")
 }
-const handleBankCardShow =()=>{
-  emit('handleBankCardEmit')
-}
-onMounted(()=>{
+onMounted(() => {
   handleGetBankCardList()
 })
-
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #bankCardPopup {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0, .8);
+  background: rgba(0, 0, 0, 0.8);
   z-index: 10000;
   display: flex;
   justify-content: center;
@@ -80,7 +84,13 @@ onMounted(()=>{
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
     border: 1px solid transparent;
-    background-image: linear-gradient(to bottom, rgba(18, 39, 67, 1), rgba(3, 13, 21, 1)), linear-gradient(155.92deg, rgba(159, 98, 219, 0.5) 0%, rgba(126, 172, 186, 0.5) 48.67%, rgba(99, 149, 231, 0.5) 96.71%);
+    background-image: linear-gradient(to bottom, rgba(18, 39, 67, 1), rgba(3, 13, 21, 1)),
+      linear-gradient(
+        155.92deg,
+        rgba(159, 98, 219, 0.5) 0%,
+        rgba(126, 172, 186, 0.5) 48.67%,
+        rgba(99, 149, 231, 0.5) 96.71%
+      );
     overflow: hidden;
     border-radius: 6px;
     backdrop-filter: blur(10px);
@@ -104,7 +114,6 @@ onMounted(()=>{
         left: 50%;
         margin-top: 10px;
       }
-
     }
 
     .close {
@@ -126,7 +135,7 @@ onMounted(()=>{
       .header {
         display: flex;
         margin-top: 35px;
-        color: rgba(#fff, .6);
+        color: rgba(#fff, 0.6);
         padding-bottom: 14px;
         border-bottom: 1px solid rgba(126, 131, 179, 1);
 
@@ -144,7 +153,6 @@ onMounted(()=>{
           width: 30px;
           margin-left: 100px;
         }
-
       }
 
       .cardList {
@@ -170,15 +178,13 @@ onMounted(()=>{
             margin-left: 90px;
             height: 25px;
             border-radius: 2px;
-            background: #572525;
+            // background: #572525;
             text-align: center;
             line-height: 25px;
-            cursor: pointer
+            cursor: pointer;
           }
-
         }
       }
-
     }
 
     .bindingBtn {
@@ -195,13 +201,19 @@ onMounted(()=>{
       cursor: pointer;
     }
   }
-  .msgBox{
+  .msgBox {
     width: 398px;
     height: 239px;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
     border: 1px solid transparent;
-    background-image: linear-gradient(to bottom, rgba(18, 39, 67, 1), rgba(3, 13, 21, 1)), linear-gradient(155.92deg, rgba(159, 98, 219, 0.5) 0%, rgba(126, 172, 186, 0.5) 48.67%, rgba(99, 149, 231, 0.5) 96.71%);
+    background-image: linear-gradient(to bottom, rgba(18, 39, 67, 1), rgba(3, 13, 21, 1)),
+      linear-gradient(
+        155.92deg,
+        rgba(159, 98, 219, 0.5) 0%,
+        rgba(126, 172, 186, 0.5) 48.67%,
+        rgba(99, 149, 231, 0.5) 96.71%
+      );
     overflow: hidden;
     border-radius: 6px;
     backdrop-filter: blur(10px);
@@ -211,6 +223,5 @@ onMounted(()=>{
     flex-direction: column;
     align-items: center;
   }
-
 }
 </style>

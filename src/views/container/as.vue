@@ -7,10 +7,9 @@
 const { as } = defineProps({
   as: {
     type: String,
-    required: true,
-  },
+    required: true
+  }
 })
-console.log(as)
 
 // const { as } = toRefs(props)
 </script>

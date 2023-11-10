@@ -14,5 +14,4 @@ export const Mydata = (timestamp) => {
 
   const formattedTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}` // 格式化时间字符串
 
-  console.log(formattedTime) // 输出格式化后的时间
 }
