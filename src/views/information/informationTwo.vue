@@ -6,29 +6,35 @@
         { name: '咨询详情', path: route.params.id }
       ]"
     />
-    <div v-html="adsad" class="center"></div>
-    <!-- <div class="nav">咨询 > 咨询详情</div> -->
+    <!-- -->
+    <div class="center">
+      <div class="center_top">
+        <p class="top">{{ asd.title }}</p>
+        <div class="top_bottom">
+          <p>
+            <!-- <span>作者：</span> -->
+            <!-- <span>文章来源：</span> -->
+          </p>
+          <p>{{ asd.publishTime }}</p>
+        </div>
+      </div>
+      <div v-html="asd.content" class="center_bottom"></div>
+    </div>
   </div>
-  <!--  v-html="adsad" -->
-
-  <!-- <MissWakeupPage /> -->
 </template>
 <script setup>
-// import MissWakeupPage from '@/components/missingWakeupPage/index.vue'
 import CrumbsVue from '@/components/crumbs/index.vue'
 import { shopnewsdetail } from '@/network/information'
 import { useRoute } from 'vue-router'
 import { ref } from 'vue'
 const route = useRoute()
-// const props = defineProps({
-//   id: { type: String, default: '' }
-// })
 
-const adsad = ref('')
+const asd = ref('')
 const init = async () => {
   const res = await shopnewsdetail({ id: route.params.id })
+  console.log(res)
 
-  adsad.value = res.data
+  asd.value = res.data
 }
 init()
 </script>
@@ -42,11 +48,35 @@ init()
   width: 1470px;
   .center {
     margin-top: 12px;
-    height: 300px;
+    min-height: 300px;
     width: 100%;
     border-radius: 6px;
-    padding: 15px;
+    padding: 33px;
     @include bordergradientMY(linear-gradient(180deg, rgba(45, 38, 81, 0.9) 0%, rgba(46, 37, 81, 0.9) 100%));
+    .center_top {
+      padding-bottom: 18px;
+      border-bottom: 1px solid #2a314c;
+      .top {
+        font: normal normal 400 24px 'PingFang SC';
+        color: #ffffff;
+        margin-bottom: 17px;
+      }
+      .top_bottom {
+        color: rgba(255, 255, 255, 0.8);
+        font: normal normal 400 12px 'PingFang SC';
+        @include Myflex(space-between);
+        > p {
+          &:first-child {
+            span {
+              margin-right: 12px;
+            }
+          }
+        }
+      }
+    }
+    .center_bottom {
+      margin-top: 30px;
+    }
   }
 }
 </style>

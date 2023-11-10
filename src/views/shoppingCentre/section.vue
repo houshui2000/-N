@@ -51,13 +51,11 @@ let blocktextcenter = {
 onMounted(() => {
   MYIntersectionObserver(xianshi_geng.value, () => {
     FenYe.size += 10
-    // init(),
   })
   const block = document.querySelector('.block.text-center')
   const section_left = document.querySelector('.section_left')
   blocktextcenter.top = block.offsetTop
   blocktextcenter.height = block.offsetHeight
-  console.log(section_left.getBoundingClientRect().left)
 
   blocktextcenter.sectionleft = section_left.getBoundingClientRect().left
   window.addEventListener('scroll', scrollMy)
@@ -97,7 +95,6 @@ const scrollMy = () => {
   console.log(s)
 
   if (s >= blocktextcenter.top + blocktextcenter.height / 2) {
-    // console.log(blocktextcenter)
     sticky.value.style.position = 'fixed'
     sticky.value.style.top = 79 + 'px'
     sticky.value.style.left = blocktextcenter.sectionleft + 'px'
@@ -106,7 +103,6 @@ const scrollMy = () => {
     sticky.value.style.top = 0 + 'px'
     sticky.value.style.left = 0 + 'px'
   }
-  // console.log(sectionRight.value.offsetTop)
 }
 </script>
 <style lang="scss" scoped>

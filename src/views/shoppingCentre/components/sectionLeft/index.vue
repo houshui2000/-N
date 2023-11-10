@@ -162,6 +162,7 @@ watch(
       position: absolute;
       right: 20px;
       top: 50%;
+      @include Myflex();
       transform: translateY(-50%);
     }
   }

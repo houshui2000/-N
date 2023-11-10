@@ -20,23 +20,19 @@
           :key="index"
           class="Xin_xi_tiao"
         >
-          <!--  <p>
-            <span>置顶</span>
-            <!~~ {{ item.title }} ~~>
-          </p>-->
           <div class="xin_xi_center">
             <div class="img">
-              <img :src="item.imgUrl" alt="" />
+              <img class="equalProportions" :src="item.imgUrl" alt="" />
             </div>
             <div class="center_right">
               <div class="top">
                 <span>置顶</span>
                 {{ item.title }}
               </div>
-              <div class="center_right_top">asdd</div>
+              <div class="center_right_top">{{ item.introduction }}</div>
             </div>
+            <div class="xinix">{{ item.publishTime }}</div>
           </div>
-          <div class="xinix">{{ item.publishTime }}</div>
         </div>
 
         <div v-if="listOfInformationArr?.records?.length !== Fenye.total" class="fenye">
@@ -76,6 +72,7 @@ const listOfInformationArr = ref([])
 const init = async () => {
   const res = await shopnewscategory()
   listArr.value = res.data
+
   const number = sessionStoragegetItem('categoryId') || res.data[0].id
   const index = res.data.findIndex((item) => item.id === Number(number))
   nameRef.value = res.data[index].id
@@ -96,6 +93,7 @@ const listOfInformation = async () => {
     categoryId: nameRef.value
   })
   Fenye.value.total = res.data.total
+  console.log(res)
 
   listOfInformationArr.value = res.data
 }
@@ -161,7 +159,6 @@ const listOfInformation = async () => {
         color: white;
         display: inline-block;
         height: 100%;
-        // width: 300px;
         margin-right: 80px;
         padding: 20px 12px;
         @include Myflex();
@@ -170,11 +167,9 @@ const listOfInformation = async () => {
     }
     .section_bottom {
       margin-top: 23px;
-      padding: 11px 0;
       @include bordergradientMY(linear-gradient(90deg, rgba(83, 56, 119, 0.9) 0%, rgba(53, 81, 125, 0.9) 100%));
       .Xin_xi_tiao {
         border-bottom: 1px solid rgb(42, 49, 76);
-        padding: 24px 51px;
         &:last-child {
           border-bottom: 0px solid rgb(42, 49, 76);
         }
@@ -190,12 +185,14 @@ const listOfInformation = async () => {
         //   }
         // }
         .xin_xi_center {
-          height: 120px;
-          margin: 21px 0;
+          // height: 120px;
+          // margin: 21px 0;
+          position: relative;
+          padding: 33px;
           @include Myflex(space-between);
           .img {
-            width: 160px;
-            height: 120px;
+            width: 260px;
+            height: 166px;
             border-radius: 6px;
             // @include bordergradientMY(linear-gradient(180deg, rgba(139, 98, 162, 1) 0%, rgba(46, 37, 81, 0.9) 100%));
             img {
@@ -210,9 +207,9 @@ const listOfInformation = async () => {
           }
           .center_right {
             width: calc(100% - 160px);
-            padding-left: 36px;
-            height: 100%;
-            // background-color: sandybrown;
+            padding-left: 32px;
+            height: 166px;
+            // @include Myflex(flex-start); // background-color: sandybrown;
             .top {
               font: normal normal 400 18px 'PingFang SC';
               color: white;
@@ -227,12 +224,16 @@ const listOfInformation = async () => {
             }
             .center_right_top {
               height: calc(100% - 35px);
-              background-color: wheat;
+              font: normal normal 400 14px 'PingFang SC';
               overflow: hidden;
+              color: rgba(255, 255, 255, 0.8);
             }
           }
         }
         .xinix {
+          position: absolute;
+          right: 30px;
+          bottom: 30px;
           font: normal normal 600 14px ' PingFang SC';
           color: #fff;
           opacity: 0.6;
@@ -247,7 +248,7 @@ const listOfInformation = async () => {
   height: 100%;
   width: 100%;
   @include Myflex();
-  padding: 23px 0 0 0;
+  padding: 23px 0 23px 0;
 }
 .fen_xi {
   display: inline-block;

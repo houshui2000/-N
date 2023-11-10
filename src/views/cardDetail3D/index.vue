@@ -58,6 +58,7 @@ const ThreeDKa = ref({
   productOppositeUrl: '' // 正
 })
 const ZiChanCha = ref({})
+const Myimg = ref({})
 const init = async () => {
   const assetcheckRes = await assetcheck({
     qrCodeId: route.params.id
@@ -72,6 +73,7 @@ const init = async () => {
   const assetcertRes = await assetcert({
     qrCodeId: route.params.id
   })
+  Myimg.value = assetcertRes.data
   // console.log(assetcertRes)
 
   // Promise.allSettled([

@@ -44,7 +44,7 @@ export function shopotherproducts (params) {
 */
 export function shopquickbuy (data) {
   return service({
-    url: '/shop/quick-buy',
+    url: '/shop/buy/quick-buy',
     method: 'POST', data
   })
 }

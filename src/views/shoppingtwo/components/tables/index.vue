@@ -19,7 +19,7 @@
             </div>
           </td>
 
-          <td>
+          <td style="width: 30%">
             <p style="padding-left: 25px" class="kapaiming_bina">
               <SvgIcon size="20px" Height="20px" icon-class="bianhao" />
               <el-tooltip class="box-item" effect="dark" :content="item.cardNo" placement="top-start">
@@ -43,7 +43,7 @@
           <td>
             <div class="zhifu">
               <!-- status : true 买入 || false : 支付中 -->
-              <div @click="PayFun(item)" v-if="item.status" class="zhiFU_one">支付中</div>
+              <div @click="PayFun(item)" v-if="!item.status" class="zhiFU_one">支付中</div>
               <div @click="PayFun(item)" v-else class="zhiFU_one_mai">买入</div>
             </div>
           </td>
@@ -53,10 +53,15 @@
         </tr>
       </tbody>
     </table>
+    <div class="quxing">
+      <MissWakeupPage :title="'暂无数据'" v-if="drops.records?.length == 0" titleTwo="" />
+    </div>
     <!-- <detailVue v-model:errDialoVueUpdate="errDialoVueUpdate" :errDialoVueXinagqing="errDialoVueXinagqing" /> -->
   </div>
 </template>
 <script setup>
+import MissWakeupPage from '@/components/missingWakeupPage/index.vue'
+
 import SvgIcon from '@/components/SvgIcon/index.vue'
 // import { ref } from 'vue'
 import MessageBoxVue from '@/components/MessageBox/index.js'
@@ -108,7 +113,7 @@ table {
       border-bottom: 1px solid rgba(39, 49, 85, 1);
       background: linear-gradient(180deg, #241328 0%, #000c2c 100%);
       td {
-        width: 20% !important;
+        width: 20%;
         display: inline-block;
         text-align: center;
         height: 56px;
@@ -182,8 +187,9 @@ table {
           }
         }
         .kapaiming_bina {
-          padding-left: 55px;
-          width: 70%;
+          // padding-left: -15px;
+          transform: translateX(-25px);
+          width: 100%;
           height: 100%;
           margin-left: 20px;
           @include Myflex();
@@ -191,9 +197,7 @@ table {
           font: normal normal 400 14px 'PingFang SC';
           .bianhao {
             display: block;
-            max-width: 100px;
-            background-color: saddlebrown;
-            max-width: 122px;
+            max-width: 400px;
             padding: 0 3px;
             height: 18px;
             border-radius: 3.256px;

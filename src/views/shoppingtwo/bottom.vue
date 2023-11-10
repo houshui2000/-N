@@ -115,6 +115,7 @@ const init = async () => {
   })
 
   Fenye.value.pages = res.data.total
+  console.log(res.data)
 
   creatData.value = res.data
 }
@@ -244,9 +245,10 @@ watch(
           width: 15px;
           height: 15px;
           position: absolute;
-          right: 25px;
+          right: 15px;
           top: 50%;
-          transform: translateY(-100%);
+          transform: translateY(-50%);
+          @include Myflex();
         }
       }
     }
