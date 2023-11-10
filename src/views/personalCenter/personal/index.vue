@@ -40,7 +40,7 @@
 
           <div class='inputBtn' v-if='useUsersStore.userInfo.tradePermission<=0'>
             <div class='inputBtn2' @click='handleAuthenticationPopupShow'>
-              去实名{{useUsersStore.userInfo.tradePermission}}
+              去实名
             </div>
           </div>
         </div>
