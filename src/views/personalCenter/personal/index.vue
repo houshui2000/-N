@@ -155,7 +155,11 @@ let adminInput = reactive({
   bindingCode: true
 })
 const mobileValue = computed(() => {
-  return admin.value.mobile.substring(0, 3) + '****' + admin.value.mobile.substring(7)
+  let mobile =""
+  mobile+=admin.value.mobile.substring(0, 3)
+  mobile+=admin.value.mobile?"****":""
+  mobile+=admin.value.mobile.substring(7)
+  return mobile
 })
 // 修改接口
 const handleEditInput = async (item) => {

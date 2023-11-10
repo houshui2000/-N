@@ -54,8 +54,6 @@ export const userDataInfo = defineStore('userData', {
     },
     //初始化userinfo
     handleUserInfoInit() {
-      console.log(555)
-
       this.userInfo = {
         'avatar': null,
         'bind': false,

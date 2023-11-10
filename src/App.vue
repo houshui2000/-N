@@ -8,10 +8,15 @@
   </div>
 </template>
 <script setup>
+import {onMounted} from 'vue'
 import LoginOne from '@/components/LoginOne/index.vue'
 import MenyOnTheRightVue from '@/components/menuOnTheRight/index.vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
+onMounted(() => {
+  document.body.style.setProperty('--el-bg-color-overlay', 'rgba(5, 13, 23, 1)');
+  document.body.style.setProperty('--el-input-bg-color', 'rgba(5, 13, 23, 1)');
+})
 </script>
 
 <style scoped lang="scss">

@@ -20,8 +20,9 @@
                 <img :src='item.productUrl' alt=''>
               </div>
               <div class='text'>{{ item.productName }}</div>
-              <div class='number' :title='item.cardNo'>
-                {{ item.cardNo }}
+              <div class='cardIdBox'>
+                <div class='cardIdIcon'></div>
+                <div class='cardIdText' :title='item.cardNo'>{{ item.cardNo }}4</div>
               </div>
             </div>
           </div>
