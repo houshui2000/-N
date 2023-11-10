@@ -25,13 +25,17 @@
 <script setup>
 import CrumbsVue from "@/components/crumbs/index.vue"
 import { shopnewsdetail } from "@/network/information"
-import { useRoute } from "vue-router"
+import { useRouter, useRoute } from "vue-router"
 import { ref } from "vue"
 const route = useRoute()
-
+const router = useRouter()
 const asd = ref("")
 const init = async () => {
-  const res = await shopnewsdetail({ id: route.params.id })
+  if (!route.query.id) {
+    router.back()
+    return
+  }
+  const res = await shopnewsdetail({ id: route.query.id })
   console.log(res)
 
   asd.value = res.data

@@ -4,9 +4,9 @@
   </div>
 </template>
 <script setup>
-import * as THREE from 'three'
-import { ref, onMounted, toRefs, watch } from 'vue'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import * as THREE from "three"
+import { ref, onMounted, onUnmounted, toRefs, watch } from "vue"
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 // import * as dat from 'dat.gui'
 // import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js'
 const props = defineProps({
@@ -22,7 +22,7 @@ watch(
       renderLoop()
       // bindClick()
 
-      if (import.meta.env.MODE == 'development') {
+      if (import.meta.env.MODE == "development") {
         createHelper()
       }
       createLeftt()
@@ -34,12 +34,16 @@ watch(
   }
 )
 let downUp = ref(false)
+onUnmounted(() => {
+  window.removeEventListener("mousedown", () => {})
+  window.removeEventListener("mouseup", () => {})
+})
 onMounted(() => {
   // creatGUI()
-  window.addEventListener('mousedown', () => {
+  window.addEventListener("mousedown", () => {
     downUp.value = true
   })
-  window.addEventListener('mouseup', () => {
+  window.addEventListener("mouseup", () => {
     downUp.value = false
   })
   renderResize()
@@ -65,7 +69,7 @@ const init = () => {
 
   renderer = new THREE.WebGLRenderer({ antialias: true })
   renderer.setSize(window.innerWidth, window.innerHeight)
-  renderer.setClearColor('black', 0.1)
+  renderer.setClearColor("black", 0.1)
 
   function animate() {
     requestAnimationFrame(animate)
@@ -78,7 +82,7 @@ const init = () => {
     renderer.render(scene, camera)
   }
   animate()
-  document.querySelector('.demo').appendChild(renderer.domElement)
+  document.querySelector(".demo").appendChild(renderer.domElement)
 }
 
 const createHelper = () => {
@@ -109,10 +113,10 @@ const renderLoop = () => {
 const createCube = () => {
   const geometry = new THREE.BoxGeometry(2.8, 4, 0.1)
   const colorARR = [
-    new URL('@/assets/images/ka/left.png', import.meta.url).href,
-    new URL('@/assets/images/ka/left.png', import.meta.url).href,
-    new URL('@/assets/images/ka/top.png', import.meta.url).href,
-    new URL('@/assets/images/ka/top.png', import.meta.url).href,
+    new URL("@/assets/images/ka/left.png", import.meta.url).href,
+    new URL("@/assets/images/ka/left.png", import.meta.url).href,
+    new URL("@/assets/images/ka/top.png", import.meta.url).href,
+    new URL("@/assets/images/ka/top.png", import.meta.url).href,
     // new URL('@/assets/images/ka/zheng.png', import.meta.url).href,
     ThreeDKa.value.productFrontUrl,
     ThreeDKa.value.productOppositeUrl
@@ -133,7 +137,7 @@ const createCube = () => {
       color: 0xffffff,
       // opacity: 0.5,
       // shininess: 100,
-      alphaMap: new THREE.TextureLoader().load(new URL('@/assets/images/ka/tie.png', import.meta.url).href), // 透明度贴图
+      alphaMap: new THREE.TextureLoader().load(new URL("@/assets/images/ka/tie.png", import.meta.url).href), // 透明度贴图
       transparent: true //开启透明度贴图
     })
     return material
@@ -174,21 +178,21 @@ function createLightRight() {
  * @param {*} directionRight
  */
 const development = (directionRight) => {
-  if (import.meta.env.MODE == 'development') {
+  if (import.meta.env.MODE == "development") {
     const helperRight = new THREE.DirectionalLightHelper(directionRight, 1)
     scene.add(helperRight)
   }
 }
 const createCubeThere = () => {
   const geometry = new THREE.BoxGeometry(3.5, 4.2, 0.2)
-  const alphaTexture = new THREE.TextureLoader().load(new URL('@/assets/images/ka/boli.png', import.meta.url).href) // 图片必须是黑白的
+  const alphaTexture = new THREE.TextureLoader().load(new URL("@/assets/images/ka/boli.png", import.meta.url).href) // 图片必须是黑白的
   alphaTexture.colorSpace = THREE.SRGBColorSpace // 让图片加深
   const alphaTextureCopy = new THREE.TextureLoader().load(
-    new URL('@/assets/images/ka/opacity.png', import.meta.url).href
+    new URL("@/assets/images/ka/opacity.png", import.meta.url).href
   ) // 图片必须是黑白的
   alphaTextureCopy.colorSpace = THREE.SRGBColorSpace // 让图片加深
   const metalnessTexture = new THREE.TextureLoader().load(
-    new URL('@/assets/images/ka/metalness.png', import.meta.url).href
+    new URL("@/assets/images/ka/metalness.png", import.meta.url).href
   ) // 图片必须是黑白的
   metalnessTexture.colorSpace = THREE.SRGBColorSpace // 让图片加深
 
@@ -285,7 +289,7 @@ const PcIosAn = () => {
 }
 const renderResize = () => {
   // 1. 创建适配函数，监听浏览器 resize 事件
-  window.addEventListener('resize', () => {
+  window.addEventListener("resize", () => {
     renderer.setSize(window.innerWidth, window.innerHeight)
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
@@ -294,7 +298,7 @@ const renderResize = () => {
 </script>
 <style lang="scss" scoped>
 .demo {
-  background: url('@/assets/images/ka/earth.png') no-repeat;
+  background: url("@/assets/images/ka/earth.png") no-repeat;
   background-size: 100% 100%;
 }
 </style>

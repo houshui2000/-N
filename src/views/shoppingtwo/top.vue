@@ -34,7 +34,7 @@
             份
           </p>
           <div @click="onePieceBuyin" class="maifu">
-            {{ props.creatData.buyRestrict === 0 ? '已售罄' : '一键买入' }}
+            {{ props.creatData.onSellingCount === 0 ? "已售罄" : "一键买入" }}
           </div>
         </div>
       </div>
@@ -47,8 +47,15 @@
       <div class="S_R_XIlie">
         <div
           v-for="(item, index) in creatDataAll.records"
-          @click="router.push(`/SCDetail/${item.id}`)"
-          :class="{ Xilie_da: item.id == route.params.vaultId }"
+          @click="
+            router.push({
+              path: '/SCDetail',
+              query: {
+                vaultId: item.id
+              }
+            })
+          "
+          :class="{ Xilie_da: item.id == route.query.vaultId }"
           :key="index"
           class="XIlie_one"
         >
@@ -73,19 +80,20 @@
       </div>
     </div>
     <!--  :creatDataAll="creatDataAll"  -->
-    <payVue v-model:dialogVisiblePay="dialogVisiblePay" />
+    <payVue :creatDataAll="Gethelowestprice" v-model:dialogVisiblePay="dialogVisiblePay" />
     <ShareVue :creatData="creatData" v-model:dialogVisiblePay="fenxiangdialog" />
   </div>
 </template>
 <script setup>
-import payVue from './components/pay/index.vue'
-import ShareVue from './components/share/index.vue'
-import SvgIcon from '@/components/SvgIcon/index.vue'
-import { useRoute, useRouter } from 'vue-router'
-import MessageBoxVue from '@/components/MessageBox/index.js'
+import payVue from "./components/pay/index.vue"
+import ShareVue from "./components/share/index.vue"
+import SvgIcon from "@/components/SvgIcon/index.vue"
+import { useRoute, useRouter } from "vue-router"
+import MessageBoxVue from "@/components/MessageBox/index.js"
+import { buyminxpricecard } from "@/network/shoppingCentre/shoppingtwo.js"
 
-import { ref } from 'vue'
-import { useStore } from '@/pinia'
+import { ref } from "vue"
+import { useStore } from "@/pinia"
 const { loginStore } = useStore()
 const route = useRoute()
 const router = useRouter()
@@ -97,16 +105,34 @@ const props = defineProps({
 })
 const dialogVisiblePay = ref(false) //支付弹框
 const fenxiangdialog = ref(false) // 分享弹框
+// 获取最低价
+const Gethelowestprice = ref({})
+
+const initminimumPice = async () => {
+  const res = await buyminxpricecard({ vaultId: route.query.vaultId })
+
+  Gethelowestprice.value = res.data
+}
 /**一件买入 */
-const onePieceBuyin = () => {
+const onePieceBuyin = async () => {
   if (!loginStore.token) {
     MessageBoxVue({
-      title: '请先登陆'
+      title: "请先登陆"
     })
     loginStore.login = true
     return
   }
+  await initminimumPice()
+  if (Gethelowestprice.value == undefined) {
+    MessageBoxVue({
+      title: "没有找到最低价"
+    })
+    return
+  }
   if (props.creatData.buyRestrict == 0) {
+    MessageBoxVue({
+      title: "已售罄"
+    })
     return
   }
   dialogVisiblePay.value = true
@@ -132,7 +158,7 @@ const onePieceBuyin = () => {
     width: 609px;
     height: 608px;
     @include Myflex();
-    background: url('@/assets/images/shoppingCentre/shopp_TWo.png') no-repeat scroll left top/ 100% 100%;
+    background: url("@/assets/images/shoppingCentre/shopp_TWo.png") no-repeat scroll left top/ 100% 100%;
     .fenxiang {
       position: absolute;
       right: 15px;
@@ -181,7 +207,7 @@ const onePieceBuyin = () => {
       transform: translateX(-50%);
       width: 414px;
       height: 407px;
-      background: url('@/assets/images/shoppingCentre/Di_zuo.png') no-repeat scroll left top/ 100% 100%;
+      background: url("@/assets/images/shoppingCentre/Di_zuo.png") no-repeat scroll left top/ 100% 100%;
     }
   }
   .S_L_right {
@@ -200,7 +226,7 @@ const onePieceBuyin = () => {
       width: 100%;
       > p {
         color: white;
-        font: normal normal 700 23px 'PingFang SC';
+        font: normal normal 700 23px "PingFang SC";
       }
       .S_l_center {
         @include Myflex(flex-start, flex-start);
@@ -210,7 +236,7 @@ const onePieceBuyin = () => {
         > p {
           display: inline-block;
           position: relative;
-          font: normal normal 400 14px 'PingFang SC';
+          font: normal normal 400 14px "PingFang SC";
           color: rgba(235, 235, 235, 1);
           margin-right: 12px;
           margin-top: 21px;
@@ -230,7 +256,7 @@ const onePieceBuyin = () => {
       width: 100%;
       > p {
         color: rgba(255, 255, 255, 0.56);
-        font: normal normal 400 14px 'PingFang SC';
+        font: normal normal 400 14px "PingFang SC";
         span {
           color: white;
         }
@@ -242,7 +268,7 @@ const onePieceBuyin = () => {
         height: 38px;
         color: white;
         @include Myflex();
-        font: normal normal 600 14px 'PingFang SC';
+        font: normal normal 600 14px "PingFang SC";
         border-radius: 5.36px;
         background: linear-gradient(-45deg, #1615f2 15.76%, #b8009a 79.59%);
       }
@@ -256,14 +282,14 @@ const onePieceBuyin = () => {
   > p {
     background: linear-gradient(90deg, rgba(235, 87, 220, 0.4) 30%, rgba(65, 81, 253, 0) 100%);
     width: 138px;
-    font: normal normal 600 14px 'PingFang SC';
+    font: normal normal 600 14px "PingFang SC";
     color: white;
     height: 32px;
     transform: translateX(85px);
     // line-height: 32px;
     @include Myflex(flex-start);
     &::before {
-      content: '';
+      content: "";
       display: inline-block;
       width: 5px;
       height: 100%;
@@ -303,7 +329,7 @@ const onePieceBuyin = () => {
       transform: scale(1.1) translateX(-10px);
       opacity: 1 !important;
       &::after {
-        content: '';
+        content: "";
         display: inline-block;
         width: 46px;
         height: 150px;
@@ -312,7 +338,7 @@ const onePieceBuyin = () => {
         left: -46px;
         top: 0;
         // margin-left: 10px;qita_zhi.png
-        background: url('@/assets/images/shoppingCentre/qita_zhi.png') no-repeat scroll left top/ 100% 100%;
+        background: url("@/assets/images/shoppingCentre/qita_zhi.png") no-repeat scroll left top/ 100% 100%;
       }
     }
     .XIlie_one {
@@ -337,11 +363,11 @@ const onePieceBuyin = () => {
         width: 148px;
         p {
           &:first-child {
-            font: normal normal 600 14px 'PingFang SC';
+            font: normal normal 600 14px "PingFang SC";
             color: #fff;
           }
           &:nth-child(2) {
-            font: normal normal 500 14px 'PingFang SC';
+            font: normal normal 500 14px "PingFang SC";
             color: #fff;
             margin: 10px 0 30px 0;
             span {
@@ -350,7 +376,7 @@ const onePieceBuyin = () => {
           }
         }
         .mounch {
-          font: normal normal 800 14px 'PingFang SC';
+          font: normal normal 800 14px "PingFang SC";
           color: white;
           border-radius: 4px;
           border: 1px solid #000;
@@ -360,13 +386,13 @@ const onePieceBuyin = () => {
           padding: 6px 10px;
           @include Myflex(space-between);
           span {
-            font: normal normal 800 14px 'PingFang SC';
+            font: normal normal 800 14px "PingFang SC";
             i {
-              font: normal normal 600 12px 'PingFang SC';
+              font: normal normal 600 12px "PingFang SC";
             }
           }
           .qi {
-            font: normal normal 400 12px 'PingFang SC';
+            font: normal normal 400 12px "PingFang SC";
           }
         }
       }

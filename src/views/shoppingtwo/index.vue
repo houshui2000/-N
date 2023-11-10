@@ -24,21 +24,26 @@
   </div>
 </template>
 <script setup>
-import TopVue from './top.vue'
-import CrumbsVue from '@/components/crumbs/index.vue'
-import BOttomVue from './bottom.vue'
-import { useRoute } from 'vue-router'
-import { ref, provide, watch } from 'vue'
-import MissWakeupPage from '@/components/missingWakeupPage/index.vue'
-import { shopcardxdetail, shopotherproducts } from '@/network/shoppingCentre/shoppingtwo.js'
+import TopVue from "./top.vue"
+import CrumbsVue from "@/components/crumbs/index.vue"
+import BOttomVue from "./bottom.vue"
+import { useRoute, useRouter } from "vue-router"
+import { ref, provide, watch } from "vue"
+import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
+import { shopcardxdetail, shopotherproducts } from "@/network/shoppingCentre/shoppingtwo.js"
 // import Me ssageBoxVue from '@/components/MessageBox/index.js'
+const router = useRouter()
 const route = useRoute()
 // const router = useRouter()
 const creatData = ref({}) // 系列的数据
 const creatDataAll = ref([]) // 系列的所有数据
 const init = async () => {
+  if (!route.query.vaultId) {
+    router.back()
+    return
+  }
   const res = await shopcardxdetail({
-    vaultId: route.params.vaultId
+    vaultId: route.query.vaultId
   })
   console.log(res.data)
 
@@ -49,11 +54,11 @@ const init = async () => {
   creatDataAll.value = norId.data
 }
 init()
-provide('creatData', creatData)
+provide("creatData", creatData)
 watch(
   () => route.params.vaultId,
   () => {
-    if (route.name !== 'SCDetailName') return
+    if (route.name !== "SCDetailName") return
 
     init()
   },
@@ -69,7 +74,7 @@ watch(
   padding-top: 14px;
   margin: auto;
   .crumbs {
-    font: normal normal 400 14px 'PingFang SC';
+    font: normal normal 400 14px "PingFang SC";
     // margin: 0 14px;
     span {
       &:nth-child(n) {

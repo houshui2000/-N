@@ -5,7 +5,7 @@
         <tr>
           <td>资产</td>
           <td>资产编号</td>
-          <td>用户昵称</td>
+          <td>发行方</td>
           <td>价格</td>
           <td>操作</td>
         </tr>
@@ -32,12 +32,12 @@
               <span>
                 <img :src="item.avatar" alt="" />
               </span>
-              <span>{{ item.nickname ? item.nickname : '---' }}</span>
+              <span>{{ item.nickname ? item.nickname : "---" }}</span>
             </p>
           </td>
           <td>
             <p class="kapaiming_bina">
-              <span style="color: white">{{ item.price ? '￥' + item.price : '---' }}</span>
+              <span style="color: white">{{ item.price ? "￥" + item.price : "---" }}</span>
             </p>
           </td>
           <td>
@@ -60,11 +60,11 @@
   </div>
 </template>
 <script setup>
-import MissWakeupPage from '@/components/missingWakeupPage/index.vue'
+import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
 
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from "@/components/SvgIcon/index.vue"
 // import { ref } from 'vue'
-import MessageBoxVue from '@/components/MessageBox/index.js'
+import MessageBoxVue from "@/components/MessageBox/index.js"
 
 // import detailVue from '../detail/index.vue'
 const drops = defineProps({
@@ -74,7 +74,7 @@ const drops = defineProps({
 
 // const errDialoVueUpdate = ref(false) //详情弹框
 // const errDialoVueXinagqing = ref({}) //详情弹框
-const $emit = defineEmits(['PayFun'])
+const $emit = defineEmits(["PayFun"])
 /**
  * 表格操作按钮
  * status : true 买入 || false : 支付中
@@ -82,12 +82,12 @@ const $emit = defineEmits(['PayFun'])
 const PayFun = (item) => {
   if (!item.status) {
     MessageBoxVue({
-      title: '该卡牌在支付中，请选择可买入的卡牌叭~'
+      title: "该卡牌在支付中，请选择可买入的卡牌叭~"
     })
     return
   }
   //
-  $emit('PayFun')
+  $emit("PayFun")
 }
 </script>
 <style lang="scss" scoped>
@@ -105,7 +105,7 @@ table {
   );
   thead {
     height: 56px;
-    font: normal normal 400 14px 'PingFang SC';
+    font: normal normal 400 14px "PingFang SC";
     text-align: center;
     color: #fefefe;
     tr {
@@ -138,7 +138,7 @@ table {
           left: 50%;
           bottom: 0;
           transform: translateX(-50%);
-          content: '';
+          content: "";
           display: block;
           width: calc(1470px - 160px);
           height: 1px;
@@ -164,7 +164,7 @@ table {
           }
         }
         .kapaiming {
-          font: normal normal 400 14px 'PingFang SC';
+          font: normal normal 400 14px "PingFang SC";
           color: #fefefe;
           height: 100%;
           width: 70%;
@@ -194,7 +194,7 @@ table {
           margin-left: 20px;
           @include Myflex();
           color: white;
-          font: normal normal 400 14px 'PingFang SC';
+          font: normal normal 400 14px "PingFang SC";
           .bianhao {
             display: block;
             max-width: 400px;
@@ -205,7 +205,7 @@ table {
           }
         }
         .zhifu {
-          font: normal normal 400 12px 'PingFang SC';
+          font: normal normal 400 12px "PingFang SC";
           color: #fefefe;
           @include Myflex(flex-start);
           padding-left: 110px;

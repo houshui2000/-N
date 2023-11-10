@@ -194,21 +194,25 @@
         />
       </div>
       <union-pay-popup></union-pay-popup>
+      <errDialoVue :mounchRef="mounchRef" v-model:errDialoVueUpdate="errDialoVueUpdate" />
     </div>
   </transition>
 </template>
 
 <script setup>
-import { reactive, ref, onMounted } from "vue"
+import { reactive, ref, watch, onMounted } from "vue"
+import errDialoVue from "./component/errdialo/index.vue"
 import { ElMessage } from "element-plus"
 import gxsSelect from "../components/gxsSelect.vue"
+import { useRoute } from "vue-router"
 import orderDetailsPopup from "../components/orderDetailsPopup.vue"
 import { GetorderList, orderCancel } from "@/network/personalCenter.js"
 import MessageBoxVue from "@/components/MessageBox/index.js"
 import { useStore } from "@/pinia/index.js"
 import UnionPayPopup from "@/views/personalCenter/components/unionPayPopup.vue"
-
+const route = useRoute()
 const { loginStore, useUsersStore } = useStore()
+const errDialoVueUpdate = ref(false) //支付成功弹框
 
 let orderList = ref([])
 let orderInfo = ref({
@@ -219,11 +223,12 @@ let orderInfo = ref({
   key: null,
   payStatus: null
 })
+
 let total = ref(0)
 let createTime = ref("")
 let payTime = ref("")
 let indexDetail = ref(-1)
-
+const mounchRef = ref("")
 const handleMouseover = (indexV) => {
   indexDetail.value = indexV
 }
@@ -337,6 +342,19 @@ const handlePayShow = () => {
 onMounted(() => {
   handleOrderList()
 })
+watch(
+  route,
+  (newVal) => {
+    if (!newVal.query.payAmount) return
+    errDialoVueUpdate.value = true
+    mounchRef.value = newVal.query.payAmount
+    // http://test.card.cardesport.com/orderForm?payAmount=1.00
+  },
+  {
+    deep: true,
+    immediate: true
+  }
+)
 </script>
 
 <style lang="scss" scoped>

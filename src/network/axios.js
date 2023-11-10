@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { getItem } from '@/utils/storage.js'
 import MessageBoxVue from '@/components/MessageBox/index.js'
-
+import { useRouter } from 'vue-router'
 import { useStore } from '@/pinia'
 import { removeItem } from '@/utils/storage.js'
-
+const router = useRouter()
 
 
 const service = axios.create({
@@ -59,6 +59,7 @@ const initialize = () => {
   const { loginStore, useUsersStore } = useStore()
   // 清理token
   removeItem('token')
+  router.push('/shoppingCentre')
   useUsersStore.handleUserInfoInit()
   loginStore.token = ''
   loginStore.login = true

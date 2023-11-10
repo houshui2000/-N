@@ -37,51 +37,51 @@
 //     scrollTheSubtitles: true // 滚动字幕开启，关闭
 //   },
 // },
-import MissWakeupPage from '@/components/missingWakeupPage/index.vue'
+import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
 
-import assetLibraryDetailVue from './components/assetLibraryDetail.vue'
-import SvgIcon from '@/components/SvgIcon/index.vue'
-import ThreeDVue from './thereD.vue'
-import { ref } from 'vue'
-import { useRoute } from 'vue-router'
-import { assetcheck, asset3d, assetcert } from '@/network/shoppingCentre/shoppingCentre'
+import assetLibraryDetailVue from "./components/assetLibraryDetail.vue"
+import SvgIcon from "@/components/SvgIcon/index.vue"
+import ThreeDVue from "./thereD.vue"
+import { ref } from "vue"
+import { useRoute } from "vue-router"
+import { assetcheck, asset3d, assetcert } from "@/network/shoppingCentre/shoppingCentre"
 const route = useRoute()
 
 const dialoVue = ref({
   dialo: false,
-  title: '查证'
+  title: "查证"
 })
 const ThreeDKa = ref({
   // productFrontUrl: new URL('@/assets/images/ka/zheng.png', import.meta.url).href, // 正
   // productOppositeUrl: new URL('@/assets/images/ka/bottom.png', import.meta.url).href // 正
-  productFrontUrl: '', // 正
-  productOppositeUrl: '' // 正
+  productFrontUrl: "", // 正
+  productOppositeUrl: "" // 正
 })
 const ZiChanCha = ref({})
 const Myimg = ref({})
 const init = async () => {
   const assetcheckRes = await assetcheck({
-    qrCodeId: route.params.id
+    qrCodeId: route.query.id
   })
   ZiChanCha.value = assetcheckRes.data || {}
 
   //获取正反面
-  const asset3dRes = await asset3d({ cardNo: '080-2023-B06-01-044' })
+  const asset3dRes = await asset3d({ cardNo: "080-2023-B06-01-044" })
   // const asset3dRes = await asset3d({ cardNo: ZiChanCha.value.productNumber })
   ThreeDKa.value = asset3dRes.data
   //获取证书
   const assetcertRes = await assetcert({
-    qrCodeId: route.params.id
+    qrCodeId: route.query.id
   })
   Myimg.value = assetcertRes.data
   // console.log(assetcertRes)
 
   // Promise.allSettled([
   //   assetcheck({
-  //     qrCodeId: route.params.id
+  //     qrCodeId: route.query.id
   //   }),
   //   assetcert({
-  //     qrCodeId: route.params.id
+  //     qrCodeId: route.query.id
   //   })
   // ]).then((res) => {
   //   if (res[0].status !== 'fulfilled' && res[1].status !== 'fulfilled') return
@@ -99,7 +99,7 @@ init()
   width: 100%;
   height: 100vh;
   // background-c
-  background: url('@/assets/images/ka/earth.png') no-repeat;
+  background: url("@/assets/images/ka/earth.png") no-repeat;
   background-size: 100% 100%;
 }
 .cardDetail3D {
@@ -117,7 +117,7 @@ init()
       cursor: pointer;
       width: 100px;
       height: 38px;
-      font: normal normal 400 14px 'PingFang SC';
+      font: normal normal 400 14px "PingFang SC";
       color: white;
       @include Myflex();
       border-radius: 4px;
@@ -151,14 +151,14 @@ init()
     width: 277px;
     height: 116px;
     .title {
-      font: normal normal 500 24px 'PingFang SC';
+      font: normal normal 500 24px "PingFang SC";
     }
     .bian {
       @include Myflex(flex-start);
       margin: 20px 0;
       p {
         padding: 0 5px;
-        font: normal normal 400 12px 'PingFang SC';
+        font: normal normal 400 12px "PingFang SC";
         border-radius: 3.256px;
         @include Myflex();
         background: linear-gradient(269deg, #ffbb4d 0.83%, #815821 101.44%);
@@ -166,7 +166,7 @@ init()
       //
     }
     .time {
-      font: normal normal 400 16px 'PingFang SC';
+      font: normal normal 400 16px "PingFang SC";
       color: #ccc;
     }
   }

@@ -4,18 +4,19 @@
     <div ref="lunbo" class="lunbo">
       <div style="display: flex; justify-content: center; align-items: center" ref="spanRef">
         <!-- <span class="img"> -->
-
+        <!-- <div class="ql-snow">
+          <div class="ql-editor" v-html="props.title"></div>
+        </div> -->
         <!-- </span> -->
-        <span class="wenzi">
-          {{ title }}
-        </span>
+        <!-- {{ title }} -->
+        <div v-html="props.title" class="wenzi"></div>
       </div>
     </div>
   </div>
 </template>
 <script setup>
-import { onMounted, ref } from 'vue'
-const { title } = defineProps({
+import { onMounted, ref } from "vue"
+const props = defineProps({
   title: { type: String, required: true }
 })
 const lunbo = ref()
@@ -38,6 +39,7 @@ const scroll = () => {
 </script>
 <style lang="scss" scoped>
 .zuiwai {
+  cursor: pointer;
   $LunBo_height: 40px;
   position: fixed;
   left: 50%;
@@ -60,6 +62,7 @@ const scroll = () => {
     margin-right: 13px;
   }
   .lunbo {
+    cursor: pointer;
     position: absolute;
     left: 54%;
     top: 0;
@@ -82,7 +85,7 @@ const scroll = () => {
         transform: translateX(-5px);
       }
       span {
-        font: normal normal 400 14px 'PingFang SC';
+        font: normal normal 400 14px "PingFang SC";
         color: white;
         line-height: $LunBo_height;
       }

@@ -2,6 +2,7 @@
   <div class="information">
     <!-- <div class="zixun">资讯信息</div> -->
     <LunBoVue />
+    <!-- <asVue ref="audio" class="audio-box" :fileurl="asdad" /> -->
     <section>
       <div class="section_top">
         <p
@@ -54,12 +55,15 @@
 <script setup>
 import { ref } from "vue"
 import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
+// import asVue from "./as.vue"
 import LunBoVue from "./components/LunBo/index.vue"
 import { shopnewscategory, shopnews } from "@/network/information"
 import { useRouter } from "vue-router"
 import { sessionStoragesetItem, sessionStoragegetItem } from "@/utils/storage"
 // import { useStore } from '@/pinia'
+// import asdad from "@/assets/sadsa.mp3"
 // const { loginStore } = useStore()
+// const ll = ref()
 const router = useRouter()
 const nameRef = ref("")
 const Fenye = ref({
@@ -82,7 +86,13 @@ init()
 
 const xin_xi_tiao = (item) => {
   sessionStoragesetItem("categoryId", nameRef.value)
-  router.push(`/informationTwo/${item.id}`)
+  // router.push(`/informationTwo/${item.id}`)
+  router.push({
+    path: "/informationTwo",
+    query: {
+      id: item.id
+    }
+  })
 }
 
 // 资讯列表

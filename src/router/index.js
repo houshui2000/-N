@@ -22,7 +22,8 @@ export const routes = [{
 
   ]
 }, {
-  path: '/cardDetail3D/:id',//3D
+  // :id
+  path: '/cardDetail3D',//3D
   name: 'cardDetail3D',
   component: () => import('@/views/cardDetail3D/index.vue'),
   props: true,

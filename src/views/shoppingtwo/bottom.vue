@@ -60,15 +60,15 @@
   </div>
 </template>
 <script setup name="xiangqiangBorrttom">
-import SvgIcon from '@/components/SvgIcon/index.vue'
-import IntroTpTheWorkVue from './components/introductionToTheWork/index.vue'
-import purchasingNotice from './components/purchasingNotice/index.vue'
-import tablesVue from './components/tables/index.vue'
-import { ref, watch } from 'vue'
-import selectVue from '@/components/select/index.vue'
-import { ArrowDownBold, ArrowUpBold } from '@element-plus/icons-vue'
-import { useRoute } from 'vue-router'
-import { shopcarddetail } from '@/network/shoppingCentre/shoppingtwo.js'
+import SvgIcon from "@/components/SvgIcon/index.vue"
+import IntroTpTheWorkVue from "./components/introductionToTheWork/index.vue"
+import purchasingNotice from "./components/purchasingNotice/index.vue"
+import tablesVue from "./components/tables/index.vue"
+import { ref, watch } from "vue"
+import selectVue from "@/components/select/index.vue"
+import { ArrowDownBold, ArrowUpBold } from "@element-plus/icons-vue"
+import { useRoute } from "vue-router"
+import { shopcarddetail } from "@/network/shoppingCentre/shoppingtwo.js"
 const route = useRoute()
 const creatData = ref({
   records: []
@@ -77,27 +77,27 @@ const creatData = ref({
 const classify = ref({
   // 动态组建切换分类
   index: 0,
-  arr: ['该系列作品', '作品介绍', '购买须知']
+  arr: ["该系列作品", "作品介绍", "购买须知"]
 })
 
 const mallHomepageTTwo = [
   {
     id: 0,
-    value: 'true',
-    name: 'true',
-    label: '资产编号正序'
+    value: "true",
+    name: "true",
+    label: "资产编号正序"
   },
   {
     id: 1,
-    value: 'false',
-    name: 'false',
-    label: '资产编号倒序'
+    value: "false",
+    name: "false",
+    label: "资产编号倒序"
   }
 ]
 const mallHomepagName = ref({
   // 排序 + 搜索
-  orders: '',
-  asc: 'false'
+  orders: "",
+  asc: "false"
 })
 const Fenye = ref({
   currentPage: 1,
@@ -106,12 +106,12 @@ const Fenye = ref({
 })
 const init = async () => {
   const res = await shopcarddetail({
-    cardVaultId: route.params.vaultId,
+    cardVaultId: route.query.vaultId,
     size: Fenye.value.size,
     current: Fenye.value.currentPage,
     name: mallHomepagName.value.orders, // 搜索
-    'orders[0].column': 'cardNo',
-    'orders[0].asc': mallHomepagName.value.asc // 排序 true 升，false 降
+    "orders[0].column": "cardNo",
+    "orders[0].asc": mallHomepagName.value.asc // 排序 true 升，false 降
   })
 
   Fenye.value.pages = res.data.total
@@ -136,7 +136,7 @@ watch(
 watch(
   () => route.params.vaultId,
   () => {
-    if (route.name !== 'SCDetailName') return
+    if (route.name !== "SCDetailName") return
     init()
   },
   {
@@ -145,7 +145,7 @@ watch(
 )
 </script>
 <style lang="scss" scoped>
-@import '@/styles/other/paginations.scss';
+@import "@/styles/other/paginations.scss";
 
 :deep(.el-input__wrapper) {
   background-color: transparent;
@@ -174,7 +174,7 @@ watch(
       @include Myflex(flex-start);
       > p {
         margin-right: 88px;
-        font: normal normal 400 16px 'PingFang SC';
+        font: normal normal 400 16px "PingFang SC";
         color: white;
         span {
           &:last-child {
@@ -202,7 +202,7 @@ watch(
         );
         :deep(.top) {
           height: 40px;
-          font: normal normal 400 12px 'PingFang SC';
+          font: normal normal 400 12px "PingFang SC";
         }
         :deep(section) {
           border: 1px solid transparent;

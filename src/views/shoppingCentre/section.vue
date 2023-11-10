@@ -27,7 +27,7 @@ import Section_left from "./components/sectionLeft/index.vue"
 import section_right from "./components/sectionRight/index.vue"
 import MYIntersectionObserver from "@/utils/IntersectionObserver.js"
 import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
-import { ref, onMounted } from "vue"
+import { ref, onMounted, onUnmounted } from "vue"
 import { shopliscard } from "@/network/shoppingCentre/shoppingCentre"
 import { mallHomepage } from "@/enumerate/index.js"
 
@@ -48,6 +48,9 @@ let blocktextcenter = {
   sectionleft: 0
 }
 let footerRef = ref(false) // 判断底部是否出现 -- 出现左菜单不继续滚dog
+onUnmounted(() => {
+  window.removeEventListener("scroll", scrollMy)
+})
 onMounted(() => {
   MYIntersectionObserver(xianshi_geng.value, () => {
     FenYe.size += 10

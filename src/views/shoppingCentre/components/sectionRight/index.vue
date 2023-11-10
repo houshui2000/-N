@@ -1,13 +1,25 @@
 <template>
   <div class="side">
-    <div v-for="(item, index) in pros.INterOb" @click="router.push(`/SCDetail/${item.id}`)" :key="index" class="kapai">
+    <div
+      v-for="(item, index) in pros.INterOb"
+      @click="
+        router.push({
+          path: '/SCDetail',
+          query: {
+            vaultId: item.id
+          }
+        })
+      "
+      :key="index"
+      class="kapai"
+    >
       <KaParVue :KaParVueitem="item" />
     </div>
   </div>
 </template>
 <script setup>
-import KaParVue from '../Kapai/index.vue'
-import { useRouter } from 'vue-router'
+import KaParVue from "../Kapai/index.vue"
+import { useRouter } from "vue-router"
 const router = useRouter()
 const pros = defineProps({
   INterOb: {

@@ -40,6 +40,7 @@ router.beforeEach(async (to, from, next) => {
     } else { // 不在在白名单
       console.log('不在在白名单--')
       next('/shoppingCentre')
+      // next()
       const { loginStore } = useStore()
       loginStore.login = true
     }

@@ -15,3 +15,11 @@ export function indexbanner () {
   })
 }
 
+// 公告栏
+// /
+export function indexsysNotice () {
+  return service({
+    url: '/index/sysNotice',
+    method: 'GET',
+  })
+}

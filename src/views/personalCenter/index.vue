@@ -55,38 +55,38 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref, watchEffect, nextTick } from 'vue'
-import { useRoute } from 'vue-router'
-import { router } from '@/router/index.js'
-import { useStore } from '@/pinia/index.js'
-import { getItem, removeItem } from '@/utils/storage.js'
-import passwordPopup from './components/passwordPopup.vue'
-import authenticationPopup from './components/authenticationPopup.vue'
-import realNameZFBPopup from './components/realNameZFBPopup.vue'
-import { userlogout } from '@/network/userInterface.js'
-import { Plus } from '@element-plus/icons-vue'
-import { uploadavatar } from '@/network/userInterface'
-import MessageBoxVue from '@/components/MessageBox/index.js'
+import { onMounted, reactive, ref, watchEffect, nextTick } from "vue"
+import { useRoute } from "vue-router"
+import { router } from "@/router/index.js"
+import { useStore } from "@/pinia/index.js"
+import { getItem, removeItem } from "@/utils/storage.js"
+import passwordPopup from "./components/passwordPopup.vue"
+import authenticationPopup from "./components/authenticationPopup.vue"
+import realNameZFBPopup from "./components/realNameZFBPopup.vue"
+import { userlogout } from "@/network/userInterface.js"
+import { Plus } from "@element-plus/icons-vue"
+import { uploadavatar } from "@/network/userInterface"
+import MessageBoxVue from "@/components/MessageBox/index.js"
 
 const { loginStore, useUsersStore } = useStore()
 const route = useRoute()
-const imageUrl = ref('')
+const imageUrl = ref("")
 let indexActive = ref(0)
 let tabList = reactive([
   {
-    name: '资产库',
+    name: "资产库",
     id: 1,
-    pushLink: 'assetLibrary'
+    pushLink: "assetLibrary"
   },
   {
-    name: '订单明细',
+    name: "订单明细",
     id: 2,
-    pushLink: 'orderForm'
+    pushLink: "orderForm"
   },
   {
-    name: '个人资料',
+    name: "个人资料",
     id: 3,
-    pushLink: 'personal'
+    pushLink: "personal"
   }
 ])
 //tab标签切换
@@ -101,16 +101,16 @@ const handleTabShow = (item, index) => {
     indexActive.value = index
     router.push(item.pushLink)
   }
-  let tabDom = document.querySelector('.icons')
+  let tabDom = document.querySelector(".icons")
   let tab = tabDom.getBoundingClientRect()
-  let tabBg = document.querySelector('.tabs .bg').getBoundingClientRect()
-  let tabText = document.querySelectorAll('.TabName')[indexActive.value].getBoundingClientRect()
+  let tabBg = document.querySelector(".tabs .bg").getBoundingClientRect()
+  let tabText = document.querySelectorAll(".TabName")[indexActive.value].getBoundingClientRect()
   console.log(tab.width / Math.sqrt(2))
   let lefts = tabText.left - tabBg.left + tabText.width / 2 - tab.width / Math.sqrt(2) / 2
-  tabDom.style.left = lefts + 'px'
+  tabDom.style.left = lefts + "px"
 }
 
-window.addEventListener('resize', function () {
+window.addEventListener("resize", function () {
   // 执行需要的操作
   // console.log('窗口大小已改变');
   handleTabShow(-1)
@@ -118,17 +118,17 @@ window.addEventListener('resize', function () {
 watchEffect(() => {
   console.log(route.name)
   indexActive.value = -1
-  if (route.name === 'assetLibrary') {
+  if (route.name === "assetLibrary") {
     nextTick(() => {
       handleTabShow(tabList[0], 0)
     })
   }
-  if (route.name === 'orderForm') {
+  if (route.name === "orderForm") {
     nextTick(() => {
       handleTabShow(tabList[1], 1)
     })
   }
-  if (route.name === 'personal') {
+  if (route.name === "personal") {
     nextTick(() => {
       handleTabShow(tabList[2], 2)
     })
@@ -146,13 +146,13 @@ onMounted(() => {
 //退出登录
 const handleLoginExit = async () => {
   let result = await userlogout()
-  removeItem('token')
-  loginStore.token = ''
-  loginStore.userId = ''
-  removeItem('userId')
+  removeItem("token")
+  loginStore.token = ""
+  loginStore.userId = ""
+  removeItem("userId")
   useUsersStore.handleUserInfoInit()
   loginStore.login = true
-  console.log('退出登录')
+  console.log("退出登录")
 }
 // const getToken = () => {
 //   getItem('token')
@@ -163,37 +163,37 @@ const uploadHttpRequest = async (params) => {
 
   const _file = params.file
   let formData = new FormData()
-  formData.set('file', _file)
+  formData.set("file", _file)
   await uploadavatar(formData)
-  MessageBoxVue({ title: '修改成功!' })
+  MessageBoxVue({ title: "修改成功!" })
   await useUsersStore.handleUserInfo()
 }
 const beforeAvatarUpload = (rawFile) => {
   console.log(rawFile.type)
 
-  if (rawFile.type !== 'image/jpeg' && rawFile.type !== 'image/png') {
+  if (rawFile.type !== "image/jpeg" && rawFile.type !== "image/png") {
     // ElMessage.error('请上传图片!')
-    console.log('请上传图片')
+    console.log("请上传图片")
 
-    MessageBoxVue({ title: '请上传图片!' })
+    MessageBoxVue({ title: "请上传图片!" })
 
     return false
   } else if (rawFile.size / 1024 / 1024 > 2) {
     // ElMessage.error('图片大小请控制在 2MB!')
-    MessageBoxVue({ title: '图片大小请控制在 2MB!' })
+    MessageBoxVue({ title: "图片大小请控制在 2MB!" })
 
     return false
   }
   return true
 }
 const dianjiUpload = () => {
-  let eluploadinput = document.querySelector('.photoBox .el-upload__input')
+  let eluploadinput = document.querySelector(".photoBox .el-upload__input")
   eluploadinput.click()
 }
 </script>
 
 <style lang="scss" scoped>
-@import 'index.scss';
+@import "index.scss";
 
 .photoBox {
   position: relative;

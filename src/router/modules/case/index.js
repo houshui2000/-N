@@ -72,7 +72,7 @@ export const childrenCase = [
     }
   },
   {
-    path: '/informationTwo/:id',
+    path: '/informationTwo',
     name: 'informationTwo',
     component: () => import('@/views/information/informationTwo.vue'),
     props: true,
