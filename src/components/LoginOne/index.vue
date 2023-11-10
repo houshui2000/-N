@@ -104,8 +104,8 @@
                       v-model="registerInfo.password"
                       placeholder="请输入不超过16位的密码"
                       maxlength='11'
-                      onkeyup="value=value.replace(/[\W]/g,'')"
                     />
+<!--                    onkeyup="value=value.replace(/\W/g,'')"-->
                   </div>
                   <div class="inputBox marginTop18">
                     <input
@@ -113,12 +113,14 @@
                       placeholder="请输入昵称（选填）"
                       minlength='2'
                       maxlength='11'
-                      onkeyup="value=value.replace(/[^\w\u4E00-\u9FA5]/g, '')"
+
                     />
+<!--                    onkeyup="value=value.replace(/[^\w\u4E00-\u9FA5]/g, '')"-->
                   </div>
                   <div class="inputBox marginTop18">
                     <input v-model="registerInfo.invitationCode" placeholder="请输入推荐码（选填）" maxlength='11'
-                           onkeyup="value=value.replace(/[\W]/g,'')" />
+                            />
+<!--                    onkeyup="value=value.replace(/[\W]/g,'')"-->
                   </div>
                 </div>
                 <!--      找回密码          -->
@@ -155,7 +157,7 @@
                       @blur="handleResettingInfoPassWordBlur"
                       type="password"
                       maxlength='16'
-                      onkeyup="value=value.replace(/[\W]/g,'')"
+                      onkeyup="value=value.replace(/\W/g,'')"
                     />
                     <div class="verification">{{ resettingInfoVerificationPassword }}</div>
                   </div>
@@ -407,26 +409,25 @@ const handleResettingCodeTime60 = () => {
 }
 //验证码组件
 const handleCodeTime = async () => {
-  console.log(mobileInfo)
+  console.log("执行")
   if (stateBtn.value === 2 && otherBtn.value === 'other') {
     //手机号登录
     if (phoneRegex.test(mobileInfo.mobile)) {
-      console.log('手机号码格式正确')
       if (codeTime.value >= 0) {
         return
       }
-      const result = await codeloginmobile({ mobile: mobileInfo.mobile })
+      const result = codeloginmobile({ mobile: mobileInfo.mobile })
       codeTime.value = 60
       setTimeout(handleCodeTime60, 1000)
     }
   } else if (otherBtn.value === 'register') {
     //注册
     if (phoneRegex.test(registerInfo.mobile)) {
-      console.log('手机号码格式正确')
       if (registerCodeTime.value >= 0) {
         return
       }
-      const result = await registermobile({ mobile: registerInfo.mobile })
+      const result = registermobile({ mobile: registerInfo.mobile })
+      console.log("lianqi")
       registerCodeTime.value = 60
       setTimeout(handleRegisterCodeTime60, 1000)
     }
@@ -437,7 +438,7 @@ const handleCodeTime = async () => {
       if (resettingCodeTime.value >= 0) {
         return
       }
-      const result = await resetpassword({ mobile: resettingInfo.mobile })
+      const result = resetpassword({ mobile: resettingInfo.mobile })
       resettingCodeTime.value = 60
       setTimeout(handleResettingCodeTime60, 1000)
     }

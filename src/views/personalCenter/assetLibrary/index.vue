@@ -9,7 +9,7 @@
             <input v-model='assetInfo.issueName' placeholder='请输入卡牌名称'  @keyup.enter='assetLibrary' />
             <div class='searchIcon' @click='assetLibrary'></div>
           </div>
-          <div class='question' @click='handleOpenShow'></div>
+<!--          <div class='question' @click='handleOpenShow'></div>-->
         </div>
       </div>
       <div class='contentBox'>

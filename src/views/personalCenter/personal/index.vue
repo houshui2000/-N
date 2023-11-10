@@ -37,9 +37,10 @@
           <div>
             <input class='inputSumnickName' v-model='admin.authentication' disabled>
           </div>
+
           <div class='inputBtn' v-if='useUsersStore.userInfo.tradePermission<=0'>
             <div class='inputBtn2' @click='handleAuthenticationPopupShow'>
-              去实名
+              去实名{{useUsersStore.userInfo.tradePermission}}
             </div>
           </div>
         </div>
@@ -268,9 +269,8 @@ const handleCopyIcon = () => {
   textField.select()
   document.execCommand('copy')
   textField.remove()
-  ElMessage({
-    message: '复制成功',
-    type: 'success'
+  MessageBoxVue({
+    title: '复制成功'
   })
 }
 //关闭绑定银行卡列表弹窗
