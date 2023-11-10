@@ -15,7 +15,7 @@
       </template>
       <section>
         <div class="img">
-          <svg width="100" height="100" viewBox="0 0 140 133" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="145" height="145" viewBox="0 0 140 133" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g opacity="0.5">
               <circle opacity="0.39" cx="48.8093" cy="62.0241" r="48.8093" fill="#00E67F" />
               <circle opacity="0.39" cx="70.1237" cy="48.8093" r="48.8093" fill="#00E67F" />
@@ -43,7 +43,7 @@
           </svg>
         </div>
         <p class="spice">￥100.00</p>
-        <p class="chenggong">恭喜您购买成功！</p>
+        <p class="chenggong">恭喜您购买成功!</p>
         <p class="shuomimnh">您使用支付宝完成了本次资产交易，该资产您可在 个人中心-资产库板块查看。</p>
         <div @click="$emit('update:errDialoVueUpdate', false)" class="close">关闭</div>
       </section>
@@ -51,14 +51,14 @@
   </div>
 </template>
 <script setup>
-import { toRefs } from 'vue'
+import { toRefs } from "vue"
 // import SvgIcon from '@/components/SvgIcon/index.vue'
 
 const props = defineProps({
   errDialoVueUpdate: { type: Boolean, required: true }
 })
 const { errDialoVueUpdate } = toRefs(props)
-const $emit = defineEmits(['update:errDialoVueUpdate'])
+const $emit = defineEmits(["update:errDialoVueUpdate"])
 </script>
 <style lang="scss" scoped>
 .dialog-footer button:first-child {
@@ -87,14 +87,21 @@ section {
   padding: 0 51px;
   %ziti {
     color: #fff;
-    font: normal normal 400 14px 'PingFang SC';
+    font: normal normal 400 14px "PingFang SC";
   }
   .img {
-    width: 139.394px;
+    width: 139px;
     height: 133px;
+    // background-color: saddlebrown;
+    @include Myflex();
+  }
+  > p {
+    // background-color: salmon;
+    width: 100%;
+    text-align: center;
   }
   .spice {
-    font: normal normal 700 20px 'PingFang SC';
+    font: normal normal 700 20px "PingFang SC";
     color: white;
     margin-top: 33px;
   }
@@ -104,8 +111,9 @@ section {
     margin-top: 10px;
   }
   .shuomimnh {
-    font: normal normal 400 12px 'PingFang SC';
+    font: normal normal 400 12px "PingFang SC";
     margin-top: 27px;
+    text-align: left;
     color: rgba(255, 255, 255, 0.5);
   }
   .close {

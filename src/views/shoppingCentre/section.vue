@@ -23,19 +23,18 @@
   </div>
 </template>
 <script setup>
-import Section_left from './components/sectionLeft/index.vue'
-import section_right from './components/sectionRight/index.vue'
-import MYIntersectionObserver from '@/utils/IntersectionObserver.js'
-import MissWakeupPage from '@/components/missingWakeupPage/index.vue'
-
-import { ref, onMounted } from 'vue'
-import { shopliscard } from '@/network/shoppingCentre/shoppingCentre'
-import { mallHomepage } from '@/enumerate/index.js'
+import Section_left from "./components/sectionLeft/index.vue"
+import section_right from "./components/sectionRight/index.vue"
+import MYIntersectionObserver from "@/utils/IntersectionObserver.js"
+import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
+import { ref, onMounted } from "vue"
+import { shopliscard } from "@/network/shoppingCentre/shoppingCentre"
+import { mallHomepage } from "@/enumerate/index.js"
 
 const xianshi_geng = ref(null)
 const LeftData = ref({
-  name: '',
-  orderColumn: '1',
+  name: "",
+  orderColumn: "1",
   categoryIds: []
 })
 const FenYe = {
@@ -48,17 +47,33 @@ let blocktextcenter = {
   height: 0,
   sectionleft: 0
 }
+let footerRef = ref(false) // 判断底部是否出现 -- 出现左菜单不继续滚dog
 onMounted(() => {
   MYIntersectionObserver(xianshi_geng.value, () => {
     FenYe.size += 10
+    // init()
   })
-  const block = document.querySelector('.block.text-center')
-  const section_left = document.querySelector('.section_left')
+
+  let footer = document.querySelector("#footer")
+
+  MYIntersectionObserver(
+    footer,
+    () => {
+      footerRef.value = true
+    },
+    () => {
+      footerRef.value = false
+    }
+  )
+  const block = document.querySelector(".block.text-center")
+  const section_left = document.querySelector(".section_left")
   blocktextcenter.top = block.offsetTop
   blocktextcenter.height = block.offsetHeight
 
   blocktextcenter.sectionleft = section_left.getBoundingClientRect().left
-  window.addEventListener('scroll', scrollMy)
+  // console.log(blocktextcenter.sectionLeft_top)
+
+  window.addEventListener("scroll", scrollMy)
 })
 const creatData = ref({})
 const init = async () => {
@@ -72,7 +87,7 @@ const init = async () => {
     orderColumn: sort.name,
     asc: sort.sort,
     name: LeftData.value.name,
-    categoryIds: LeftData.value.categoryIds.join(',')
+    categoryIds: LeftData.value.categoryIds.join(",")
   })
   // creatData.records
   creatData.value = res.data
@@ -91,17 +106,24 @@ const LeftDataFuncation = (e) => {
 
 const sticky = ref(null)
 const scrollMy = () => {
+  if (!sticky.value) return
   let s = document.documentElement.scrollTop || document.body.scrollTop
-  console.log(s)
 
-  if (s >= blocktextcenter.top + blocktextcenter.height / 2) {
-    sticky.value.style.position = 'fixed'
-    sticky.value.style.top = 79 + 'px'
-    sticky.value.style.left = blocktextcenter.sectionleft + 'px'
+  if (footerRef.value) {
+    const sectionright = document.querySelector(".section_right").offsetHeight
+
+    sticky.value.style.position = "absolute"
+    sticky.value.style.top = Math.abs(sectionright - sticky.value.offsetHeight) + "px"
+
+    sticky.value.style.left = 0 + "px"
+  } else if (s >= blocktextcenter.top + blocktextcenter.height) {
+    sticky.value.style.position = "fixed"
+    sticky.value.style.top = 85 + "px"
+    sticky.value.style.left = blocktextcenter.sectionleft + "px"
   } else {
-    sticky.value.style.position = 'absolute'
-    sticky.value.style.top = 0 + 'px'
-    sticky.value.style.left = 0 + 'px'
+    sticky.value.style.position = "absolute"
+    sticky.value.style.top = 0 + "px"
+    sticky.value.style.left = 0 + "px"
   }
 }
 </script>
@@ -128,11 +150,10 @@ const scrollMy = () => {
       border-radius: 6px;
       backdrop-filter: blur(2px);
       background: #000819;
-
       border: 1px solid #1a2a40;
       position: absolute;
       left: 0;
-      top: 20px;
+      top: 0;
       width: 270px;
       // height: 100%;
       // height: 300px;
@@ -154,7 +175,7 @@ const scrollMy = () => {
   height: 50px;
   background: rgba(0, 5, 18, 0.4);
   @include Myflex();
-  font: normal normal 600 14px 'PingFang SC';
+  font: normal normal 600 14px "PingFang SC";
   color: white;
   backdrop-filter: blur(2px);
 }

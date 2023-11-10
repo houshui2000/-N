@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer id="footer">
     <!-- <div class="footer_top">
       <Router-link to="/"><div class="Top_div">1</div></Router-link>
       <Router-link to="/"><div class="Top_div">2</div></Router-link>
@@ -34,8 +34,8 @@
   </footer>
 </template>
 <script setup>
-import { helpCenterArr } from '@/router/modules/case'
-import { computed } from 'vue'
+import { helpCenterArr } from "@/router/modules/case"
+import { computed } from "vue"
 const helpCenterArrVue = computed(() => [...helpCenterArr])
 </script>
 <style lang="scss" scoped>
@@ -82,7 +82,7 @@ footer {
       // background-color: aqua;
       // margin-right: 20px;
       border-right: 1px solid rgba(255, 255, 255, 0.5);
-      font: normal normal 400 12px 'PingFang SC';
+      font: normal normal 400 12px "PingFang SC";
       color: white;
     }
   }

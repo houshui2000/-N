@@ -25,7 +25,7 @@
             <img v-if="creatDataAll.productUrl" class="equalProportions" :src="creatDataAll.productUrl" alt="" />
           </div>
           <div class="top_right">
-            <p>{{ creatDataAll.cardId }}</p>
+            <p>{{ creatDataAll.productName }}</p>
             <div class="bianhao">
               <span><SvgIcon size="25px" Height="25px" icon-class="bianhao" /></span>
               <el-tooltip class="box-item" effect="dark" :content="creatDataAll.cardNo" placement="top-start">
@@ -42,7 +42,7 @@
         </div>
         <div class="section_bototm">
           <div v-for="(item, index) in listOfBanks" @click="payArrAdilo = item" :key="index" class="pay">
-            <div class="img">
+            <!-- <div class="img">
               <svg
                 t="1699581324165"
                 class="icon"
@@ -84,7 +84,7 @@
                   p-id="4191"
                 ></path>
               </svg>
-            </div>
+            </div> -->
             <p>{{ item.name }}</p>
             <div :class="{ radio_article: payArrAdilo.payId == item.payId }" class="radio"></div>
           </div>
@@ -99,12 +99,12 @@
   <errDialoVue v-model:errDialoVueUpdate="errDialoVueUpdate" />
 </template>
 <script setup name="payLint">
-import { toRefs, ref, watch } from 'vue'
-import SvgIcon from '@/components/SvgIcon/index.vue'
-import errDialoVue from '../errdialo/index.vue'
-import { useRoute } from 'vue-router'
-import { shopquickbuy, buyminxpricecard } from '@/network/shoppingCentre/shoppingtwo.js'
-import { shoppaychannel } from '@/network/pay.js'
+import { toRefs, ref, watch } from "vue"
+import SvgIcon from "@/components/SvgIcon/index.vue"
+import errDialoVue from "../errdialo/index.vue"
+import { useRoute } from "vue-router"
+import { shopquickbuy, buyminxpricecard } from "@/network/shoppingCentre/shoppingtwo.js"
+import { shoppaychannel } from "@/network/pay.js"
 // import { useStore } from '@/pinia'
 const route = useRoute()
 // const { loginStore } = useStore()
@@ -116,7 +116,7 @@ const props = defineProps({
 const errDialoVueUpdate = ref(false) //支付成功弹框
 
 const { dialogVisiblePay } = toRefs(props)
-const $emit = defineEmits(['update:dialogVisiblePay'])
+const $emit = defineEmits(["update:dialogVisiblePay"])
 // const payArr = ref([
 //   { title: '支付宝支付', payChanelId: 1 },
 //   { title: '假的支付测试', payChanelId: 2 }
@@ -124,9 +124,11 @@ const $emit = defineEmits(['update:dialogVisiblePay'])
 const payArrAdilo = ref()
 /**支付 */
 const shopquickbuyPay = async () => {
+  console.log(creatDataAll.value.cardId)
+
   const res = await shopquickbuy({
-    username: route.params.vaultId, // 跳转页面的id 1
-    certNo: payArrAdilo.value.payId // 支付通道 1 是支付宝
+    cardId: creatDataAll.value.cardId, // 跳转页面的id 1
+    payChanelId: payArrAdilo.value.payId // 支付通道 1 是支付宝
   })
 
   window.location.href = res.data
@@ -139,7 +141,7 @@ const init = async () => {
   const shoppaychannelRes = await shoppaychannel()
   listOfBanks.value = shoppaychannelRes.data
   payArrAdilo.value = shoppaychannelRes.data[0]
-  console.log(shoppaychannelRes, 'shoppaychannelRes')
+  console.log(shoppaychannelRes, "shoppaychannelRes")
 }
 watch(
   dialogVisiblePay,
@@ -164,13 +166,13 @@ watch(
     height: 480px;
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
-    background: url('@/assets/images/shoppingCentre/pay_load.png') no-repeat scroll left bottom/ 100% 100%;
+    background: url("@/assets/images/shoppingCentre/pay_load.png") no-repeat scroll left bottom/ 100% 100%;
   }
 }
 .top {
   position: relative;
   text-align: center;
-  font: normal normal 700 16px 'PingFang SC';
+  font: normal normal 700 16px "PingFang SC";
   color: white;
   .close {
     cursor: pointer;
@@ -185,7 +187,7 @@ watch(
     left: 50%;
     bottom: -10px;
     transform: translateX(-50%);
-    content: '';
+    content: "";
     display: inline-block;
     width: 50px;
     height: 2px;
@@ -215,7 +217,7 @@ section {
       height: 100%;
       padding: 0 0 0 35px;
       > p {
-        font: normal normal 700 14px 'PingFang SC';
+        font: normal normal 700 14px "PingFang SC";
         color: white;
       }
       .bianhao {
@@ -230,7 +232,7 @@ section {
             @include Myflex(flex-end);
           }
           &:last-child {
-            font: normal normal 400 14px 'PingFang SC';
+            font: normal normal 400 14px "PingFang SC";
             color: white;
             @include Myflex(flex-start);
             border-radius: 3.256px;
@@ -250,7 +252,7 @@ section {
         color: rgba(255, 206, 0, 0.93);
         // @include Myflex(flex-start);
         display: inline-block;
-        font: normal normal 400 14px 'PingFang SC';
+        font: normal normal 400 14px "PingFang SC";
         span {
           // display: block;
           display: inline-block;
@@ -315,14 +317,14 @@ section {
         margin-right: 13px;
       }
       > p {
-        font: normal normal 400 12px 'PingFang SC';
+        font: normal normal 400 12px "PingFang SC";
         color: white;
       }
       .radio_article {
         width: 12px;
         height: 12px;
         &:after {
-          content: '';
+          content: "";
           display: block;
           position: absolute;
           left: 50%;
@@ -360,7 +362,7 @@ section {
   height: 45.778px;
   // padding: 0px 46.952px 0px 46px;
   @include Myflex();
-  font: normal normal 700 16px 'PingFang SC';
+  font: normal normal 700 16px "PingFang SC";
   margin: auto;
   color: white;
 }

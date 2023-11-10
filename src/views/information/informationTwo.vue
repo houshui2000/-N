@@ -11,10 +11,10 @@
       <div class="center_top">
         <p class="top">{{ asd.title }}</p>
         <div class="top_bottom">
-          <p>
-            <!-- <span>作者：</span> -->
-            <!-- <span>文章来源：</span> -->
-          </p>
+          <!--<p>
+            <!~~ <span>作者：</span> ~~>
+            <!~~ <span>文章来源：</span> ~~>
+          </p>-->
           <p>{{ asd.publishTime }}</p>
         </div>
       </div>
@@ -23,13 +23,13 @@
   </div>
 </template>
 <script setup>
-import CrumbsVue from '@/components/crumbs/index.vue'
-import { shopnewsdetail } from '@/network/information'
-import { useRoute } from 'vue-router'
-import { ref } from 'vue'
+import CrumbsVue from "@/components/crumbs/index.vue"
+import { shopnewsdetail } from "@/network/information"
+import { useRoute } from "vue-router"
+import { ref } from "vue"
 const route = useRoute()
 
-const asd = ref('')
+const asd = ref("")
 const init = async () => {
   const res = await shopnewsdetail({ id: route.params.id })
   console.log(res)
@@ -51,19 +51,19 @@ init()
     min-height: 300px;
     width: 100%;
     border-radius: 6px;
-    padding: 33px;
+    padding: 20px 33px 33px 33px;
     @include bordergradientMY(linear-gradient(180deg, rgba(45, 38, 81, 0.9) 0%, rgba(46, 37, 81, 0.9) 100%));
     .center_top {
       padding-bottom: 18px;
       border-bottom: 1px solid #2a314c;
       .top {
-        font: normal normal 400 24px 'PingFang SC';
+        font: normal normal 400 24px "PingFang SC";
         color: #ffffff;
-        margin-bottom: 17px;
+        margin-bottom: 10px;
       }
       .top_bottom {
         color: rgba(255, 255, 255, 0.8);
-        font: normal normal 400 12px 'PingFang SC';
+        font: normal normal 400 12px "PingFang SC";
         @include Myflex(space-between);
         > p {
           &:first-child {

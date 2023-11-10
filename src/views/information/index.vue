@@ -34,8 +34,8 @@
             <div class="xinix">{{ item.publishTime }}</div>
           </div>
         </div>
-
-        <div v-if="listOfInformationArr?.records?.length !== Fenye.total" class="fenye">
+        <!-- v-if="listOfInformationArr?.records?.length !== Fenye.total" -->
+        <div class="fenye">
           <div class="fen_xi">
             <el-pagination
               :page-size="Fenye.size"
@@ -52,16 +52,16 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
-import MissWakeupPage from '@/components/missingWakeupPage/index.vue'
-import LunBoVue from './components/LunBo/index.vue'
-import { shopnewscategory, shopnews } from '@/network/information'
-import { useRouter } from 'vue-router'
-import { sessionStoragesetItem, sessionStoragegetItem } from '@/utils/storage'
+import { ref } from "vue"
+import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
+import LunBoVue from "./components/LunBo/index.vue"
+import { shopnewscategory, shopnews } from "@/network/information"
+import { useRouter } from "vue-router"
+import { sessionStoragesetItem, sessionStoragegetItem } from "@/utils/storage"
 // import { useStore } from '@/pinia'
 // const { loginStore } = useStore()
 const router = useRouter()
-const nameRef = ref('')
+const nameRef = ref("")
 const Fenye = ref({
   currentPage: 1,
   size: 10, // 一页多少条
@@ -73,7 +73,7 @@ const init = async () => {
   const res = await shopnewscategory()
   listArr.value = res.data
 
-  const number = sessionStoragegetItem('categoryId') || res.data[0].id
+  const number = sessionStoragegetItem("categoryId") || res.data[0].id
   const index = res.data.findIndex((item) => item.id === Number(number))
   nameRef.value = res.data[index].id
   listOfInformation()
@@ -81,7 +81,7 @@ const init = async () => {
 init()
 
 const xin_xi_tiao = (item) => {
-  sessionStoragesetItem('categoryId', nameRef.value)
+  sessionStoragesetItem("categoryId", nameRef.value)
   router.push(`/informationTwo/${item.id}`)
 }
 
@@ -99,7 +99,7 @@ const listOfInformation = async () => {
 }
 </script>
 <style lang="scss" scoped>
-@import '@/styles/other/paginations.scss';
+@import "@/styles/other/paginations.scss";
 :deep(.el-carousel__indicators) {
   display: none;
 }
@@ -109,14 +109,14 @@ const listOfInformation = async () => {
   .zixun {
     height: 36px;
     width: 138px;
-    font: normal normal 500 18px 'PingFang SC';
+    font: normal normal 500 18px "PingFang SC";
     color: #ffffff;
     @include Myflex(flex-start);
     padding-left: 10px;
     background: linear-gradient(90deg, rgba(235, 87, 220, 0.5) 20%, rgba(65, 81, 253, 0) 100%);
     position: relative;
     &::after {
-      content: '';
+      content: "";
       display: block;
       position: absolute;
       left: 0;
@@ -128,7 +128,7 @@ const listOfInformation = async () => {
   }
   section {
     width: 1470px;
-    margin: 30px auto;
+    margin: 26px auto 34px auto;
     .section_top {
       cursor: pointer;
       // @include bordergradientMY(
@@ -142,11 +142,11 @@ const listOfInformation = async () => {
         transition: all 0.5s;
         position: relative;
         &::after {
-          content: '';
+          content: "";
           display: inline-block;
           position: absolute;
           left: 50%;
-          bottom: 0;
+          bottom: -5px;
           transform: translateX(-50%);
           width: 50%;
           height: 2px;
@@ -155,18 +155,19 @@ const listOfInformation = async () => {
         }
       }
       > p {
-        font: normal normal 400 14px ' PingFang SC';
+        font: normal normal 400 14px " PingFang SC";
         color: white;
+        position: relative;
         display: inline-block;
         height: 100%;
         margin-right: 80px;
-        padding: 20px 12px;
+        padding: 0px 12px;
         @include Myflex();
         margin-right: 100px;
       }
     }
     .section_bottom {
-      margin-top: 23px;
+      margin-top: 33px;
       @include bordergradientMY(linear-gradient(90deg, rgba(83, 56, 119, 0.9) 0%, rgba(53, 81, 125, 0.9) 100%));
       .Xin_xi_tiao {
         border-bottom: 1px solid rgb(42, 49, 76);
@@ -211,20 +212,21 @@ const listOfInformation = async () => {
             height: 166px;
             // @include Myflex(flex-start); // background-color: sandybrown;
             .top {
-              font: normal normal 400 18px 'PingFang SC';
+              font: normal normal 500 18px "PingFang SC";
               color: white;
               height: 35px;
+              @include Myflex(flex-start);
               span {
                 padding: 4px;
                 border-radius: 4px;
-                font: normal normal 400 12px 'PingFang SC';
+                font: normal normal 400 12px "PingFang SC";
                 background: #ed614c;
                 margin-right: 10px;
               }
             }
             .center_right_top {
               height: calc(100% - 35px);
-              font: normal normal 400 14px 'PingFang SC';
+              font: normal normal 400 14px "PingFang SC";
               overflow: hidden;
               color: rgba(255, 255, 255, 0.8);
             }
@@ -234,9 +236,9 @@ const listOfInformation = async () => {
           position: absolute;
           right: 30px;
           bottom: 30px;
-          font: normal normal 600 14px ' PingFang SC';
+          font: normal normal 200 14px " PingFang SC";
           color: #fff;
-          opacity: 0.6;
+          opacity: 0.8;
           text-align: right;
         }
       }

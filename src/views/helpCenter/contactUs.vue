@@ -8,7 +8,7 @@
     <div class="linaxi_right">asdsa</div>
   </div>
 </template>
-<script setup lang="ts"></script>
+<script setup></script>
 <style lang="scss" scoped>
 .lianxi {
   width: 100%;
@@ -21,12 +21,12 @@
       width: 100%;
       height: 50px;
       background: #fff;
-      border-radius: 8px;
+      border-radius: 2px;
       @include bordergradientMY(
         linear-gradient(180deg, rgba(134, 87, 184, 0.9) 0%, rgba(99, 149, 231, 0.9) 100%),
         linear-gradient(180deg, #241328 0%, #000c2c 100%)
       );
-      font: normal normal 400 14px 'PingFang SC';
+      font: normal normal 400 14px "PingFang SC";
       color: white;
       @include Myflex();
       margin-bottom: 30px;

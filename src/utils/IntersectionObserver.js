@@ -1,5 +1,5 @@
 
-const MYIntersectionObserver = (el, callBack) => {
+const MYIntersectionObserver = (el, callBack, callElseBack = () => { }) => {
   // const src =
   //   console.log(src)
   const intersectionObserver = new IntersectionObserver((entries) => {
@@ -7,6 +7,7 @@ const MYIntersectionObserver = (el, callBack) => {
     // 我们不需要做任何事情。
     if (entries[0].intersectionRatio <= 0) {
       // console.log('不可见')
+      callElseBack()
       return
     }
     // intersectionObserver.unobserve(el)
