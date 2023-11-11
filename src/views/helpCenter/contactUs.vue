@@ -37,6 +37,8 @@
     width: 1220px;
     height: 524px;
     padding: 25px;
+    overflow: hidden;
+    overflow-y: auto;
     border-radius: 2px;
     @include bordergradientMY(
       linear-gradient(180deg, rgba(44, 34, 68, 1) 0%, rgba(33, 44, 67, 0.9) 100%),

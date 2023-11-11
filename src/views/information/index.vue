@@ -104,7 +104,6 @@ const listOfInformation = async () => {
     categoryId: nameRef.value
   })
   Fenye.value.total = res.data.total
-  console.log(res.data)
   listOfInformationArr.value = res.data
 }
 watch(

@@ -61,7 +61,6 @@ import { ref, reactive } from "vue"
 import { codeloginmobile, logincode, loginmobile } from "@/network/user.js"
 import { setItem } from "@/utils/storage.js"
 import { registermobile } from "@/network/userInterface.js"
-
 const { loginStore, useUsersStore } = useStore()
 let state = ref(false) //切换按钮 false手机号 、true密码账号
 let phone = ref("")
@@ -72,6 +71,7 @@ let codeTime = ref(-1)
 // let list=reactive([{},{}])
 //登录按钮
 const handleLoginBtn = async (res) => {
+  // useUsersStore.handleUserInfo()
   if (res === "wx" || res === "qq" || res === "register" || res === "retrievePassword") loginStore.registerState = res
   if (res === "phone") {
     let result = await logincode({ mobile: phone.value, code: code.value })

@@ -24,19 +24,19 @@ export function indexsysNotice () {
   })
 }
 
-//
-//
-//
-/**
- * 关于我们
- *
-*/
-export function shopcarddetail (params) {
-  return service({
-    url: '/other/aboutUs',
-    method: 'GET', params
-  })
-}
+// //
+// //
+// //
+// /**
+//  * 关于我们
+//  *
+// */
+// export function shopcarddetail (params) {
+//   return service({
+//     url: '/other/aboutUs',
+//     method: 'GET', params
+//   })
+// }
 
 /**
  * 合规声明

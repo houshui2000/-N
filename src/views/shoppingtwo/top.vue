@@ -68,7 +68,12 @@
               在售
               <span>{{ item.onSellingCount }}</span>
             </p>
-            <div class="mounch">
+            <div
+              :style="{
+                background: item.onSellingCount > 0 ? 'linear-gradient(90deg, #2d42ff 0%, #df00c9 96.64%)' : '#4e4e4e'
+              }"
+              class="mounch"
+            >
               <span>
                 <i>￥</i>
                 {{ item.minPrice }}
@@ -122,19 +127,22 @@ const onePieceBuyin = async () => {
     loginStore.login = true
     return
   }
-  await initminimumPice()
+  if (props.creatData.onSellingCount == 0) {
+    MessageBoxVue({
+      title: "已售罄"
+    })
+    return
+  }
   if (Gethelowestprice.value == undefined) {
     MessageBoxVue({
       title: "没有找到最低价"
     })
     return
   }
-  if (props.creatData.buyRestrict == 0) {
-    MessageBoxVue({
-      title: "已售罄"
-    })
-    return
-  }
+
+  await initminimumPice()
+  // if (props.creatData.buyRestrict == 0) {
+
   dialogVisiblePay.value = true
 }
 </script>
@@ -300,6 +308,7 @@ const onePieceBuyin = async () => {
   }
   .S_R_XIlie {
     height: calc(100% - 40px);
+    padding-top: 10px;
     margin-top: 19px;
     overflow: auto;
     display: flex;

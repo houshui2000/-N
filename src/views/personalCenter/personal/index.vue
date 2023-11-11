@@ -129,7 +129,8 @@
 </template>
 
 <script setup>
-import { reactive, nextTick, computed, ref, onUnmounted } from "vue"
+import { reactive, nextTick, computed, ref, onUnmounted, watch } from "vue"
+
 // import { ElMessage } from "element-plus"
 import { useStore } from "@/pinia/index.js"
 import { bindInvitationCodePost, invitationCodePost, nicknameEdit } from "@/network/personalCenter.js"
@@ -146,6 +147,27 @@ let bankCardUnBindingShow = ref(false) //控制绑定银行卡
 let bankCardBindingShow = ref(false) //绑定银行卡
 let bankCardBindingCodeShow = ref(false) //控制验证码显示
 let orderId = ref("") //订单id
+watch(
+  () => useUsersStore,
+  (newVal) => {
+    admin.value = {
+      nickName: newVal.userInfo.nickname,
+      mobile: newVal.userInfo.mobile,
+      password: "******",
+      authentication: newVal.userInfo.tradePermission > 0 ? "已实名" : "未实名",
+      invitationCode: newVal.userInfo.ownerInvitationCode, //自己邀请码
+      bindingCode: newVal.userInfo.invitationCode //绑定邀请码
+    }
+    console.log(newVal.userInfo, "/newval", admin.value)
+    // mobileInfo.mobile = ""
+    // mobileInfo.code = ""
+    // passwordInfo.mobile = ""
+    // passwordInfo.password = ""
+  },
+  {
+    deep: true
+  }
+)
 let admin = ref({
   nickName: useUsersStore.userInfo.nickname,
   mobile: useUsersStore.userInfo.mobile,

@@ -1,33 +1,23 @@
 <template>
   <div class="lianxi">
-    <!-- 关于我们 -->
+    <!-- 用户协议 -->
     <div class="lianx_left">
-      <div class="left_one">关于我们</div>
+      <div class="left_one">用户协议</div>
     </div>
-    <div class="linaxi_right" v-html="AboutUs"></div>
+    <div class="linaxi_right" v-html="userStatementText"></div>
   </div>
 </template>
-<!-- <<<<<<< HEAD
-<script setup>
-import { shopcarddetail } from "@/network/api"
-const init = async () => {
-  const res = await shopcarddetail()
-  console.log(res)
-}
-// init()
-======= -->
 <script setup lang="ts">
 import { ref } from 'vue';
-import { aboutUs } from '../../network/agreement';
-const AboutUs = ref('')
+import { userStatement } from '../../network/agreement';
+const userStatementText = ref('')
 const goAboutUs = () => {
-  aboutUs().then(res=>{
+  userStatement().then(res=>{
     console.log(res)
-    AboutUs.value = res.data
+    userStatementText.value = res.data
   })
 }
 goAboutUs()
-// >>>>>>> 82d6bc4598a48a22b969b014e6bfe733ef37c632
 </script>
 <style lang="scss" scoped>
 .lianxi {
@@ -58,7 +48,6 @@ goAboutUs()
     padding: 25px;
     overflow: hidden;
     overflow-y: auto;
-    color: white;
     border-radius: 8px;
     @include bordergradientMY(
       linear-gradient(180deg, rgba(44, 34, 68, 1) 0%, rgba(33, 44, 67, 0.9) 100%),

@@ -377,7 +377,6 @@ const handlePayShow = async (item) => {
   const res = await shopbuyPay({
     orderNo: item.orderNo
   })
-  console.log(res.data)
   window.location.href = res.data
 }
 
