@@ -22,7 +22,6 @@ import { aboutUs } from '../../network/agreement';
 const AboutUs = ref('')
 const goAboutUs = () => {
   aboutUs().then(res=>{
-    console.log(res)
     AboutUs.value = res.data
   })
 }

@@ -18,7 +18,11 @@ import { useRoute } from "vue-router"
 import uploadAvatarVue from "./components/gongaoDealo/index.vue"
 import ScrollZiMuVue from "./components/scrollZiMu/index.vue"
 import { indexsysNotice } from "@/network/api"
-import { ref } from "vue"
+import { ref, watch } from "vue"
+import { useStore } from "@/pinia"
+
+const { loginStore } = useStore()
+
 const route = useRoute()
 const ScrollZiMuVueFRFDDD = ref("")
 const dialogVisiblePay = ref(false) //公告弹框
@@ -31,6 +35,17 @@ indexsysNoticeFun()
 const scrollTo = () => {
   dialogVisiblePay.value = !dialogVisiblePay.value
 }
+watch(
+  () => loginStore.token,
+  (newVal) => {
+    console.log(newVal,'/newVal')
+    if (!newVal) return
+    scrollTo()
+  },
+  {
+    deep: true
+  }
+)
 </script>
 <style lang="scss" scoped>
 #homePC {

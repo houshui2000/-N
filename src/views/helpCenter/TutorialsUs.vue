@@ -1,20 +1,22 @@
 <template>
   <div class="lianxi">
-    <!-- 隐私协议 -->
+    <!-- 相关教程 -->
     <div class="lianx_left">
-      <div class="left_one">隐私协议</div>
+      <div class="left_one">相关教程</div>
     </div>
-    <div class="linaxi_right" v-html="privatePolicyText"></div>
+    <div class="linaxi_right" v-html="tutorialText"></div>
   </div>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import { privatePolicy } from '../../network/agreement';
-const privatePolicyText = ref('')
+import { tutorial } from '../../network/agreement';
+const tutorialText = ref('')
 const goAboutUs = () => {
-  privatePolicy().then(res=>{
+  tutorial().then(res=>{
     console.log(res)
-    privatePolicyText.value = res.data
+    res.data.map(item => {
+      tutorialText.value = tutorialText.value + item.content + '<br/>'
+    })
   })
 }
 goAboutUs()
@@ -46,9 +48,9 @@ goAboutUs()
     width: 1220px;
     height: 524px;
     padding: 25px;
-    border-radius: 8px;
     overflow: hidden;
     overflow-y: auto;
+    border-radius: 8px;
     @include bordergradientMY(
       linear-gradient(180deg, rgba(44, 34, 68, 1) 0%, rgba(33, 44, 67, 0.9) 100%),
       linear-gradient(180deg, #241328 0%, #000c2c 100%)
