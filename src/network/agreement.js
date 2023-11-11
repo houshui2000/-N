@@ -39,3 +39,33 @@ export const privateStatement = (params) => {
     method: 'get', params
   })
 }
+
+/**
+ * 联系我们列表
+*/
+export const privateStatement = (params) => {
+  return service({
+    url: `/other/private-statement`,
+    method: 'get', params
+  })
+}
+
+/**
+ * 相关教程列表
+*/
+export const privateStatement = (params) => {
+  return service({
+    url: `/other/private-statement`,
+    method: 'get', params
+  })
+}
+
+/**
+ * 合规声明列表
+*/
+export const privateStatement = (params) => {
+  return service({
+    url: `/other/private-statement`,
+    method: 'get', params
+  })
+}

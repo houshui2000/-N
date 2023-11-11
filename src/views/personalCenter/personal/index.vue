@@ -60,6 +60,7 @@
           <div class="label">邀请码</div>
           <div style="display: flex">
             <input
+              ref="inputRef"
               class="inputSuminvitationCode"
               v-model="admin.invitationCode"
               :disabled="adminInput.invitationCode"
@@ -129,7 +130,7 @@
 </template>
 
 <script setup>
-import { reactive, nextTick, computed, ref, onUnmounted, watch } from "vue"
+import { reactive, nextTick, computed, ref, onUnmounted, watch, onMounted } from "vue"
 import { ElMessage } from "element-plus"
 import { useStore } from "@/pinia/index.js"
 import { bindInvitationCodePost, invitationCodePost, nicknameEdit } from "@/network/personalCenter.js"
@@ -167,6 +168,10 @@ watch(
     deep: true
   }
 )
+const inputRef = ref(null)
+onMounted(()=>{
+  console.log(inputRef.value.style, '////')
+})
 let admin = ref({
   nickName: useUsersStore.userInfo.nickname,
   mobile: useUsersStore.userInfo.mobile,
