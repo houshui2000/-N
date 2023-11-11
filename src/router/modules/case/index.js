@@ -20,6 +20,26 @@ export const helpCenterArr = [
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
       scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
     }
+  },{
+    path: 'userUs',
+    name: 'userUs',
+    component: () => import('@/views/helpCenter/userUs.vue'),
+    meta: {
+      name: '用户协议',
+      immediate: false, // 路由显示
+      gundong: true, // 实时左侧滚动组件false 开启，true关闭
+      scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
+    }
+  },{
+    path: 'privacyUs',
+    name: 'privacyUs',
+    component: () => import('@/views/helpCenter/privacyUs.vue'),
+    meta: {
+      name: '隐私协议',
+      immediate: false, // 路由显示
+      gundong: true, // 实时左侧滚动组件false 开启，true关闭
+      scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
+    }
   },
 ]
 

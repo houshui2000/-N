@@ -4,10 +4,21 @@
     <div class="lianx_left">
       <div class="left_one">关于我们</div>
     </div>
-    <div class="linaxi_right">asdsa</div>
+    <div class="linaxi_right" v-html="AboutUs"></div>
   </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue';
+import { aboutUs } from '../../network/agreement';
+const AboutUs = ref('')
+const goAboutUs = () => {
+  aboutUs().then(res=>{
+    console.log(res)
+    AboutUs.value = res.data
+  })
+}
+goAboutUs()
+</script>
 <style lang="scss" scoped>
 .lianxi {
   width: 100%;
@@ -35,6 +46,9 @@
     width: 1220px;
     height: 524px;
     padding: 25px;
+    overflow: hidden;
+    overflow-y: auto;
+    color: white;
     border-radius: 8px;
     @include bordergradientMY(
       linear-gradient(180deg, rgba(44, 34, 68, 1) 0%, rgba(33, 44, 67, 0.9) 100%),

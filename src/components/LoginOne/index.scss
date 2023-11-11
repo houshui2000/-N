@@ -264,6 +264,9 @@
 
             .loginBox {
               margin-top: 27px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
               position: relative;
 
               .otherBtnBox {

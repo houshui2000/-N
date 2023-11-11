@@ -205,9 +205,9 @@
                 >
                   <el-checkbox v-model="agreement" class="checkboxBox-checkbox"></el-checkbox>
                   我已满18周岁，并且同意
-                  <span style="fontsize: 12px">《用户协议》</span>
+                  <span style="fontsize: 12px" @click="() => (loginStore.login = false, $router.push('/helpCenter/userUs'))">《用户协议》</span>
                   和
-                  <span style="fontsize: 12px">《隐私协议》</span>
+                  <span style="fontsize: 12px" @click="() => (loginStore.login = false, $router.push('/helpCenter/privacyUs'))">《隐私协议》</span>
                 </div>
               </div>
             </div>
@@ -231,7 +231,6 @@ import {
   resetpassword
 } from "@/network/user.js"
 import { setItem } from "@/utils/storage.js"
-
 const { loginStore, useUsersStore } = useStore()
 // 校验规则
 const phoneRegex = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
@@ -516,6 +515,7 @@ const handleResettingInfoPassWordAgainBlur = () => {
     resettingInfoVerificationPasswordAgain.value = ""
   }
 }
+
 // // 请输入推荐码（选填）
 // const oninputreferralCode = () => {
 //   let zheng =
