@@ -3,14 +3,14 @@
     <!--  左边  -->
     <div class="navContent-bottom" ref="navBorder"></div>
     <div class="left">
-      <div class="logo">
+      <div @click="router.push('/')" class="logo">
         <div class="logoImg"></div>
       </div>
       <div class="navContent">
         <div
           class="navContent-box"
           :data-dom="`slide${item.name}`"
-          :class="{ active: navIndex === item.name }"
+          :class="{ active: navIndex === `slide${item.name}` }"
           v-for="(item, index) in navList"
           :key="item.name"
           ref="navContentbox"
@@ -22,7 +22,8 @@
     </div>
     <!--  右边  -->
     <div class="right">
-      <div @click="router.push('/app')" class="download"></div>
+      <!-- <div @click="router.push('/app')" class="download">相关资讯</div> -->
+      <div @click="router.push('/app')" class="download">APP下载</div>
 
       <!-- <div class="cardMoneyBox">
         <div class="cardMoney"></div>
@@ -175,7 +176,7 @@ const navContenBottomDOM = () => {
   const { left, bottom, width } = genuineDOm.getBoundingClientRect()
   navBorder.value.style.width = width + "px"
   navBorder.value.style.left = left + "px"
-  navBorder.value.style.top = bottom - 10 + "px"
+  navBorder.value.style.top = bottom - 4 + "px"
 }
 watch(
   () => router,
@@ -212,7 +213,7 @@ watch(
     background: url($gxsnavHover) no-repeat center;
     background-size: contain;
     position: fixed;
-    top: 60px;
+    top: 65px;
     z-index: 99;
     left: 0;
     transition: all 0.5s;
@@ -223,6 +224,7 @@ watch(
     display: flex;
 
     .logo {
+      cursor: pointer;
       width: 347px;
       height: 70px;
       display: flex;
@@ -237,7 +239,12 @@ watch(
         margin-left: 58px;
       }
     }
-
+    .active {
+      font-weight: 700;
+      span {
+        color: white;
+      }
+    }
     .navContent {
       max-width: 880px;
       height: 70px;
@@ -249,7 +256,7 @@ watch(
         margin-right: 80px;
         height: 70px;
         line-height: 70px;
-        color: white;
+        color: #cccccc;
         font-size: 16px;
         font-weight: 400;
         cursor: pointer;
@@ -257,10 +264,6 @@ watch(
         flex-direction: column;
         position: relative;
         transition: all 0.3s;
-
-        &.active {
-          font-weight: 700;
-        }
       }
     }
   }
@@ -281,10 +284,15 @@ watch(
     // }
 
     .download {
-      width: 26px;
+      width: 90px;
       height: 26px;
-      background: url($gxsappdownload) no-repeat center;
+      background: url($gxsappdownload) no-repeat left center;
+      color: wheat;
+      padding-left: 31px;
+      @include Myflex();
       background-size: contain;
+      color: #fff;
+      font: normal normal 400 14px "PingFang SC";
       margin-left: 30px;
     }
 

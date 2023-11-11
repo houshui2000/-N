@@ -15,23 +15,18 @@
   </div>
 </template>
 <script setup>
-// import { indexbanner } from '@/network/api'
-import { ref } from 'vue'
-// import Banner from '../barrage/index.vue'
+import { indexbanner } from "@/network/api"
+import { ref } from "vue"
 const carouselUtem = ref([])
 const creat = async () => {
-  // const res = await indexbanner()
-  const kaCe = new URL('../../../../assets/images/carggo/Rectangle 1602_ce.png', import.meta.url).href
-  // if (res.code === 200) {
-  carouselUtem.value = [{ url: kaCe }, { url: kaCe }, { url: kaCe }, { url: kaCe }, { url: kaCe }]
-  // }
+  const res = await indexbanner()
+  if (res.code === 200) {
+    carouselUtem.value = res.data
+  }
 }
 creat()
 </script>
 <style lang="scss" scoped>
-:deep(.el-carousel__indicators) {
-  // bottom: 250px;
-}
 :deep(.el-carousel__container) {
   height: 288px !important;
 }

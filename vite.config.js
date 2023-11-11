@@ -104,6 +104,7 @@ export default defineConfig((mode) => {
 
     server: {
       host: '0.0.0.0',
+      // host: 'test.card.cardesport.com',
       port: env.VITE_PORT,
       open: env.VITE_OPEN,
       // cors: true,

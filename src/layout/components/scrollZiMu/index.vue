@@ -3,41 +3,50 @@
     <img class="img" src="@/assets/images/carggo/Gongao.png" alt="" />
     <div ref="lunbo" class="lunbo">
       <div style="display: flex; justify-content: center; align-items: center" ref="spanRef">
-        <span class="wenzi">{{ props.title }}</span>
+        <span class="wenzi">{{ title }}</span>
       </div>
     </div>
   </div>
 </template>
 <script setup>
-import { watch, ref, nextTick } from "vue"
-const props = defineProps({
-  title: { type: String, required: true }
-})
+import { ref, onMounted, nextTick } from "vue"
+import { indexsysNotice } from "@/network/api"
 
 const lunbo = ref()
+const title = ref()
 const spanRef = ref()
 const scroll = () => {
   if (!spanRef.value) return
 
   let offsetLeft = Number(spanRef.value.offsetLeft - 2)
-  const xin = Math.abs(spanRef.value.offsetLeft) > lunbo.value.offsetWidth
+  const xin = Math.abs(spanRef.value.offsetLeft) - Math.abs(spanRef.value.offsetLeft) / 2 > lunbo.value.offsetWidth
+
   if (xin) {
     offsetLeft = lunbo.value.offsetWidth
+    // return
   }
   spanRef.value.style.left = `${offsetLeft}px`
   requestAnimationFrame(scroll)
 }
+const indexsysNoticeFun = async () => {
+  const res = await indexsysNotice()
+  title.value = ScrollViseBleFComponent(res.data)
+  nextTick(() => {
+    spanRef.value.style.width = `${spanRef.value.offsetWidth + 50}px`
+    requestAnimationFrame(scroll)
+  })
+}
+const ScrollViseBleFComponent = (res) => {
+  var divElement = document.createElement("div") // 设置HTML给它
+  divElement.innerHTML = res // 获取文本内容
+  const ress = divElement.textContent || divElement.innerText || ""
 
-watch(
-  () => props.title,
-  () => {
-    nextTick(() => {
-      spanRef.value.style.width = `${spanRef.value.offsetWidth + 50}px`
-      requestAnimationFrame(scroll)
-      // scroll()
-    })
-  }
-)
+  return ress
+}
+onMounted(() => {
+  indexsysNoticeFun()
+  // window.addEventListener("resize",)
+})
 </script>
 <style lang="scss" scoped>
 .zuiwai {
@@ -90,6 +99,8 @@ watch(
         font: normal normal 400 14px "PingFang SC";
         color: white;
         line-height: $LunBo_height;
+        word-break: keep-all;
+        white-space: nowrap;
       }
     }
   }

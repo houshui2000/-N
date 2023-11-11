@@ -131,7 +131,8 @@
 
 <script setup>
 import { reactive, nextTick, computed, ref, onUnmounted, watch, onMounted } from "vue"
-import { ElMessage } from "element-plus"
+
+// import { ElMessage } from "element-plus"
 import { useStore } from "@/pinia/index.js"
 import { bindInvitationCodePost, invitationCodePost, nicknameEdit } from "@/network/personalCenter.js"
 import MessageBoxVue from "@/components/MessageBox/index.js"
@@ -158,7 +159,7 @@ watch(
       invitationCode: newVal.userInfo.ownerInvitationCode, //自己邀请码
       bindingCode: newVal.userInfo.invitationCode //绑定邀请码
     }
-    console.log(newVal.userInfo,'/newval', admin.value);
+    console.log(newVal.userInfo, "/newval", admin.value)
     // mobileInfo.mobile = ""
     // mobileInfo.code = ""
     // passwordInfo.mobile = ""
@@ -257,7 +258,7 @@ const handleBankCardPopupShow = () => {
   bankCardShow.value = true
 }
 //打开银行卡子组件传值
-const handleUnBindingEmit = (val) => {
+const handleUnBindingEmit = () => {
   bankCardShow.value = false
   bankCardUnBindingShow.value = true
 }

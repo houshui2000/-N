@@ -31,6 +31,7 @@ const queryFn = (e) => {
   const screenDoc = document.querySelector(".option") // 需要关闭的元素
   const valueInfoDoc = document.querySelector(".gxsSelect") // 用于开启的元素
   if (valueInfoDoc && valueInfoDoc.contains(e.target) && screenDoc && !screenDoc.contains(e.target)) {
+    //
   } else {
     showState.value = false
   }
@@ -123,7 +124,7 @@ onUnmounted(() => {
       border-bottom: 1px solid #232323;
       padding-left: 22px;
       //text-align: center;
-      color: rgba(#fff, 0.7);
+      color: rgba(#fff, 0.5);
       //background-color: #09192a;
       transition: color 0.3s;
       &:hover {

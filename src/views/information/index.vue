@@ -28,7 +28,7 @@
             </div>
             <div class="center_right">
               <div class="top">
-                <span>置顶</span>
+                <span v-if="item.top">置顶</span>
                 {{ item.title }}
               </div>
               <div class="center_right_top">{{ item.introduction }}</div>
@@ -54,7 +54,7 @@
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref, watch } from "vue"
 import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
 // import asVue from "./as.vue"
 import LunBoVue from "./components/LunBo/index.vue"
@@ -104,9 +104,17 @@ const listOfInformation = async () => {
     categoryId: nameRef.value
   })
   Fenye.value.total = res.data.total
-
   listOfInformationArr.value = res.data
 }
+watch(
+  () => Fenye.value.currentPage,
+  () => {
+    init()
+  },
+  {
+    deep: true
+  }
+)
 </script>
 <style lang="scss" scoped>
 @import "@/styles/other/paginations.scss";

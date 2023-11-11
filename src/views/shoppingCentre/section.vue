@@ -2,7 +2,11 @@
   <div class="section">
     <div class="section_left">
       <div ref="sticky" class="sticky">
-        <Section_left :LeftData="LeftData" @LeftData="LeftDataFuncation($event)" />
+        <Section_left
+          @LeftDataInput="(LeftData.name = $event), init()"
+          :LeftData="LeftData"
+          @LeftData="LeftDataFuncation($event)"
+        />
       </div>
     </div>
 
@@ -56,7 +60,7 @@ onUnmounted(() => {
 onMounted(() => {
   MYIntersectionObserver(xianshi_geng.value, () => {
     FenYe.size += 10
-    // init()
+    init()
   })
 
   let footer = document.querySelector("#footer")
@@ -100,8 +104,8 @@ init()
 let time = null
 /**子组件改动更新接口 */
 const LeftDataFuncation = (e) => {
-  LeftData.value = e
-
+  LeftData.value.orderColumn = e[1]
+  LeftData.value.categoryIds = e[0]
   if (time) clearTimeout(time)
   time = setTimeout(() => {
     init()
@@ -115,10 +119,12 @@ const scrollMy = () => {
 
   if (footerRef.value) {
     const sectionright = document.querySelector(".section_right").offsetHeight
-
     sticky.value.style.position = "absolute"
-    sticky.value.style.top = Math.abs(sectionright - sticky.value.offsetHeight) + "px"
-
+    if (sectionright < sticky.value.offsetHeight) {
+      sticky.value.style.top = Math.abs(sectionright - sticky.value.offsetHeight / 2) + "px"
+    } else {
+      sticky.value.style.top = Math.abs(sectionright - sticky.value.offsetHeight) + "px"
+    }
     sticky.value.style.left = 0 + "px"
   } else if (s >= blocktextcenter.top + blocktextcenter.height) {
     sticky.value.style.position = "fixed"

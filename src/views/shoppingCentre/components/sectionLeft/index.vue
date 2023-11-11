@@ -1,80 +1,74 @@
 <template>
-  <div>
-    <div class="S_L_top">
-      <p>搜索</p>
-      <div class="input">
-        <el-input v-model.trim="search.name" class="w-50 m-2" placeholder="找寻理想的资产" />
-        <div class="icon">
-          <SvgIcon Height="15" size="20" icon-class="sousuo" />
-        </div>
+  <div class="S_L_top">
+    <p>搜索</p>
+    <div class="input">
+      <el-input
+        @keyup.enter="$emit('LeftDataInput', search.name)"
+        v-model.trim="search.name"
+        class="w-50 m-2"
+        placeholder="找寻理想的资产"
+      />
+      <div @click="$emit('LeftDataInput', search.name)" class="icon">
+        <SvgIcon Height="15" size="20" icon-class="sousuo" />
       </div>
     </div>
-    <!-- 排序方式 -->
-    <div class="S_L_Par">
-      <p>排序方式</p>
-      <div class="input_select">
-        <selectVue v-model:orderColumn="search.orderColumn" :mallHomepage="mallHomepage">
-          <template #top_icon_true="{ dropdownMenu }">
-            <div class="top_icon">
-              <!-- {{ dropdownMenu }} -->
-              <p v-show="!dropdownMenu">
-                <el-icon><ArrowUpBold /></el-icon>
-              </p>
-              <p v-show="dropdownMenu">
-                <el-icon><ArrowDownBold /></el-icon>
-              </p>
-            </div>
-          </template>
-        </selectVue>
-        <!-- <el-select
-          popper-class="blueBack"
-          v-model="search.orderColumn"
-          class="m-2"
-          placeholder="价格由低到高"
-          size="large"
-        >
-          <!~~ <el-option v-for="item in mallHomepage" :key="item.value" :label="item.label" :value="item.value" /> ~~>
-        </el-select>-->
-      </div>
+  </div>
+  <!-- 排序方式 -->
+  <div class="S_L_Par">
+    <p>排序方式</p>
+    <div class="input_select">
+      <selectVue v-model:orderColumn="search.orderColumn" :mallHomepage="mallHomepage">
+        <template #top_icon_true="{ dropdownMenu }">
+          <div class="top_icon">
+            <!-- {{ dropdownMenu }} -->
+            <p v-show="!dropdownMenu">
+              <el-icon><ArrowUpBold /></el-icon>
+            </p>
+            <p v-show="dropdownMenu">
+              <el-icon><ArrowDownBold /></el-icon>
+            </p>
+          </div>
+        </template>
+      </selectVue>
     </div>
-    <!-- 类别 -->
-    <div class="S_L_LetBie">
-      <p @click="showhide = !showhide">
-        <span>类别</span>
-        <span class="sadas" v-show="showhide">
-          <el-icon><ArrowDownBold /></el-icon>
-          <!-- <el-icon><ArrowUpBold /></el-icon> -->
-        </span>
-        <span class="sadas" v-show="!showhide">
-          <!-- <el-icon size="10"><ArrowUpBold /></el-icon> -->
-          <el-icon><ArrowUpBold /></el-icon>
-        </span>
-      </p>
-      <div ref="LeiBie_xia" class="LeiBie_xia">
-        <div ref="lei" v-for="item in categoryData" :key="item" class="lei">
-          <el-checkbox-group v-model="search.categoryIds">
-            <el-checkbox :label="item.id"></el-checkbox>
-            <span class="wenzi">{{ item.name }}</span>
-            <span class="shu">{{ item.count }}</span>
-          </el-checkbox-group>
-        </div>
+  </div>
+  <!-- 类别 -->
+  <div class="S_L_LetBie">
+    <p @click="showhide = !showhide">
+      <span>类别</span>
+      <span class="sadas" v-show="showhide">
+        <el-icon><ArrowDownBold /></el-icon>
+        <!-- <el-icon><ArrowUpBold /></el-icon> -->
+      </span>
+      <span class="sadas" v-show="!showhide">
+        <!-- <el-icon size="10"><ArrowUpBold /></el-icon> -->
+        <el-icon><ArrowUpBold /></el-icon>
+      </span>
+    </p>
+    <div ref="LeiBie_xia" class="LeiBie_xia">
+      <div ref="lei" v-for="item in categoryData" :key="item" class="lei">
+        <el-checkbox-group v-model="search.categoryIds">
+          <el-checkbox :label="item.id"></el-checkbox>
+          <span class="wenzi">{{ item.name }}</span>
+          <span class="shu">{{ item.count }}</span>
+        </el-checkbox-group>
       </div>
     </div>
   </div>
 </template>
 <script setup name="lefetSectuibLet">
-import SvgIcon from '@/components/SvgIcon/index.vue'
-import selectVue from '@/components/select/index.vue'
-import { ref, watch, nextTick } from 'vue'
-import { ArrowDownBold, ArrowUpBold } from '@element-plus/icons-vue'
-import { shopcardcategories } from '@/network/shoppingCentre/shoppingCentre'
-import { mallHomepage } from '@/enumerate/index.js'
+import SvgIcon from "@/components/SvgIcon/index.vue"
+import selectVue from "@/components/select/index.vue"
+import { ref, watch, nextTick } from "vue"
+import { ArrowDownBold, ArrowUpBold } from "@element-plus/icons-vue"
+import { shopcardcategories } from "@/network/shoppingCentre/shoppingCentre"
+import { mallHomepage } from "@/enumerate/index.js"
 const props = defineProps({
   LeftData: { type: Object, required: true }
 })
 const search = ref({
-  name: '',
-  orderColumn: '1',
+  name: "",
+  orderColumn: "1",
   categoryIds: []
 })
 const inputFuncation = () => {
@@ -87,7 +81,7 @@ const showhide = ref(false) // 显示隐藏 -- 类别
 const LeiBie_xia = ref(null)
 const lei = ref(null)
 
-const categoryData = ref([{ id: '', name: '', count: '', boolea: false }]) //类别
+const categoryData = ref([{ id: "", name: "", count: "", boolea: false }]) //类别
 const creatMy = async () => {
   const res = await shopcardcategories()
   categoryData.value = res.data
@@ -98,7 +92,7 @@ watch(
   (newVal) => {
     nextTick(() => {
       if (newVal) {
-        LeiBie_xia.value.style.height = '0'
+        LeiBie_xia.value.style.height = "0"
         return
       }
       const heigh = 10 * lei.value[0].offsetHeight + 20
@@ -110,12 +104,12 @@ watch(
     immediate: true
   }
 )
-const $emit = defineEmits(['LeftData'])
+const $emit = defineEmits(["LeftData", "LeftDataInput"])
 
 watch(
-  search,
+  [() => search.value.categoryIds, () => search.value.orderColumn],
   (newVal) => {
-    $emit('LeftData', newVal)
+    $emit("LeftData", newVal)
   },
   {
     deep: true
@@ -130,7 +124,7 @@ watch(
   padding: 34px 25px 20px 25px;
   border-bottom: 1px solid #1a2a40;
   > p {
-    font: normal normal 500 14px 'PingFang SC';
+    font: normal normal 500 14px "PingFang SC";
     color: white;
     margin-bottom: 20px;
   }
@@ -145,6 +139,7 @@ watch(
       );
       .el-input__inner {
         color: white;
+        padding-right: 28px;
       }
     }
   }
@@ -157,6 +152,7 @@ watch(
   .input {
     position: relative;
     .icon {
+      cursor: pointer;
       width: 20px;
       height: 20px;
       position: absolute;
@@ -179,7 +175,7 @@ watch(
   @extend %mt;
   padding: 20px 25px 45px 25px;
 
-  font: normal normal 400 14px 'PingFang SC';
+  font: normal normal 400 14px "PingFang SC";
   color: white;
   > p {
     cursor: pointer;
@@ -208,7 +204,7 @@ watch(
       .wenzi {
         margin-left: 14px;
         height: 20px;
-        font: normal normal 400 14px 'PingFang SC';
+        font: normal normal 400 14px "PingFang SC";
         line-height: 20px;
       }
       :deep(.el-checkbox-group) {
@@ -235,7 +231,7 @@ watch(
         right: 8px;
         top: 50%;
         transform: translateY(-50%);
-        font: normal normal 700 12px 'PingFang SC';
+        font: normal normal 700 12px "PingFang SC";
         color: #666;
       }
     }

@@ -5,7 +5,7 @@
         <tr>
           <td>资产</td>
           <td>资产编号</td>
-          <td>发行方</td>
+          <td>昵称</td>
           <td>价格</td>
           <td>操作</td>
         </tr>
@@ -207,7 +207,8 @@ table {
             display: block;
             max-width: 400px;
             padding: 0 3px;
-            height: 18px;
+            height: 25px;
+            @include Myflex();
             border-radius: 3.256px;
             background: linear-gradient(269deg, #ffbb4d 0.83%, #815821 101.44%);
           }

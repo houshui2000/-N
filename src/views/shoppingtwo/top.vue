@@ -68,7 +68,12 @@
               在售
               <span>{{ item.onSellingCount }}</span>
             </p>
-            <div class="mounch">
+            <div
+              :style="{
+                background: item.onSellingCount > 0 ? 'linear-gradient(90deg, #2d42ff 0%, #df00c9 96.64%)' : '#4e4e4e'
+              }"
+              class="mounch"
+            >
               <span>
                 <i>￥</i>
                 {{ item.minPrice }}
@@ -122,19 +127,22 @@ const onePieceBuyin = async () => {
     loginStore.login = true
     return
   }
-  await initminimumPice()
+  if (props.creatData.onSellingCount == 0) {
+    MessageBoxVue({
+      title: "已售罄"
+    })
+    return
+  }
   if (Gethelowestprice.value == undefined) {
     MessageBoxVue({
       title: "没有找到最低价"
     })
     return
   }
-  if (props.creatData.buyRestrict == 0) {
-    MessageBoxVue({
-      title: "已售罄"
-    })
-    return
-  }
+
+  await initminimumPice()
+  // if (props.creatData.buyRestrict == 0) {
+
   dialogVisiblePay.value = true
 }
 </script>
@@ -230,7 +238,7 @@ const onePieceBuyin = async () => {
       }
       .S_l_center {
         @include Myflex(flex-start, flex-start);
-        flex-direction: column;
+        // flex-direction: column;
         margin-top: 17px;
         flex-wrap: wrap;
         > p {
@@ -278,7 +286,8 @@ const onePieceBuyin = async () => {
 .section_right {
   width: calc(100% - 1094px);
   height: 100%;
-
+  padding-bottom: 10px;
+  // overflow: hidden;
   > p {
     background: linear-gradient(90deg, rgba(235, 87, 220, 0.4) 30%, rgba(65, 81, 253, 0) 100%);
     width: 138px;
@@ -299,6 +308,7 @@ const onePieceBuyin = async () => {
   }
   .S_R_XIlie {
     height: calc(100% - 40px);
+    padding-top: 10px;
     margin-top: 19px;
     overflow: auto;
     display: flex;
@@ -337,7 +347,6 @@ const onePieceBuyin = async () => {
         position: absolute;
         left: -46px;
         top: 0;
-        // margin-left: 10px;qita_zhi.png
         background: url("@/assets/images/shoppingCentre/qita_zhi.png") no-repeat scroll left top/ 100% 100%;
       }
     }
@@ -355,6 +364,26 @@ const onePieceBuyin = async () => {
       height: 150px;
       @include Myflex(space-between);
       padding: 10px 14px;
+      // &:hover {
+      //   position: relative;
+      //   transform: scale(1.1) translateX(-10px);
+      //   opacity: 1 !important;
+      //   &::after {
+      //     content: "";
+      //     display: inline-block;
+      //     width: 46px;
+      //     height: 150px;
+      //     // border-radius: 50%;
+      //     position: absolute;
+      //     left: -46px;
+      //     top: 0;
+      //     // margin-left: 10px;qita_zhi.png
+      //     background: url("@/assets/images/shoppingCentre/qita_zhi.png") no-repeat scroll left top/ 100% 100%;
+      //   }
+      // }
+      &:first-child {
+        margin-top: 0;
+      }
       .left_one {
         width: 93px;
         height: 130px;

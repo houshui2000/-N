@@ -114,13 +114,16 @@ const handleCurrentChange = (val) => {
 // }
 //跳转thereJS
 const handleThereJSShow = (item) => {
-  // router.push('cardDetail3D')
-  // router.push(`/cardDetail3D/${item.qrCodeId}`)
   window.open(`/cardDetail3D?id=${item.qrCodeId}`)
 }
 onMounted(() => {
   assetLibrary()
 })
+// watch(() => {
+// }, {
+
+//   deep:true
+// })
 </script>
 
 <style lang="scss" scoped>

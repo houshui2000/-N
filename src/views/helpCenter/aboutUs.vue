@@ -7,6 +7,15 @@
     <div class="linaxi_right" v-html="AboutUs"></div>
   </div>
 </template>
+<!-- <<<<<<< HEAD
+<script setup>
+import { shopcarddetail } from "@/network/api"
+const init = async () => {
+  const res = await shopcarddetail()
+  console.log(res)
+}
+// init()
+======= -->
 <script setup lang="ts">
 import { ref } from 'vue';
 import { aboutUs } from '../../network/agreement';
@@ -18,6 +27,7 @@ const goAboutUs = () => {
   })
 }
 goAboutUs()
+// >>>>>>> 82d6bc4598a48a22b969b014e6bfe733ef37c632
 </script>
 <style lang="scss" scoped>
 .lianxi {

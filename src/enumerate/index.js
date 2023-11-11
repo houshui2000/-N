@@ -44,3 +44,11 @@ export const mallHomepage = [
   },
   //
 ]
+// 个人中心 -- 支付方式展示
+export const personalcenterPay = [
+  {
+    value: 0,
+    name: '银联',
+  },
+
+]

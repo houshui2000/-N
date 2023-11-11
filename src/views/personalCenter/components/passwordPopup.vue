@@ -56,9 +56,9 @@
 </template>
 
 <script setup>
-import { reactive, ref } from "vue"
+import { ref } from "vue"
 import { useStore } from "@/pinia/index.js"
-import { codeloginmobile } from "@/network/user.js"
+// import { codeloginmobile } from "@/network/user.js"
 import { passwordEditCode, updatePassword } from "@/network/personalCenter.js"
 import { removeItem } from "@/utils/storage.js"
 import MessageBoxVue from "@/components/MessageBox/index.js"
@@ -80,7 +80,8 @@ const handleCodeTime60 = () => {
 }
 //验证码组件
 const handleCodeTime = async () => {
-  const result = await passwordEditCode({ mobile: useUsersStore.userInfo.mobile })
+  // const result =
+  await passwordEditCode({ mobile: useUsersStore.userInfo.mobile })
   MessageBoxVue({
     title: "发送成功"
   })
@@ -142,6 +143,7 @@ const handlePassword = async () => {
     backdrop-filter: blur(2px);
 
     .passwordEditBtn {
+      cursor: pointer;
       width: 160px;
       height: 36px;
       background: url($gxspasswordPopupBtn) no-repeat;
