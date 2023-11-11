@@ -25,7 +25,7 @@ export const buyNotice = (params) => {
 */
 export const userStatement = (params) => {
   return service({
-    url: `/other/user-statement`,
+    url: `/other/user-agreement`,
     method: 'get', params
   })
 }
@@ -33,9 +33,9 @@ export const userStatement = (params) => {
 /**
  * 隐私协议列表
 */
-export const privateStatement = (params) => {
+export const privatePolicy = (params) => {
   return service({
-    url: `/other/private-statement`,
+    url: `/other/private-policy`,
     method: 'get', params
   })
 }
@@ -43,9 +43,9 @@ export const privateStatement = (params) => {
 /**
  * 联系我们列表
 */
-export const privateStatement = (params) => {
+export const contactUs = (params) => {
   return service({
-    url: `/other/private-statement`,
+    url: `/other/contact-us`,
     method: 'get', params
   })
 }
@@ -53,9 +53,9 @@ export const privateStatement = (params) => {
 /**
  * 相关教程列表
 */
-export const privateStatement = (params) => {
+export const tutorial = (params) => {
   return service({
-    url: `/other/private-statement`,
+    url: `/other/tutorial`,
     method: 'get', params
   })
 }
@@ -63,9 +63,9 @@ export const privateStatement = (params) => {
 /**
  * 合规声明列表
 */
-export const privateStatement = (params) => {
+export const statement = (params) => {
   return service({
-    url: `/other/private-statement`,
+    url: `/other/statement`,
     method: 'get', params
   })
 }

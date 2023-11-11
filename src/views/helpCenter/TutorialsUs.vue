@@ -4,17 +4,19 @@
     <div class="lianx_left">
       <div class="left_one">相关教程</div>
     </div>
-    <div class="linaxi_right" v-html="userStatementText"></div>
+    <div class="linaxi_right" v-html="tutorialText"></div>
   </div>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import { userStatement } from '../../network/agreement';
-const userStatementText = ref('')
+import { tutorial } from '../../network/agreement';
+const tutorialText = ref('')
 const goAboutUs = () => {
-  userStatement().then(res=>{
+  tutorial().then(res=>{
     console.log(res)
-    userStatementText.value = res.data
+    res.data.map(item => {
+      tutorialText.value = tutorialText.value + item.content + '<br/>'
+    })
   })
 }
 goAboutUs()

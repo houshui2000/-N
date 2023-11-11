@@ -4,17 +4,17 @@
     <div class="lianx_left">
       <div class="left_one">隐私协议</div>
     </div>
-    <div class="linaxi_right" v-html="privateStatementText"></div>
+    <div class="linaxi_right" v-html="privatePolicyText"></div>
   </div>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import { privateStatement } from '../../network/agreement';
-const privateStatementText = ref('')
+import { privatePolicy } from '../../network/agreement';
+const privatePolicyText = ref('')
 const goAboutUs = () => {
-  privateStatement().then(res=>{
+  privatePolicy().then(res=>{
     console.log(res)
-    privateStatementText.value = res.data
+    privatePolicyText.value = res.data
   })
 }
 goAboutUs()

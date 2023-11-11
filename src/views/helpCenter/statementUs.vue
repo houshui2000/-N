@@ -4,17 +4,17 @@
     <div class="lianx_left">
       <div class="left_one">合规声明</div>
     </div>
-    <div class="linaxi_right" v-html="userStatementText"></div>
+    <div class="linaxi_right" v-html="statementText"></div>
   </div>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import { userStatement } from '../../network/agreement';
-const userStatementText = ref('')
+import { statement } from '../../network/agreement';
+const statementText = ref('')
 const goAboutUs = () => {
-  userStatement().then(res=>{
+  statement().then(res=>{
     console.log(res)
-    userStatementText.value = res.data
+    statementText.value = res.data
   })
 }
 goAboutUs()

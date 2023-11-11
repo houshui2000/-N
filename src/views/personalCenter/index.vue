@@ -117,6 +117,7 @@ const handleTabShow = (item, index) => {
 }
 
 window.addEventListener("resize", function () {
+  console.log('//')
   // 执行需要的操作
   handleTabShow(-1)
 })
