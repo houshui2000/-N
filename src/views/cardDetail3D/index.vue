@@ -66,8 +66,8 @@ const init = async () => {
   ZiChanCha.value = assetcheckRes.data || {}
 
   //获取正反面
-  const asset3dRes = await asset3d({ cardNo: "080-2023-B06-01-044" })
-  // const asset3dRes = await asset3d({ cardNo: ZiChanCha.value.productNumber })
+  // const asset3dRes = await asset3d({ cardNo: "080-2023-B06-01-044" })
+  const asset3dRes = await asset3d({ cardNo: ZiChanCha.value.productNumber })
   ThreeDKa.value = asset3dRes.data
   //获取证书
   const assetcertRes = await assetcert({

@@ -26,7 +26,6 @@ const goAboutUs = () => {
   })
 }
 goAboutUs()
-// >>>>>>> 82d6bc4598a48a22b969b014e6bfe733ef37c632
 </script>
 <style lang="scss" scoped>
 .lianxi {
