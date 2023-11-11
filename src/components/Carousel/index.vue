@@ -32,7 +32,6 @@
 
 <script setup>
 import { ref, onMounted } from "vue"
-// import {getBannner} from "@/network/api.js";
 
 let btnActive = ref(true)
 let boxRef = ref(null)

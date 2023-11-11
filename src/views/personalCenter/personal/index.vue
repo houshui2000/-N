@@ -130,7 +130,7 @@
 
 <script setup>
 import { reactive, nextTick, computed, ref, onUnmounted } from "vue"
-import { ElMessage } from "element-plus"
+// import { ElMessage } from "element-plus"
 import { useStore } from "@/pinia/index.js"
 import { bindInvitationCodePost, invitationCodePost, nicknameEdit } from "@/network/personalCenter.js"
 import MessageBoxVue from "@/components/MessageBox/index.js"
@@ -231,7 +231,7 @@ const handleBankCardPopupShow = () => {
   bankCardShow.value = true
 }
 //打开银行卡子组件传值
-const handleUnBindingEmit = (val) => {
+const handleUnBindingEmit = () => {
   bankCardShow.value = false
   bankCardUnBindingShow.value = true
 }

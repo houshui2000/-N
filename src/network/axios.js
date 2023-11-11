@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { getItem } from '@/utils/storage.js'
 import MessageBoxVue from '@/components/MessageBox/index.js'
-import { useRouter } from 'vue-router'
+// import { useRouter } from 'vue-router'
 import { useStore } from '@/pinia'
 import { removeItem } from '@/utils/storage.js'
 
@@ -41,6 +41,7 @@ service.interceptors.response.use((res) => {
     return Promise.reject(new Error(msg))
   }
 }, (err) => {
+  // console.log(err.response.data.msg, 'err.response.data')
 
   if (err.response.status == 401) {
     initialize()
@@ -56,9 +57,9 @@ const initialize = () => {
 
   const { loginStore, useUsersStore } = useStore()
   // 清理token
-  const router = useRouter()
+  // const router = useRouter()
   removeItem('token')
-  router.push('/shoppingCentre')
+  // router.push('/shoppingCentre')
   useUsersStore.handleUserInfoInit()
   loginStore.token = ''
   loginStore.login = true

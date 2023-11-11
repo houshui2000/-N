@@ -58,7 +58,8 @@
         align-items: flex-start;
         position: relative;
         font-size: 12px;
-        :deep(.el-input__wrapper ){
+
+        :deep(.el-input__wrapper) {
           background-color: red;
         }
 
@@ -72,11 +73,12 @@
           z-index: 100;
           background: url($gxsAssetLibraryFrame2) black no-repeat center;
           background-size: contain;
-          .icon{
+
+          .icon {
             width: 16px;
             height: 16px;
-            background:url($gxsOrderGoPackDateTimeIcon) no-repeat center;
-            background-size:contain;
+            background: url($gxsOrderGoPackDateTimeIcon) no-repeat center;
+            background-size: contain;
             position: absolute;
             top: 50%;
             margin-top: -8px;
@@ -116,11 +118,12 @@
           z-index: 100;
           background: url($gxsAssetLibraryFrame2) black no-repeat center;
           background-size: contain;
-          .icon{
+
+          .icon {
             width: 16px;
             height: 16px;
-            background:url($gxsOrderGoPackDateTimeIcon) no-repeat center;
-            background-size:contain;
+            background: url($gxsOrderGoPackDateTimeIcon) no-repeat center;
+            background-size: contain;
             position: absolute;
             top: 50%;
             margin-top: -8px;
@@ -137,6 +140,7 @@
         }
       }
     }
+
     .right {
       display: flex;
       justify-content: right;
@@ -159,7 +163,8 @@
           color: #fff;
 
           &::placeholder {
-            color: rgba(#fff, .5); /* 自定义占位符文本颜色 */
+            color: rgba(#fff, .5);
+            /* 自定义占位符文本颜色 */
           }
         }
 
@@ -176,6 +181,7 @@
         }
 
       }
+
       .question {
         width: 24px;
         height: 24px;
@@ -266,11 +272,11 @@
           align-items: center;
 
           .copyIcon {
-            width: 22px;
-            height: 22px;
+            width: 19px;
+            height: 19px;
             background: url($gxsPersonalCopyIcon) no-repeat center;
             background-size: contain;
-            margin-left: 5px;
+            margin-left: 15px;
           }
         }
 
@@ -309,8 +315,10 @@
               justify-content: center;
 
               img {
-                max-width: 100%;
-                max-height: 100%;
+                // max-width: 100%;
+                // max-height: 100%;
+                width: 100%;
+                height: 100%;
               }
             }
 
@@ -416,14 +424,15 @@
                     background: url($gxsorderDetailsNumber) no-repeat left;
                     background-size: contain;
                     position: absolute;
-                    top:0;
+                    top: 0;
                     left: 0;
                   }
+
                   .numberBox-text {
                     min-width: 108px;
                     height: 18px;
                     line-height: 18px;
-                    background-image: linear-gradient(to left,#FFBB4D, #815821);
+                    background-image: linear-gradient(to left, #FFBB4D, #815821);
                     font-size: 12px;
                     padding-left: 33px;
                     padding-right: 6px;
@@ -440,7 +449,8 @@
                   justify-content: space-between;
                   margin-top: 24px;
 
-                  .close, .payBtn {
+                  .close,
+                  .payBtn {
                     width: 100px;
                     height: 36px;
                     text-align: center;
@@ -472,6 +482,7 @@
                   flex-direction: column;
                   align-items: center;
                   margin-top: 20px;
+
                   /* 宽度和高度 */
                   &::-webkit-scrollbar {
                     width: 2px;
@@ -530,6 +541,7 @@
               margin-top: 33px;
               display: flex;
               position: relative;
+
               .icon {
                 position: absolute;
                 top: 0;
@@ -549,7 +561,7 @@
                 min-width: 100px;
                 margin-left: 5px;
                 color: #fff;
-                background-image: linear-gradient(to left,#FFBB4D, #815821);
+                background-image: linear-gradient(to left, #FFBB4D, #815821);
                 position: absolute;
                 top: 50%;
                 margin-top: -9px;
@@ -609,8 +621,10 @@
       }
 
       .bottomMsg {
+        transform: translateY(-70px);
         width: 1470px;
         text-align: center;
+        padding-bottom: 150px;
         margin: 10px 0;
       }
     }

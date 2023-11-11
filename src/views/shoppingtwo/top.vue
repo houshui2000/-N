@@ -230,7 +230,7 @@ const onePieceBuyin = async () => {
       }
       .S_l_center {
         @include Myflex(flex-start, flex-start);
-        flex-direction: column;
+        // flex-direction: column;
         margin-top: 17px;
         flex-wrap: wrap;
         > p {
@@ -278,7 +278,8 @@ const onePieceBuyin = async () => {
 .section_right {
   width: calc(100% - 1094px);
   height: 100%;
-
+  padding-bottom: 10px;
+  // overflow: hidden;
   > p {
     background: linear-gradient(90deg, rgba(235, 87, 220, 0.4) 30%, rgba(65, 81, 253, 0) 100%);
     width: 138px;
@@ -337,7 +338,6 @@ const onePieceBuyin = async () => {
         position: absolute;
         left: -46px;
         top: 0;
-        // margin-left: 10px;qita_zhi.png
         background: url("@/assets/images/shoppingCentre/qita_zhi.png") no-repeat scroll left top/ 100% 100%;
       }
     }
@@ -355,6 +355,26 @@ const onePieceBuyin = async () => {
       height: 150px;
       @include Myflex(space-between);
       padding: 10px 14px;
+      // &:hover {
+      //   position: relative;
+      //   transform: scale(1.1) translateX(-10px);
+      //   opacity: 1 !important;
+      //   &::after {
+      //     content: "";
+      //     display: inline-block;
+      //     width: 46px;
+      //     height: 150px;
+      //     // border-radius: 50%;
+      //     position: absolute;
+      //     left: -46px;
+      //     top: 0;
+      //     // margin-left: 10px;qita_zhi.png
+      //     background: url("@/assets/images/shoppingCentre/qita_zhi.png") no-repeat scroll left top/ 100% 100%;
+      //   }
+      // }
+      &:first-child {
+        margin-top: 0;
+      }
       .left_one {
         width: 93px;
         height: 130px;

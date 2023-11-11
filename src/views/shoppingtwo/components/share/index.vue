@@ -149,7 +149,7 @@ watch(
 .share_all {
   :deep(.el-dialog) {
     border-radius: 4px;
-    width: 390px;
+    width: 392px;
     height: 546px;
     overflow: hidden;
     background: transparent;
@@ -226,8 +226,10 @@ section {
     bottom: 0;
     z-index: 2;
     height: 176px;
-    background-color: rgba(0, 0, 0, 0.5);
-    // background-color: saddlebrown;
+    // background-color: rgba(0, 0, 0, 0.5);
+    background: linear-gradient(141deg, rgba(36, 19, 40, 1) 15.76%, rgba(0, 12, 44, 0.8) 79.59%);
+
+    backdrop-filter: blur(2px);
     @include Myflex(space-between);
     padding: 25px 17px 17px 17px;
     .bottom_left {

@@ -34,6 +34,7 @@
         background-size: contain;
         line-height: 32px;
         padding-left: 11px;
+        transform: translateX(4px);
       }
 
 
@@ -47,9 +48,11 @@
         background-size: contain;
         transition: all .3s;
         position: relative;
-        &.marginTop28{
+
+        &.marginTop28 {
           margin-top: 28px;
         }
+
         .prompt {
           height: 30px;
           line-height: 30px;

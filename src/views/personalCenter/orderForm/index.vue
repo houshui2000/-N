@@ -164,7 +164,9 @@
                 </div>
               </div>
               <div class="money">￥{{ item.payAmount }}</div>
-              <div class="payment">{{ item.payType === 0 ? "支付宝" : "微信" }}</div>
+              <!-- <div class="payment">{{ item.payType === 0 ? "支付宝" : "微信" }}</div> -->
+              <div class="payment">{{ payway(item) }}</div>
+
               <div class="createTime">{{ item.createTime }}</div>
               <div class="payTime">{{ item.payTime ? item.payTime : "-" }}</div>
               <div class="payBox">
@@ -179,7 +181,10 @@
               </div>
             </div>
           </div>
-          <div class="bottomMsg" v-if="orderList.length === 0">暂无明细</div>
+          <div class="bottomMsg" v-if="orderList.length === 0">
+            <!-- 暂无明细 -->
+            <MissWakeupPage :title="'暂无藏品'" :titleTwo="'敬请期待!'" />
+          </div>
         </div>
       </div>
       <div class="fen_xi">
@@ -198,7 +203,7 @@
     </div>
   </transition>
 </template>
-
+<!--  对三取模 1 ：银联  -->
 <script setup>
 import { reactive, ref, watch, onMounted } from "vue"
 import errDialoVue from "./component/errdialo/index.vue"
@@ -209,7 +214,10 @@ import { useRoute } from "vue-router"
 import { GetorderList, orderCancel, shopbuyPay } from "@/network/personalCenter.js"
 import MessageBoxVue from "@/components/MessageBox/index.js"
 // import { useStore } from "@/pinia/index.js"
+import { personalcenterPay } from "@/enumerate"
 import UnionPayPopup from "@/views/personalCenter/components/unionPayPopup.vue"
+import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
+
 const route = useRoute()
 // const { loginStore, useUsersStore } = useStore()
 const errDialoVueUpdate = ref(false) //支付成功弹框
@@ -223,12 +231,32 @@ let orderInfo = ref({
   key: null,
   payStatus: null
 })
-
 let total = ref(0)
 let createTime = ref("")
 let payTime = ref("")
 let indexDetail = ref(-1)
 const mounchRef = ref("")
+
+/**
+ * 支付方式 展示
+ */
+const payway = (item) => {
+  // item.payType
+  const res = personalcenterPay.find((personalcenterPayitem) => {
+    // console.log(item.payType, qumo(item.payType, 3), personalcenterPayitem)
+
+    if (item.payType == personalcenterPayitem.value) {
+      console.log(personalcenterPayitem)
+
+      return personalcenterPayitem
+    }
+  })
+  console.log(res)
+
+  return res.name || "未知"
+}
+/**取模 */
+
 const handleMouseover = (indexV) => {
   indexDetail.value = indexV
 }
@@ -370,7 +398,7 @@ watch(
   }
 )
 </script>
-<!-- <style lang="scss">
+<style lang="scss">
 .CreateDateTimePickerKuang_CreationTime_retrieval {
   box-shadow: 0 0 0 0 !important;
   border: 1px solid #4a5173 !important;
@@ -412,7 +440,7 @@ watch(
     }
   }
 }
-</style> -->
+</style>
 <style lang="scss" scoped>
 // :deep(.el-date-range-picker) {
 //   background: #018ef8;

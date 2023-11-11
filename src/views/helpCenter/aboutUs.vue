@@ -7,7 +7,14 @@
     <div class="linaxi_right">asdsa</div>
   </div>
 </template>
-<script setup lang="ts"></script>
+<script setup>
+import { shopcarddetail } from "@/network/api"
+const init = async () => {
+  const res = await shopcarddetail()
+  console.log(res)
+}
+// init()
+</script>
 <style lang="scss" scoped>
 .lianxi {
   width: 100%;

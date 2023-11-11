@@ -33,9 +33,14 @@
             <div class="tabs">
               <div class="bg">
                 <div class="tabsText">
-                  <div class="text" v-for="(item, index) in tabList" :key="'tabList' + item.id">
+                  <div
+                    class="text"
+                    v-for="(item, index) in tabList"
+                    :style="{ color: indexActive === index ? 'white' : '#cccccc' }"
+                    :key="'tabList' + item.id"
+                  >
                     <div class="TabName" @click="handleTabShow(item, index)">{{ item.name }}</div>
-                    <div class="icon" v-if="item.id === 1"></div>
+                    <!-- <div class="icon" v-if="item.id === 1"></div> -->
                   </div>
                 </div>
               </div>

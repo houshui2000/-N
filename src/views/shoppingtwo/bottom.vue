@@ -2,7 +2,12 @@
   <div class="footer">
     <div class="top">
       <div class="left_top">
-        <p @click="classify.index = index" v-for="(item, index) in classify.arr" :key="index">
+        <p
+          @click="classify.index = index"
+          :style="{ color: classify.index === index ? '#fff' : '#cccccc' }"
+          v-for="(item, index) in classify.arr"
+          :key="index"
+        >
           <span>{{ item }}</span>
           <span v-show="classify.index === index"></span>
         </p>
@@ -30,8 +35,13 @@
 
         <!-- <input type="text"> -->
         <div class="input">
-          <el-input v-model.lazy="mallHomepagName.orders" class="w-50 m-2" placeholder="请输入编号" />
-          <div class="icon">
+          <el-input
+            @keyup.enter="init()"
+            v-model.lazy="mallHomepagName.orders"
+            class="w-50 m-2"
+            placeholder="请输入编号"
+          />
+          <div @click="init()" class="icon">
             <SvgIcon size="15" Height="20" icon-class="sousuo" />
           </div>
         </div>
@@ -109,7 +119,7 @@ const init = async () => {
     cardVaultId: route.query.vaultId,
     size: Fenye.value.size,
     current: Fenye.value.currentPage,
-    name: mallHomepagName.value.orders, // 搜索
+    productName: mallHomepagName.value.orders, // 搜索
     "orders[0].column": "cardNo",
     "orders[0].asc": mallHomepagName.value.asc // 排序 true 升，false 降
   })
@@ -121,7 +131,7 @@ const init = async () => {
 init()
 let time = null
 watch(
-  [() => Fenye.value.currentPage, mallHomepagName],
+  [() => Fenye.value.currentPage, () => mallHomepagName.value.asc],
   () => {
     if (time) clearTimeout(time)
     time = setTimeout(() => {
@@ -160,6 +170,7 @@ watch(
     color: white;
     font-size: 12px;
     transform: translateY(-1px);
+    padding-right: 25px;
   }
 }
 .footer {
@@ -241,6 +252,7 @@ watch(
         // width: 163px;
 
         .icon {
+          cursor: pointer;
           width: 15px;
           height: 15px;
           position: absolute;

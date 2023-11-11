@@ -27,7 +27,7 @@
           <div class="top_right">
             <p>{{ creatDataAll.productName }}</p>
             <div class="bianhao">
-              <span><SvgIcon size="25px" Height="25px" icon-class="bianhao" /></span>
+              <span><SvgIcon size="30px" Height="30px" icon-class="bianhao" /></span>
               <el-tooltip class="box-item" effect="dark" :content="creatDataAll.cardNo" placement="top-start">
                 <span class="danyi">{{ creatDataAll.cardNo }}</span>
               </el-tooltip>
@@ -131,7 +131,7 @@ watch(
   .close {
     cursor: pointer;
     position: absolute;
-    right: 0;
+    right: -13px;
     top: 0;
     width: 20px;
     height: 19px;
@@ -181,8 +181,8 @@ section {
         span {
           display: block;
           &:first-child {
-            width: 25px;
-            height: 25px;
+            width: 30px;
+            height: 30px;
             @include Myflex(flex-end);
           }
           &:last-child {
@@ -190,8 +190,10 @@ section {
             color: white;
             @include Myflex(flex-start);
             border-radius: 3.256px;
-            width: calc(100% - 28px);
-            height: 25px;
+            width: calc(100% - 30px);
+            transform: translateX(-3px);
+            z-index: -1;
+            height: 20px;
             padding-left: 5px;
             background: linear-gradient(269deg, #ffbb4d 0.83%, #815821 101.44%);
           }
@@ -200,16 +202,14 @@ section {
       .price {
         padding: 0 9px;
         height: 24px;
-        min-width: 100px;
         border-radius: 4px;
         background: rgba(197, 141, 57, 0.5);
         color: rgba(255, 206, 0, 0.93);
-        // @include Myflex(flex-start);
         display: inline-block;
         font: normal normal 400 14px "PingFang SC";
         span {
-          // display: block;
           display: inline-block;
+          margin: auto;
           line-height: 24px;
           height: 100%;
           $fristWidth: 45px;
@@ -309,7 +309,7 @@ section {
 }
 .footer {
   cursor: pointer;
-  transform: translateY(-29px);
+  transform: translateY(-40px);
   border-radius: 6.54px;
   background: linear-gradient(90deg, #2d42ff 0%, #df00c9 96.64%);
   width: 156px;

@@ -23,3 +23,46 @@ export function indexsysNotice () {
     method: 'GET',
   })
 }
+
+//
+//
+//
+/**
+ * 关于我们
+ *
+*/
+export function shopcarddetail (params) {
+  return service({
+    url: '/other/aboutUs',
+    method: 'GET', params
+  })
+}
+
+/**
+ * 合规声明
+ *
+*/
+export function otherstatement (params) {
+  return service({
+    url: '/other/statement',
+    method: 'GET', params
+  })
+}
+
+
+
+/**
+ * 相关教程
+ *
+*/
+export function otherhelper (params) {
+  return service({
+    url: '/other/helper',
+    method: 'GET', params
+  })
+}
+
+
+
+
+

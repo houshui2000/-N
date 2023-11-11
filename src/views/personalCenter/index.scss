@@ -34,7 +34,7 @@
         background: #0e1045;
         border-radius: 10px;
         background: url($gxsMyAccountTabBg) no-repeat center;
-        background-size:100%;
+        background-size: 100%;
         position: relative;
 
         .icons {
@@ -43,13 +43,14 @@
           left: 308px;
           width: 30px;
           height: 30px;
-          border: 1.8px solid  #485869;
+          border: 1.8px solid #485869;
           transform: rotateZ(45deg);
           background: #0c141d;
           transition: all .3s;
           z-index: 100;
         }
-        .nickName{
+
+        .nickName {
           height: 20px;
           position: absolute;
           top: 50%;
@@ -187,6 +188,7 @@
               border-bottom: 16px solid #3D517B;
               opacity: 1;
               transition: opacity .3s;
+
               //&.active{
               //  opacity: 1;
               //}
