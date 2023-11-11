@@ -26,6 +26,9 @@
             <p>发行价：￥{{ props.creatData.issuePrice }}</p>
           </div>
         </div>
+        <div class="FloatingMusicWidgetVue">
+          <FloatingMusicWidgetVue :fileurl="music" />
+        </div>
         <!-- 支付 -->
         <div class="S_L_Zhi">
           <p v-if="props.creatData?.buyRestrict !== 0 && props.creatData?.buyRestrict">
@@ -96,7 +99,7 @@ import SvgIcon from "@/components/SvgIcon/index.vue"
 import { useRoute, useRouter } from "vue-router"
 import MessageBoxVue from "@/components/MessageBox/index.js"
 import { buyminxpricecard } from "@/network/shoppingCentre/shoppingtwo.js"
-
+import FloatingMusicWidgetVue from "@/components/FloatingMusicWidget/index.vue"
 import { ref } from "vue"
 import { useStore } from "@/pinia"
 const { loginStore } = useStore()
@@ -108,6 +111,7 @@ const props = defineProps({
   // 其他系列
   creatDataAll: { type: Object, required: true }
 })
+const music = ref(new URL(`../../assets/sadsa.mp3`, import.meta.url).href)
 const dialogVisiblePay = ref(false) //支付弹框
 const fenxiangdialog = ref(false) // 分享弹框
 // 获取最低价
@@ -221,9 +225,7 @@ const onePieceBuyin = async () => {
   .S_L_right {
     width: calc(100% - 609px);
     height: 100%;
-    // padding-right: 84px;
     padding: 48px 84px 45px 51px;
-    // padding-left: 51px;
     border-radius: 6px;
     @include Myflex(space-between);
     flex-direction: column;
@@ -259,6 +261,10 @@ const onePieceBuyin = async () => {
           );
         }
       }
+    }
+    .FloatingMusicWidgetVue {
+      background-color: seagreen;
+      height: 100px;
     }
     .S_L_Zhi {
       width: 100%;

@@ -3,19 +3,19 @@
     <div class="setction scrollStyle">
       <!-- 作品介绍 -->
       <div v-html="creatData.productIntroduction"></div>
-      <!-- <img :src="item" v-for="(item, index) in IMgURl" :key="index" alt="" /> -->
+      <img :src="item" v-for="(item, index) in IMgURl" :key="index" alt="" />
     </div>
   </div>
 </template>
 <script setup>
-import { inject } from "vue"
+import { inject, computed } from "vue"
 // import { useStore } from "@/pinia/index"
 const creatData = inject("creatData")
 // const { loginStore } = useStore()
 // let url =loginStore.cossUrl +
-// const IMgURl = computed(() => {
-//   return JSON.parse(creatData.value.imgTextUrl).map((item) => item)
-// })
+const IMgURl = computed(() => {
+  return JSON.parse(creatData.value.imgTextUrl).map((item) => item)
+})
 </script>
 <style lang="scss" scoped>
 .IntroTpTheWorkVue {
