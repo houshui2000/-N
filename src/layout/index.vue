@@ -32,7 +32,8 @@ const indexsysNoticeFun = async () => {
   ScrollZiMuVueFRFDDD.value = res.data
 }
 indexsysNoticeFun()
-const scrollTo = () => {
+const scrollTo = () => { 
+  indexsysNoticeFun()
   dialogVisiblePay.value = !dialogVisiblePay.value
 }
 watch(

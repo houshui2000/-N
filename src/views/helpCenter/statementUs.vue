@@ -1,8 +1,8 @@
 <template>
   <div class="lianxi">
-    <!-- 合规声明 -->
+    <!-- 常见问题 -->
     <div class="lianx_left">
-      <div class="left_one">合规声明</div>
+      <div class="left_one">常见问题</div>
     </div>
     <div class="linaxi_right" v-html="statementText"></div>
   </div>
@@ -22,7 +22,7 @@ goAboutUs()
 <style lang="scss" scoped>
 .lianxi {
   width: 100%;
-  height: 100%;
+  height: 100%;  color: white;
   @include Myflex(space-between, flex-start);
   .lianx_left {
     width: 230px;
