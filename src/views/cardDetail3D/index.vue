@@ -15,6 +15,9 @@
       </div>
       <div class="time">时间：{{ ZiChanCha.releaseYear }}</div>
     </div>
+    <div class="FloatingMusicWidget">
+      <FloatingMusicWidgetVue :fileurl="music" />
+    </div>
     <div class="cardDetail3D_cavas">
       <ThreeDVue :ThreeDKa="ThreeDKa" />
     </div>
@@ -43,7 +46,7 @@
 //   },
 // },
 import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
-
+import FloatingMusicWidgetVue from "./components/FloatingMusicWidget/index.vue"
 import assetLibraryDetailVue from "./components/assetLibraryDetail.vue"
 import SvgIcon from "@/components/SvgIcon/index.vue"
 import ThreeDVue from "./thereD.vue"
@@ -51,6 +54,7 @@ import { ref } from "vue"
 import { useRoute } from "vue-router"
 import { assetcheck, asset3d, assetcert } from "@/network/shoppingCentre/shoppingCentre"
 const route = useRoute()
+const music = ref(new URL(`../../assets/sadsa.mp3`, import.meta.url).href)
 
 const dialoVue = ref({
   dialo: false,
@@ -63,7 +67,7 @@ const ThreeDKa = ref({
   productOppositeUrl: "" // 正
 })
 const ZiChanCha = ref({})
-const Myimg = ref({})
+const Myimg = ref("")
 const init = async () => {
   const assetcheckRes = await assetcheck({
     qrCodeId: route.query.id
@@ -78,7 +82,6 @@ const init = async () => {
   const assetcertRes = await assetcert({
     qrCodeId: route.query.id
   })
-  console.log(assetcertRes.data)
 
   Myimg.value = assetcertRes.data
 
@@ -139,14 +142,6 @@ init()
         );
       }
     }
-    .cha {
-      // @include bordergradientMY(
-      //   linear-gradient(180deg, rgba(124, 126, 154, 1) 0%, rgba(48, 49, 62, 1) 100%),
-      //   linear-gradient(180deg, rgba(38, 42, 86, 1) 0%, rgba(4, 5, 6, 0.8) 100%)
-      // );
-    }
-    .zhengshu {
-    }
   }
   .xinix {
     position: absolute;
@@ -176,6 +171,18 @@ init()
       color: #ccc;
     }
   }
+
+  // 音频开始
+  .FloatingMusicWidget {
+    position: absolute;
+    left: 50%;
+    bottom: 30px;
+    width: 300px;
+    height: 300px;
+    z-index: 2;
+    background-color: saddlebrown;
+  }
+  // 音频end
   .cardDetail3D_cavas {
     position: fixed;
     left: 0;

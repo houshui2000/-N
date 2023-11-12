@@ -173,9 +173,10 @@
                 <div class="state">
                   <span v-if="item.payStatus === 0">待支付</span>
                   <span v-if="item.payStatus === 1">登记中</span>
-                  <span v-if="item.payStatus === -1">已取消</span>
-                  <span v-if="item.payStatus === -2">退款</span>
-                  <span v-if="item.payStatus === 2">交易成功</span>
+                  <span v-if="item.payStatus === -1">订单取消</span>
+                  <span v-if="item.payStatus === -2">已退款</span>
+                  <span v-if="item.payStatus === 4">订单完成</span>
+                  <span v-if="item.payStatus === 0">去支付</span>
                 </div>
                 <div class="btn" v-if="item.payStatus === 0" @click="handlePayShow(item)">去支付</div>
               </div>
@@ -246,12 +247,9 @@ const payway = (item) => {
     // console.log(item.payType, qumo(item.payType, 3), personalcenterPayitem)
 
     if (item.payType == personalcenterPayitem.value) {
-      console.log(personalcenterPayitem)
-
       return personalcenterPayitem
     }
   })
-  console.log(res)
 
   return res.name || "未知"
 }
@@ -304,7 +302,6 @@ const handleSelectValue = (val) => {
 }
 const handleOrderList = async () => {
   let res = await GetorderList(orderInfo.value)
-  console.log(res.data.records)
 
   let data = res.data.records
   if (res.code === 200) {

@@ -16,7 +16,7 @@ const selectText = (copy) => {
   let copyId = document.querySelector('#' + copy).innerHTML
   const input = document.createElement('input');
   document.body.appendChild(input);
-  let Mycopy = import.meta.env.VITE_APP_MOBLIC_URL + '?code=' + copyId;
+  let Mycopy = import.meta.env.VITE_APP_PC_URL + '?code=' + copyId;
 
 
   input.setAttribute('value', Mycopy);

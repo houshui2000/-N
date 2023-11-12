@@ -14,10 +14,11 @@
       </div>
       <p>{{ item.title }}</p>
     </div>
+    <!--  -->
     <Transition name="slide-fade">
       <div v-if="moveRef" class="officials">
         <div class="top">
-          <img class="equalProportions" src="@/assets/images/navTop/logo.png" alt="" />
+          <img class="equalProportions" src="@/assets/images/all/erwima.png" alt="" />
         </div>
         <p>扫描二维码加入群聊</p>
       </div>
@@ -128,10 +129,10 @@ const mouseleaveMy = (item, index) => {
   }
   .officials {
     position: fixed;
-    right: 90px;
+    right: 100px;
     top: 100px;
-    width: 168px;
-    height: 191px;
+    width: 233px;
+    // height: 191px;
     border-radius: 8px;
     padding: 8px; // background-color: saddlebrown;
     @include bordergradientMY(
@@ -139,8 +140,8 @@ const mouseleaveMy = (item, index) => {
       linear-gradient(180deg, #241328 0%, #000c2c 100%)
     );
     .top {
-      width: 151px;
-      height: 151px;
+      width: 217px;
+      height: 222px;
       @include Myflex();
       flex-direction: column;
       border-radius: 8px;
@@ -154,6 +155,8 @@ const mouseleaveMy = (item, index) => {
       color: white;
       padding-top: 6px;
       @include Myflex();
+      margin: auto;
+      width: 100%;
     }
   }
 }

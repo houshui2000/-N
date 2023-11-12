@@ -220,6 +220,9 @@ const handleEditInput = async (item) => {
           if (res.code === 200) {
             await useUsersStore.handleUserInfo()
             adminInput[item] = true
+            MessageBoxVue({
+              title: "修改成功"
+            })
           }
         }
         if (item === "invitationCode") {

@@ -109,7 +109,6 @@ const props = defineProps({
       height: 194px;
     }
     .voice {
-      cursor: pointer;
       position: absolute;
       right: 11px;
       bottom: 11px;

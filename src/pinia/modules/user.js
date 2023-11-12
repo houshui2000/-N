@@ -43,17 +43,17 @@ export const userDataInfo = defineStore('userData', {
   },
   actions: {
     //获取用户信息
-    async handleUserInfo() {
+    async handleUserInfo () {
       let result = await registermobile()
 
       if (result.code === 200) {
         this.userInfo = result.data
       } else {
-
+        //
       }
     },
     //初始化userinfo
-    handleUserInfoInit() {
+    handleUserInfoInit () {
       this.userInfo = {
         'avatar': null,
         'bind': false,

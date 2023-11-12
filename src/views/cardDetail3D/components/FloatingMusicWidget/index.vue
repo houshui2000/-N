@@ -63,7 +63,7 @@
             @change="handleAudioVolume"
           />
         </div>
-        <div class="volume_icon" v-if="audioVolume > 0" @click.stop="audioHuds = !audioHuds" alt="">
+        <!-- <div class="volume_icon" v-if="audioVolume > 0" @click.stop="audioHuds = !audioHuds" alt="">
           <svg
             t="1699702784435"
             class="icon"
@@ -107,7 +107,7 @@
               p-id="6938"
             ></path>
           </svg>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

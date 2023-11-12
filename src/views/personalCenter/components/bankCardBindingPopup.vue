@@ -114,6 +114,7 @@
 <script setup>
 import { ref, onMounted } from "vue"
 import { GET_BankIdList, POST_bankCardBinding } from "@/network/personalCenter.js"
+import MessageBoxVue from "@/components/MessageBox/index.js"
 
 const props = defineProps(["bankCardBindingShow"])
 const emit = defineEmits(["handleBankCardBindingCloseEmit", "handleBankCardBindingConfirm"])
@@ -137,6 +138,9 @@ const handleBankCardBindingClose = () => {
 const handleBankCardBindingConfirm = async () => {
   let result = await POST_bankCardBinding(cardBankInfo.value)
   if (result.code === 200) {
+    MessageBoxVue({
+      title: "修改成功"
+    })
     emit("handleBankCardBindingConfirm", result.data)
   }
 }

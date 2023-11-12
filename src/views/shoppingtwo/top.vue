@@ -20,17 +20,18 @@
         <div class="S_L_Top">
           <p>{{ props.creatData.productName }}</p>
           <div class="S_l_center">
-            <p>发行方：{{ props.creatData.issueName }}</p>
-            <p>发行数：{{ props.creatData.issueNum }}</p>
+            <div>发行方：{{ props.creatData.issueName }}</div>
+            <div>发行数：{{ props.creatData.issueNum }}</div>
 
-            <p>发行价：￥{{ props.creatData.issuePrice }}</p>
-            <p>
+            <div>发行价：￥{{ props.creatData.issuePrice }}</div>
+            <div>
               附带音频
               <!-- <audio src=""></audio> -->
               <i>
                 <SvgIcon size="18px" Height="18px" icon-class="voiceTwo" />
+                <!-- <voiceVue /> -->
               </i>
-            </p>
+            </div>
           </div>
         </div>
         <!-- <div class="FloatingMusicWidgetVue">
@@ -106,7 +107,7 @@ import SvgIcon from "@/components/SvgIcon/index.vue"
 import { useRoute, useRouter } from "vue-router"
 import MessageBoxVue from "@/components/MessageBox/index.js"
 import { buyminxpricecard } from "@/network/shoppingCentre/shoppingtwo.js"
-import FloatingMusicWidgetVue from "@/components/FloatingMusicWidget/index.vue"
+// import FloatingMusicWidgetVue from "@/components/FloatingMusicWidget/index.vue"
 import { ref } from "vue"
 import { useStore } from "@/pinia"
 const { loginStore } = useStore()
@@ -118,7 +119,6 @@ const props = defineProps({
   // 其他系列
   creatDataAll: { type: Object, required: true }
 })
-const music = ref(new URL(`../../assets/sadsa.mp3`, import.meta.url).href)
 const dialogVisiblePay = ref(false) //支付弹框
 const fenxiangdialog = ref(false) // 分享弹框
 // 获取最低价
@@ -250,7 +250,7 @@ const onePieceBuyin = async () => {
         // flex-direction: column;
         margin-top: 17px;
         flex-wrap: wrap;
-        > p {
+        > div {
           // display: inline-block;
           @include Myflex();
 
@@ -264,7 +264,6 @@ const onePieceBuyin = async () => {
           padding: 0 12px;
           border-radius: 8px;
           > i {
-            cursor: pointer;
             margin-left: 8px;
             @include Myflex();
           }

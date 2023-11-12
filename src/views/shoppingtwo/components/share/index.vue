@@ -102,7 +102,7 @@ const show = () => {
   QRCode.toCanvas(erweima.value, import.meta.env.VITE_APP_MOBLIC_URL + route.path + "?id=" + route.query.vaultId)
   // upload()
 
-  // toBase64('http://172.16.1.38:5173/src/assets/images/carggotoBase64(creatData.value.productUrl)/ceshi_xia.png')
+  // toBase64('http://172.16.1.38:5173/src/assets/images/carggotoBase64(creatData.value.productUrl)/.png')
 }
 const section = ref(null)
 const imgLoad = ref("")
