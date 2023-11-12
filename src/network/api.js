@@ -39,7 +39,7 @@ export function indexsysNotice () {
 // }
 
 /**
- * 合规声明
+ * 常见问题
  *
 */
 export function otherstatement (params) {

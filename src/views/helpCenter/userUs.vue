@@ -22,7 +22,7 @@ goAboutUs()
 <style lang="scss" scoped>
 .lianxi {
   width: 100%;
-  height: 100%;
+  height: 100%;  
   @include Myflex(space-between, flex-start);
   .lianx_left {
     width: 230px;
@@ -48,6 +48,8 @@ goAboutUs()
     padding: 25px;
     overflow: hidden;
     overflow-y: auto;
+    // color: white;
+
     border-radius: 8px;
     @include bordergradientMY(
       linear-gradient(180deg, rgba(44, 34, 68, 1) 0%, rgba(33, 44, 67, 0.9) 100%),

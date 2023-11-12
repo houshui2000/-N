@@ -24,6 +24,7 @@ goAboutUs()
 <style lang="scss" scoped>
 .lianxi {
   width: 100%;
+  color: white;
   height: 100%;
   @include Myflex(space-between, flex-start);
   .lianx_left {

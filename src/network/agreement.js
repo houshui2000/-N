@@ -61,7 +61,7 @@ export const tutorial = (params) => {
 }
 
 /**
- * 合规声明列表
+ * 常见问题列表
 */
 export const statement = (params) => {
   return service({

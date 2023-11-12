@@ -23,6 +23,7 @@ goAboutUs()
 .lianxi {
   width: 100%;
   height: 100%;
+  color: white;
   @include Myflex(space-between, flex-start);
   .lianx_left {
     width: 230px;

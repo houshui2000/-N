@@ -56,7 +56,7 @@ export const helpCenterArr = [
     name: 'statementUs',
     component: () => import('@/views/helpCenter/statementUs.vue'),
     meta: {
-      name: '合规声明',
+      name: '常见问题',
       immediate: false, // 路由显示
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
       scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
