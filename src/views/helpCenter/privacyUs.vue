@@ -7,12 +7,12 @@
     <div class="linaxi_right" v-html="privatePolicyText"></div>
   </div>
 </template>
-<script setup lang="ts">
-import { ref } from 'vue';
-import { privatePolicy } from '../../network/agreement';
-const privatePolicyText = ref('')
+<script setup>
+import { ref } from "vue"
+import { privatePolicy } from "../../network/agreement"
+const privatePolicyText = ref("")
 const goAboutUs = () => {
-  privatePolicy().then(res=>{
+  privatePolicy().then((res) => {
     console.log(res)
     privatePolicyText.value = res.data
   })

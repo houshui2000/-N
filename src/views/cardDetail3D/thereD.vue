@@ -7,7 +7,9 @@
 import * as THREE from "three"
 import { ref, onMounted, onUnmounted, toRefs, watch } from "vue"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-// import * as dat from 'dat.gui'
+import { _isMobile } from "@/utils/forbid"
+
+// import * as dat from "dat.gui"
 // import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js'
 const props = defineProps({
   ThreeDKa: { type: Object, required: true }
@@ -39,7 +41,6 @@ onUnmounted(() => {
   window.removeEventListener("mouseup", () => {})
 })
 onMounted(() => {
-  // creatGUI()
   window.addEventListener("mousedown", () => {
     downUp.value = true
   })
@@ -59,7 +60,7 @@ const init = () => {
   // )
   // camera.position.z = 10
   camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000)
-  camera.position.z = PcIosAn()
+  camera.position.z = _isMobile() ? 20 : 25
   // camera.position.z = 25
 
   camera.lookAt(scene.position)
@@ -100,8 +101,12 @@ const controlsCreate = () => {
   controls.autoRotate = true //将其设为true，以自动围绕目标旋转。
 
   // 设置相机的大小 -- 注意每个相机的配置一样
-  // controls.maxDistance = 2
-  controls.minDistance = 5
+
+  // 相机位置与观察目标点最小值
+  controls.minDistance = 10
+  // 相机位置与观察目标点最大值
+  controls.maxDistance = 30
+  // creatGUI()
 }
 
 /**循环渲染 */
@@ -242,49 +247,39 @@ const createCubeThere = () => {
 //   // gui.add(controls, "reset") // 回归起点
 
 //   // gui.add(materialFan, "clearcoat", -10, 10) // 回归起点
-//   const folder = gui.addFolder('左侧灯光')
-//   folder.add(direction.position, 'x', -10, 10) // 回归起点
-//   folder.add(direction.position, 'y', -10, 10) // 回归起点
-//   folder.add(direction.position, 'z', -10, 10) // 回归起点
-//   folder.add(direction, 'intensity', -3, 3) // 回归起点
-//   // intensity
-//   // let MyColor = {
-//   //   color: `#${direction.color.getHexString()}`,
-//   // }
-//   folder.addColor(new ColorGUIHelper(direction, 'color'), 'value').name('color')
+//   const folder = gui.addFolder("左侧灯光")
+//   // controls.maxDistance = 1
+//   // // controls.minDistance = 5
+//   console.log(controls)
 
-//   // const colorObj = {
-//   //   col: `#${cube.material.color.getHexString()}`,
-//   // }
-//   // gui.addColor(colorObj, "col").onChange((val) => {
-//   //   // val: #ff00ff 十六进制的颜色字符串
-//   //   cube.material.color = new THREE.Color(val)
-//   // })
-//   // folder.addColor(MyColor, "color").onChange((e) => {
-//   //   direction.color = new THREE.Color(e)
-//   // })
-//   const folderRight = gui.addFolder('右侧灯光')
-//   folderRight.add(directionRight.position, 'x', -10, 10) // 回归起点
-//   folderRight.add(directionRight.position, 'y', -10, 10) // 回归起点
-//   folderRight.add(directionRight.position, 'z', -10, 10) // 回归起点
-//   folderRight.add(directionRight, 'intensity', -3, 3) // 回归起点
-//   folderRight.addColor(new ColorGUIHelper(directionRight, 'color'), 'value').name('color')
+//   folder.add(controls, "minDistance", 0, 10) // 回归起点
+//   folder.add(controls, "maxDistance", 0, 10) // 回归起点
+//   // // intensity
+//   // // let MyColor = {
+//   // //   color: `#${direction.color.getHexString()}`,
+//   // // }
+//   // folder.addColor(new ColorGUIHelper(direction, 'color'), 'value').name('color')
+
+//   // // const colorObj = {
+//   // //   col: `#${cube.material.color.getHexString()}`,
+//   // // }
+//   // // gui.addColor(colorObj, "col").onChange((val) => {
+//   // //   // val: #ff00ff 十六进制的颜色字符串
+//   // //   cube.material.color = new THREE.Color(val)
+//   // // })
+//   // // folder.addColor(MyColor, "color").onChange((e) => {
+//   // //   direction.color = new THREE.Color(e)
+//   // // })
+//   // const folderRight = gui.addFolder('右侧灯光')
+//   // folderRight.add(directionRight.position, 'x', -10, 10) // 回归起点
+//   // folderRight.add(directionRight.position, 'y', -10, 10) // 回归起点
+//   // folderRight.add(directionRight.position, 'z', -10, 10) // 回归起点
+//   // folderRight.add(directionRight, 'intensity', -3, 3) // 回归起点
+//   // folderRight.addColor(new ColorGUIHelper(directionRight, 'color'), 'value').name('color')
 
 //   // gui.add(materialFan, "roughness", -10, 10) // 回归起点
 //   // // gui.add(materialFan, "metalness", -10, 10) // 回归起点
 // }
-const PcIosAn = () => {
-  if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-    //判断iPhone|iPad|iPod|iOS
-    return 25
-  } else if (/(Android)/i.test(navigator.userAgent)) {
-    //判断Android
-    return 25
-  } else {
-    //pc
-    return 20
-  }
-}
 const renderResize = () => {
   // 1. 创建适配函数，监听浏览器 resize 事件
   window.addEventListener("resize", () => {

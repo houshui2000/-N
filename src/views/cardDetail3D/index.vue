@@ -18,7 +18,12 @@
     <div class="cardDetail3D_cavas">
       <ThreeDVue :ThreeDKa="ThreeDKa" />
     </div>
-    <assetLibraryDetailVue v-model:errDialoVueUpdate="dialoVue.dialo" :detail="ZiChanCha" :title="dialoVue.title" />
+    <assetLibraryDetailVue
+      v-model:errDialoVueUpdate="dialoVue.dialo"
+      :img="Myimg"
+      :detail="ZiChanCha"
+      :title="dialoVue.title"
+    />
   </div>
   <div v-else class="wuxinxi">
     <MissWakeupPage :title="'正在加载中，请等候...'" titleTwo="" />
@@ -73,6 +78,8 @@ const init = async () => {
   const assetcertRes = await assetcert({
     qrCodeId: route.query.id
   })
+  console.log(assetcertRes.data)
+
   Myimg.value = assetcertRes.data
 
   // Promise.allSettled([

@@ -89,6 +89,7 @@ import { removeItem } from "@/utils/storage.js"
 import { userlogout } from "@/network/userInterface.js"
 import { ToLogin, NoLogin } from "@/router/InputTransfer.js"
 import { useRouter, useRoute } from "vue-router"
+import MessageBoxVue from "@/components/MessageBox/index.js"
 
 const router = useRouter()
 const route = useRoute()
@@ -148,6 +149,9 @@ const handleLoginExit = async () => {
   loginStore.token = ""
   loginStore.userId = ""
   removeItem("userId")
+  MessageBoxVue({
+    title: "退出登录"
+  })
   useUsersStore.handleUserInfoInit()
   loginStore.login = true
 }

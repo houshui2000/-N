@@ -16,40 +16,42 @@
     </div>
     <Transition name="slide-fade">
       <div v-if="moveRef" class="officials">
-        <div class="top"></div>
+        <div class="top">
+          <img class="equalProportions" src="@/assets/images/navTop/logo.png" alt="" />
+        </div>
         <p>扫描二维码加入群聊</p>
       </div>
     </Transition>
   </div>
 </template>
 <script setup name="menuOnTheRight">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted } from "vue"
 const url = (img) => new URL(`../../assets/images/menuOnTheRight/${img}.png`, import.meta.url).href
-import { useRouter } from 'vue-router'
+import { useRouter } from "vue-router"
 const router = useRouter()
 const moveRef = ref(false)
 const Xin_xiArr = ref([
   {
-    title: '资产库',
-    icon: url('wuti'),
-    iconA: url('wuti_a'),
+    title: "资产库",
+    icon: url("wuti"),
+    iconA: url("wuti_a"),
     hover: true,
     MyFuncation() {
-      router.push('/assetLibrary')
+      router.push("/assetLibrary")
     }
   },
-  { title: '官群', icon: url('qun'), iconA: url('qun_a'), hover: true },
+  { title: "官群", icon: url("qun"), iconA: url("qun_a"), hover: true },
   // { title: '客服', icon: url('ke'), iconA: url('ke_a'), hover: true },
   {
-    title: '返回顶部',
-    icon: url('fan'),
-    iconA: url('fan_a'),
+    title: "返回顶部",
+    icon: url("fan"),
+    iconA: url("fan_a"),
     hover: true,
     MyFuncation() {
       const miautumnFestival = document.querySelector(`body`)
       miautumnFestival.scrollIntoView({
-        behavior: 'smooth', // 平滑过渡
-        block: 'start' // 上边框与视窗顶部平齐。默认值
+        behavior: "smooth", // 平滑过渡
+        block: "start" // 上边框与视窗顶部平齐。默认值
       })
     }
   }
@@ -148,7 +150,7 @@ const mouseleaveMy = (item, index) => {
       );
     }
     > p {
-      font: normal normal 400 14px 'PingFang SC';
+      font: normal normal 400 14px "PingFang SC";
       color: white;
       padding-top: 6px;
       @include Myflex();

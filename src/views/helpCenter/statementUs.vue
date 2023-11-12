@@ -7,12 +7,12 @@
     <div class="linaxi_right" v-html="statementText"></div>
   </div>
 </template>
-<script setup lang="ts">
-import { ref } from 'vue';
-import { statement } from '../../network/agreement';
-const statementText = ref('')
+<script setup>
+import { ref } from "vue"
+import { statement } from "../../network/agreement"
+const statementText = ref("")
 const goAboutUs = () => {
-  statement().then(res=>{
+  statement().then((res) => {
     console.log(res)
     statementText.value = res.data
   })

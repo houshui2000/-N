@@ -85,7 +85,8 @@
           </div>
           <div v-else class="section_left">
             <div class="img">
-              <img src="@/assets/images/ka/zheng.png" alt="" />
+              <!-- <img src="@/assets/images/ka/zheng.png" alt="" /> -->
+              <vue-office-docx :src="props.img" class="pdf_img" />
             </div>
           </div>
           <!-- <div class="section_right"></div> -->
@@ -97,11 +98,7 @@
 <script setup>
 import { toRefs } from "vue"
 // import SvgIcon from '@/components/SvgIcon/index.vue'
-
-// import { ref } from 'vue'
-// import { ElMessageBox } from 'element-plus'
-
-// const dialogVisible = ref(false)
+import VueOfficeDocx from "@vue-office/pdf"
 const props = defineProps({
   errDialoVueUpdate: { type: Boolean, required: true },
   detail: {
@@ -230,8 +227,9 @@ section {
       width: 338px;
       height: 479px;
       margin: auto;
-      img {
-        max-width: 100%;
+      overflow: auto;
+      .pdf_img {
+        width: 100%;
       }
     }
   }

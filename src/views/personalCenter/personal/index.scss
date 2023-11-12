@@ -37,32 +37,22 @@
         transform: translateX(4px);
       }
 
-
-      .inputBox {
-        margin-top: 30px;
-        width: 629px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        background: url($gxsPersonalInputNone) no-repeat center;
-        background-size: contain;
-        transition: all .3s;
+      .inputBox_box {
         position: relative;
 
-        &.marginTop28 {
-          margin-top: 28px;
-        }
-
         .prompt {
-          height: 30px;
-          line-height: 30px;
+          cursor: pointer;
+          $height: 30px;
+          height: $height;
+          line-height: $height;
           position: absolute;
+
           margin-left: 159px;
           font-size: 12px;
           color: #FF3030;
           //top: 158px;
           left: 0;
-          top: 60px;
+          bottom: - $height;
           display: flex;
           align-items: center;
 
@@ -74,6 +64,25 @@
             justify-content: left;
           }
         }
+      }
+
+      .inputBox {
+        margin-top: 30px;
+        width: 629px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        background: url($gxsPersonalInputNone) no-repeat center;
+        background-size: contain;
+        transition: all .3s;
+        position: relative;
+        position: relative;
+
+        &.marginTop28 {
+          margin-top: 28px;
+        }
+
+
 
         .bindingPrompt {
           height: 30px;

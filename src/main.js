@@ -4,6 +4,8 @@ import Config from '@/config/index.js'
 import '@/styles/index.scss' // global css
 import { router } from './router/index.js'
 
+import mDirectives from '@/directives'
+
 import { createPinia } from 'pinia'
 import './permission'
 import ElementPlus from 'element-plus'
@@ -25,7 +27,7 @@ app.use(ElementPlus, {
 })
 
 app.use(componentPligin)
-
+app.use(mDirectives)
 app.use(pinia); // 注册 pinia
 app.mount('#app')
 

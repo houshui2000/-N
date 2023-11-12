@@ -55,12 +55,13 @@
 
 <script setup>
 import { useStore } from "@/pinia"
-import LoginQQ from "@/components/Login/component/Loginqq.vue"
+// import LoginQQ from "@/components/Login/component/Loginqq.vue"
 // import registerPopup from '@/components/Login/component/registerPopup.vue'
-import { ref, reactive } from "vue"
+import { ref } from "vue"
 import { codeloginmobile, logincode, loginmobile } from "@/network/user.js"
 import { setItem } from "@/utils/storage.js"
-import { registermobile } from "@/network/userInterface.js"
+// import { registermobile } from "@/network/userInterface.js"
+// import MessageBoxVue from "@/components/MessageBox/index.js"
 const { loginStore, useUsersStore } = useStore()
 let state = ref(false) //切换按钮 false手机号 、true密码账号
 let phone = ref("")
@@ -72,7 +73,10 @@ let codeTime = ref(-1)
 //登录按钮
 const handleLoginBtn = async (res) => {
   // useUsersStore.handleUserInfo()
-  if (res === "wx" || res === "qq" || res === "register" || res === "retrievePassword") loginStore.registerState = res
+  if (res === "wx" || res === "qq" || res === "register" || res === "retrievePassword") {
+    loginStore.registerState = res
+    return
+  }
   if (res === "phone") {
     let result = await logincode({ mobile: phone.value, code: code.value })
     if (result.code === 200) {
@@ -125,10 +129,12 @@ const handleCodeTime = async () => {
       if (codeTime.value >= 0) {
         return
       }
-      const result = await codeloginmobile({ mobile: phone.value })
+      // const result =
+      await codeloginmobile({ mobile: phone.value })
       codeTime.value = 60
       setTimeout(handleCodeTime60, 1000)
     } else {
+      //
     }
   } else {
     //密码登录

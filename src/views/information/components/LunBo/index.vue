@@ -28,7 +28,7 @@ creat()
 </script>
 <style lang="scss" scoped>
 :deep(.el-carousel__container) {
-  height: 288px !important;
+  height: 480px !important;
 }
 .block {
   position: relative;
@@ -38,7 +38,7 @@ creat()
     z-index: 99;
   }
   .lunbo_da {
-    height: 288px !important;
+    height: 480px !important;
   }
 }
 .demonstration {

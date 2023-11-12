@@ -24,11 +24,18 @@
             <p>发行数：{{ props.creatData.issueNum }}</p>
 
             <p>发行价：￥{{ props.creatData.issuePrice }}</p>
+            <p>
+              附带音频
+              <!-- <audio src=""></audio> -->
+              <i>
+                <SvgIcon size="18px" Height="18px" icon-class="voiceTwo" />
+              </i>
+            </p>
           </div>
         </div>
-        <div class="FloatingMusicWidgetVue">
+        <!-- <div class="FloatingMusicWidgetVue">
           <FloatingMusicWidgetVue :fileurl="music" />
-        </div>
+        </div> -->
         <!-- 支付 -->
         <div class="S_L_Zhi">
           <p v-if="props.creatData?.buyRestrict !== 0 && props.creatData?.buyRestrict">
@@ -244,7 +251,9 @@ const onePieceBuyin = async () => {
         margin-top: 17px;
         flex-wrap: wrap;
         > p {
-          display: inline-block;
+          // display: inline-block;
+          @include Myflex();
+
           position: relative;
           font: normal normal 400 14px "PingFang SC";
           color: rgba(235, 235, 235, 1);
@@ -254,7 +263,11 @@ const onePieceBuyin = async () => {
           height: 55px;
           padding: 0 12px;
           border-radius: 8px;
-
+          > i {
+            cursor: pointer;
+            margin-left: 8px;
+            @include Myflex();
+          }
           @include bordergradientMY(
             linear-gradient(180deg, rgba(157, 102, 217, 0.8) 0%, rgba(102, 152, 227, 0.8) 100%),
             linear-gradient(180deg, rgba(18, 39, 67, 0.59) 0%, rgba(3, 13, 21, 0.59) 100%)

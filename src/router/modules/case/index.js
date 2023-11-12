@@ -1,16 +1,17 @@
 
 export const helpCenterArr = [
+  // {
+  //   path: 'contactUs',
+  //   name: 'contactUs',
+  //   component: () => import('@/views/helpCenter/contactUs.vue'),
+  //   meta: {
+  //     name: '联系我们',
+  //     immediate: false, // 路由显示
+  //     gundong: true, // 实时左侧滚动组件false 开启，true关闭
+  //     scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
+  //   }
+  // },
   {
-    path: 'contactUs',
-    name: 'contactUs',
-    component: () => import('@/views/helpCenter/contactUs.vue'),
-    meta: {
-      name: '联系我们',
-      immediate: false, // 路由显示
-      gundong: true, // 实时左侧滚动组件false 开启，true关闭
-      scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
-    }
-  }, {
     path: 'aboutUs',
     name: 'aboutUs',
     component: () => import('@/views/helpCenter/aboutUs.vue'),
@@ -20,7 +21,7 @@ export const helpCenterArr = [
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
       scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
     }
-  },{
+  }, {
     path: 'userUs',
     name: 'userUs',
     component: () => import('@/views/helpCenter/userUs.vue'),
@@ -30,7 +31,7 @@ export const helpCenterArr = [
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
       scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
     }
-  },{
+  }, {
     path: 'privacyUs',
     name: 'privacyUs',
     component: () => import('@/views/helpCenter/privacyUs.vue'),
@@ -40,7 +41,7 @@ export const helpCenterArr = [
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
       scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
     }
-  },{
+  }, {
     path: 'TutorialsUs',
     name: 'TutorialsUs',
     component: () => import('@/views/helpCenter/TutorialsUs.vue'),
@@ -50,7 +51,7 @@ export const helpCenterArr = [
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
       scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
     }
-  },{
+  }, {
     path: 'statementUs',
     name: 'statementUs',
     component: () => import('@/views/helpCenter/statementUs.vue'),

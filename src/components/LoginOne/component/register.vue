@@ -73,7 +73,6 @@ const handleCodeTime = async () => {
 
     codeTime.value = 60
     setTimeout(handleCodeTime60, 1000)
-  } else {
   }
 }
 

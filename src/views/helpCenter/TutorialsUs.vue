@@ -7,15 +7,15 @@
     <div class="linaxi_right" v-html="tutorialText"></div>
   </div>
 </template>
-<script setup lang="ts">
-import { ref } from 'vue';
-import { tutorial } from '../../network/agreement';
-const tutorialText = ref('')
+<script setup>
+import { ref } from "vue"
+import { tutorial } from "../../network/agreement"
+const tutorialText = ref("")
 const goAboutUs = () => {
-  tutorial().then(res=>{
+  tutorial().then((res) => {
     console.log(res)
-    res.data.map(item => {
-      tutorialText.value = tutorialText.value + item.content + '<br/>'
+    res.data.map((item) => {
+      tutorialText.value = tutorialText.value + item.content + "<br/>"
     })
   })
 }

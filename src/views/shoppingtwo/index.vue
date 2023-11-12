@@ -50,7 +50,6 @@ const init = async () => {
 
   // 左侧其他系列
   const norId = await shopotherproducts({})
-  console.log(norId.data)
 
   creatDataAll.value = norId.data
 }

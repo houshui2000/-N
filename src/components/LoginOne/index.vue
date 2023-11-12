@@ -97,7 +97,7 @@
                     <input
                       v-model="registerInfo.password"
                       placeholder="请输入不超过16位的密码"
-                      maxlength="11"
+                      maxlength="16"
                       type="password"
                     />
                     <!--                    onkeyup="value=value.replace(/\W/g,'')"-->
@@ -205,9 +205,19 @@
                 >
                   <el-checkbox v-model="agreement" class="checkboxBox-checkbox"></el-checkbox>
                   我已满18周岁，并且同意
-                  <span style="fontsize: 12px" @click="() => (loginStore.login = false, $router.push('/helpCenter/userUs'))">《用户协议》</span>
+                  <span
+                    style="fontsize: 12px"
+                    @click="() => ((loginStore.login = false), $router.push('/helpCenter/userUs'))"
+                  >
+                    《用户协议》
+                  </span>
                   和
-                  <span style="fontsize: 12px" @click="() => (loginStore.login = false, $router.push('/helpCenter/privacyUs'))">《隐私协议》</span>
+                  <span
+                    style="fontsize: 12px"
+                    @click="() => ((loginStore.login = false), $router.push('/helpCenter/privacyUs'))"
+                  >
+                    《隐私协议》
+                  </span>
                 </div>
               </div>
             </div>
@@ -219,6 +229,7 @@
 </template>
 
 <script setup name="loginMyad">
+import MessageBoxVue from "@/components/MessageBox/index.js"
 import { useStore } from "@/pinia"
 import { ref, reactive, watch } from "vue"
 import {
@@ -232,6 +243,7 @@ import {
 } from "@/network/user.js"
 import { setItem } from "@/utils/storage.js"
 const { loginStore, useUsersStore } = useStore()
+import { useRoute } from "vue-router"
 // 校验规则
 const phoneRegex = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
 let stateBtn = ref(1) //密码登录 1 or验证码登录 2
@@ -241,7 +253,7 @@ const handleStateBtn = (res) => {
   stateBtn.value = res
   handleLoginShowInit()
 }
-
+const route = useRoute()
 let otherBtn = ref("other")
 let codeTime = ref(-1)
 let registerCodeTime = ref(-1)
@@ -279,6 +291,8 @@ const resettingInfoInit = () => ({
 })
 //重置密码接口数据
 let resettingInfo = reactive(resettingInfoInit())
+// registerInfo.invitationCode = "xxx"
+
 //协议校验
 const handleAgreement = () => {
   if (!agreement.value && !(otherBtn.value === "resetting")) {
@@ -305,8 +319,14 @@ const handleLoginBtn = async () => {
       loginStore.userId = result.data.userId
       loginStore.login = false
       await useUsersStore.handleUserInfo()
+      MessageBoxVue({
+        title: "登陆成功"
+      })
     } else {
-      alert(result.msg)
+      // alert(result.msg)
+      MessageBoxVue({
+        title: result.msg
+      })
     }
   }
   // 手机验证码登录
@@ -323,8 +343,14 @@ const handleLoginBtn = async () => {
       loginStore.userId = result.data.userId
       loginStore.login = false
       await useUsersStore.handleUserInfo()
+      MessageBoxVue({
+        title: "登陆成功"
+      })
     } else {
-      alert(result.msg)
+      // alert(result.msg)
+      MessageBoxVue({
+        title: result.msg
+      })
     }
   }
   // 注册账号
@@ -339,6 +365,9 @@ const handleLoginBtn = async () => {
     if (handleAgreement()) return
     const result = await registernormal(registerInfo)
     if (result.code === 200) {
+      MessageBoxVue({
+        title: "注册成功"
+      })
       otherBtn.value = "other"
       Object.assign(registerInfo, registerInfoInit())
     }
@@ -515,24 +544,23 @@ const handleResettingInfoPassWordAgainBlur = () => {
     resettingInfoVerificationPasswordAgain.value = ""
   }
 }
-
-// // 请输入推荐码（选填）
-// const oninputreferralCode = () => {
-//   let zheng =
-//     //  @input="oninputreferralCode($event)"
-//     /^(?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])+$/
-//   // registerInfo.invitationCode = 222
-// }
+/**
+ * 判断有没有推荐码
+ */
+const referralcode = () => {
+  if (!route.query.code) return
+  registerInfo.invitationCode = route.query.code
+}
+referralcode()
 watch(
   () => loginStore.login,
   (newVal) => {
-    if (newVal) return
+    if (newVal) {
+      referralcode()
+      return
+    }
     handleOtherShow()
     stateBtn.value = 1
-    // mobileInfo.mobile = ""
-    // mobileInfo.code = ""
-    // passwordInfo.mobile = ""
-    // passwordInfo.password = ""
     handleLoginShowInit()
   },
   {

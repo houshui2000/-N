@@ -56,11 +56,15 @@
 <script setup name="uploadXia">
 import { toRefs, watch, ref, nextTick } from "vue"
 import html2canvas from "html2canvas"
+import { useRoute } from "vue-router"
 import QRCode from "qrcode"
+const route = useRoute()
 const props = defineProps({
   dialogVisiblePay: { type: Boolean, required: true },
   creatData: { type: Object, required: true }
 })
+// console.log(route.path + "?vaultId=" + route.query.vaultId)
+// console.log(route.query.vaultId)
 
 const realPictures = ref(
   new URL("../../../../assets/images/shoppingCentre/missingWakeupPage.png", import.meta.url).href
@@ -95,7 +99,7 @@ let one = 0 // 来检测只生成一次二维码
 const erweima = ref(null)
 const show = () => {
   if (!erweima.value) return
-  QRCode.toCanvas(erweima.value, window.location.href)
+  QRCode.toCanvas(erweima.value, import.meta.env.VITE_APP_MOBLIC_URL + route.path + "?id=" + route.query.vaultId)
   // upload()
 
   // toBase64('http://172.16.1.38:5173/src/assets/images/carggotoBase64(creatData.value.productUrl)/ceshi_xia.png')

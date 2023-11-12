@@ -56,49 +56,58 @@
     <div class="personalBg">
       <div class="content">
         <div class="title">邀请码</div>
-        <div class="inputBox marginTop28" :class="{ active: !adminInput.invitationCode }">
-          <div class="label">邀请码</div>
-          <div style="display: flex">
-            <input
-              ref="inputRef"
-              class="inputSuminvitationCode"
-              v-model="admin.invitationCode"
-              :disabled="adminInput.invitationCode"
-            />
-            <div class="copyIcon" @click="handleCopyIcon"></div>
-          </div>
-          <div class="inputBtn">
-            <div
-              class="inputBtn2"
-              @click="handleEditInput('invitationCode')"
-              :class="{ active: !adminInput.invitationCode }"
-            >
-              {{ adminInput.invitationCode ? "修改" : "保存" }}
+        <div class="inputBox_box">
+          <div class="inputBox marginTop28" :class="{ active: !adminInput.invitationCode }">
+            <div class="label">邀请码</div>
+            <div style="display: flex">
+              <input
+                ref="inputRef"
+                class="inputSuminvitationCode"
+                v-model="admin.invitationCode"
+                :disabled="adminInput.invitationCode"
+              />
+              <div class="copyIcon" @click="handleCopyIcon"></div>
+            </div>
+            <div class="inputBtn">
+              <div
+                class="inputBtn2"
+                @click="handleEditInput('invitationCode')"
+                :class="{ active: !adminInput.invitationCode }"
+              >
+                {{ adminInput.invitationCode ? "修改" : "保存" }}
+              </div>
             </div>
           </div>
-          <div class="prompt">
+          <div v-copy="'adminInputinvitationCode'" class="prompt">
             *只可以修改一次
+            <span style="display: none" id="adminInputinvitationCode">{{ admin.invitationCode }}</span>
             <div class="text">
               <SvgIcon size="50px" Height="100%" icon-class="personalPromotion" />
             </div>
           </div>
         </div>
-        <div class="inputBox" :class="{ active: !adminInput.bindingCode }">
-          <div class="label">绑定邀请码</div>
-          <div>
-            <input
-              class="inputSumbindingCode"
-              v-model="admin.bindingCode"
-              :disabled="adminInput.bindingCode"
-              placeholder="请输入邀请码"
-            />
-          </div>
-          <div class="inputBtn" v-if="!useUsersStore.userInfo.invitationCode">
-            <div class="inputBtn2" @click="handleEditInput('bindingCode')" :class="{ active: !adminInput.bindingCode }">
-              {{ adminInput.bindingCode ? "修改" : "保存" }}
+        <div class="inputBox_box">
+          <div class="inputBox" :class="{ active: !adminInput.bindingCode }">
+            <div class="label">绑定邀请码</div>
+            <div>
+              <input
+                class="inputSumbindingCode"
+                v-model="admin.bindingCode"
+                :disabled="adminInput.bindingCode"
+                placeholder="请输入邀请码"
+              />
             </div>
+            <div class="inputBtn" v-if="!useUsersStore.userInfo.invitationCode">
+              <div
+                class="inputBtn2"
+                @click="handleEditInput('bindingCode')"
+                :class="{ active: !adminInput.bindingCode }"
+              >
+                {{ adminInput.bindingCode ? "修改" : "保存" }}
+              </div>
+            </div>
+            <div class="bindingPrompt">*只可以绑定一次</div>
           </div>
-          <div class="bindingPrompt">*只可以绑定一次</div>
         </div>
       </div>
     </div>
@@ -159,7 +168,6 @@ watch(
       invitationCode: newVal.userInfo.ownerInvitationCode, //自己邀请码
       bindingCode: newVal.userInfo.invitationCode //绑定邀请码
     }
-    console.log(newVal.userInfo, "/newval", admin.value)
     // mobileInfo.mobile = ""
     // mobileInfo.code = ""
     // passwordInfo.mobile = ""
@@ -170,8 +178,9 @@ watch(
   }
 )
 const inputRef = ref(null)
-onMounted(()=>{
-  console.log(inputRef.value.style, '////')
+onMounted(() => {
+  let div = document.querySelector("div")
+  div.addEventListener("click", () => {})
 })
 let admin = ref({
   nickName: useUsersStore.userInfo.nickname,

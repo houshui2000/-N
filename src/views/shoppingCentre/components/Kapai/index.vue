@@ -4,6 +4,9 @@
     <div class="xiaoxingxing"></div>
     <div class="chinaKexo">中国可信NFT</div>
     <div class="img">
+      <div class="voice">
+        <SvgIcon size="18px" Height="18px" icon-class="voiceShang" />
+      </div>
       <img class="equalProportions" :src="props.KaParVueitem.productUrl" alt="" />
     </div>
     <div class="kapai_bottom">
@@ -36,10 +39,11 @@
   </div>
 </template>
 <script setup>
+import SvgIcon from "@/components/SvgIcon/index.vue"
 const props = defineProps({
   title: {
     type: String,
-    default: '啊大叔大叔大大爱上打爱上打打打萨达爱上打打打多少撒大厦多少'
+    default: "啊大叔大叔大大爱上打爱上打打打萨达爱上打打打多少撒大厦多少"
   },
   KaParVueitem: {
     type: Object,
@@ -69,7 +73,7 @@ const props = defineProps({
     background-color: saddlebrown !important;
     .xiaoxingxing {
       z-index: 0;
-      background: url('@/assets/images/carggo/xingxing.png') no-repeat scroll left bottom/ 100% 100%;
+      background: url("@/assets/images/carggo/xingxing.png") no-repeat scroll left bottom/ 100% 100%;
     }
   }
   .chinaKexo {
@@ -81,7 +85,7 @@ const props = defineProps({
     @include Myflex();
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
-    font: normal normal 600 12px 'PingFang SC';
+    font: normal normal 600 12px "PingFang SC";
     background: linear-gradient(96deg, #c4fbfe 0%, #99d2ff 31.55%, #fff 63.3%, #f295ff 103.92%);
   }
   .xiaoxingxing {
@@ -94,14 +98,23 @@ const props = defineProps({
   }
 
   .img {
+    position: relative;
     width: 100%;
     border-bottom: 1px solid #303a66;
     height: 220px;
     padding-top: 5px;
     @include Myflex();
-    background: url('@/assets/images/shoppingCentre/beijing.png') no-repeat scroll left top/ 100% 100%;
+    background: url("@/assets/images/shoppingCentre/beijing.png") no-repeat scroll left top/ 100% 100%;
     img {
       height: 194px;
+    }
+    .voice {
+      cursor: pointer;
+      position: absolute;
+      right: 11px;
+      bottom: 11px;
+      width: 18px;
+      height: 18px;
     }
   }
   .kapai_bottom {
@@ -112,7 +125,7 @@ const props = defineProps({
       width: 100%;
       &:first-child {
         text-align: left;
-        font: normal normal 600 16px 'PingFang SC';
+        font: normal normal 600 16px "PingFang SC";
       }
     }
     .none {
@@ -135,20 +148,20 @@ const props = defineProps({
         span {
           color: rgba(255, 255, 255, 0.9);
 
-          font: normal normal 800 16px 'PingFang SC';
+          font: normal normal 800 16px "PingFang SC";
         }
         .mounch {
           margin: 0 9px 0 1px;
         }
         .qi {
           color: rgba(255, 255, 255, 0.8);
-          font: normal normal 400 12px 'PingFang SC';
+          font: normal normal 400 12px "PingFang SC";
         }
       }
       .right_bott {
         color: rgba(255, 255, 255, 0.8);
 
-        font: normal normal 500 14px 'PingFang SC';
+        font: normal normal 500 14px "PingFang SC";
       }
     }
   }
@@ -159,10 +172,10 @@ const props = defineProps({
     top: 11px;
     width: 38px;
     height: 30px;
-    font: normal normal 600 12px 'PingFang SC';
+    font: normal normal 600 12px "PingFang SC";
     color: white;
     @include Myflex();
-    background: url('@/assets/images/all/hot.png') no-repeat scroll left top/ 100% 100%;
+    background: url("@/assets/images/all/hot.png") no-repeat scroll left top/ 100% 100%;
 
     // transform: rotate(30deg);
     // -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);

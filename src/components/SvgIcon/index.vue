@@ -3,13 +3,15 @@
     <use :xlink:href="symbolId" :fill="color" />
   </svg>
 </template>
+<!-- <SvgIcon size="20px" Height="20px" icon-class="close" /> -->
+<!-- // import SvgIcon from '@/components/SvgIcon/index.vue' -->
 
 <script setup>
-import { computed } from 'vue'
+import { computed } from "vue"
 const props = defineProps({
   prefix: {
     type: String,
-    default: 'icon'
+    default: "icon"
   },
   iconClass: {
     type: String,
@@ -20,11 +22,11 @@ const props = defineProps({
   },
   size: {
     type: String,
-    default: '1em'
+    default: "1em"
   },
   Height: {
     type: String,
-    default: '1em'
+    default: "1em"
   }
 })
 

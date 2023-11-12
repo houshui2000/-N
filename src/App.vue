@@ -8,9 +8,55 @@
 </template>
 <script setup>
 import LoginOne from "@/components/LoginOne/index.vue"
+import { nextTick } from "vue"
 import MenyOnTheRightVue from "@/components/menuOnTheRight/index.vue"
+import { _isMobile } from "@/utils/forbid"
 import { useRoute } from "vue-router"
 const route = useRoute()
+
+// if (_isMobile()) {
+//   // window.location.href = import.meta.env.VITE_APP_PC_URL
+// } else {
+// }
+const GetRequest = (value) => {
+  let url = decodeURI(window.location.search) //?id="123456"&name="www";
+  let object = {}
+  if (url.indexOf("?") != -1) {
+    //url中存在问号，也就说有参数。
+    let str = url.substr(1) //得到?后面的字符串
+    let strs = str.split("&") //将得到的参数分隔成数组[id="123456",name="www"];
+    for (let i = 0; i < strs.length; i++) {
+      object[strs[i].split("=")[0]] = strs[i].split("=")[1] //得到{id:'123456',name:'www'}
+    }
+  }
+  return object[value]
+}
+
+/**
+ * 检测是否是手机  如果是手机 登录的是pc地址  跳转到手机路由 http://172.16.0.166/undefined
+ */
+setTimeout(() => {
+  if (_isMobile()) {
+    // 是手机
+    setTimeout(() => {
+      // 快手浏览器 暂时不用管
+      // route.query.channel == "Kwai" ? sessionStorage.setItem("channel", route.query.channel) : ""
+    }, 500)
+  } else {
+    // 浏览器 跳pc
+    nextTick(() => {
+      let code = GetRequest("code")
+      if (GetRequest("code")) {
+        sessionStorage.setItem("code", code)
+        window.location.replace(import.meta.env.VITE_APP_MOBLIC_URL + "?code=" + code)
+      } else {
+        // console.log(import.meta.env.VITE_APP_MOBLIC_URL, "sdsad")
+
+        window.location.replace(import.meta.env.VITE_APP_MOBLIC_URL)
+      }
+    })
+  }
+}, 100)
 </script>
 
 <style scoped lang="scss">
