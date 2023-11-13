@@ -38,19 +38,21 @@ const handleRealName = async () => {
     colorDark: "#D9D9D9",
     correctLevel: 0
   })
-  getTime.value = setInterval(async () => {
-    const res = await getRealName(useUsersStore.passwordEdit)
-    if (res.code === 200) {
-      if (res.data === "T") {
-        await useUsersStore.handleUserInfo()
-        useUsersStore.realNameZFBPopup = false
-        MessageBoxVue({
-          title: "认证成功"
-        })
-        clearInterval(getTime.value)
+  setTimeout(() => {
+    getTime.value = setInterval(async () => {
+      const res = await getRealName(useUsersStore.passwordEdit)
+      if (res.code === 200) {
+        if (res.data === "T") {
+          await useUsersStore.handleUserInfo()
+          useUsersStore.realNameZFBPopup = false
+          MessageBoxVue({
+            title: "认证成功"
+          })
+          clearInterval(getTime.value)
+        }
       }
-    }
-  }, 2000)
+    }, 2000)
+  }, 1000);
 }
 onMounted(() => {
   nextTick(() => {

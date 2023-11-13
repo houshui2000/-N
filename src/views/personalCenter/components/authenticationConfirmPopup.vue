@@ -18,18 +18,27 @@
 </template>
 
 <script setup>
-// import { reactive, ref } from "vue"
+// import { reactive, ref } from 'vue'
 import { useStore } from "@/pinia/index.js"
-// import { codeloginmobile } from "@/network/user.js"
-// import { passwordEditCode, realNamePost, updatePassword } from "@/network/personalCenter.js"
-// import { removeItem } from "@/utils/storage.js"
+// import { codeloginmobile } from '@/network/user.js'
+import { realNamePost } from "@/network/personalCenter.js"
+// import { removeItem } from '@/utils/storage.js'
 // import MessageBoxVue from "@/components/MessageBox/index.js"
 
 const { useUsersStore } = useStore()
+const props = defineProps({
+  info: {
+    type: Object,
+    default: () => {
+      return {}
+    }
+  }
+})
 const handleRealName = async () => {
-  // MessageBoxVue({
-  //   title: "实名认证成功"
-  // })
+  const res = await realNamePost(props.info)
+  if (res.code === 200) {
+    useUsersStore.realNameQRCode = res.data
+  }
   useUsersStore.authenticationConFirmPopup = false
   useUsersStore.authenticationPopup = false
   useUsersStore.realNameZFBPopup = true
