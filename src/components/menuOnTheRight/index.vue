@@ -97,6 +97,7 @@ const mouseleaveMy = (item, index) => {
   height: 300px;
   z-index: 900;
   .div {
+    cursor: pointer;
     margin-top: 12px;
     .div_img {
       width: 70px;
@@ -108,7 +109,7 @@ const mouseleaveMy = (item, index) => {
       > img {
         width: 42px;
         height: 42px;
-        transform: scale(0.8);
+        // transform: scale(0.8);
       }
     }
     p {

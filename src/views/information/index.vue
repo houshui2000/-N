@@ -150,30 +150,13 @@ watch(
     margin: 26px auto 34px auto;
     .section_top {
       cursor: pointer;
-      // @include bordergradientMY(
-      //   linear-gradient(90deg, rgba(83, 56, 119, 0.9) 0%, rgba(53, 81, 125, 0.9) 100%),
-      //   linear-gradient(180deg, rgba(60, 63, 130, 0.1) 0%, rgba(4, 4, 7, 0.54) 100%)
-      // );
+
       height: 100%;
       @include Myflex();
       padding: 0 69px;
-      // .active {
-      //   transition: all 0.5s;
-      //   position: relative;
-      //   &::after {
-      //     content: "";
-      //     display: inline-block;
-      //     position: absolute;
-      //     left: 50%;
-      //     bottom: -5px;
-      //     transform: translateX(-50%);
-      //     width: 50%;
-      //     height: 2px;
-      //     border-radius: 5px;
-      //     background: linear-gradient(149deg, rgb(213, 5, 205) 45.99%, rgb(53, 63, 253) 85.48%);
-      //   }
-      // }
+
       > p {
+        cursor: pointer;
         font: normal normal 400 14px " PingFang SC";
         color: white;
         position: relative;
@@ -208,6 +191,7 @@ watch(
       padding-bottom: 80px;
       @include bordergradientMY(linear-gradient(90deg, rgba(83, 56, 119, 0.9) 0%, rgba(53, 81, 125, 0.9) 100%));
       .Xin_xi_tiao {
+        cursor: pointer;
         border-bottom: 1px solid rgb(42, 49, 76);
         &:last-child {
           border-bottom: 0px solid rgb(42, 49, 76);

@@ -195,6 +195,7 @@ watch(
       display: none;
     }
     .lei {
+      cursor: pointer;
       margin-bottom: 20px;
       position: relative;
       @include Myflex(flex-start);

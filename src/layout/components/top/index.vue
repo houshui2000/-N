@@ -289,6 +289,7 @@ watch(
     // }
 
     .download {
+      cursor: pointer;
       width: 90px;
       height: 26px;
       background: url($gxsappdownload) no-repeat left center;

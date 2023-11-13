@@ -62,6 +62,7 @@ init()
       .top {
         font: normal normal 400 24px "PingFang SC";
         color: #ffffff;
+        text-align: center;
         margin-bottom: 10px;
       }
       .top_bottom {
@@ -69,8 +70,11 @@ init()
         font: normal normal 400 12px "PingFang SC";
         @include Myflex(space-between);
         > p {
+          text-align: center;
+          margin: auto;
           &:first-child {
             span {
+              text-align: center;
               margin-right: 12px;
             }
           }

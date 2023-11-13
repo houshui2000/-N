@@ -108,7 +108,6 @@ const props = defineProps({
   img: { type: String, default: "" },
   title: { type: String, default: "查证" }
 })
-console.log(props.img)
 
 const { errDialoVueUpdate } = toRefs(props)
 const $emit = defineEmits(["update:errDialoVueUpdate"])

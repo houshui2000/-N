@@ -16,6 +16,12 @@
     background-color: transparent !important;
     border-color: #ffffff;
   }
+
+  :deep(.el-checkbox__input.is-checked .el-checkbox__inner::after) {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg) scaleY(1);
+  }
 }
 
 @keyframes shake {
@@ -327,11 +333,14 @@
 
 
               .checkboxBox {
-                height: 16px;
+                height: 56px;
                 margin-top: 14px;
                 font-size: 12px;
-                display: flex;
-                align-items: center;
+                @include Myflex(flex-start); // align-items: center;
+                flex-wrap: wrap;
+                word-wrap: break-word;
+                padding-left: 49px;
+                word-break: normal;
 
                 .checkboxBox-checkbox {
                   margin-right: 10px;

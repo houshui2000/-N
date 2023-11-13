@@ -206,14 +206,14 @@
                   <el-checkbox v-model="agreement" class="checkboxBox-checkbox"></el-checkbox>
                   我已满18周岁，并且同意
                   <span
-                    style="fontsize: 12px"
+                    style="color: rgba(129, 141, 198, 1); font-size: 12px"
                     @click="() => ((loginStore.login = false), $router.push('/helpCenter/userUs'))"
                   >
                     《用户协议》
                   </span>
                   和
                   <span
-                    style="fontsize: 12px"
+                    style="color: rgba(129, 141, 198, 1); font-size: 12px"
                     @click="() => ((loginStore.login = false), $router.push('/helpCenter/privacyUs'))"
                   >
                     《隐私协议》
@@ -296,6 +296,9 @@ let resettingInfo = reactive(resettingInfoInit())
 //协议校验
 const handleAgreement = () => {
   if (!agreement.value && !(otherBtn.value === "resetting")) {
+    MessageBoxVue({
+      title: "请勾选协议"
+    })
     agreementShow.value = true
     setTimeout(() => {
       agreementShow.value = false
@@ -572,3 +575,4 @@ watch(
 <style lang="scss" scoped>
 @import "./index.scss";
 </style>
+<!-- translate(-50%,-50%) rotate(45deg) scaleY(1) -->

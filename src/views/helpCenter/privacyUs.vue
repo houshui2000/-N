@@ -4,7 +4,7 @@
     <div class="lianx_left">
       <div class="left_one">隐私协议</div>
     </div>
-    <div class="linaxi_right" v-html="privatePolicyText"></div>
+    <div class="linaxi_right ql-editor" v-html="privatePolicyText"></div>
   </div>
 </template>
 <script setup>
@@ -45,11 +45,11 @@ goAboutUs()
   }
   .linaxi_right {
     width: 1220px;
-    height: 524px;
+    // height: 524px;
     padding: 25px;
     border-radius: 8px;
-    overflow: hidden;
-    overflow-y: auto;
+    // overflow: hidden;
+    // overflow-y: auto;
     @include bordergradientMY(
       linear-gradient(180deg, rgba(44, 34, 68, 1) 0%, rgba(33, 44, 67, 0.9) 100%),
       linear-gradient(180deg, #241328 0%, #000c2c 100%)

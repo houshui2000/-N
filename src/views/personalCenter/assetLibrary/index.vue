@@ -25,9 +25,9 @@
               <!-- 空投 end-->
 
               <div class="cardImg">
-                <div v-if="item.hasAudio" class="music">
+                <!-- <div v-if="item.hasAudio" class="music">
                   <SvgIcon size="18px" Height="18px" icon-class="voiceShang" />
-                </div>
+                </div> -->
                 <img :src="item.productUrl" alt="" />
               </div>
               <div class="text">{{ item.productName }}</div>
@@ -69,7 +69,7 @@
 </template>
 
 <script setup name="Assetlist">
-import SvgIcon from "@/components/SvgIcon/index.vue"
+// import SvgIcon from "@/components/SvgIcon/index.vue"
 
 import missingWakeupPageVue from "@/components/missingWakeupPage/index.vue"
 import { ref, reactive, onMounted } from "vue"
@@ -114,10 +114,8 @@ const handleSelectValue = (val) => {
 const assetLibrary = async () => {
   let result = await getAssetList(assetInfo.value)
   if (result.code === 200) {
-    assetList.value = result.data.records
-    // assetList.value = [{}]
-
-    total.value = result.data.total
+    assetList.value = result.data?.records || []
+    total.value = result.data?.total || 0
   }
 }
 /** 页码变化 */

@@ -247,7 +247,7 @@ const onePieceBuyin = async () => {
       }
       .S_l_center {
         @include Myflex(flex-start, flex-start);
-        // flex-direction: column;
+        flex-direction: column;
         margin-top: 17px;
         flex-wrap: wrap;
         > div {

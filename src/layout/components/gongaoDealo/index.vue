@@ -63,10 +63,11 @@ section {
 
   .close {
     position: absolute;
-    right: 45px;
-    top: 10px;
-    width: 20px;
-    height: 20px;
+    left: 47%;
+    bottom: 0px;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 40px;
     cursor: pointer;
   }
   .xinxi {

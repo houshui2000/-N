@@ -23,7 +23,7 @@
         </div>
         <div class="section_bottom">
           <div class="bottom_left">
-            <p class="title">{{ creatData.authorName }}</p>
+            <p class="title">{{ creatData.productName }}</p>
             <!-- <p v-html="props.creatData.productIntroduction" class="center"></p> -->
             <p class="center">发现一款猴赛雷的数藏，快来瞧瞧</p>
 

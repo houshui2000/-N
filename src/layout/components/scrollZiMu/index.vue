@@ -26,7 +26,7 @@ const dialogVisiblePay = ref(false) //公告弹框
 const scroll = () => {
   if (!spanRef.value) return
 
-  let offsetLeft = Number(spanRef.value.offsetLeft - 2)
+  let offsetLeft = Number(spanRef.value.offsetLeft - 0.8)
   const xin = Math.abs(spanRef.value.offsetLeft) - Math.abs(spanRef.value.offsetLeft) / 2 > lunbo.value.offsetWidth
 
   if (xin) {

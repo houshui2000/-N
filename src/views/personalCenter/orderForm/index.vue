@@ -396,18 +396,16 @@ onMounted(() => {
 
 watch(
   route,
-  async (newVal) => {
-    if (!newVal.query.orderNo) return
+  async () => {
+    if (!route.query.orderNo) return
     const res = await shoporderdetai({
-      orderNo: newVal.query.orderNo
+      orderNo: route.query.orderNo
     })
-    console.log(res.data.payStatus)
-    if (res.data.payStatus > 0) {
+    if (res.data?.payStatus > 0) {
       errDialoVueUpdate.value = true
-      mounchRef.value = newVal.query.payAmount
+      mounchRef.value = route.query.payAmount
     }
-
-    // http://test.card.cardesport.com/orderForm?payAmount=1.00
+    // http://172.16.0.166/orderForm?orderNo=1723984511501926400&payAmount=1.00
   },
   {
     deep: true,

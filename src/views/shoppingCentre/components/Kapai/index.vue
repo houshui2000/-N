@@ -60,6 +60,7 @@ const props = defineProps({
 <style lang="scss" scoped>
 // 111
 .kapai {
+  cursor: pointer;
   position: relative;
   width: 100%;
   border-radius: 4px;
@@ -81,8 +82,9 @@ const props = defineProps({
     position: absolute;
     right: 0;
     top: 12px;
+    padding: 9px;
     z-index: 2;
-    width: 87px;
+    // width: 87px;
     height: 28px;
     @include Myflex();
     border-top-left-radius: 2px;
