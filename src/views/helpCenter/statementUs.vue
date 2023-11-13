@@ -4,7 +4,9 @@
     <div class="lianx_left">
       <div class="left_one">相关教程</div>
     </div>
-    <div class="linaxi_right" v-html="tutorialText"></div>
+    <div class="linaxi_right">
+      <div class="ql-editor" v-html="tutorialText"></div>
+    </div>
   </div>
 </template>
 <script setup>

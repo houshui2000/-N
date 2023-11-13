@@ -4,8 +4,9 @@
     <div class="lianx_left">
       <div class="left_one">关于我们</div>
     </div>
+
     <div class="linaxi_right">
-      <div v-html="AboutUs"></div>
+      <div class="ql-editor" v-html="AboutUs"></div>
       <!-- 联系我们 -->
       <div class="info_out">
       <div class="contact">
@@ -90,7 +91,12 @@ const goAboutUs = () => {
 }
 goAboutUs()
 </script>
+
 <style lang="scss" scoped>
+.ql-editor{
+  height: auto;
+}
+
 .lianxi {
   width: 100%;
   height: 100%;

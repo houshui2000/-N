@@ -86,6 +86,23 @@ body {
 }
 </style>
 <style lang="scss">
+.ql-snow {
+	.ql-editor {
+		ul {
+			list-style-type: disc;
+			list-style-position: inside;
+		}
+
+		ol {
+			list-style-type: decimal;
+			list-style-position: inside;
+		}
+
+		max-height: 500px;
+		overflow: auto;
+
+	}
+}
 /* 禁止复制代码 */
 pre {
   -webkit-user-select: none;
