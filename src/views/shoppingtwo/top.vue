@@ -133,7 +133,7 @@ const initminimumPice = async () => {
 const onePieceBuyin = async () => {
   if (!loginStore.token) {
     MessageBoxVue({
-      title: "请先登陆"
+      title: "请先登录"
     })
     loginStore.login = true
     return

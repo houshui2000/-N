@@ -15,11 +15,15 @@
           <!--          <div class='question' @click='handleOpenShow'></div>-->
         </div>
       </div>
-      <div class="contentBox">
+      <!--  -->
+      <div v-if="assetList.length > 0" class="contentBox">
         <div class="cardBox">
           <div class="card" v-for="(item, index) in assetList" :key="'asset' + index">
             <div class="cardContent" @click="handleThereJSShow(item)">
               <div class="cardImg">
+                <div class="music">
+                  music
+                </div>
                 <img :src="item.productUrl" alt="" />
               </div>
               <div class="text">{{ item.productName }}</div>
@@ -47,6 +51,9 @@
           </div>
         </div>
       </div>
+      <div v-else class="missingWakeupPage">
+        <missingWakeupPageVue />
+      </div>
       <!-- <assetLibraryDetail v-model:errDialoVueUpdate='errDialoVueUpdate' title='查证' /> -->
       <assetgrameRulePopup
         :show="assetPlay"
@@ -57,7 +64,8 @@
   </transition>
 </template>
 
-<script setup>
+<script setup name="Assetlist">
+import missingWakeupPageVue from "@/components/missingWakeupPage/index.vue"
 import { ref, reactive, onMounted } from "vue"
 // import assetLibraryDetail from '../components/assetLibraryDetail.vue'
 import assetgrameRulePopup from "../components/assetgrameRulePopup.vue"
@@ -73,12 +81,12 @@ const options = ref([
 ])
 const assetInfo = ref({
   currentPage: 1,
-  pageSize: 32,
+  pageSize: 10,
   sort: "time",
   direction: "desc",
   issueName: ""
 })
-const total = ref(0)
+const total = ref(0) // 上方资产数量 和 页码的数据
 const assetPlay = ref(false)
 const textHtml = ref("")
 const handleAssetgrameRulePopupClose = () => {
@@ -94,7 +102,7 @@ const arrayValue = reactive({
 const handleSelectValue = (val) => {
   arrayValue.label = val.label
   arrayValue.values = val.values
-  assetInfo.value.direction = arrayValue.values
+  // assetInfo.value.direction = arrayValue.values
   assetLibrary()
 }
 const assetLibrary = async () => {
@@ -104,6 +112,7 @@ const assetLibrary = async () => {
     total.value = result.data.total
   }
 }
+/** 页码变化 */
 const handleCurrentChange = (val) => {
   assetList.value.currentPage = val
   assetLibrary()
@@ -144,6 +153,9 @@ onMounted(() => {
   box-shadow: none !important;
 }
 
+// .missingWakeupPage {
+//   width: 100%;
+// }
 @import "@/styles/other/paginations.scss";
 @import "./index.scss";
 </style>

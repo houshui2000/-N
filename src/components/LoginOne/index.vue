@@ -320,7 +320,7 @@ const handleLoginBtn = async () => {
       loginStore.login = false
       await useUsersStore.handleUserInfo()
       MessageBoxVue({
-        title: "登陆成功"
+        title: "登录成功"
       })
     } else {
       // alert(result.msg)
@@ -344,7 +344,7 @@ const handleLoginBtn = async () => {
       loginStore.login = false
       await useUsersStore.handleUserInfo()
       MessageBoxVue({
-        title: "登陆成功"
+        title: "登录成功"
       })
     } else {
       // alert(result.msg)

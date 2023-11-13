@@ -203,6 +203,7 @@ watch(
 
   height: 70px;
   background: rgba(#040407, 0.6);
+  backdrop-filter: blur(2px);
   background-size: contain;
   display: flex;
   justify-content: space-between;

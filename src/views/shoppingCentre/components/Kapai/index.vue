@@ -80,6 +80,7 @@ const props = defineProps({
     position: absolute;
     right: 0;
     top: 12px;
+    z-index: 2;
     width: 87px;
     height: 28px;
     @include Myflex();
@@ -94,6 +95,9 @@ const props = defineProps({
     top: 0;
     width: 100%;
     height: 100%;
+    z-index: 2;
+    background: url("@/assets/images/carggo/xingxing.png") no-repeat scroll left bottom/ 100% 100%;
+
     background: none;
   }
 
@@ -170,6 +174,7 @@ const props = defineProps({
     left: 11px;
     top: 11px;
     width: 38px;
+    z-index: 2;
     height: 30px;
     font: normal normal 600 12px "PingFang SC";
     color: white;

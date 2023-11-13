@@ -152,12 +152,22 @@
           align-items: center;
 
           .cardImg {
+            position: relative;
             width: 152px;
             height: 176px;
             //background: url($gxsAssetLibraryLinShiImage) no-repeat center;
             background-size: contain;
             border-radius: 6px;
             overflow: hidden;
+
+            .music {
+              width: 18px;
+              height: 18px;
+              background-color: saddlebrown;
+              position: absolute;
+              right: 10px;
+              bottom: 10px;
+            }
 
             &:hover img {
               transform: scale(1.1);
@@ -249,4 +259,5 @@
       margin-top: 30px;
     }
   }
+
 }

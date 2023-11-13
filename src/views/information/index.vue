@@ -124,6 +124,7 @@ watch(
 .information {
   margin: auto;
   width: 100%;
+  transform: translateY(-70px);
   .zixun {
     height: 36px;
     width: 138px;
@@ -201,7 +202,10 @@ watch(
       }
     }
     .section_bottom {
+      position: relative;
       margin-top: 33px;
+      min-height: 100vh;
+      padding-bottom: 80px;
       @include bordergradientMY(linear-gradient(90deg, rgba(83, 56, 119, 0.9) 0%, rgba(53, 81, 125, 0.9) 100%));
       .Xin_xi_tiao {
         border-bottom: 1px solid rgb(42, 49, 76);
@@ -281,7 +285,10 @@ watch(
 }
 
 .fenye {
-  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  // height: 100%;
   width: 100%;
   @include Myflex();
   padding: 23px 0 23px 0;

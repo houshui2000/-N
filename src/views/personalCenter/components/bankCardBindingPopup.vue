@@ -131,10 +131,18 @@ let cardBankInfo = ref({
 })
 let selectList = ref([])
 let selectOptionList = ref([])
+
+/**
+ * 取消
+ */
 const handleBankCardBindingClose = () => {
   emit("handleBankCardBindingCloseEmit")
+  stuckInTheAir(cardBankInfo.value)
 }
 //请求
+/**
+ * 确认
+ */
 const handleBankCardBindingConfirm = async () => {
   let result = await POST_bankCardBinding(cardBankInfo.value)
   if (result.code === 200) {
@@ -143,6 +151,15 @@ const handleBankCardBindingConfirm = async () => {
     })
     emit("handleBankCardBindingConfirm", result.data)
   }
+}
+/**滞空数据 */
+const stuckInTheAir = (data) => {
+  console.log(data)
+
+  Object.keys(data).forEach((item) => {
+    data[item] = ""
+  })
+  console.log(data)
 }
 //获取下拉列表的数据
 const handleSelectList = async () => {

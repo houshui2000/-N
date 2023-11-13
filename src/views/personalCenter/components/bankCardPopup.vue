@@ -34,7 +34,7 @@
 
 <script setup>
 import { GET_BankCardList } from "@/network/personalCenter.js"
-import { ref, onMounted } from "vue"
+import { ref, onMounted, watch } from "vue"
 
 let bankCardList = ref([])
 // let bankCardUnBindingShow = ref(true)
@@ -49,6 +49,7 @@ const handleGetBankCardList = async () => {
     bankCardList.value = result.data
   }
 }
+
 //打开解绑确认弹窗
 // const handleBankCardUnBindingShow = () => {
 //   bankCardUnBindingShow.value = true
@@ -60,6 +61,16 @@ const handleBankCardShow = () => {
 onMounted(() => {
   handleGetBankCardList()
 })
+watch(
+  () => props.bankCardShow,
+  () => {
+    if (!props.bankCardShow) return
+    handleGetBankCardList()
+  },
+  {
+    deep: true
+  }
+)
 </script>
 
 <style lang="scss" scoped>
