@@ -4,7 +4,7 @@
     <div class="xiaoxingxing"></div>
     <div class="chinaKexo">中国可信NFT</div>
     <div class="img">
-      <div class="voice">
+      <div class="voice" v-if="props.KaParVueitem.hasAudio">
         <SvgIcon size="18px" Height="18px" icon-class="voiceShang" />
       </div>
       <img class="equalProportions" :src="props.KaParVueitem.productUrl" alt="" />
