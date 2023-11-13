@@ -135,7 +135,8 @@
                       <div class="contentTextBox">
                         <div class="label">支付方式</div>
                         <div class="dataValue">
-                          {{ item.payType === 0 ? "支付宝" : "微信" }}
+                          <!-- {{ item.payType === 0 ? "支付宝" : "微信" }} -->
+                          {{ payway(item) }}
                           <span v-if="item.payStatus === -2">(已退款)</span>
                         </div>
                       </div>
@@ -164,19 +165,12 @@
                 </div>
               </div>
               <div class="money">￥{{ item.payAmount }}</div>
-              <!-- <div class="payment">{{ item.payType === 0 ? "支付宝" : "微信" }}</div> -->
               <div class="payment">{{ payway(item) }}</div>
 
               <div class="createTime">{{ item.createTime }}</div>
               <div class="payTime">{{ item.payTime ? item.payTime : "-" }}</div>
               <div class="payBox">
                 <div class="state">
-                  <!-- <span v-if="item.payStatus === 0">待支付</span>
-                  <span v-if="item.payStatus === 1">登记中</span>
-                  <span v-if="item.payStatus === -1">订单取消</span>
-                  <span v-if="item.payStatus === -2">已退款</span>
-                  <span v-if="item.payStatus === 4">订单完成</span>
-                  <span v-if="item.payStatus === 0">去支付</span> -->
                   <span v-if="item.payStatus === 0">待支付</span>
                   <span v-if="item.payStatus === 1">登记中</span>
                   <span v-if="item.payStatus === -1">订单取消</span>
@@ -211,10 +205,10 @@
   </transition>
 </template>
 <!--  对三取模 1 ：银联  -->
-<script setup>
+<script setup name="orderFrom">
 import { reactive, ref, watch, onMounted } from "vue"
 import errDialoVue from "./component/errdialo/index.vue"
-import { ElMessage } from "element-plus"
+// import { ElMessage } from "element-plus"
 import gxsSelect from "../components/gxsSelect.vue"
 import { useRoute } from "vue-router"
 // import orderDetailsPopup from "../components/orderDetailsPopup.vue"
@@ -281,10 +275,13 @@ const handleCopyIcon = (item) => {
   textField.select()
   document.execCommand("copy")
   textField.remove()
-  ElMessage({
-    message: "复制成功",
-    type: "success"
+  MessageBoxVue({
+    title: "复制成功"
   })
+  // ElMessage({
+  //   message: "复制成功",
+  //   type: "success"
+  // })
 }
 //下拉框
 const options = reactive([
@@ -422,9 +419,12 @@ watch(
 .CreateDateTimePickerKuang_CreationTime_retrieval {
   box-shadow: 0 0 0 0 !important;
   border: 1px solid #4a5173 !important;
-  background-color: saddlebrown;
 }
 .CreateDateTimePickerKuang_CreationTime_retrieval {
+  .el-input.is-disabled .el-input__wrapper {
+    background-color: rgba(5, 13, 23, 1);
+    box-shadow: 0 0 0 0 !important;
+  }
   .el-picker-panel {
     background-color: rgba(5, 13, 23, 1);
   }

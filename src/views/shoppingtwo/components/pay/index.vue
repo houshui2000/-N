@@ -77,10 +77,7 @@ const props = defineProps({
 
 const { dialogVisiblePay, creatDataAll } = toRefs(props)
 const $emit = defineEmits(["update:dialogVisiblePay"])
-// const payArr = ref([
-//   { title: '支付宝支付', payChanelId: 1 },
-//   { title: '假的支付测试', payChanelId: 2 }
-// ])
+
 const payArrAdilo = ref()
 /**支付 */
 const shopquickbuyPay = async () => {

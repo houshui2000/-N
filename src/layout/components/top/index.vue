@@ -8,7 +8,7 @@
     <div class="left">
       <div @click="router.push('/')" class="logo">
         <div class="logoImg">
-          <SvgIcon size="58px" Height="40px" icon-class="logo" />
+          <SvgIcon size="98px" Height="40px" icon-class="logo" />
         </div>
       </div>
       <div class="navContent">

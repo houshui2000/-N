@@ -183,7 +183,7 @@ init()
     position: absolute;
     right: 216px;
     bottom: 30px;
-    width: 135px;
+    min-width: 135px;
     height: 34px;
     z-index: 2;
     // background-color: saddlebrown;

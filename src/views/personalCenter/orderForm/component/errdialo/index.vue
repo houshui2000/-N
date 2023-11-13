@@ -45,7 +45,7 @@
         </div>
         <p class="spice">￥{{ mounchRef }}</p>
         <p class="chenggong">恭喜您购买成功!</p>
-        <p class="shuomimnh">您使用支付宝完成了本次资产交易，该资产您可在 个人中心-资产库板块查看。</p>
+        <p class="shuomimnh">您完成了本次资产交易，该资产您可在 个人中心-资产库板块查看。</p>
         <div @click="close" class="close">关闭</div>
       </section>
     </el-dialog>
