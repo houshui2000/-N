@@ -38,15 +38,6 @@ service.interceptors.request.use((config) => {
   // 在 map 数据中添加 防抖 timer 时间
   debounceTokenCancel.set(tokenKey, timer)
 
-  if (!cancel) {
-    if (getItem('token')) {
-      config.headers.Authorization = getItem('token')
-    }
-    config.headers['Client-Type'] = 'pc'
-    return config
-  }
-  console.log(cancel)
-
   if (getItem('token')) {
     config.headers.Authorization = getItem('token')
   }

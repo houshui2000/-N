@@ -50,7 +50,7 @@ import { ref } from "vue"
 import { useStore } from "@/pinia/index.js"
 import authenticationConFirmPopup from "../components/authenticationConfirmPopup.vue"
 import MessageBoxVue from "@/components/MessageBox/index.js"
-import { realNamePost } from "@/network/personalCenter.js"
+// import { realNamePost } from "@/network/personalCenter.js"
 // import QRCode from "qrcodejs2-fix"
 
 const { useUsersStore } = useStore()

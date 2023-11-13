@@ -56,7 +56,7 @@
 <script setup>
 import { ref, watch } from "vue"
 import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
-// import asVue from "./as.vue"
+
 import LunBoVue from "./components/LunBo/index.vue"
 import { shopnewscategory, shopnews } from "@/network/information"
 import { useRouter } from "vue-router"
@@ -118,9 +118,9 @@ watch(
 </script>
 <style lang="scss" scoped>
 @import "@/styles/other/paginations.scss";
-:deep(.el-carousel__indicators) {
-  display: none;
-}
+// :deep(.el-carousel__indicators) {
+//   display: none;
+// }
 .information {
   margin: auto;
   width: 100%;

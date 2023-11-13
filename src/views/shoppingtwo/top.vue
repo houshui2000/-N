@@ -24,11 +24,11 @@
             <div>发行数：{{ props.creatData.issueNum }}</div>
 
             <div>发行价：￥{{ props.creatData.issuePrice }}</div>
-            <div>
+            <div v-if="props.creatData.hasAudio">
               附带音频
               <!-- <audio src=""></audio> -->
               <i>
-                <SvgIcon size="18px" Height="18px" icon-class="voiceTwo" />
+                <SvgIcon size="15px" Height="15px" icon-class="voiceTwo" />
                 <!-- <voiceVue /> -->
               </i>
             </div>
