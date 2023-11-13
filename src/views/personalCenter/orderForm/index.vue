@@ -105,7 +105,7 @@
                     </div>
                     <div class="btnBox" v-if="item.payStatus === 0">
                       <div class="close" @click="handlePayClose(item.orderNo)">取消支付</div>
-                      <div class="payBtn" @click="goPay(item.orderNo)">去支查付</div>
+                      <div class="payBtn" @click="goPay(item.orderNo)">去支付</div>
                     </div>
                     <div class="border"></div>
                     <div class="contentText">
@@ -361,11 +361,11 @@ const handlePayClose = async (orderNo) => {
 
 //去支付
 const goPay = async (orderNo) => {
-  const res = await orderCancel({ orderNo })
+  const res = await shopbuyPay({ orderNo })
   if (res.code === 200) {
     await handleOrderList()
     MessageBoxVue({
-      title: "取消成功"
+      title: "支付成功"
     })
   }
 }
