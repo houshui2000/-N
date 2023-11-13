@@ -42,6 +42,9 @@
         </div>
         <div class="section_bototm">
           <div v-for="(item, index) in listOfBanks" @click="payArrAdilo = item" :key="index" class="pay">
+            <div class="img">
+              <SvgIcon size="20px" Height="20px" icon-class="Unionpay" />
+            </div>
             <p>{{ item.name }}</p>
             <div :class="{ radio_article: payArrAdilo.payId == item.payId }" class="radio"></div>
           </div>
@@ -269,6 +272,7 @@ section {
         width: 25px;
         height: 25px;
         margin-right: 13px;
+        @include Myflex();
       }
       > p {
         font: normal normal 400 12px "PingFang SC";

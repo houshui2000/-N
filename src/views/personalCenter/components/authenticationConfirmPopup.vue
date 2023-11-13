@@ -1,16 +1,16 @@
 <template>
-  <transition name='transition05s'>
-    <div id='authenticationConfirmPopup' v-if='useUsersStore.authenticationConFirmPopup'>
-      <div class='content'>
-        <div class='text'>
+  <transition name="transition05s">
+    <div id="authenticationConfirmPopup" v-if="useUsersStore.authenticationConFirmPopup">
+      <div class="content">
+        <div class="text">
           确认认证
-          <div class='border'></div>
+          <div class="border"></div>
         </div>
-        <div class='titleText'>实名信息认证后不可修改，请检验信息无误后再提交。</div>
+        <div class="titleText">实名信息认证后不可修改，请检验信息无误后再提交。</div>
         <!--      <div class='close' @click='useUsersStore.authenticationConFirmPopup=false'></div>-->
-        <div class='bottom'>
-          <div class='back' @click='useUsersStore.authenticationConFirmPopup = false'>返回</div>
-          <div class='Btn' @click='handleRealName'>确认</div>
+        <div class="bottom">
+          <div class="back" @click="useUsersStore.authenticationConFirmPopup = false">返回</div>
+          <div class="Btn" @click="handleRealName">确认</div>
         </div>
       </div>
     </div>
@@ -18,21 +18,25 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
-import { useStore } from '@/pinia/index.js'
-import { codeloginmobile } from '@/network/user.js'
-import { passwordEditCode, realNamePost, updatePassword } from '@/network/personalCenter.js'
-import { removeItem } from '@/utils/storage.js'
+// import { reactive, ref } from "vue"
+import { useStore } from "@/pinia/index.js"
+// import { codeloginmobile } from "@/network/user.js"
+// import { passwordEditCode, realNamePost, updatePassword } from "@/network/personalCenter.js"
+// import { removeItem } from "@/utils/storage.js"
+// import MessageBoxVue from "@/components/MessageBox/index.js"
 
-const { useUsersStore, loginStore } = useStore()
+const { useUsersStore } = useStore()
 const handleRealName = async () => {
+  // MessageBoxVue({
+  //   title: "实名认证成功"
+  // })
   useUsersStore.authenticationConFirmPopup = false
   useUsersStore.authenticationPopup = false
   useUsersStore.realNameZFBPopup = true
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #authenticationConfirmPopup {
   position: fixed;
   top: 0;

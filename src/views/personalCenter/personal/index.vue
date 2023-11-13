@@ -260,6 +260,7 @@ const handleEditInput = async (item) => {
 const handleEditPassword = () => {
   useUsersStore.passwordPopup = true
 }
+/**去实名认证 */
 const handleAuthenticationPopupShow = () => {
   useUsersStore.authenticationPopup = true
   useUsersStore.certNo = ""

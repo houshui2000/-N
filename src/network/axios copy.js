@@ -12,50 +12,13 @@ const service = axios.create({
 })
 
 
-// 防抖
-const debounceTokenCancel = new Map()
 // request interceptor 请求拦截器
 service.interceptors.request.use((config) => {
-
-  // 获取接口敏成
-  const tokenKey = `${config.method}-${config.url}`
-  // debounceTokenCancel.set(tokenKey, null)
-  // 判断 map 数据是否有无 防抖
-  const cancel = debounceTokenCancel.get(tokenKey)
-
-  if (cancel) {
-    return
-  }
-  // 没有值的话 在 map 中添加数据
-  debounceTokenCancel.set(tokenKey, null)
-
-
-  let timer = setTimeout(() => {
-    // 清空数据
-    debounceTokenCancel.set(tokenKey, null)
-  }, 500)
-
-  // 在 map 数据中添加 防抖 timer 时间
-  debounceTokenCancel.set(tokenKey, timer)
-
-  if (!cancel) {
-    if (getItem('token')) {
-      config.headers.Authorization = getItem('token')
-    }
-    config.headers['Client-Type'] = 'pc'
-    return config
-  }
-  console.log(cancel)
-
   if (getItem('token')) {
     config.headers.Authorization = getItem('token')
   }
   config.headers['Client-Type'] = 'pc'
   return config
-
-  // console.log(cancel)
-
-
 }, function (error) {
   return Promise.reject(error)
 })

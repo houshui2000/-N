@@ -20,9 +20,13 @@
         <div class="cardBox">
           <div class="card" v-for="(item, index) in assetList" :key="'asset' + index">
             <div class="cardContent" @click="handleThereJSShow(item)">
+              <!-- 空投 -->
+              <!-- <div class="aiDrop">空投</div> -->
+              <!-- 空投 end-->
+
               <div class="cardImg">
                 <div class="music">
-                  music
+                  <SvgIcon size="18px" Height="18px" icon-class="voiceShang" />
                 </div>
                 <img :src="item.productUrl" alt="" />
               </div>
@@ -65,6 +69,8 @@
 </template>
 
 <script setup name="Assetlist">
+import SvgIcon from "@/components/SvgIcon/index.vue"
+
 import missingWakeupPageVue from "@/components/missingWakeupPage/index.vue"
 import { ref, reactive, onMounted } from "vue"
 // import assetLibraryDetail from '../components/assetLibraryDetail.vue'
@@ -108,7 +114,9 @@ const handleSelectValue = (val) => {
 const assetLibrary = async () => {
   let result = await getAssetList(assetInfo.value)
   if (result.code === 200) {
-    assetList.value = result.data.records
+    // assetList.value = result.data.records
+    assetList.value = [{}]
+
     total.value = result.data.total
   }
 }

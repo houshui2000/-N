@@ -142,6 +142,7 @@
         }
 
         .cardContent {
+          position: relative;
           width: 152px;
           height: 233px;
           background: #000;
@@ -151,6 +152,19 @@
           flex-direction: column;
           align-items: center;
 
+          // 空投开始
+          // .aiDrop {
+          //   background-color: saddlebrown;
+          //   position: absolute;
+          //   left: 0;
+          //   top: 50%;
+          //   transform: translateY(-50%);
+          //   z-index: 2;
+          //   width: 100%;
+          //   height: 40px;
+          // }
+
+          // 空投开始end
           .cardImg {
             position: relative;
             width: 152px;
@@ -163,7 +177,6 @@
             .music {
               width: 18px;
               height: 18px;
-              background-color: saddlebrown;
               position: absolute;
               right: 10px;
               bottom: 10px;

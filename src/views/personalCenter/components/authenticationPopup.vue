@@ -78,9 +78,6 @@ const handleEmpowerShow = async () => {
     useUsersStore.passwordEdit.certNo = passwordEdit.value.certNo
     useUsersStore.passwordEdit.username = passwordEdit.value.username
     useUsersStore.authenticationConFirmPopup = true
-    MessageBoxVue({
-      title: "实名认证成功"
-    })
   }
 }
 const handleClose = () => {

@@ -129,3 +129,13 @@ export function shopbuyPay (data) {
     data
   })
 }
+
+
+// //订单信息
+// export function shopbuyPay (data) {
+//   return service({
+//     url: '/shop/order-detail',
+//     method: 'post',
+//     data
+//   })
+// }
