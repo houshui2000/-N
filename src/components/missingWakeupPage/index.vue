@@ -12,7 +12,7 @@
 const props = defineProps({
   title: {
     type: String,
-    default: "暂无藏品"
+    default: "暂无资产"
   },
   titleTwo: {
     type: String,
@@ -26,17 +26,19 @@ const props = defineProps({
   width: 316px;
   margin: 100px auto 0 auto;
   .svg {
-    background: url("@/assets/images/shoppingCentre/missingWakeupPage.png") no-repeat scroll left top/ 100% 100%;
+    background: url("@/assets/images/shoppingCentre/missingWakeupPage.png") no-repeat scroll center center/ 100% 100%;
     height: 558px;
     width: 316px;
   }
   .title {
-    margin-top: 40px;
+    transform: translateY(-45px);
     font: normal normal 400 18px "PingFang SC";
     color: white;
     @include Myflex();
   }
   .titleTwo {
+    transform: translateY(-60px);
+
     @include Myflex();
     font: normal normal 400 14px "PingFang SC";
     margin-top: 28px;

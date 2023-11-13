@@ -206,14 +206,14 @@
                   <el-checkbox v-model="agreement" class="checkboxBox-checkbox"></el-checkbox>
                   我已满18周岁，并且同意
                   <span
-                    style="color: rgba(129, 141, 198, 1); font-size: 12px"
+                    style="color: #42bbff; font-size: 12px"
                     @click="() => ((loginStore.login = false), $router.push('/helpCenter/userUs'))"
                   >
                     《用户协议》
                   </span>
                   和
                   <span
-                    style="color: rgba(129, 141, 198, 1); font-size: 12px"
+                    style="color: #42bbff; font-size: 12px"
                     @click="() => ((loginStore.login = false), $router.push('/helpCenter/privacyUs'))"
                   >
                     《隐私协议》

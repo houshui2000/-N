@@ -142,6 +142,7 @@ function updateProgress(e) {
     font-size: 12px;
     width: calc(100% - 34px);
     @include Myflex();
+    margin-left: 15px;
     height: 24px;
     font: normal normal 400 12px "PingFang SC";
     .audio_total {

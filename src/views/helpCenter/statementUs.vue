@@ -1,8 +1,8 @@
 <template>
   <div class="lianxi">
-    <!-- 相关教程 -->
+    <!-- 常见问题 -->
     <div class="lianx_left">
-      <div class="left_one">相关教程</div>
+      <div class="left_one">常见问题</div>
     </div>
     <div class="linaxi_right">
       <div class="ql-editor" v-html="tutorialText"></div>

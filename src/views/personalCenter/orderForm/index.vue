@@ -184,7 +184,7 @@
           </div>
           <div class="bottomMsg" v-if="orderList.length === 0">
             <!-- 暂无明细 -->
-            <MissWakeupPage :title="'暂无藏品'" :titleTwo="'敬请期待!'" />
+            <MissWakeupPage :title="'暂无资产'" :titleTwo="'敬请期待!'" />
           </div>
         </div>
       </div>

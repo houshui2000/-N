@@ -6,6 +6,7 @@
     <section>
       <div class="section_top">
         <p
+          :style="{ color: nameRef == item.id ? 'white' : '#cccccc' }"
           v-for="(item, index) in listArr"
           @click="(nameRef = item.id), listOfInformation(), sessionStoragesetItem('categoryId', item.id)"
           :key="index"

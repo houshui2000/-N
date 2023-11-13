@@ -48,19 +48,19 @@
           </div>
         </div>
         <div class="QR_code" v-show="contactUsText?.qqGroupQrCode">
-          <div class="QR_item">
+          <!-- <div class="QR_item">
             <div class="top"><img :src="contactUsText?.qqGroupQrCode" alt="" /></div>
             <p>官方QQ群二维码</p>
-          </div>
+          </div> -->
           <div class="QR_item" v-show="contactUsText?.subscriptionQrCode">
             <div class="top"><img :src="contactUsText?.subscriptionQrCode" alt="" /></div>
             <p>官方微信公众号二维码</p>
           </div>
-          <!-- <div class="QR_item" v-show="contactUsText?.tiktokQrCode">
-          <div class="top"><img :src="contactUsText?.tiktokQrCode" alt="" /></div>
+          <div class="QR_item" v-show="contactUsText?.tiktokQrCode">
+            <div class="top"><img :src="contactUsText?.tiktokQrCode" alt="" /></div>
 
-					<p>官方抖音二维码</p>
-				</div> -->
+            <p>官方抖音二维码</p>
+          </div>
         </div>
       </div>
     </div>
@@ -92,7 +92,7 @@ goAboutUs()
 </script>
 
 <style lang="scss" scoped>
-.ql-editor{
+.ql-editor {
   height: auto;
 }
 
@@ -200,11 +200,11 @@ goAboutUs()
         width: 280px;
         font-weight: bold;
 
-					p {
-						margin-left: 10px;
-					}
-				}
-			}
-		}
-	}
+        p {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
 </style>
