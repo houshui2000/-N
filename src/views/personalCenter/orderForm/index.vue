@@ -82,15 +82,15 @@
                         active1: item.payStatus === 1,
                         activef1: item.payStatus === -1,
                         activef2: item.payStatus === -2,
-                        active2: item.payStatus === 2
+                        active2: item.payStatus === 4
                       }"
                     ></div>
                     <div class="titleText">
                       <span v-if="item.payStatus === 0">待支付</span>
                       <span v-if="item.payStatus === 1">登记中</span>
-                      <span v-if="item.payStatus === -1" style="color: #909399">已取消</span>
+                      <span v-if="item.payStatus === -1" style="color: #909399">订单取消</span>
                       <span v-if="item.payStatus === -2" style="color: #1cc46c">已退款</span>
-                      <span v-if="item.payStatus === 2" style="color: #1cc46c">交易成功</span>
+                      <span v-if="item.payStatus === 4" style="color: #1cc46c">订单完成</span>
                     </div>
                     <div class="imgBox">
                       <!--       ${loginStore.cossUrl} -->
@@ -171,12 +171,18 @@
               <div class="payTime">{{ item.payTime ? item.payTime : "-" }}</div>
               <div class="payBox">
                 <div class="state">
+                  <!-- <span v-if="item.payStatus === 0">待支付</span>
+                  <span v-if="item.payStatus === 1">登记中</span>
+                  <span v-if="item.payStatus === -1">订单取消</span>
+                  <span v-if="item.payStatus === -2">已退款</span>
+                  <span v-if="item.payStatus === 4">订单完成</span>
+                  <span v-if="item.payStatus === 0">去支付</span> -->
                   <span v-if="item.payStatus === 0">待支付</span>
                   <span v-if="item.payStatus === 1">登记中</span>
                   <span v-if="item.payStatus === -1">订单取消</span>
                   <span v-if="item.payStatus === -2">已退款</span>
                   <span v-if="item.payStatus === 4">订单完成</span>
-                  <span v-if="item.payStatus === 0">去支付</span>
+                  <!-- <span v-if="item.payStatus === 0">去支付</span> -->
                 </div>
                 <div class="btn" v-if="item.payStatus === 0" @click="handlePayShow(item)">去支付</div>
               </div>
@@ -218,9 +224,10 @@ import MessageBoxVue from "@/components/MessageBox/index.js"
 import { personalcenterPay } from "@/enumerate"
 import UnionPayPopup from "@/views/personalCenter/components/unionPayPopup.vue"
 import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
+import { useStore } from "@/pinia"
+const { loginStore } = useStore()
 
 const route = useRoute()
-// const { loginStore, useUsersStore } = useStore()
 const errDialoVueUpdate = ref(false) //支付成功弹框
 
 let orderList = ref([])
@@ -281,11 +288,11 @@ const handleCopyIcon = (item) => {
 }
 //下拉框
 const options = reactive([
-  { values: null, label: "全部状态" },
+  { values: "", label: "全部状态" },
   { values: 0, label: "待支付" },
-  { values: -1, label: "已取消" },
+  { values: -1, label: "订单取消" },
   { values: 1, label: "登记中" },
-  { values: 2, label: "交易成功" },
+  { values: 4, label: "订单完成" },
   { values: -2, label: "已退款" }
 ])
 // { values: 5, label: '登记中' },
@@ -380,19 +387,17 @@ const handlePayShow = async (item) => {
 onMounted(() => {
   handleOrderList()
 })
-// watch(
-//   route,
-//   (newVal) => {
-//     if (!newVal.query.payAmount) return
-//     errDialoVueUpdate.value = true
-//     mounchRef.value = newVal.query.payAmount
-//     // http://test.card.cardesport.com/orderForm?payAmount=1.00
-//   },
-//   {
-//     deep: true,
-//     immediate: true
-//   }
-// )
+watch(
+  () => loginStore.login,
+  (newVal) => {
+    if (!newVal) return
+    handleOrderList()
+  },
+  {
+    deep: true,
+    immediate: true
+  }
+)
 
 watch(
   route,

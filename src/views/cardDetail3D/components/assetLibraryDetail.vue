@@ -27,10 +27,10 @@
                 <div class="ziliao_right">{{ props.detail.productName }}</div>
               </div>
               <!--  -->
-              <!-- <div class="zi_xin">
+              <div class="zi_xin">
                 <div class="zili_left">发行价格</div>
-                <div class="ziliao_right">No -- {{ props.detail.prevBlockHash }}</div>
-              </div> -->
+                <div class="ziliao_right">{{ props.detail.releasePrice }}</div>
+              </div>
               <!--  -->
               <div class="zi_xin">
                 <div class="zili_left">发行批次</div>
@@ -44,7 +44,7 @@
               <!--  -->
               <div class="zi_xin">
                 <div class="zili_left">持有人姓名</div>
-                <div class="ziliao_right">{{ props.detail.prevBlockHash }}</div>
+                <div class="ziliao_right">{{ props.detail.holder }}</div>
               </div>
               <!--  -->
               <div class="zi_xin">

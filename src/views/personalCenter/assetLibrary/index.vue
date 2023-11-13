@@ -72,12 +72,15 @@
 // import SvgIcon from "@/components/SvgIcon/index.vue"
 
 import missingWakeupPageVue from "@/components/missingWakeupPage/index.vue"
-import { ref, reactive, onMounted } from "vue"
+import { ref, reactive, onMounted, watch } from "vue"
 // import assetLibraryDetail from '../components/assetLibraryDetail.vue'
 import assetgrameRulePopup from "../components/assetgrameRulePopup.vue"
 import gxsSelect from "../components/gxsSelect.vue"
 import { getAssetList } from "@/network/personalCenter.js"
 // import { router } from "@/router/index.js"
+import { useStore } from "@/pinia"
+
+const { loginStore } = useStore()
 
 // const errDialoVueUpdate = ref(false)
 // const value = ref("卡牌编号正序")
@@ -87,7 +90,7 @@ const options = ref([
 ])
 const assetInfo = ref({
   currentPage: 1,
-  pageSize: 10,
+  pageSize: 32,
   sort: "time",
   direction: "desc",
   issueName: ""
@@ -134,11 +137,19 @@ const handleThereJSShow = (item) => {
 onMounted(() => {
   assetLibrary()
 })
-// watch(() => {
-// }, {
 
-//   deep:true
-// })
+watch(
+  () => loginStore.login,
+  (newVal) => {
+    if (!newVal) return
+    // handleOrderList()
+    assetLibrary()
+  },
+  {
+    deep: true,
+    immediate: true
+  }
+)
 </script>
 
 <style lang="scss" scoped>
@@ -159,9 +170,10 @@ onMounted(() => {
   box-shadow: none !important;
 }
 
-// .missingWakeupPage {
-//   width: 100%;
-// }
+.missingWakeupPage {
+  // width: 100%;
+  padding-bottom: 40px;
+}
 @import "@/styles/other/paginations.scss";
 @import "./index.scss";
 </style>

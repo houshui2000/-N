@@ -51,7 +51,7 @@
         </div>
       </section>
       <template #footer>
-        <div @click="shopquickbuyPay" class="footer">选择支付方式</div>
+        <div @click="shopquickbuyPay" class="footer">立即购买</div>
         <!--  @click="errDialoVueUpdate = true" -->
       </template>
     </el-dialog>

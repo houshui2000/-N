@@ -68,7 +68,7 @@
               />
               <div class="copyIcon" @click="handleCopyIcon"></div>
             </div>
-            <div class="inputBtn">
+            <div v-if="!useUsersStore.userInfo.changedInvitationCode" class="inputBtn">
               <div
                 class="inputBtn2"
                 @click="handleEditInput('invitationCode')"
@@ -150,19 +150,52 @@ import BankCardPopup from "@/views/personalCenter/components/bankCardPopup.vue"
 import BankCardUnBindingPopup from "@/views/personalCenter/components/bankCardUnBindingPopup.vue"
 import BankCardBindingPopup from "@/views/personalCenter/components/bankCardBindingPopup.vue"
 import BankCardBindingCodePopup from "@/views/personalCenter/components/bankCardBindingCodePopup.vue"
-
 const { useUsersStore } = useStore()
 let bankCardShow = ref(false) //控制绑定银行卡列表弹窗
 let bankCardUnBindingShow = ref(false) //控制绑定银行卡
 let bankCardBindingShow = ref(false) //绑定银行卡
 let bankCardBindingCodeShow = ref(false) //控制验证码显示
 let orderId = ref("") //订单id
+// watch(
+//   () => useUsersStore,
+//   (newVal) => {
+//     admin.value = {
+//       nickName: newVal.userInfo.nickname,
+//       mobile: newVal.userInfo.mobile,
+//       password: "******",
+//       authentication: newVal.userInfo.tradePermission > 0 ? "已实名" : "未实名",
+//       invitationCode: newVal.userInfo.ownerInvitationCode, //自己邀请码
+//       bindingCode: newVal.userInfo.invitationCode //绑定邀请码
+//     }
+//     // mobileInfo.mobile = ""
+//     // mobileInfo.code = ""
+//     // passwordInfo.mobile = ""
+//     // passwordInfo.password = ""
+//   },
+//   {
+//     deep: true
+//   }
+// )
+// const inputRef = ref(null)
+// onMounted(() => {
+//   let div = document.querySelector("div")
+//   div.addEventListener("click", () => {})
+// })
+// let admin = ref({
+//   nickName: useUsersStore.userInfo.nickname,
+//   mobile: useUsersStore.userInfo.mobile,
+//   password: "******",
+//   authentication: useUsersStore.userInfo.tradePermission > 0 ? "已实名" : "未实名",
+//   invitationCode: useUsersStore.userInfo.ownerInvitationCode, //自己邀请码
+//   bindingCode: useUsersStore.userInfo.invitationCode //绑定邀请码
+// })
 watch(
   () => useUsersStore,
   (newVal) => {
     admin.value = {
       nickName: newVal.userInfo.nickname,
       mobile: newVal.userInfo.mobile,
+      changedInvitationCode: newVal.userInfo.changedInvitationCode,
       password: "******",
       authentication: newVal.userInfo.tradePermission > 0 ? "已实名" : "未实名",
       invitationCode: newVal.userInfo.ownerInvitationCode, //自己邀请码
@@ -179,12 +212,13 @@ watch(
 )
 const inputRef = ref(null)
 onMounted(() => {
-  let div = document.querySelector("div")
-  div.addEventListener("click", () => {})
+  // let div = document.querySelector("div")
+  // div.addEventListener("click", () => {})
 })
 let admin = ref({
   nickName: useUsersStore.userInfo.nickname,
   mobile: useUsersStore.userInfo.mobile,
+  changedInvitationCode: useUsersStore.userInfo.changedInvitationCode, // 是否已经修改邀请码
   password: "******",
   authentication: useUsersStore.userInfo.tradePermission > 0 ? "已实名" : "未实名",
   invitationCode: useUsersStore.userInfo.ownerInvitationCode, //自己邀请码

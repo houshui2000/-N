@@ -4,7 +4,9 @@
     <div class="lianx_left">
       <div class="left_one">隐私协议</div>
     </div>
-    <div class="linaxi_right ql-editor" v-html="privatePolicyText"></div>
+    <div class="linaxi_right">
+      <div class="ql-editor" v-html="privatePolicyText"></div>
+    </div>
   </div>
 </template>
 <script setup>

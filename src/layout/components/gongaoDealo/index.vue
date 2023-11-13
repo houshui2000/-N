@@ -16,7 +16,7 @@
       <section>
         <div @click="$emit('update:errDialoVueUpdate', false)" class="close"></div>
 
-        <div v-html="ScrollZiMuVueFRF" class="xinxi"></div>
+        <div v-html="ScrollZiMuVueFRF" class="xinxi ql-editor"></div>
       </section>
     </el-dialog>
   </div>

@@ -18,7 +18,7 @@
           <p>{{ asd.publishTime }}</p>
         </div>
       </div>
-      <div v-html="asd.content" class="center_bottom"></div>
+      <div v-html="asd.content" class="center_bottom ql-editor"></div>
     </div>
   </div>
 </template>

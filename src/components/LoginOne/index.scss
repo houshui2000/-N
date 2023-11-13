@@ -333,13 +333,14 @@
 
 
               .checkboxBox {
+                width: 350px;
                 height: 56px;
                 margin-top: 14px;
                 font-size: 12px;
                 @include Myflex(flex-start); // align-items: center;
                 flex-wrap: wrap;
                 word-wrap: break-word;
-                padding-left: 49px;
+                // padding-left: 49px;
                 word-break: normal;
 
                 .checkboxBox-checkbox {
