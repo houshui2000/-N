@@ -1,20 +1,22 @@
 <template>
   <div class="lianxi">
-    <!-- 常见问题 -->
+    <!-- 相关教程 -->
     <div class="lianx_left">
-      <div class="left_one">常见问题</div>
+      <div class="left_one">相关教程</div>
     </div>
-    <div class="linaxi_right" v-html="statementText"></div>
+    <div class="linaxi_right" v-html="tutorialText"></div>
   </div>
 </template>
 <script setup>
 import { ref } from "vue"
-import { statement } from "../../network/agreement"
-const statementText = ref("")
+import { tutorial } from "../../network/agreement"
+const tutorialText = ref("")
 const goAboutUs = () => {
-  statement().then((res) => {
+  tutorial().then((res) => {
     console.log(res)
-    statementText.value = res.data
+    res.data.map((item) => {
+      tutorialText.value = tutorialText.value + item.content + "<br/>"
+    })
   })
 }
 goAboutUs()

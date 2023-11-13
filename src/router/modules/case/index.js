@@ -41,17 +41,7 @@ export const helpCenterArr = [
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
       scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
     }
-  }, {
-    path: 'TutorialsUs',
-    name: 'TutorialsUs',
-    component: () => import('@/views/helpCenter/TutorialsUs.vue'),
-    meta: {
-      name: '相关教程',
-      immediate: false, // 路由显示
-      gundong: true, // 实时左侧滚动组件false 开启，true关闭
-      scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
-    }
-  }, {
+  },{
     path: 'statementUs',
     name: 'statementUs',
     component: () => import('@/views/helpCenter/statementUs.vue'),
