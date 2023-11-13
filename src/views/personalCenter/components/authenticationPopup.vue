@@ -72,16 +72,10 @@ const handleEmpowerShow = async () => {
     })
     return
   }
-  const res = await realNamePost(passwordEdit.value)
-  if (res.code === 200) {
-    useUsersStore.realNameQRCode = res.data
-    useUsersStore.passwordEdit.certNo = passwordEdit.value.certNo
-    useUsersStore.passwordEdit.username = passwordEdit.value.username
-    useUsersStore.authenticationConFirmPopup = true
-    MessageBoxVue({
-      title: "实名认证成功"
-    })
-  }
+  useUsersStore.passwordEdit.certNo = passwordEdit.value.certNo
+  useUsersStore.passwordEdit.username = passwordEdit.value.username
+  useUsersStore.authenticationConFirmPopup = true
+
 }
 const handleClose = () => {
   passwordEdit.value.certNo = ""
