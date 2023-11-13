@@ -97,6 +97,7 @@ goAboutUs()
   .lianx_left {
     width: 230px;
     height: 100%;
+    //
     .left_one {
       width: 100%;
       height: 50px;
