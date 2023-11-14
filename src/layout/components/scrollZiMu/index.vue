@@ -1,5 +1,5 @@
 <template>
-  <div class="zuiwai">
+  <div @click="dialogVisiblePay = !dialogVisiblePay" class="zuiwai">
     <img class="img" src="@/assets/images/carggo/Gongao.png" alt="" />
     <div ref="lunbo" class="lunbo">
       <div style="display: flex; justify-content: center; align-items: center" ref="spanRef">
@@ -7,14 +7,22 @@
       </div>
     </div>
   </div>
+  <uploadAvatarVue v-model:errDialoVueUpdate="dialogVisiblePay" :ScrollZiMuVueFRF="ScrollZiMuVueFRFDDD" />
 </template>
 <script setup>
-import { ref, onMounted, nextTick } from "vue"
+import { ref, watch, onMounted, nextTick } from "vue"
+import uploadAvatarVue from "../gongaoDealo/index.vue"
 import { indexsysNotice } from "@/network/api"
 
+import { useStore } from "@/pinia"
+
+const { loginStore } = useStore()
 const lunbo = ref()
 const title = ref()
 const spanRef = ref()
+const ScrollZiMuVueFRFDDD = ref("")
+const dialogVisiblePay = ref(false) //公告弹框
+
 const scroll = () => {
   if (!spanRef.value) return
 
@@ -30,6 +38,8 @@ const scroll = () => {
 }
 const indexsysNoticeFun = async () => {
   const res = await indexsysNotice()
+  ScrollZiMuVueFRFDDD.value = res.data
+
   title.value = ScrollViseBleFComponent(res.data)
   nextTick(() => {
     spanRef.value.style.width = `${spanRef.value.offsetWidth + 50}px`
@@ -45,8 +55,19 @@ const ScrollViseBleFComponent = (res) => {
 }
 onMounted(() => {
   indexsysNoticeFun()
-  // window.addEventListener("resize",)
 })
+
+watch(
+  () => loginStore.token,
+  (newVal) => {
+    console.log(newVal, "/newVal")
+    if (!newVal) return
+    dialogVisiblePay.value = !dialogVisiblePay.value
+  },
+  {
+    deep: true
+  }
+)
 </script>
 <style lang="scss" scoped>
 .zuiwai {

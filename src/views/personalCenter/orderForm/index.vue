@@ -212,7 +212,7 @@ import { ElMessage } from "element-plus"
 import gxsSelect from "../components/gxsSelect.vue"
 import { useRoute } from "vue-router"
 // import orderDetailsPopup from "../components/orderDetailsPopup.vue"
-import { GetorderList, orderCancel, shopbuyPay } from "@/network/personalCenter.js"
+import { GetorderList, shoporderdetai, orderCancel, shopbuyPay } from "@/network/personalCenter.js"
 import MessageBoxVue from "@/components/MessageBox/index.js"
 // import { useStore } from "@/pinia/index.js"
 import { personalcenterPay } from "@/enumerate"
@@ -380,12 +380,33 @@ const handlePayShow = async (item) => {
 onMounted(() => {
   handleOrderList()
 })
+// watch(
+//   route,
+//   (newVal) => {
+//     if (!newVal.query.payAmount) return
+//     errDialoVueUpdate.value = true
+//     mounchRef.value = newVal.query.payAmount
+//     // http://test.card.cardesport.com/orderForm?payAmount=1.00
+//   },
+//   {
+//     deep: true,
+//     immediate: true
+//   }
+// )
+
 watch(
   route,
-  (newVal) => {
-    if (!newVal.query.payAmount) return
-    errDialoVueUpdate.value = true
-    mounchRef.value = newVal.query.payAmount
+  async (newVal) => {
+    if (!newVal.query.orderNo) return
+    const res = await shoporderdetai({
+      orderNo: newVal.query.orderNo
+    })
+    console.log(res.data.payStatus)
+    if (res.data.payStatus > 0) {
+      errDialoVueUpdate.value = true
+      mounchRef.value = newVal.query.payAmount
+    }
+
     // http://test.card.cardesport.com/orderForm?payAmount=1.00
   },
   {

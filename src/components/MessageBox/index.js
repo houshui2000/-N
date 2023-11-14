@@ -18,5 +18,5 @@ export default (props) => {
     render(null, div)
     const xtxMeaagecontainer = document.querySelector('.xtxMeaage_container')
     document.body.removeChild(xtxMeaagecontainer)
-  }, 2000)
+  }, 12000)
 }

@@ -132,10 +132,11 @@ export function shopbuyPay (data) {
 
 
 // //订单信息
-// export function shopbuyPay (data) {
-//   return service({
-//     url: '/shop/order-detail',
-//     method: 'post',
-//     data
-//   })
-// }
+export function shoporderdetai (params) {
+  return service({
+    url: '/shop/order-detail',
+    method: 'GET',
+    params
+  })
+}
+// url orderNo  订单详情   payStatus 》 0

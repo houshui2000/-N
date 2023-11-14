@@ -25,7 +25,7 @@
               <!-- 空投 end-->
 
               <div class="cardImg">
-                <div class="music">
+                <div v-if="item.hasAudio" class="music">
                   <SvgIcon size="18px" Height="18px" icon-class="voiceShang" />
                 </div>
                 <img :src="item.productUrl" alt="" />
@@ -114,8 +114,8 @@ const handleSelectValue = (val) => {
 const assetLibrary = async () => {
   let result = await getAssetList(assetInfo.value)
   if (result.code === 200) {
-    // assetList.value = result.data.records
-    assetList.value = [{}]
+    assetList.value = result.data.records
+    // assetList.value = [{}]
 
     total.value = result.data.total
   }

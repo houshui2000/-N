@@ -1,5 +1,5 @@
 <template>
-  <div v-if="ZiChanCha.productNumber !== undefined" class="cardDetail3D">
+  <div v-if="ZiChanCha.productNumber == undefined" class="cardDetail3D">
     <!-- v-if="ZiChanCha.productNumber !== undefined"  -->
     <div class="anniu">
       <div @click="dialoVue = { title: '查证', dialo: true }" class="cha">查证</div>
@@ -15,8 +15,8 @@
       </div>
       <div class="time">时间：{{ ZiChanCha.releaseYear }}</div>
     </div>
-    <div class="FloatingMusicWidget">
-      <FloatingMusicWidgetVue :fileurl="music" />
+    <div v-if="ThreeDKa.audio" class="FloatingMusicWidget">
+      <FloatingMusicWidgetVue :auditText="ThreeDKa.auditText" :fileurl="ThreeDKa.audio" />
     </div>
     <div class="cardDetail3D_cavas">
       <ThreeDVue :ThreeDKa="ThreeDKa" />
@@ -54,7 +54,7 @@ import { ref } from "vue"
 import { useRoute } from "vue-router"
 import { assetcheck, asset3d, assetcert } from "@/network/shoppingCentre/shoppingCentre"
 const route = useRoute()
-const music = ref(new URL(`../../assets/sadsa.mp3`, import.meta.url).href)
+// const music = ref(new URL(`../../assets/sadsa.mp3`, import.meta.url).href)
 
 const dialoVue = ref({
   dialo: false,
@@ -64,7 +64,9 @@ const ThreeDKa = ref({
   // productFrontUrl: new URL('@/assets/images/ka/zheng.png', import.meta.url).href, // 正
   // productOppositeUrl: new URL('@/assets/images/ka/bottom.png', import.meta.url).href // 正
   productFrontUrl: "", // 正
-  productOppositeUrl: "" // 正
+  productOppositeUrl: "", // 正
+  audio: "",
+  auditText: ""
 })
 const ZiChanCha = ref({})
 const Myimg = ref("")
@@ -76,6 +78,7 @@ const init = async () => {
 
   //获取正反面
   // const asset3dRes = await asset3d({ cardNo: "080-2023-B06-01-044" })
+
   const asset3dRes = await asset3d({ cardNo: ZiChanCha.value.productNumber })
   ThreeDKa.value = asset3dRes.data
   //获取证书
@@ -115,6 +118,9 @@ init()
   position: relative;
   width: 100%;
   height: 100vh;
+
+  background: url("@/assets/images/ka/earth.png") no-repeat;
+  background-size: 100% 100%;
   .anniu {
     position: absolute;
     right: 60px;
@@ -175,12 +181,14 @@ init()
   // 音频开始
   .FloatingMusicWidget {
     position: absolute;
-    left: 50%;
+    right: 216px;
     bottom: 30px;
-    width: 300px;
-    height: 300px;
+    width: 135px;
+    height: 34px;
     z-index: 2;
-    background-color: saddlebrown;
+    // background-color: saddlebrown;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #2d42ff 0%, #df00c9 96.64%);
   }
   // 音频end
   .cardDetail3D_cavas {
