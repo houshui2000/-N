@@ -145,6 +145,16 @@ export const resetpassword = (params) => {
   })
 }
 
+/**
+ * 获取密码
+ *mobile
+*/
+export const showpassword = () => {
+  return service({
+    url: `/user/show-password`,
+    method: 'get'
+  })
+}
 
 
 
