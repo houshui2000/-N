@@ -5,8 +5,8 @@
       <div class="lunbo_da">
         <el-carousel>
           <el-carousel-item v-for="item in carouselUtem" :key="item">
-            <div class="lunbo">
-              <img :src="item.url" alt="" />
+            <div class="lunbo" @click="banner(item)">
+              <img :src="item.pcUrl" alt="" />
             </div>
           </el-carousel-item>
         </el-carousel>
@@ -17,12 +17,19 @@
 <script setup>
 import { indexbanner } from "@/network/api"
 import { ref } from "vue"
+import { useRouter } from "vue-router"
+const router = useRouter()
 const carouselUtem = ref([])
 const creat = async () => {
   const res = await indexbanner()
   if (res.code === 200) {
     carouselUtem.value = res.data
   }
+}
+const banner = (item) => {
+  if (item.pcType == 1) {
+    window.open(item.pcRedirectUrl)
+  } else router.push("informationTwo?id=" + item.pcNewsId)
 }
 creat()
 </script>

@@ -12,7 +12,7 @@
           <span v-show="classify.index === index"></span>
         </p>
       </div>
-      <div class="right_top">
+      <div v-if="classify.index == 0" class="right_top">
         <!-- 排序方式 -->
         <div class="S_L_Par">
           <div class="input">

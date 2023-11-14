@@ -2,7 +2,7 @@
   <div class="IntroTpTheWorkVue">
     <div class="setction scrollStyle">
       <!-- 作品介绍 -->
-      <div v-html="creatData.productIntroduction"></div>
+      <div class="ql-editor" v-html="creatData.productIntroduction"></div>
       <img :src="item" v-for="(item, index) in IMgURl" :key="index" alt="" />
     </div>
   </div>
@@ -20,7 +20,7 @@ const IMgURl = computed(() => {
 <style lang="scss" scoped>
 .IntroTpTheWorkVue {
   padding: 5px;
-  height: 626px;
+  // height: 626px;
   margin-top: 15px;
   width: 100%;
   border-radius: 4px;
@@ -28,7 +28,7 @@ const IMgURl = computed(() => {
   .setction {
     padding: 25px;
     width: 100%;
-    overflow: auto;
+    // overflow: auto;
     color: white;
     height: 100%;
   }

@@ -71,3 +71,13 @@ export function asset3d (params) {
     method: 'GET', params
   })
 }
+
+
+// 弹幕
+export function shopbulletcommencommentt (params) {
+  return service({
+    url: '/shop/bullet-comment',
+    method: 'get',
+    params
+  })
+}

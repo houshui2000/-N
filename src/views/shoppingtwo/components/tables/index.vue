@@ -30,7 +30,8 @@
           <td>
             <p class="kapaiming">
               <span>
-                <img :src="item.avatar" alt="" />
+                <!-- <img :src="item.avatar" alt="" /> -->
+                <img src="@/assets/images/all/defaultavatar.png" alt="" />
               </span>
               <span>{{ item.nickname ? item.nickname : "---" }}</span>
             </p>
@@ -187,6 +188,7 @@ table {
               width: 20px;
               height: 20px;
               margin-right: 5px;
+              border-radius: 50%;
               background-color: salmon;
             }
             &:last-child {

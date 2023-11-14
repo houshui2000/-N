@@ -25,9 +25,9 @@
               <!-- 空投 end-->
 
               <div class="cardImg">
-                <div v-if="item.hasAudio" class="music">
+                <!-- <div v-if="item.hasAudio" class="music">
                   <SvgIcon size="18px" Height="18px" icon-class="voiceShang" />
-                </div>
+                </div> -->
                 <img :src="item.productUrl" alt="" />
               </div>
               <div class="text">{{ item.productName }}</div>
@@ -69,15 +69,18 @@
 </template>
 
 <script setup name="Assetlist">
-import SvgIcon from "@/components/SvgIcon/index.vue"
+// import SvgIcon from "@/components/SvgIcon/index.vue"
 
 import missingWakeupPageVue from "@/components/missingWakeupPage/index.vue"
-import { ref, reactive, onMounted } from "vue"
+import { ref, reactive, onMounted, watch } from "vue"
 // import assetLibraryDetail from '../components/assetLibraryDetail.vue'
 import assetgrameRulePopup from "../components/assetgrameRulePopup.vue"
 import gxsSelect from "../components/gxsSelect.vue"
 import { getAssetList } from "@/network/personalCenter.js"
 // import { router } from "@/router/index.js"
+import { useStore } from "@/pinia"
+
+const { loginStore } = useStore()
 
 // const errDialoVueUpdate = ref(false)
 // const value = ref("卡牌编号正序")
@@ -87,7 +90,7 @@ const options = ref([
 ])
 const assetInfo = ref({
   currentPage: 1,
-  pageSize: 10,
+  pageSize: 32,
   sort: "time",
   direction: "desc",
   issueName: ""
@@ -114,10 +117,8 @@ const handleSelectValue = (val) => {
 const assetLibrary = async () => {
   let result = await getAssetList(assetInfo.value)
   if (result.code === 200) {
-    assetList.value = result.data.records
-    // assetList.value = [{}]
-
-    total.value = result.data.total
+    assetList.value = result.data?.records || []
+    total.value = result.data?.total || 0
   }
 }
 /** 页码变化 */
@@ -136,11 +137,19 @@ const handleThereJSShow = (item) => {
 onMounted(() => {
   assetLibrary()
 })
-// watch(() => {
-// }, {
 
-//   deep:true
-// })
+watch(
+  () => loginStore.login,
+  (newVal) => {
+    if (!newVal) return
+    // handleOrderList()
+    assetLibrary()
+  },
+  {
+    deep: true,
+    immediate: true
+  }
+)
 </script>
 
 <style lang="scss" scoped>
@@ -161,9 +170,10 @@ onMounted(() => {
   box-shadow: none !important;
 }
 
-// .missingWakeupPage {
-//   width: 100%;
-// }
+.missingWakeupPage {
+  // width: 100%;
+  padding-bottom: 40px;
+}
 @import "@/styles/other/paginations.scss";
 @import "./index.scss";
 </style>

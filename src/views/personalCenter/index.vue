@@ -39,7 +39,9 @@
                     :style="{ color: indexActive === index ? 'white' : '#cccccc' }"
                     :key="'tabList' + item.id"
                   >
-                    <div class="TabName" @click="handleTabShow(item, index)">{{ item.name }}</div>
+                    <div class="TabName" @click="handleTabShow(item, index)">
+                      {{ item.name }}
+                    </div>
                     <!-- <div class="icon" v-if="item.id === 1"></div> -->
                   </div>
                 </div>
@@ -83,15 +85,19 @@ let tabList = reactive([
   {
     name: "资产库",
     id: 1,
+    path: "/assetLibrary",
     pushLink: "assetLibrary"
   },
   {
+    // &orderNo=1723984511501926400&payAmount=1.00
     name: "订单明细",
     id: 2,
+    path: "/orderForm",
     pushLink: "orderForm"
   },
   {
     name: "个人资料",
+    path: "/personal",
     id: 3,
     pushLink: "personal"
   }
@@ -108,6 +114,9 @@ const handleTabShow = (item, index) => {
     indexActive.value = index
     router.push(item.pushLink)
   }
+  iconYi()
+}
+const iconYi = () => {
   let tabDom = document.querySelector(".icons")
   let tab = tabDom.getBoundingClientRect()
   let tabBg = document.querySelector(".tabs .bg").getBoundingClientRect()
@@ -115,9 +124,7 @@ const handleTabShow = (item, index) => {
   let lefts = tabText.left - tabBg.left + tabText.width / 2 - tab.width / Math.sqrt(2) / 2
   tabDom.style.left = lefts + "px"
 }
-
 window.addEventListener("resize", function () {
-  console.log("//")
   // 执行需要的操作
   handleTabShow(-1)
 })
@@ -125,17 +132,23 @@ watchEffect(() => {
   indexActive.value = -1
   if (route.name === "assetLibrary") {
     nextTick(() => {
-      handleTabShow(tabList[0], 0)
+      indexActive.value = 0
+      // handleTabShow(tabList[0], 0)
+      iconYi()
     })
   }
   if (route.name === "orderForm") {
     nextTick(() => {
-      handleTabShow(tabList[1], 1)
+      // handleTabShow(tabList[1], 1)
+      indexActive.value = 1
+      iconYi()
     })
   }
   if (route.name === "personal") {
     nextTick(() => {
-      handleTabShow(tabList[2], 2)
+      // handleTabShow(tabList[2], 2)
+      indexActive.value = 2
+      iconYi()
     })
   }
 })

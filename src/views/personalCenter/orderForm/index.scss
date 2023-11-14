@@ -355,27 +355,34 @@
                   width: 48px;
                   height: 48px;
                   margin-top: 21px;
+                  // 待支付
 
                   &.active0 {
                     background: url($gxsorderDetailsIcon) no-repeat center;
                     background-size: contain;
                   }
 
+                  // 已支付
+
                   &.active1 {
-                    background: url($gxsorderDetailyzfIcon) no-repeat center;
+                    background: url($gxsorderDetaildjzIcon) no-repeat center;
                     background-size: contain;
                   }
+
+                  // 已退款
 
                   &.activef2 {
                     background: url($gxsorderDetailytkIcon) no-repeat center;
                     background-size: contain;
                   }
 
+                  // 已取消
                   &.activef1 {
                     background: url($gxsorderDetailyqxIcon) no-repeat center;
                     background-size: contain;
                   }
 
+                  // 订单完成
                   &.active2 {
                     background: url($gxsorderDetailzfwcIcon) no-repeat center;
                     background-size: contain;

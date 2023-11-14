@@ -19,13 +19,13 @@
   </div>
 </template>
 <script setup>
-import { helpCenterArr } from '@/router/modules/case'
-import { useRouter, useRoute } from 'vue-router'
-import { computed, watch, ref } from 'vue'
+import { helpCenterArr } from "@/router/modules/case"
+import { useRouter, useRoute } from "vue-router"
+import { computed, watch, ref } from "vue"
 const router = useRouter()
 const route = useRoute()
 const helpCenterArrVue = computed(() => helpCenterArr)
-const nameRef = ref('')
+const nameRef = ref("")
 watch(
   () => route,
   () => {
@@ -42,11 +42,11 @@ watch(
   .top {
     width: 1920px;
     height: 219.763px;
-    background: url('@/assets/images/all/Rectangle4565.png') no-repeat scroll left bottom/ 100% 100%;
+    background: url("@/assets/images/all/Rectangle4565.png") no-repeat scroll left bottom/ 100% 100%;
   }
   section {
     width: 1470px;
-    height: 60px;
+    // height: 60px;
     margin: 30px auto;
 
     .section_top {
@@ -61,7 +61,7 @@ watch(
         transition: all 0.5s;
         position: relative;
         &::after {
-          content: '';
+          content: "";
           display: inline-block;
           position: absolute;
           left: 50%;
@@ -74,7 +74,8 @@ watch(
         }
       }
       > p {
-        font: normal normal 400 14px ' PingFang SC';
+        cursor: pointer;
+        font: normal normal 400 14px " PingFang SC";
         color: white;
         display: inline-block;
         height: 100%;

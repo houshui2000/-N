@@ -22,3 +22,11 @@ export const exchangegood = (params) => {
     method: 'get', params
   })
 }
+// // app 下载
+// export function otherapkmsg (data) {
+//   return service({
+//     url: '/other/apk-msg',
+//     method: 'get',
+//     data
+//   })
+// }

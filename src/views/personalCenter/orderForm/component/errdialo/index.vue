@@ -1,6 +1,7 @@
 <template>
   <div class="eror_all">
     <!-- 支付弹框 -->
+
     <el-dialog
       :modelValue="errDialoVueUpdate"
       @update:errDialoVueUpdate="$emit('update:errDialoVueUpdate', $event)"
@@ -44,8 +45,8 @@
         </div>
         <p class="spice">￥{{ mounchRef }}</p>
         <p class="chenggong">恭喜您购买成功!</p>
-        <p class="shuomimnh">您使用支付宝完成了本次资产交易，该资产您可在 个人中心-资产库板块查看。</p>
-        <div @click="$emit('update:errDialoVueUpdate', false)" class="close">关闭</div>
+        <p class="shuomimnh">您完成了本次资产交易，该资产您可在 个人中心-资产库板块查看。</p>
+        <div @click="close" class="close">关闭</div>
       </section>
     </el-dialog>
   </div>
@@ -53,13 +54,18 @@
 <script setup>
 import { toRefs } from "vue"
 // import SvgIcon from '@/components/SvgIcon/index.vue'
-
+import { useRouter } from "vue-router"
+const router = useRouter()
 const props = defineProps({
   errDialoVueUpdate: { type: Boolean, required: true },
   mounchRef: { type: String, required: true }
 })
 const { errDialoVueUpdate, mounchRef } = toRefs(props)
 const $emit = defineEmits(["update:errDialoVueUpdate"])
+const close = () => {
+  $emit("update:errDialoVueUpdate", false)
+  router.push("/orderForm")
+}
 </script>
 <style lang="scss" scoped>
 .dialog-footer button:first-child {

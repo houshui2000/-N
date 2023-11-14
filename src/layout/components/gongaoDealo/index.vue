@@ -14,9 +14,9 @@
         <div class="top"></div>
       </template>
       <section>
-        <div @click="$emit('update:errDialoVueUpdate', false)" class="close"></div>
+        <div @click="$emit('update:errDialoVueUpdate', false)" class="close">关闭</div>
 
-        <div v-html="ScrollZiMuVueFRF" class="xinxi"></div>
+        <div v-html="ScrollZiMuVueFRF" class="xinxi ql-editor"></div>
       </section>
     </el-dialog>
   </div>
@@ -63,10 +63,29 @@ section {
 
   .close {
     position: absolute;
-    right: 45px;
-    top: 10px;
-    width: 20px;
-    height: 20px;
+    left: 47%;
+    bottom: -5px;
+    transform: translateX(-50%);
+    width: 138px;
+    padding: 10.199px;
+    // border: 1.02px solid #fafafa;
+    border-radius: 11.219px;
+    font: normal normal 700 16px "PingFang SC";
+    color: white;
+    @include Myflex();
+    transition: all 0.3s ease 0s;
+    height: 50px;
+    // background-color: #1f2124;
+    @include bordergradientMY(
+      linear-gradient(180deg, rgba(133, 133, 133, 1) 0%, rgba(55, 55, 55, 0.4) 100%),
+      linear-gradient(180deg, rgba(54, 54, 54, 1) 0%, rgba(54, 54, 54, 1) 100%)
+    );
+    &:hover {
+      @include bordergradientMY(
+        linear-gradient(180deg, rgba(128, 131, 154, 1) 0%, rgba(57, 57, 57, 0.8) 100%),
+        linear-gradient(180deg, rgba(57, 64, 125, 1) 0%, rgba(4, 5, 6, 1) 100%)
+      );
+    }
     cursor: pointer;
   }
   .xinxi {
@@ -76,7 +95,7 @@ section {
     color: #fff;
     font: normal normal 400 12px "PingFang SC";
     overflow-y: auto;
-    padding-right: 5px;
+    // padding-right: 5px;
   }
 }
 </style>

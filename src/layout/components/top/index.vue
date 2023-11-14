@@ -1,10 +1,15 @@
 <template>
   <div id="navTop">
     <!--  左边  -->
-    <div class="navContent-bottom" ref="navBorder"></div>
+
+    <div class="navContent-bottom" ref="navBorder">
+      <!-- active 导航栏 -->
+    </div>
     <div class="left">
       <div @click="router.push('/')" class="logo">
-        <div class="logoImg"></div>
+        <div class="logoImg">
+          <SvgIcon size="98px" Height="40px" icon-class="logo" />
+        </div>
       </div>
       <div class="navContent">
         <div
@@ -81,6 +86,8 @@
   </div>
 </template>
 <script setup>
+import SvgIcon from "@/components/SvgIcon/index.vue"
+
 import { ref, computed, nextTick, onMounted, onUnmounted, watch } from "vue"
 // import SvgIcon from '@/components/SvgIcon/index.vue'
 import Login from "@/components/Login/index.vue"
@@ -236,12 +243,12 @@ watch(
       align-items: center;
 
       .logoImg {
-        width: 48px;
-        height: 47px;
-        background: white;
-        background: url($gxslogo) no-repeat center;
-        background-size: contain;
+        width: 108px;
+        height: 40px;
+        // background: url($gxslogo) no-repeat center;
+        // background-size: contain;
         margin-left: 58px;
+        @include Myflex();
       }
     }
     .active {
@@ -289,7 +296,9 @@ watch(
     // }
 
     .download {
-      width: 90px;
+      cursor: pointer;
+      // width: 90px;
+
       height: 26px;
       background: url($gxsappdownload) no-repeat left center;
       color: wheat;

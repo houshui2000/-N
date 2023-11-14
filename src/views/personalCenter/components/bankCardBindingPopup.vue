@@ -20,39 +20,7 @@
               <input v-model="cardBankInfo.certNo" placeholder="请输入身份证编号" />
             </div>
           </div>
-          <!-- <div class="addFrom">
-            <div class="label">：</div>
-            <div class="addFromDom">
-              <div class="selectBox">
-                <div class="selectInput">
-                  <input v-model="cardBankInfo.bankName" placeholder="请选择" @input="handleBankNameClick" />
-                </div>
-                <div class="arrowBox" @click="handleSelectList">
-                  <div class="icon" :class="{ active: selectShow }"></div>
-                </div>
-                <div class="listBox" :class="{ active: !selectShow || !(selectOptionList.length === 0) }">
-                  <div
-                    class="listDom"
-                    v-for="item in selectList"
-                    @click="handleSelectValue(item)"
-                    :key="'select' + item.id"
-                  >
-                    {{ item.name }}
-                  </div>
-                </div>
-                <div class="listBox" :class="{ active: !(selectOptionList.length !== 0) }">
-                  <div
-                    class="listDom"
-                    v-for="(item, index) in selectOptionList"
-                    @click="handleSelectValue(item)"
-                    :key="'selectOptionList' + index"
-                  >
-                    {{ item.name }}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>-->
+
           <div class="addFrom">
             <div class="label">银行：</div>
             <div class="addFromDom">
@@ -144,6 +112,35 @@ const handleBankCardBindingClose = () => {
  * 确认
  */
 const handleBankCardBindingConfirm = async () => {
+  let name = /^(?:[\u4e00-\u9fa5·]{2,16})$/
+  if (!name.test(cardBankInfo.value.username)) {
+    MessageBoxVue({
+      title: "您输入的姓名不正确"
+    })
+    return
+  }
+  let certNo = /^[1-9]\d{7}(?:0\d|10|11|12)(?:0[1-9]|[1-2][\d]|30|31)\d{3}$/
+  if (!certNo.test(cardBankInfo.value.certNo)) {
+    MessageBoxVue({
+      title: "您输入的身份证号不正确"
+    })
+    return
+  }
+  let bankCardNo = /^[1-9]\d{9,29}$/
+  if (!bankCardNo.test(cardBankInfo.value.bankCardNo)) {
+    MessageBoxVue({
+      title: "您输入的银行卡不正确"
+    })
+    return
+  }
+  let mobile =
+    /^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-79])|(?:5[0-35-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1589]))\d{8}$/
+  if (!mobile.test(cardBankInfo.value.mobile)) {
+    MessageBoxVue({
+      title: "您输入的手机号不正确"
+    })
+    return
+  }
   let result = await POST_bankCardBinding(cardBankInfo.value)
   if (result.code === 200) {
     MessageBoxVue({

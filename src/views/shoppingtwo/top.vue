@@ -67,9 +67,11 @@
             })
           "
           :class="{ Xilie_da: item.id == route.query.vaultId }"
+          :style="{ opacity: item.id == route.query.vaultId ? 1 : 0.5 }"
           :key="index"
           class="XIlie_one"
         >
+          <div v-if="item.id == route.query.vaultId" class="affter"></div>
           <div class="left_one">
             <img class="equalProportions" :src="item.productUrl" alt="" />
           </div>
@@ -247,7 +249,7 @@ const onePieceBuyin = async () => {
       }
       .S_l_center {
         @include Myflex(flex-start, flex-start);
-        // flex-direction: column;
+        flex-direction: column;
         margin-top: 17px;
         flex-wrap: wrap;
         > div {
@@ -356,22 +358,24 @@ const onePieceBuyin = async () => {
       position: relative;
       transform: scale(1.1) translateX(-10px);
       opacity: 1 !important;
-      &::after {
-        content: "";
-        display: inline-block;
-        width: 46px;
-        height: 150px;
-        // border-radius: 50%;
-        position: absolute;
-        left: -46px;
-        top: 0;
-        background: url("@/assets/images/shoppingCentre/qita_zhi.png") no-repeat scroll left top/ 100% 100%;
-      }
+      // &::after {
+      //   content: "";
+      //   display: inline-block;
+      //   width: 46px;
+      //   height: 150px;
+      //   // border-radius: 50%;
+      //   position: absolute;
+      //   left: -46px;
+      //   top: 0;
+      //   background: url("@/assets/images/shoppingCentre/qita_zhi.png") no-repeat scroll left top/ 100% 100%;
+      // }
     }
     .XIlie_one {
       cursor: pointer;
+      position: relative;
       margin-top: 15px;
-      opacity: 0.5;
+      opacity: 0.8;
+      transition: all 0.5s;
       border-radius: 5px;
       border: 1px solid transparent;
       background-clip: padding-box, border-box;
@@ -382,23 +386,22 @@ const onePieceBuyin = async () => {
       height: 150px;
       @include Myflex(space-between);
       padding: 10px 14px;
-      // &:hover {
-      //   position: relative;
-      //   transform: scale(1.1) translateX(-10px);
-      //   opacity: 1 !important;
-      //   &::after {
-      //     content: "";
-      //     display: inline-block;
-      //     width: 46px;
-      //     height: 150px;
-      //     // border-radius: 50%;
-      //     position: absolute;
-      //     left: -46px;
-      //     top: 0;
-      //     // margin-left: 10px;qita_zhi.png
-      //     background: url("@/assets/images/shoppingCentre/qita_zhi.png") no-repeat scroll left top/ 100% 100%;
-      //   }
-      // }
+      // &::after {
+      .affter {
+        // content: "";
+        // display: inline-block;
+        width: 46px;
+        height: 150px;
+        // border-radius: 50%;
+        position: absolute;
+        left: -46px;
+        top: 0;
+        background: url("@/assets/images/shoppingCentre/qita_zhi.png") no-repeat scroll left top/ 100% 100%;
+      }
+      &:hover {
+        transform: scale(1.1) translateX(-10px);
+        opacity: 1 !important;
+      }
       &:first-child {
         margin-top: 0;
       }

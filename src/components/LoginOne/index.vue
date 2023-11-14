@@ -206,14 +206,14 @@
                   <el-checkbox v-model="agreement" class="checkboxBox-checkbox"></el-checkbox>
                   我已满18周岁，并且同意
                   <span
-                    style="fontsize: 12px"
+                    style="color: #42bbff; font-size: 12px"
                     @click="() => ((loginStore.login = false), $router.push('/helpCenter/userUs'))"
                   >
                     《用户协议》
                   </span>
                   和
                   <span
-                    style="fontsize: 12px"
+                    style="color: #42bbff; font-size: 12px"
                     @click="() => ((loginStore.login = false), $router.push('/helpCenter/privacyUs'))"
                   >
                     《隐私协议》
@@ -296,6 +296,9 @@ let resettingInfo = reactive(resettingInfoInit())
 //协议校验
 const handleAgreement = () => {
   if (!agreement.value && !(otherBtn.value === "resetting")) {
+    MessageBoxVue({
+      title: "请勾选协议"
+    })
     agreementShow.value = true
     setTimeout(() => {
       agreementShow.value = false
@@ -308,6 +311,9 @@ const handleLoginBtn = async () => {
   // 手机密码登录
   if (stateBtn.value === 1 && otherBtn.value === "other") {
     if (passwordInfo.mobile === "" || passwordInfo.password === "") {
+      MessageBoxVue({
+        title: "请输入手机号或密码"
+      })
       return
     }
     if (handleAgreement()) return
@@ -332,6 +338,9 @@ const handleLoginBtn = async () => {
   // 手机验证码登录
   if (stateBtn.value === 2 && otherBtn.value === "other") {
     if (mobileInfo.mobile === "" || mobileInfo.code === "") {
+      MessageBoxVue({
+        title: "请输入手机号或验证码"
+      })
       return
     }
     if (handleAgreement()) return
@@ -374,6 +383,37 @@ const handleLoginBtn = async () => {
   }
   //忘记密码
   if (otherBtn.value === "resetting") {
+    // 请后续人员优化
+    const mobile =
+      /^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-79])|(?:5[0-35-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1589]))\d{8}$/
+
+    if (!mobile.test(resettingInfo.mobile)) {
+      MessageBoxVue({
+        title: "请输入正确的手机号"
+      })
+      return
+    }
+    if (!resettingInfo.code) {
+      MessageBoxVue({
+        title: "请输入验证码"
+      })
+      return
+    }
+
+    if (resettingInfo.password.length >= 16) {
+      MessageBoxVue({
+        title: "请输入不超过16位的密码"
+      })
+      return
+    }
+    if (resettingInfo.password !== resettingInfo.passwordAgain) {
+      MessageBoxVue({
+        title: "俩次密码不一致"
+      })
+      return
+    }
+    // 请后续人员优化end
+
     const result = await resetpasswordBtn(resettingInfo)
     if (result.code === 200) {
       otherBtn.value = "other"
@@ -436,6 +476,15 @@ const handleResettingCodeTime60 = () => {
 const handleCodeTime = async () => {
   if (stateBtn.value === 2 && otherBtn.value === "other") {
     //手机号登录
+    const mobile =
+      /^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-79])|(?:5[0-35-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1589]))\d{8}$/
+
+    if (!mobile.test(mobileInfo.mobile)) {
+      MessageBoxVue({
+        title: "请输入正确的手机号"
+      })
+      return
+    }
     if (phoneRegex.test(mobileInfo.mobile)) {
       if (codeTime.value >= 0) {
         return
@@ -572,3 +621,4 @@ watch(
 <style lang="scss" scoped>
 @import "./index.scss";
 </style>
+<!-- translate(-50%,-50%) rotate(45deg) scaleY(1) -->

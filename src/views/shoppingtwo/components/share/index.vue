@@ -23,23 +23,15 @@
         </div>
         <div class="section_bottom">
           <div class="bottom_left">
-            <p class="title">{{ creatData.authorName }}</p>
+            <p class="title">{{ creatData.productName }}</p>
             <!-- <p v-html="props.creatData.productIntroduction" class="center"></p> -->
-            <p class="center">发现一款猴赛雷的数藏，快来瞧瞧</p>
+            <p class="center">发现一款超赞的数字卡，快来看看</p>
 
             <div class="cardJ">
               <div class="cardJ_top">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 41 25" fill="none">
-                  <rect y="16.373" width="8.10213" height="8.10213" fill="#96DBF8" />
-                  <rect y="8.271" width="8.10213" height="8.10213" fill="#26A9E1" />
-                  <rect x="8.10211" y="0.168701" width="8.10213" height="8.10213" fill="#A0FFA5" />
-                  <rect x="16.0355" y="8.4397" width="8.10213" height="8.10213" fill="#4B4BF7" />
-                  <rect x="24.3064" y="16.373" width="8.10213" height="8.10213" fill="#EB80FC" />
-                  <rect x="32.4085" y="8.271" width="8.10213" height="8.10213" fill="#F5911F" />
-                  <rect x="32.4085" y="0.168701" width="8.10213" height="8.10213" fill="#D5DE21" />
-                </svg>
+                <SvgIcon size="58px" Height="40px" icon-class="logo" />
               </div>
-              <div class="cardJ_foter">中国首家可信版权链交易平台</div>
+              <div class="cardJ_foter">中国可信数字版权资产卡交易平台</div>
             </div>
           </div>
           <div class="bottom_right">
@@ -54,6 +46,8 @@
   </div>
 </template>
 <script setup name="uploadXia">
+import SvgIcon from "@/components/SvgIcon/index.vue"
+
 import { toRefs, watch, ref, nextTick } from "vue"
 import html2canvas from "html2canvas"
 import { useRoute } from "vue-router"
@@ -256,11 +250,14 @@ section {
         flex-direction: column;
         padding: 9px 11px;
         .cardJ_top {
-          width: 40px;
-          height: 25px;
+          width: 108px;
+          height: 40px;
           overflow: hidden;
+          @include Myflex(flex-start);
         }
         .cardJ_foter {
+          width: 110%;
+          transform: translateY(4px);
           font: normal normal 400 12px "PingFang SC";
         }
       }

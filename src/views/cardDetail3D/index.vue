@@ -1,5 +1,5 @@
 <template>
-  <div v-if="ZiChanCha.productNumber == undefined" class="cardDetail3D">
+  <div v-if="ZiChanCha.productNumber !== undefined" class="cardDetail3D">
     <!-- v-if="ZiChanCha.productNumber !== undefined"  -->
     <div class="anniu">
       <div @click="dialoVue = { title: '查证', dialo: true }" class="cha">查证</div>
@@ -58,7 +58,7 @@ const route = useRoute()
 
 const dialoVue = ref({
   dialo: false,
-  title: "查证"
+  title: "证书"
 })
 const ThreeDKa = ref({
   // productFrontUrl: new URL('@/assets/images/ka/zheng.png', import.meta.url).href, // 正
@@ -183,7 +183,7 @@ init()
     position: absolute;
     right: 216px;
     bottom: 30px;
-    width: 135px;
+    min-width: 135px;
     height: 34px;
     z-index: 2;
     // background-color: saddlebrown;

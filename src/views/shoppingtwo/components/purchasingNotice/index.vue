@@ -2,7 +2,7 @@
   <div class="IntroTpTheWorkVue">
     <!-- 购买须知 -->
     <div class="setction scrollStyle">
-      <div v-html="aaa"></div>
+      <div class="ql-editor" v-html="aaa"></div>
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@ init()
 <style lang="scss" scoped>
 .IntroTpTheWorkVue {
   padding: 5px;
-  height: 626px;
+  // height: 626px;
   margin-top: 15px;
   width: 100%;
   border-radius: 4px;
@@ -28,7 +28,7 @@ init()
   .setction {
     padding: 25px;
     width: 100%;
-    overflow: auto;
+    // overflow: auto;
     height: 100%;
     color: white;
   }

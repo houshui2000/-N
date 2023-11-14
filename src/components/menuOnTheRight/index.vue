@@ -97,7 +97,10 @@ const mouseleaveMy = (item, index) => {
   height: 300px;
   z-index: 900;
   .div {
+    cursor: pointer;
     margin-top: 12px;
+    @include Myflex();
+    flex-direction: column;
     .div_img {
       width: 70px;
       height: 70px;
@@ -108,7 +111,7 @@ const mouseleaveMy = (item, index) => {
       > img {
         width: 42px;
         height: 42px;
-        transform: scale(0.8);
+        // transform: scale(0.8);
       }
     }
     p {
@@ -129,7 +132,7 @@ const mouseleaveMy = (item, index) => {
   }
   .officials {
     position: fixed;
-    right: 100px;
+    right: 120px;
     top: 100px;
     width: 233px;
     // height: 191px;

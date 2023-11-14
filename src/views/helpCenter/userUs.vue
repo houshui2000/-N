@@ -24,11 +24,11 @@ goAboutUs()
 <style lang="scss" scoped>
 .lianxi {
   width: 100%;
-  height: 100%;  
+  // height: 100%;
   @include Myflex(space-between, flex-start);
   .lianx_left {
     width: 230px;
-    height: 100%;
+    // height: 100%;
     .left_one {
       width: 100%;
       height: 50px;
@@ -46,10 +46,10 @@ goAboutUs()
   }
   .linaxi_right {
     width: 1220px;
-    height: 524px;
     padding: 25px;
-    overflow: hidden;
-    overflow-y: auto;
+    // height: 5024px;
+    // overflow: hidden;
+    // overflow-y: auto;
     // color: white;
 
     border-radius: 8px;

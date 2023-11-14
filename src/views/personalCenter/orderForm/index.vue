@@ -82,15 +82,15 @@
                         active1: item.payStatus === 1,
                         activef1: item.payStatus === -1,
                         activef2: item.payStatus === -2,
-                        active2: item.payStatus === 2
+                        active2: item.payStatus === 4
                       }"
                     ></div>
                     <div class="titleText">
                       <span v-if="item.payStatus === 0">待支付</span>
                       <span v-if="item.payStatus === 1">登记中</span>
-                      <span v-if="item.payStatus === -1" style="color: #909399">已取消</span>
+                      <span v-if="item.payStatus === -1" style="color: #909399">订单取消</span>
                       <span v-if="item.payStatus === -2" style="color: #1cc46c">已退款</span>
-                      <span v-if="item.payStatus === 2" style="color: #1cc46c">交易成功</span>
+                      <span v-if="item.payStatus === 4" style="color: #1cc46c">订单完成</span>
                     </div>
                     <div class="imgBox">
                       <!--       ${loginStore.cossUrl} -->
@@ -135,7 +135,8 @@
                       <div class="contentTextBox">
                         <div class="label">支付方式</div>
                         <div class="dataValue">
-                          {{ item.payType === 0 ? "支付宝" : "微信" }}
+                          <!-- {{ item.payType === 0 ? "支付宝" : "微信" }} -->
+                          {{ payway(item) }}
                           <span v-if="item.payStatus === -2">(已退款)</span>
                         </div>
                       </div>
@@ -164,7 +165,6 @@
                 </div>
               </div>
               <div class="money">￥{{ item.payAmount }}</div>
-              <!-- <div class="payment">{{ item.payType === 0 ? "支付宝" : "微信" }}</div> -->
               <div class="payment">{{ payway(item) }}</div>
 
               <div class="createTime">{{ item.createTime }}</div>
@@ -176,7 +176,7 @@
                   <span v-if="item.payStatus === -1">订单取消</span>
                   <span v-if="item.payStatus === -2">已退款</span>
                   <span v-if="item.payStatus === 4">订单完成</span>
-                  <span v-if="item.payStatus === 0">去支付</span>
+                  <!-- <span v-if="item.payStatus === 0">去支付</span> -->
                 </div>
                 <div class="btn" v-if="item.payStatus === 0" @click="handlePayShow(item)">去支付</div>
               </div>
@@ -184,7 +184,7 @@
           </div>
           <div class="bottomMsg" v-if="orderList.length === 0">
             <!-- 暂无明细 -->
-            <MissWakeupPage :title="'暂无藏品'" :titleTwo="'敬请期待!'" />
+            <MissWakeupPage :title="'暂无资产'" :titleTwo="'敬请期待!'" />
           </div>
         </div>
       </div>
@@ -205,10 +205,10 @@
   </transition>
 </template>
 <!--  对三取模 1 ：银联  -->
-<script setup>
+<script setup name="orderFrom">
 import { reactive, ref, watch, onMounted } from "vue"
 import errDialoVue from "./component/errdialo/index.vue"
-import { ElMessage } from "element-plus"
+// import { ElMessage } from "element-plus"
 import gxsSelect from "../components/gxsSelect.vue"
 import { useRoute } from "vue-router"
 // import orderDetailsPopup from "../components/orderDetailsPopup.vue"
@@ -218,9 +218,10 @@ import MessageBoxVue from "@/components/MessageBox/index.js"
 import { personalcenterPay } from "@/enumerate"
 import UnionPayPopup from "@/views/personalCenter/components/unionPayPopup.vue"
 import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
+import { useStore } from "@/pinia"
+const { loginStore } = useStore()
 
 const route = useRoute()
-// const { loginStore, useUsersStore } = useStore()
 const errDialoVueUpdate = ref(false) //支付成功弹框
 
 let orderList = ref([])
@@ -274,18 +275,21 @@ const handleCopyIcon = (item) => {
   textField.select()
   document.execCommand("copy")
   textField.remove()
-  ElMessage({
-    message: "复制成功",
-    type: "success"
+  MessageBoxVue({
+    title: "复制成功"
   })
+  // ElMessage({
+  //   message: "复制成功",
+  //   type: "success"
+  // })
 }
 //下拉框
 const options = reactive([
-  { values: null, label: "全部状态" },
+  { values: "", label: "全部状态" },
   { values: 0, label: "待支付" },
-  { values: -1, label: "已取消" },
+  { values: -1, label: "订单取消" },
   { values: 1, label: "登记中" },
-  { values: 2, label: "交易成功" },
+  { values: 4, label: "订单完成" },
   { values: -2, label: "已退款" }
 ])
 // { values: 5, label: '登记中' },
@@ -380,34 +384,30 @@ const handlePayShow = async (item) => {
 onMounted(() => {
   handleOrderList()
 })
-// watch(
-//   route,
-//   (newVal) => {
-//     if (!newVal.query.payAmount) return
-//     errDialoVueUpdate.value = true
-//     mounchRef.value = newVal.query.payAmount
-//     // http://test.card.cardesport.com/orderForm?payAmount=1.00
-//   },
-//   {
-//     deep: true,
-//     immediate: true
-//   }
-// )
+watch(
+  () => loginStore.login,
+  (newVal) => {
+    if (!newVal) return
+    handleOrderList()
+  },
+  {
+    deep: true,
+    immediate: true
+  }
+)
 
 watch(
   route,
-  async (newVal) => {
-    if (!newVal.query.orderNo) return
+  async () => {
+    if (!route.query.orderNo) return
     const res = await shoporderdetai({
-      orderNo: newVal.query.orderNo
+      orderNo: route.query.orderNo
     })
-    console.log(res.data.payStatus)
-    if (res.data.payStatus > 0) {
+    if (res.data?.payStatus > 0) {
       errDialoVueUpdate.value = true
-      mounchRef.value = newVal.query.payAmount
+      mounchRef.value = route.query.payAmount
     }
-
-    // http://test.card.cardesport.com/orderForm?payAmount=1.00
+    // http://172.16.0.166/orderForm?orderNo=1723984511501926400&payAmount=1.00
   },
   {
     deep: true,
@@ -419,9 +419,12 @@ watch(
 .CreateDateTimePickerKuang_CreationTime_retrieval {
   box-shadow: 0 0 0 0 !important;
   border: 1px solid #4a5173 !important;
-  background-color: saddlebrown;
 }
 .CreateDateTimePickerKuang_CreationTime_retrieval {
+  .el-input.is-disabled .el-input__wrapper {
+    background-color: rgba(5, 13, 23, 1);
+    box-shadow: 0 0 0 0 !important;
+  }
   .el-picker-panel {
     background-color: rgba(5, 13, 23, 1);
   }
