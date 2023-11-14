@@ -50,7 +50,7 @@
 
       .CreateDateTime {
         margin-left: 20px;
-        width: 163px;
+        width: 250px;
         height: 36px;
         cursor: pointer;
         overflow: hidden;
@@ -61,7 +61,8 @@
         font-size: 12px;
 
         :deep(.el-input__wrapper) {
-          background-color: red;
+          // background-color: red;
+          background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(142.59deg, #315eff 30.5%, #c90091 85.93%);
         }
 
         .text {
@@ -98,9 +99,12 @@
 
       .PayDateTime {
         margin-left: 20px;
-        width: 163px;
+        width: 250px;
         height: 36px;
-
+        :deep(.el-input__wrapper) {
+          // background-color: red;
+          background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(142.59deg, #315eff 30.5%, #c90091 85.93%);
+        }
         cursor: pointer;
         overflow: hidden;
         display: flex;

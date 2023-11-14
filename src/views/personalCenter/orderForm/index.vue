@@ -5,38 +5,38 @@
         <div class="left">
           <gxsSelect :options="options" :arrayValue="arrayValue" @handleEdit="handleSelectValue"></gxsSelect>
           <div class="CreateDateTime" @click="handleCreateDateTimeShow">
-            <div class="text">
+            <!-- <div class="text">
               创建时间检索
               <div class="icon"></div>
-            </div>
+            </div> -->
             <el-date-picker
+              style="width: 150px;"
               class="CreateDateTimePicker"
               popper-class="CreateDateTimePickerKuang_CreationTime_retrieval"
               v-model="createTime"
               type="datetimerange"
               start-placeholder="开始时间"
               end-placeholder="结束时间"
-              format="YYYY-MM-DD HH:mm:ss"
+              format="YYYY-MM-DD"
               date-format="YYYY-MM-DD"
-              time-format="hh:mm:ss"
               @change="handleCreateDateTime"
             />
           </div>
           <div class="PayDateTime" @click="handlePayDateTimeShow">
-            <div class="text">
+            <!-- <div class="text">
               支付时间检索
               <div class="icon"></div>
-            </div>
+            </div> -->
             <el-date-picker
+              style="width: 150px;"
               class="PayDateTimePicker"
               popper-class="CreateDateTimePickerKuang_CreationTime_retrieval"
               v-model="payTime"
               type="datetimerange"
               start-placeholder="开始时间"
               end-placeholder="结束时间"
-              format="YYYY-MM-DD HH:mm:ss"
+              format="YYYY-MM-DD"
               date-format="YYYY-MM-DD"
-              time-format="hh:mm:ss"
               @change="handlePayTime"
             />
           </div>

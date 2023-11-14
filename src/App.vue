@@ -101,6 +101,23 @@ body {
 		max-height: 500px;
 		overflow: auto;
 
+		//滚动条里的小方块
+
+.box::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color:gray;
+}
+
+//滚动条整体样式
+.box::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;  //高宽分别对应横竖滚动条的尺寸
+}
+ //滚动条中心部分
+.box::-webkit-scrollbar-track {
+  background-color:pink;
+}
+
 	}
 }
 /* 禁止复制代码 */
