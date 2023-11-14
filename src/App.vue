@@ -65,10 +65,8 @@ body {
 }
 .CIjing {
   width: 1920px;
-  // background-color: cadetblue;
-  // background: #0e121b url('@/assets/images/all/bei.png') no-repeat;
-  // background-color: rgba(14, 18, 27, 0.9);
   background: url("@/assets/images/all/bei.png") no-repeat scroll left top/ 100% 100%;
+  // background-color: saddlebrown;
 
   // background-color: saddlebrown;
   position: relative;
@@ -87,38 +85,37 @@ body {
 </style>
 <style lang="scss">
 .ql-snow {
-	.ql-editor {
-		ul {
-			list-style-type: disc;
-			list-style-position: inside;
-		}
+  .ql-editor {
+    ul {
+      list-style-type: disc;
+      list-style-position: inside;
+    }
 
-		ol {
-			list-style-type: decimal;
-			list-style-position: inside;
-		}
+    ol {
+      list-style-type: decimal;
+      list-style-position: inside;
+    }
 
-		max-height: 500px;
-		overflow: auto;
+    max-height: 500px;
+    overflow: auto;
 
-		//滚动条里的小方块
+    //滚动条里的小方块
 
-.box::-webkit-scrollbar-thumb {
-  border-radius: 3px;
-  background-color:gray;
-}
+    .box::-webkit-scrollbar-thumb {
+      border-radius: 3px;
+      background-color: gray;
+    }
 
-//滚动条整体样式
-.box::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;  //高宽分别对应横竖滚动条的尺寸
-}
- //滚动条中心部分
-.box::-webkit-scrollbar-track {
-  background-color:pink;
-}
-
-	}
+    //滚动条整体样式
+    .box::-webkit-scrollbar {
+      width: 5px;
+      height: 5px; //高宽分别对应横竖滚动条的尺寸
+    }
+    //滚动条中心部分
+    .box::-webkit-scrollbar-track {
+      background-color: pink;
+    }
+  }
 }
 /* 禁止复制代码 */
 pre {

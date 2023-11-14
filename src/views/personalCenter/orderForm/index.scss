@@ -52,6 +52,10 @@
         background-color: transparent;
       }
 
+      :deep(.el-date-editor) {
+        width: 220px;
+      }
+
       :deep(.el-date-editor.el-input__wrapper) {
         border-radius: 4px;
         @include bordergradientMY(linear-gradient(180deg, rgba(156, 104, 167, 0.7) 0%, rgba(89, 111, 226, 0.7) 100%),
@@ -61,6 +65,7 @@
 
       .CreateDateTime {
         margin-left: 20px;
+        margin-right: 20px;
         width: 220px;
         height: 36px;
         cursor: pointer;

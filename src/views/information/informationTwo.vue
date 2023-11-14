@@ -25,10 +25,15 @@
 <script setup>
 import CrumbsVue from "@/components/crumbs/index.vue"
 import { shopnewsdetail } from "@/network/information"
+import { onMounted, nextTick } from "vue"
 import { useRouter, useRoute } from "vue-router"
 import { ref } from "vue"
 const route = useRoute()
 const router = useRouter()
+onMounted(() => {
+  // let img = document.querySelector(".center_bottom img")
+  // console.log(img)
+})
 const asd = ref("")
 const init = async () => {
   if (!route.query.id) {
@@ -38,6 +43,10 @@ const init = async () => {
   const res = await shopnewsdetail({ id: route.query.id })
 
   asd.value = res.data
+  nextTick(() => {
+    let img = document.querySelector(".center_bottom img")
+    img.style.maxWidth = "100%"
+  })
 }
 init()
 </script>
@@ -45,7 +54,7 @@ init()
 //滚动条整体样式
 .center_bottom::-webkit-scrollbar {
   width: 5px;
-  height: 6px;  //高宽分别对应横竖滚动条的尺寸
+  height: 6px; //高宽分别对应横竖滚动条的尺寸
 }
 .informationTwo {
   padding-top: 14px;

@@ -65,14 +65,14 @@ const props = defineProps({
   width: 100%;
   border-radius: 4px;
   height: 100%;
+
   background: linear-gradient(149deg, #200924 45.99%, #0e1045 69.44%, #000a2c 85.48%);
   border: 1px solid #303a66;
-
   transition: all 0.5s;
   &:hover {
     // border: 11px solid #303a66;
     transform: translateY(-12px);
-    background-color: saddlebrown !important;
+    // background-color: saddlebrown !important;
     .xiaoxingxing {
       z-index: 0;
       background: url("@/assets/images/carggo/xingxing.png") no-repeat scroll left bottom/ 100% 100%;

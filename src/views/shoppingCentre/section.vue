@@ -172,6 +172,7 @@ const scrollMy = () => {
   }
   .section_right {
     width: 1372px;
+    background-color: transparent;
     .section_right_one {
       width: 100%;
     }

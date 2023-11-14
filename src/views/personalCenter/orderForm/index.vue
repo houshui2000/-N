@@ -10,7 +10,6 @@
               <div class="icon"></div>
             </div> -->
             <el-date-picker
-              style="width: 150px"
               class="CreateDateTimePicker"
               popper-class="CreateDateTimePickerKuang_CreationTime_retrieval"
               v-model="createTime"
@@ -28,7 +27,6 @@
               <div class="icon"></div>
             </div> -->
             <el-date-picker
-              style="width: 150px"
               class="PayDateTimePicker"
               popper-class="CreateDateTimePickerKuang_CreationTime_retrieval"
               v-model="payTime"
