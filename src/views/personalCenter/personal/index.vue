@@ -30,6 +30,8 @@
           <div>
             <input class="inputSum" v-model="admin.password" disabled />
           </div>
+          <div class="copyIcon" @click="handleCopyIcon"></div>
+          <i class="el-icon-view"></i>
           <div class="inputBtn">
             <div class="inputBtn2" @click="handleEditPassword">修改</div>
           </div>
@@ -58,7 +60,7 @@
         <div class="title">邀请码</div>
         <div class="inputBox_box">
           <div class="inputBox marginTop28" :class="{ active: !adminInput.invitationCode }">
-            <div class="label">邀请码</div>
+            <div class="label">我的邀请码</div>
             <div style="display: flex">
               <input
                 ref="inputRef"
