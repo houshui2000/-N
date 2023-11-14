@@ -16,11 +16,11 @@
   </div>
 </template>
 <script setup>
-import { useRoute, useRouter } from "vue-router"
+import { useRouter } from "vue-router"
 const props = defineProps({
   arr: { type: Array, required: true }
 })
-const route = useRoute()
+// const route = useRoute()
 const router = useRouter()
 </script>
 <style lang="scss" scoped>

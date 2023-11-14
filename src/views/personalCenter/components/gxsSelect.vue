@@ -48,7 +48,12 @@ onUnmounted(() => {
 .gxsSelect {
   width: 134px;
   height: 36px;
-  background: url($gxsAssetLibraryFrame1) no-repeat center;
+  // background: url($gxsAssetLibraryFrame1) no-repeat center;
+  border-radius: 4px;
+  @include bordergradientMY(
+    linear-gradient(180deg, rgba(156, 104, 167, 0.7) 0%, rgba(89, 111, 226, 0.7) 100%),
+    linear-gradient(180deg, rgba(18, 39, 67, 1) 0%, rgba(3, 13, 21, 1) 100%)
+  );
   background-size: contain;
   line-height: 36px;
   font-size: 12px;

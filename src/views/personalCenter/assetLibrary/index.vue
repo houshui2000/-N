@@ -157,6 +157,11 @@ watch(
   box-shadow: none !important;
   color: white;
   font-size: 12px;
+  // border-radius: 100px;
+  // @include bordergradientMY(
+  //   linear-gradient(180deg, rgba(156, 104, 167, 1) 0%, rgba(89, 111, 226, 1) 100%),
+  //   linear-gradient(180deg, rgba(18, 39, 67, 1) 0%, rgba(3, 13, 21, 1) 100%)
+  // );
 }
 
 /* 去除边框 */

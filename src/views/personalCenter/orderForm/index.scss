@@ -48,9 +48,20 @@
       display: flex;
       align-items: center;
 
+      :deep(.el-input__wrapper) {
+        background-color: transparent;
+      }
+
+      :deep(.el-date-editor.el-input__wrapper) {
+        border-radius: 4px;
+        @include bordergradientMY(linear-gradient(180deg, rgba(156, 104, 167, 0.7) 0%, rgba(89, 111, 226, 0.7) 100%),
+          linear-gradient(180deg, rgba(18, 39, 67, 1) 0%, rgba(3, 13, 21, 1) 100%));
+        box-shadow: 0 0 0 0;
+      }
+
       .CreateDateTime {
         margin-left: 20px;
-        width: 250px;
+        width: 220px;
         height: 36px;
         cursor: pointer;
         overflow: hidden;
@@ -60,10 +71,10 @@
         position: relative;
         font-size: 12px;
 
-        :deep(.el-input__wrapper) {
-          // background-color: red;
-          background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(142.59deg, #315eff 30.5%, #c90091 85.93%);
-        }
+        // :deep(.el-input__wrapper) {
+        //   // background-color: red;
+        //   background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(142.59deg, #315eff 30.5%, #c90091 85.93%);
+        // }
 
         .text {
           width: 163px;
@@ -98,13 +109,16 @@
       }
 
       .PayDateTime {
-        margin-left: 20px;
-        width: 250px;
+
+        width: 220px;
+
         height: 36px;
-        :deep(.el-input__wrapper) {
-          // background-color: red;
-          background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(142.59deg, #315eff 30.5%, #c90091 85.93%);
-        }
+
+        // :deep(.el-input__wrapper) {
+        //   // background-color: red;
+        //   background-image: linear-gradient(to top, #070d13, #070d13), linear-gradient(142.59deg, #315eff 30.5%, #c90091 85.93%);
+        // }
+
         cursor: pointer;
         overflow: hidden;
         display: flex;
@@ -154,7 +168,10 @@
       .frameSort2 {
         width: 163px;
         height: 36px;
-        background: url($gxsAssetLibraryFrame2) no-repeat center;
+        // background: url($gxsAssetLibraryFrame2) no-repeat center;
+        border-radius: 4px;
+        @include bordergradientMY(linear-gradient(180deg, rgba(156, 104, 167, 0.7) 0%, rgba(89, 111, 226, 0.7) 100%),
+          linear-gradient(180deg, rgba(18, 39, 67, 1) 0%, rgba(3, 13, 21, 1) 100%));
         background-size: contain;
         line-height: 36px;
         margin-left: 11px;
