@@ -135,7 +135,22 @@
           cursor: pointer;
           margin-left: -200px;
         }
-
+        .eyeOIcon{
+          width: 16px;
+          height: 16px;
+          background: url($gxsPersonaleyeOpenIcon) no-repeat center;
+          background-size: contain;
+          cursor: pointer;
+          margin-left: -200px;
+        }
+        .eyeDIcon{
+          width: 16px;
+          height: 16px;
+          background: url($gxsPersonaleyeDownIcon) no-repeat center;
+          background-size: contain;
+          cursor: pointer;
+          margin-left: -200px;
+        }
         .inputBtn {
           width: 66px;
           height: 30px;

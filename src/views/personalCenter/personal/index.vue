@@ -28,10 +28,10 @@
         <div class="inputBox">
           <div class="label">登录密码</div>
           <div>
-            <input class="inputSum" v-model="admin.password" disabled />
+            <input class="inputSum" v-model="admin.password" disabled/>
           </div>
-          <div class="copyIcon" @click="handleCopyIcon"></div>
-          <i class="el-icon-view"></i>
+          <div v-show="eyeBool && admin.setPassword" class="eyeOIcon" @click="EyeOpen(2)"></div>
+          <div v-show="!eyeBool && admin.setPassword" class="eyeDIcon" @click="EyeOpen(1)"></div>
           <div class="inputBtn">
             <div class="inputBtn2" @click="handleEditPassword">修改</div>
           </div>
@@ -145,6 +145,7 @@ import { reactive, nextTick, computed, ref, onUnmounted, watch, onMounted } from
 
 // import { ElMessage } from "element-plus"
 import { useStore } from "@/pinia/index.js"
+import { showpassword } from '../../../network/user';
 import { bindInvitationCodePost, invitationCodePost, nicknameEdit } from "@/network/personalCenter.js"
 import MessageBoxVue from "@/components/MessageBox/index.js"
 import SvgIcon from "@/components/SvgIcon/index.vue"
@@ -158,6 +159,7 @@ let bankCardUnBindingShow = ref(false) //控制绑定银行卡
 let bankCardBindingShow = ref(false) //绑定银行卡
 let bankCardBindingCodeShow = ref(false) //控制验证码显示
 let orderId = ref("") //订单id
+
 // watch(
 //   () => useUsersStore,
 //   (newVal) => {
@@ -194,15 +196,18 @@ let orderId = ref("") //订单id
 watch(
   () => useUsersStore,
   (newVal) => {
+    console.log(newVal)
     admin.value = {
       nickName: newVal.userInfo.nickname,
       mobile: newVal.userInfo.mobile,
       changedInvitationCode: newVal.userInfo.changedInvitationCode,
+      setPassword: newVal.userInfo.setPassword,
       password: "******",
       authentication: newVal.userInfo.tradePermission > 0 ? "已实名" : "未实名",
       invitationCode: newVal.userInfo.ownerInvitationCode, //自己邀请码
       bindingCode: newVal.userInfo.invitationCode //绑定邀请码
     }
+    if (!newVal.userInfo.setPassword) admin.value.password = ''
     // mobileInfo.mobile = ""
     // mobileInfo.code = ""
     // passwordInfo.mobile = ""
@@ -221,11 +226,17 @@ let admin = ref({
   nickName: useUsersStore.userInfo.nickname,
   mobile: useUsersStore.userInfo.mobile,
   changedInvitationCode: useUsersStore.userInfo.changedInvitationCode, // 是否已经修改邀请码
-  password: "******",
+  setPassword: useUsersStore.userInfo.setPassword,
+  password: "",
   authentication: useUsersStore.userInfo.tradePermission > 0 ? "已实名" : "未实名",
   invitationCode: useUsersStore.userInfo.ownerInvitationCode, //自己邀请码
   bindingCode: useUsersStore.userInfo.invitationCode //绑定邀请码
 })
+
+console.log(useUsersStore.userInfo)
+if (!useUsersStore.userInfo.setPassword) admin.value.password = ''
+else admin.value.password = '******'
+
 let adminInput = reactive({
   nickName: true,
   invitationCode: true,
@@ -360,6 +371,17 @@ const handleBankCardUnBindingCloseEmit = (val) => {
 //确认解绑
 const handleBankCardUnBindingConfirmEmit = () => {}
 onUnmounted(() => {})
+const eyeBool = ref(false)
+const EyeOpen = (v) => {
+  if (!admin.value.setPassword) return
+  eyeBool.value = !eyeBool.value
+  if (v == 2) return admin.value.password = '******'
+  else {
+      showpassword().then(res => {
+      admin.value.password = res.data
+    })
+  }
+}
 </script>
 
 <style lang="scss" scoped>
