@@ -16,7 +16,7 @@
   </div>
 </template>
 <script setup>
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute, useRouter } from "vue-router"
 const props = defineProps({
   arr: { type: Array, required: true }
 })
@@ -25,10 +25,14 @@ const router = useRouter()
 </script>
 <style lang="scss" scoped>
 .crumbs {
-  font: normal normal 400 14px 'PingFang SC';
+  font: normal normal 400 14px "PingFang SC";
   // margin: 0 14px;
   span {
     // &:nth-child(n) {
+    cursor: pointer;
+    &:last-child {
+      cursor: default;
+    }
     //   color: #999;
     i {
       margin: 0 5px;

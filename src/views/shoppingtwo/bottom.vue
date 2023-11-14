@@ -64,7 +64,6 @@
       <!-- 作品介绍 -->
       <IntroTpTheWorkVue v-show="classify.index === 1" />
       <!-- 购买须知 -->
-
       <purchasingNotice v-show="classify.index === 2" />
     </div>
   </div>
@@ -179,15 +178,22 @@ watch(
   width: 100%;
   .top {
     padding: 0 20px;
+    height: 45px;
     @include Myflex(space-between);
     .left_top {
       @include Myflex(flex-start);
       > p {
+        cursor: pointer;
+        position: relative;
         margin-right: 88px;
         font: normal normal 400 16px "PingFang SC";
         color: white;
         span {
           &:last-child {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -5px;
             margin: 7px auto 0 auto;
             display: block;
             width: 38px;

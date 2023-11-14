@@ -238,8 +238,12 @@ table {
 
             position: relative;
             border-radius: 2px;
-
+            transition: all 1s;
             @include bordergradientMY(linear-gradient(90deg, rgba(46, 65, 255, 0.8) 0%, rgba(223, 1, 201, 0.8) 100%));
+            &:hover {
+              border: 0;
+              background: linear-gradient(90deg, #2d42ff 0%, #df00c9 96.64%);
+            }
           }
         }
       }

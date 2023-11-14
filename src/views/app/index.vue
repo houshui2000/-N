@@ -59,12 +59,14 @@ onMounted(() => {
       width: 140px;
       height: 140px;
       background-color: seagreen;
+      // margin-right: 20px;
       img {
         width: 100%;
         height: 100%;
       }
     }
     .wenti {
+      margin-left: 12px;
       color: rgba(255, 255, 255, 0.8);
       width: 486px;
       height: 100%;
