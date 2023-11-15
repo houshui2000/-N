@@ -18,7 +18,9 @@
           <p>{{ asd.publishTime }}</p>
         </div>
       </div>
-      <div v-html="asd.content" class="center_bottom ql-editor"></div>
+      <div class="center_bottom_dv">
+        <div v-html="asd.content" class="center_bottom ql-editor"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -32,7 +34,7 @@ const route = useRoute()
 const router = useRouter()
 onMounted(() => {
   // let img = document.querySelector(".center_bottom img")
-  // console.log(img)
+  // (img)
 })
 const asd = ref("")
 const init = async () => {
@@ -45,12 +47,17 @@ const init = async () => {
   asd.value = res.data
   nextTick(() => {
     let img = document.querySelector(".center_bottom img")
+    if (!img) return
     img.style.maxWidth = "100%"
   })
 }
 init()
 </script>
 <style lang="scss" scoped>
+.center_bottom_dv {
+  font-size: 12px;
+  letter-spacing: 2px !important;
+}
 //滚动条整体样式
 .center_bottom::-webkit-scrollbar {
   width: 5px;
@@ -81,7 +88,7 @@ init()
       }
       .top_bottom {
         color: rgba(255, 255, 255, 0.8);
-        font: normal normal 400 12px "PingFang SC";
+        font: normal normal 400 14px "PingFang SC";
         @include Myflex(space-between);
         > p {
           text-align: center;

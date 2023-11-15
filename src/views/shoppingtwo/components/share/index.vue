@@ -57,8 +57,8 @@ const props = defineProps({
   dialogVisiblePay: { type: Boolean, required: true },
   creatData: { type: Object, required: true }
 })
-// console.log(route.path + "?vaultId=" + route.query.vaultId)
-// console.log(route.query.vaultId)
+// (route.path + "?vaultId=" + route.query.vaultId)
+// (route.query.vaultId)
 
 const realPictures = ref(
   new URL("../../../../assets/images/shoppingCentre/missingWakeupPage.png", import.meta.url).href

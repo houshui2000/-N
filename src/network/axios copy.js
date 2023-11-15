@@ -40,7 +40,7 @@ service.interceptors.response.use((res) => {
     return Promise.reject(new Error(msg))
   }
 }, (err) => {
-  // console.log(err.response.data.msg, 'err.response.data')
+  // (err.response.data.msg, 'err.response.data')
 
   if (err.response.status == 401) {
     initialize()

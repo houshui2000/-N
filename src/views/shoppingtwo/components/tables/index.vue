@@ -83,10 +83,10 @@ const $emit = defineEmits(["PayFun"])
  */
 const PayFun = async (item) => {
   if (item.payStatus) {
-    // logger.log(item.payStatus)
     MessageBoxVue({
       title: "该卡牌在支付中，请选择可买入的卡牌叭~"
     })
+    $emit("PayFun")
     return
   }
   //
@@ -94,9 +94,15 @@ const PayFun = async (item) => {
     cardId: item.cardId, // 跳转页面的id 1
     payChanelId: 3 // 支付通道 1 是支付宝
   })
-  window.location.href = res.data
 
-  $emit("PayFun")
+  if (!res.data) {
+    MessageBoxVue({
+      title: "此卡牌已售出"
+    })
+    $emit("PayFun")
+    return
+  }
+  window.location.href = res.data
 }
 </script>
 <style lang="scss" scoped>
@@ -197,7 +203,6 @@ table {
           }
         }
         .kapaiming_bina {
-          // padding-left: -15px;
           transform: translateX(-25px);
           width: 100%;
           height: 100%;
@@ -208,9 +213,11 @@ table {
           .bianhao {
             display: block;
             max-width: 400px;
-            padding: 0 3px;
-            height: 25px;
+            padding: 0 5px 0 8px;
+            height: 20px;
+            transform: translateX(-2px);
             @include Myflex();
+            z-index: -1;
             border-radius: 3.256px;
             background: linear-gradient(269deg, #ffbb4d 0.83%, #815821 101.44%);
           }

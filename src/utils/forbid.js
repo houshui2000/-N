@@ -34,7 +34,7 @@ export const _isMobile = () => {
   //   /(phone|pad|pod|iPhone|iPod|iPad|ios|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
   // );
   // if (flag) store.commit('phoneModel/saveModel', flag[0] ? flag[0] : null)
-  // console.log(store.state.phoneModel.model)
+  // (store.state.phoneModel.model)
   // if (flag == 'iPad,iPad') {
   //   return true // pc
   // }

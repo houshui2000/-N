@@ -28,7 +28,7 @@
         <div class="inputBox">
           <div class="label">登录密码</div>
           <div>
-            <input class="inputSum" v-model="admin.password" disabled/>
+            <input class="inputSum" v-model="admin.password" disabled />
           </div>
           <div v-show="eyeBool && admin.setPassword" class="eyeOIcon" @click="EyeOpen(2)"></div>
           <div v-show="!eyeBool && admin.setPassword" class="eyeDIcon" @click="EyeOpen(1)"></div>
@@ -145,7 +145,7 @@ import { reactive, nextTick, computed, ref, onUnmounted, watch, onMounted } from
 
 // import { ElMessage } from "element-plus"
 import { useStore } from "@/pinia/index.js"
-import { showpassword } from '../../../network/user';
+import { showpassword } from "../../../network/user"
 import { bindInvitationCodePost, invitationCodePost, nicknameEdit } from "@/network/personalCenter.js"
 import MessageBoxVue from "@/components/MessageBox/index.js"
 import SvgIcon from "@/components/SvgIcon/index.vue"
@@ -196,7 +196,6 @@ let orderId = ref("") //订单id
 watch(
   () => useUsersStore,
   (newVal) => {
-    console.log(newVal)
     admin.value = {
       nickName: newVal.userInfo.nickname,
       mobile: newVal.userInfo.mobile,
@@ -207,7 +206,7 @@ watch(
       invitationCode: newVal.userInfo.ownerInvitationCode, //自己邀请码
       bindingCode: newVal.userInfo.invitationCode //绑定邀请码
     }
-    if (!newVal.userInfo.setPassword) admin.value.password = ''
+    if (!newVal.userInfo.setPassword) admin.value.password = ""
     // mobileInfo.mobile = ""
     // mobileInfo.code = ""
     // passwordInfo.mobile = ""
@@ -233,9 +232,8 @@ let admin = ref({
   bindingCode: useUsersStore.userInfo.invitationCode //绑定邀请码
 })
 
-console.log(useUsersStore.userInfo)
-if (!useUsersStore.userInfo.setPassword) admin.value.password = ''
-else admin.value.password = '******'
+if (!useUsersStore.userInfo.setPassword) admin.value.password = ""
+else admin.value.password = "******"
 
 let adminInput = reactive({
   nickName: true,
@@ -375,9 +373,9 @@ const eyeBool = ref(false)
 const EyeOpen = (v) => {
   if (!admin.value.setPassword) return
   eyeBool.value = !eyeBool.value
-  if (v == 2) return admin.value.password = '******'
+  if (v == 2) return (admin.value.password = "******")
   else {
-      showpassword().then(res => {
+    showpassword().then((res) => {
       admin.value.password = res.data
     })
   }

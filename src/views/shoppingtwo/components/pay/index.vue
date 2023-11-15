@@ -126,7 +126,7 @@ watch(
 .top {
   position: relative;
   text-align: center;
-  font: normal normal 700 16px "PingFang SC";
+  font: normal normal 700 18px "PingFang SC";
   color: white;
   .close {
     cursor: pointer;
@@ -284,11 +284,11 @@ section {
           position: absolute;
           left: 50%;
           top: 50%;
-          transform: translate(-45%, -50%);
-          width: 80%;
-          height: 80%;
+          transform: translate(-50%, -50%);
+          width: 50%;
+          height: 50%;
           border-radius: 50%;
-          background: linear-gradient(0deg, #d697ff 50%, #7b82ff);
+          background: linear-gradient(0deg, #d697ff 25%, #7b82ff);
         }
       }
       .radio {

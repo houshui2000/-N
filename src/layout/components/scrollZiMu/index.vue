@@ -60,7 +60,7 @@ onMounted(() => {
 watch(
   () => loginStore.token,
   (newVal) => {
-    console.log(newVal, "/newVal")
+    newVal, "/newVal"
     if (!newVal) return
     dialogVisiblePay.value = !dialogVisiblePay.value
   },

@@ -5,7 +5,9 @@
       <div class="left_one">隐私协议</div>
     </div>
     <div class="linaxi_right">
-      <div class="ql-editor" v-html="privatePolicyText"></div>
+      <div class="center_bottom_dv">
+        <div class="ql-editor" v-html="privatePolicyText"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -15,13 +17,17 @@ import { privatePolicy } from "../../network/agreement"
 const privatePolicyText = ref("")
 const goAboutUs = () => {
   privatePolicy().then((res) => {
-    console.log(res)
+    res
     privatePolicyText.value = res.data
   })
 }
 goAboutUs()
 </script>
 <style lang="scss" scoped>
+// .center_bottom_dv {
+//   font-size: 12px;
+//   letter-spacing: 2px !important;
+// }
 .lianxi {
   width: 100%;
   height: 100%;

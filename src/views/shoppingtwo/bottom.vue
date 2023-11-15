@@ -122,6 +122,7 @@ const init = async () => {
     "orders[0].column": "cardNo",
     "orders[0].asc": mallHomepagName.value.asc // 排序 true 升，false 降
   })
+  console.log(res, "res")
 
   Fenye.value.pages = res.data.total
 

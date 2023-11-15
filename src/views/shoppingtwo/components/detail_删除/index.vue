@@ -42,7 +42,7 @@
   </div>
 </template>
 <script setup>
-import { toRefs } from 'vue'
+import { toRefs } from "vue"
 // import SvgIcon from '@/components/SvgIcon/index.vue'
 
 // import { ref } from 'vue'
@@ -52,11 +52,11 @@ import { toRefs } from 'vue'
 const props = defineProps({
   errDialoVueUpdate: { type: Boolean, required: true },
   detail: { type: Object, default: () => {} },
-  img: { type: String, default: '' },
-  title: { type: String, default: '查证' }
+  img: { type: String, default: "" },
+  title: { type: String, default: "查证" }
 })
 const { errDialoVueUpdate } = toRefs(props)
-const $emit = defineEmits(['update:errDialoVueUpdate'])
+const $emit = defineEmits(["update:errDialoVueUpdate"])
 </script>
 <style lang="scss" scoped>
 .dialog-footer button:first-child {
@@ -105,12 +105,12 @@ section {
     left: 50%;
     top: 30px;
     transform: translateY(-50%);
-    font: normal normal 700 20px 'PingFang SC';
+    font: normal normal 700 18px "PingFang SC";
     color: white;
     z-index: 9;
     &::after {
       display: block;
-      content: '';
+      content: "";
       position: absolute;
       left: 50%;
       bottom: -8px;
@@ -127,12 +127,12 @@ section {
     border-right: 0;
     padding: 90px 67px 0 67px;
     > p {
-      font: normal normal 700 16px 'PingFang SC';
+      font: normal normal 700 16px "PingFang SC";
       color: white;
     }
     .ziliao {
       margin-top: 29px;
-      font: normal normal 400 12px 'PingFang SC';
+      font: normal normal 400 12px "PingFang SC";
       color: white;
       opacity: 0.8;
       .zi_xin {

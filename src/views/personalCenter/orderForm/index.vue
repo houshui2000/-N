@@ -243,7 +243,7 @@ const mounchRef = ref("")
 const payway = (item) => {
   // item.payType
   const res = personalcenterPay.find((personalcenterPayitem) => {
-    // console.log(item.payType, qumo(item.payType, 3), personalcenterPayitem)
+    // (item.payType, qumo(item.payType, 3), personalcenterPayitem)
 
     if (item.payType == personalcenterPayitem.value) {
       return personalcenterPayitem
@@ -303,6 +303,9 @@ const handleSelectValue = (val) => {
   handleOrderList()
 }
 const handleOrderList = async () => {
+  orderInfo.value.payTimes = orderInfo.value.payTime
+  orderInfo.value.payTime = null
+
   let res = await GetorderList(orderInfo.value)
 
   let data = res.data.records
@@ -422,6 +425,16 @@ watch(
   .el-input.is-disabled .el-input__wrapper {
     background-color: rgba(5, 13, 23, 1);
     box-shadow: 0 0 0 0 !important;
+  }
+  .el-date-table td.today .el-date-table-cell__text {
+    color: white;
+  }
+  .in-range.start-date,
+  .in-range.end-date {
+    .el-date-table-cell__text {
+      background: linear-gradient(180deg, #f59eff 0.01%, #637dff 100%) !important;
+      color: white;
+    }
   }
   .el-picker-panel {
     background-color: rgba(5, 13, 23, 1);

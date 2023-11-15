@@ -189,7 +189,7 @@ const development = (directionRight) => {
   }
 }
 const createCubeThere = () => {
-  const geometry = new THREE.BoxGeometry(3.5, 4.2, 0.2)
+  const geometry = new THREE.BoxGeometry(3.2, 4.4, 0.2)
   const alphaTexture = new THREE.TextureLoader().load(new URL("@/assets/images/ka/boli.png", import.meta.url).href) // 图片必须是黑白的
   alphaTexture.colorSpace = THREE.SRGBColorSpace // 让图片加深
   const alphaTextureCopy = new THREE.TextureLoader().load(
@@ -250,7 +250,7 @@ const createCubeThere = () => {
 //   const folder = gui.addFolder("左侧灯光")
 //   // controls.maxDistance = 1
 //   // // controls.minDistance = 5
-//   console.log(controls)
+//   (controls)
 
 //   folder.add(controls, "minDistance", 0, 10) // 回归起点
 //   folder.add(controls, "maxDistance", 0, 10) // 回归起点

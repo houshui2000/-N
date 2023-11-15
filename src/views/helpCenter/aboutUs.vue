@@ -6,7 +6,9 @@
     </div>
 
     <div class="linaxi_right">
-      <div class="ql-editor" v-html="AboutUs"></div>
+      <div class="center_bottom_dv">
+        <div class="ql-editor" v-html="AboutUs"></div>
+      </div>
       <!-- 联系我们 -->
       <div class="info_out">
         <div class="contact">
@@ -71,7 +73,7 @@
 import { shopcarddetail } from "@/network/api"
 const init = async () => {
   const res = await shopcarddetail()
-  console.log(res)
+  (res)
 }
 // init()
 ======= -->
@@ -92,6 +94,10 @@ goAboutUs()
 </script>
 
 <style lang="scss" scoped>
+// .center_bottom_dv {
+//   font-size: 12px;
+//   letter-spacing: 2px !important;
+// }
 .ql-editor {
   height: auto;
 }

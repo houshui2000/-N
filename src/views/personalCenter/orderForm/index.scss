@@ -52,8 +52,15 @@
         background-color: transparent;
       }
 
+      :deep(.el-range-input) {
+        color: white;
+      }
+
+      $eldateditorWidth: 240px;
+
       :deep(.el-date-editor) {
-        width: 220px;
+        // color: white;
+        width: $eldateditorWidth;
       }
 
       :deep(.el-date-editor.el-input__wrapper) {
@@ -65,8 +72,7 @@
 
       .CreateDateTime {
         margin-left: 20px;
-        margin-right: 20px;
-        width: 220px;
+        width: $eldateditorWidth;
         height: 36px;
         cursor: pointer;
         overflow: hidden;
@@ -115,7 +121,8 @@
 
       .PayDateTime {
 
-        width: 220px;
+        width: $eldateditorWidth;
+        margin-left: 20px;
 
         height: 36px;
 

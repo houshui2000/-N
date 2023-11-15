@@ -38,6 +38,10 @@ watch(
 )
 </script>
 <style lang="scss" scoped>
+:deep(.center_bottom_dv) {
+  font-size: 12px;
+  letter-spacing: 2px !important;
+}
 .helpCenter {
   .top {
     width: 1920px;

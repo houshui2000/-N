@@ -98,7 +98,7 @@
       </div>
     </div>
     <!--  :creatDataAll="creatDataAll"  -->
-    <payVue :creatDataAll="Gethelowestprice" v-model:dialogVisiblePay="dialogVisiblePay" />
+    <payVue v-if="Gethelowestprice" :creatDataAll="Gethelowestprice" v-model:dialogVisiblePay="dialogVisiblePay" />
     <ShareVue :creatData="creatData" v-model:dialogVisiblePay="fenxiangdialog" />
   </div>
 </template>
@@ -126,37 +126,72 @@ const fenxiangdialog = ref(false) // 分享弹框
 // 获取最低价
 const Gethelowestprice = ref({})
 
+/**购买信息 -- 知道商品还能不能购买 */
 const initminimumPice = async () => {
   const res = await buyminxpricecard({ vaultId: route.query.vaultId })
-
   Gethelowestprice.value = res.data
 }
 /**一件买入 */
 const onePieceBuyin = async () => {
-  if (!loginStore.token) {
-    MessageBoxVue({
-      title: "请先登录"
-    })
-    loginStore.login = true
-    return
-  }
-  if (props.creatData.onSellingCount == 0) {
-    MessageBoxVue({
-      title: "已售罄"
-    })
-    return
-  }
-  if (Gethelowestprice.value == undefined) {
-    MessageBoxVue({
-      title: "没有找到最低价"
-    })
-    return
+  await initminimumPice()
+
+  const Mymap = new Map([
+    [
+      !loginStore.token,
+      () => {
+        MessageBoxVue({
+          title: "请先登录"
+        })
+        loginStore.login = true
+      }
+    ],
+    [
+      props.creatData.onSellingCount == 0,
+      () => {
+        MessageBoxVue({
+          title: "已售罄"
+        })
+      }
+    ],
+    [
+      !Gethelowestprice.value,
+      () => {
+        MessageBoxVue({
+          title: "没有找到最低价"
+        })
+      }
+    ]
+  ])
+  let Myreturn = false
+  for (let [key, value] of Mymap) {
+    if (key) {
+      Myreturn = true
+      value()
+    }
   }
 
-  await initminimumPice()
-  // if (props.creatData.buyRestrict == 0) {
+  if (Myreturn) return
 
   dialogVisiblePay.value = true
+  // if (!loginStore.token) {
+  //   MessageBoxVue({
+  //     title: "请先登录"
+  //   })
+  //   loginStore.login = true
+  //   return
+  // }
+  // if (props.creatData.onSellingCount == 0) {
+  //   MessageBoxVue({
+  //     title: "已售罄"
+  //   })
+  //   return
+  // }
+  // if (Gethelowestprice.value == undefined) {
+  //   MessageBoxVue({
+  //     title: "没有找到最低价"
+  //   })
+  //   return
+  // }
 }
 </script>
 <style lang="scss" scoped>
@@ -201,7 +236,7 @@ const onePieceBuyin = async () => {
 
       > img {
         width: 200px;
-        animation: infinite shiver 10s linear;
+        animation: infinite shiver 6s linear;
         @keyframes shiver {
           0% {
             transform: rotateY(0);

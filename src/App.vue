@@ -50,7 +50,7 @@ setTimeout(() => {
         sessionStorage.setItem("code", code)
         window.location.replace(import.meta.env.VITE_APP_MOBLIC_URL + "?code=" + code)
       } else {
-        // console.log(import.meta.env.VITE_APP_MOBLIC_URL, "sdsad")
+        // (import.meta.env.VITE_APP_MOBLIC_URL, "sdsad")
 
         window.location.replace(import.meta.env.VITE_APP_MOBLIC_URL)
       }

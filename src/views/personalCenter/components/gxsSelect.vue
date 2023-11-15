@@ -94,16 +94,28 @@ onUnmounted(() => {
     overflow: hidden;
     position: absolute;
     border-radius: 4px;
-    background-clip: padding-box, border-box;
-    background-origin: padding-box, border-box;
+    // background-clip: padding-box, border-box;
+    // background-origin: padding-box, border-box;
+
+    // background-image: linear-gradient(to top, #182331, #0d1318),
+    //   linear-gradient(
+    //     155.92deg,
+    //     rgba(159, 98, 219, 0.5) 0%,
+    //     rgba(126, 172, 186, 0.5) 48.67%,
+    //     rgba(99, 149, 231, 0.5) 96.71%
+    //   );
+    // background-image: linear-gradient(180deg, rgba(18, 39, 67, 0.59) 0%, rgba(3, 13, 21, 0.59) 100%),
+    //   linear-gradient(
+    //     90deg,
+    //     rgba(158, 108, 172, 1) 0%,
+
+    //     rgba(99, 149, 231, 0.9) 56.71%
+    //   );
+    @include bordergradientMY(
+      linear-gradient(180deg, rgba(156, 104, 167, 0.7) 0%, rgba(89, 111, 226, 0.7) 100%),
+      linear-gradient(180deg, rgba(18, 39, 67, 1) 0%, rgba(3, 13, 21, 1) 100%)
+    );
     border: 0px solid transparent;
-    background-image: linear-gradient(to top, #182331, #0d1318),
-      linear-gradient(
-        155.92deg,
-        rgba(159, 98, 219, 0.5) 0%,
-        rgba(126, 172, 186, 0.5) 48.67%,
-        rgba(99, 149, 231, 0.5) 96.71%
-      );
     left: 0;
     top: 36px;
     z-index: 1;
@@ -114,19 +126,25 @@ onUnmounted(() => {
       background-clip: padding-box, border-box;
       background-origin: padding-box, border-box;
       border: 1px solid transparent;
-      background-image: linear-gradient(to bottom, #182331, #0d1318),
-        linear-gradient(
-          155.92deg,
-          rgba(159, 98, 219, 0.5) 0%,
-          rgba(126, 172, 186, 0.5) 48.67%,
-          rgba(99, 149, 231, 0.5) 96.71%
-        );
+      // background-image: linear-gradient(to bottom, #182331, #0d1318),
+      //   linear-gradient(
+      //     180deg,
+      //     rgba(158, 108, 172, 0.8) 0%,
+
+      //     rgba(99, 149, 231, 0.8) 56.71%
+      //   );
+      @include bordergradientMY(
+        linear-gradient(180deg, rgba(156, 104, 167, 0.7) 0%, rgba(89, 111, 226, 0.7) 100%),
+        linear-gradient(180deg, rgba(18, 39, 67, 1) 0%, rgba(3, 13, 21, 1) 100%)
+      );
     }
 
     .optionBox {
       width: 134px;
       height: 36px;
-      border-bottom: 1px solid #232323;
+      // background-color: saddlebrown;
+      // background: linear-gradient(180deg, rgba(18, 39, 67, 0.59) 0%, rgba(3, 13, 21, 0.59) 100%);
+      border-bottom: 1px solid rgba(65, 73, 113, 0.8);
       padding-left: 22px;
       //text-align: center;
       color: rgba(#fff, 0.5);

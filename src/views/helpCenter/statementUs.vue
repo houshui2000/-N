@@ -5,7 +5,9 @@
       <div class="left_one">常见问题</div>
     </div>
     <div class="linaxi_right">
-      <div class="ql-editor" v-html="tutorialText"></div>
+      <div class="center_bottom_dv">
+        <div class="ql-editor" v-html="tutorialText"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -15,7 +17,7 @@ import { tutorial } from "../../network/agreement"
 const tutorialText = ref("")
 const goAboutUs = () => {
   tutorial().then((res) => {
-    console.log(res)
+    res
     res.data.map((item) => {
       tutorialText.value = tutorialText.value + item.content + "<br/>"
     })
@@ -24,6 +26,10 @@ const goAboutUs = () => {
 goAboutUs()
 </script>
 <style lang="scss" scoped>
+// .center_bottom_dv {
+//   font-size: 12px;
+//   letter-spacing: 2px !important;
+// }
 .lianxi {
   width: 100%;
   height: 100%;

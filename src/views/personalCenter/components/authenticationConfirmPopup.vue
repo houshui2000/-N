@@ -62,7 +62,7 @@ const handleRealName = async () => {
     width: 398px;
     height: 239px;
     background: url($gxsauthenticationConfirmPopup) no-repeat center;
-    background-size: contain;
+    background-size: 100% 100%;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -72,7 +72,7 @@ const handleRealName = async () => {
     .text {
       width: 600px;
       height: 26px;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 500;
       text-align: center;
       margin-top: 31px;
@@ -126,7 +126,7 @@ const handleRealName = async () => {
         height: 34px;
         text-align: center;
         background: url($gxsauthenticationConfirmPopupBack) no-repeat center;
-        background-size: contain;
+        background-size: 100% 100%;
         cursor: pointer;
       }
 
@@ -136,7 +136,7 @@ const handleRealName = async () => {
         line-height: 34px;
         text-align: center;
         background: url($gxsauthenticationConfirmPopupBtn) no-repeat center;
-        background-size: contain;
+        background-size: 100% 100%;
         cursor: pointer;
       }
     }

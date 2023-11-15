@@ -151,12 +151,11 @@ const handleBankCardBindingConfirm = async () => {
 }
 /**滞空数据 */
 const stuckInTheAir = (data) => {
-  console.log(data)
+  data
 
   Object.keys(data).forEach((item) => {
     data[item] = ""
-  })
-  console.log(data)
+  })(data)
 }
 //获取下拉列表的数据
 const handleSelectList = async () => {

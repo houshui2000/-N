@@ -37,7 +37,7 @@
                   <div class="inputBox marginTop18">
                     <input
                       v-model="passwordInfo.password"
-                      type="password" 
+                      type="password"
                       placeholder="请输入密码"
                       maxlength="16"
                       onkeyup="value=value.replace(/[\W]/g,'')"
@@ -520,11 +520,10 @@ const handleCodeTime = async () => {
 // 账号密码校验
 let passwordInfoVerificationAdmin = ref("")
 let passwordInfoVerificationPassword = ref("")
-const isNumber = /^\d+$/;
+const isNumber = /^\d+$/
 
 const handlePasswordInfoAdminBlur = () => {
-  
-  if (!isNumber.test(passwordInfo.mobile)) passwordInfo.mobile = ''
+  if (!isNumber.test(passwordInfo.mobile)) passwordInfo.mobile = ""
   if (passwordInfo.mobile === "") {
     passwordInfoVerificationAdmin.value = "手机号不能为空"
   } else if (!phoneRegex.test(passwordInfo.mobile)) {
@@ -614,6 +613,7 @@ watch(
     }
     handleOtherShow()
     stateBtn.value = 1
+    agreement.value = false
     handleLoginShowInit()
   },
   {

@@ -75,7 +75,6 @@ const handleEmpowerShow = async () => {
   useUsersStore.passwordEdit.certNo = passwordEdit.value.certNo
   useUsersStore.passwordEdit.username = passwordEdit.value.username
   useUsersStore.authenticationConFirmPopup = true
-
 }
 const handleClose = () => {
   passwordEdit.value.certNo = ""
@@ -143,7 +142,7 @@ const handleClose = () => {
     .text {
       width: 600px;
       height: 26px;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 500;
       text-align: center;
       margin-top: 32px;

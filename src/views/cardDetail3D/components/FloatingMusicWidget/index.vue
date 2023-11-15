@@ -20,7 +20,7 @@
     </div>
     <!-- 文字展示 -->
     <div v-if="!audioIsPlay && audioStart !== durationTime" class="wenzi">
-      {{ auditText }}
+      {{ auditText }}阿思思达打车阿思达打车阿思思达打车阿思达打车
     </div>
   </div>
 </template>
@@ -142,7 +142,6 @@ function updateProgress(e) {
     font-size: 12px;
     width: calc(100% - 34px);
     @include Myflex();
-    margin-left: 15px;
     height: 24px;
     font: normal normal 400 12px "PingFang SC";
     .audio_total {
@@ -160,13 +159,17 @@ function updateProgress(e) {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 306px;
-  min-width: 300px;
+  bottom: 86px;
+  // min-width: 500px;
+
+  // display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   height: 30px;
   border-radius: 100px;
   font: normal normal 400 12px "PingFang SC";
   color: white;
-  @include Myflex();
+  // @include Myflex();
   background: linear-gradient(180deg, rgba(28, 0, 45, 0.2) 0%, rgba(24, 0, 30, 0.2) 0.01%, rgba(0, 9, 54, 0.2) 100%);
 }
 // 文字展示end

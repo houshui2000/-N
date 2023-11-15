@@ -10,7 +10,7 @@
         {{ ZiChanCha.productName }}
       </p>
       <div class="bian">
-        <SvgIcon size="25px" Height="25px" icon-class="bianhao" />
+        <SvgIcon size="30px" Height="30px" icon-class="bianhao" />
         <p>{{ ZiChanCha.productNumber }}</p>
       </div>
       <div class="time">时间：{{ ZiChanCha.releaseYear }}</div>
@@ -152,7 +152,7 @@ init()
   .xinix {
     position: absolute;
     left: 121px;
-    bottom: 100px;
+    top: 50px;
     z-index: 2;
     color: white;
     width: 277px;
@@ -162,9 +162,11 @@ init()
     }
     .bian {
       @include Myflex(flex-start);
-      margin: 20px 0;
+      margin: 22px 0;
       p {
-        padding: 0 5px;
+        padding: 2px 4px 2px 4px;
+        transform: translateX(-2px);
+        z-index: -1;
         font: normal normal 400 12px "PingFang SC";
         border-radius: 3.256px;
         @include Myflex();
@@ -173,7 +175,7 @@ init()
       //
     }
     .time {
-      font: normal normal 400 16px "PingFang SC";
+      font: normal normal 500 16px "PingFang SC";
       color: #ccc;
     }
   }
@@ -181,8 +183,9 @@ init()
   // 音频开始
   .FloatingMusicWidget {
     position: absolute;
-    right: 216px;
-    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 110px;
     min-width: 135px;
     height: 34px;
     z-index: 2;

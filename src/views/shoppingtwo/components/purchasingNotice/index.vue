@@ -2,7 +2,9 @@
   <div class="IntroTpTheWorkVue">
     <!-- 购买须知 -->
     <div class="setction scrollStyle">
-      <div class="ql-editor" v-html="aaa"></div>
+      <div class="center_bottom_dv">
+        <div class="ql-editor" v-html="aaa"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -18,6 +20,10 @@ const init = async () => {
 init()
 </script>
 <style lang="scss" scoped>
+.center_bottom_dv {
+  font-size: 12px;
+  letter-spacing: 2px !important;
+}
 .IntroTpTheWorkVue {
   padding: 5px;
   // height: 626px;

@@ -225,11 +225,13 @@
             line-height: 24px;
             position: relative;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
 
             .cardIdIcon {
               width: 24px;
               height: 24px;
-              background: url($gxsOrderCardId) no-repeat center;
+              // background: url($gxsOrderCardId) no-repeat center;
               background-size: contain;
               position: absolute;
               top: 50%;
@@ -239,17 +241,18 @@
 
             .cardIdText {
               width: 132px;
-              height: 20px;
+              height: 18px;
               background-image: linear-gradient(to left, #FFBB4D, #815821);
               font-size: 12px;
               overflow: hidden;
               text-overflow: ellipsis;
               white-space: nowrap;
               position: absolute;
-              top: 50%;
+              top: 62%;
               margin-top: -10px;
               padding-left: 32px;
               border-radius: 2px;
+              @include Myflex(flex-start);
             }
 
           }

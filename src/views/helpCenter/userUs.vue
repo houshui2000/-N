@@ -5,7 +5,9 @@
       <div class="left_one">用户协议</div>
     </div>
     <div class="linaxi_right">
-      <div class="ql-editor" v-html="userStatementText"></div>
+      <div class="center_bottom_dv">
+        <div class="ql-editor" v-html="userStatementText"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -15,13 +17,17 @@ import { userStatement } from "../../network/agreement"
 const userStatementText = ref("")
 const goAboutUs = () => {
   userStatement().then((res) => {
-    console.log(res)
+    res
     userStatementText.value = res.data
   })
 }
 goAboutUs()
 </script>
 <style lang="scss" scoped>
+// .center_bottom_dv {
+//   font-size: 12px;
+//   letter-spacing: 2px !important;
+// }
 .lianxi {
   width: 100%;
   // height: 100%;

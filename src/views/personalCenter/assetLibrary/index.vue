@@ -32,7 +32,9 @@
               </div>
               <div class="text">{{ item.productName }}</div>
               <div class="cardIdBox">
-                <div class="cardIdIcon"></div>
+                <div class="cardIdIcon">
+                  <SvgIcon size="25px" Height="25px" icon-class="bianhao" />
+                </div>
                 <el-tooltip class="box-item" effect="dark" :content="item.cardNo" placement="top-start">
                   <div class="cardIdText" :title="item.cardNo">{{ item.cardNo }}</div>
                 </el-tooltip>
@@ -69,18 +71,15 @@
 </template>
 
 <script setup name="Assetlist">
-// import SvgIcon from "@/components/SvgIcon/index.vue"
+import SvgIcon from "@/components/SvgIcon/index.vue"
 
 import missingWakeupPageVue from "@/components/missingWakeupPage/index.vue"
-import { ref, reactive, onMounted, watch } from "vue"
+import { ref, reactive, onMounted } from "vue"
 // import assetLibraryDetail from '../components/assetLibraryDetail.vue'
 import assetgrameRulePopup from "../components/assetgrameRulePopup.vue"
 import gxsSelect from "../components/gxsSelect.vue"
 import { getAssetList } from "@/network/personalCenter.js"
 // import { router } from "@/router/index.js"
-import { useStore } from "@/pinia"
-
-const { loginStore } = useStore()
 
 // const errDialoVueUpdate = ref(false)
 // const value = ref("卡牌编号正序")
@@ -118,6 +117,8 @@ const assetLibrary = async () => {
   let result = await getAssetList(assetInfo.value)
   if (result.code === 200) {
     assetList.value = result.data?.records || []
+    // assetList.value = [{}]
+
     total.value = result.data?.total || 0
   }
 }
@@ -137,19 +138,11 @@ const handleThereJSShow = (item) => {
 onMounted(() => {
   assetLibrary()
 })
+// watch(() => {
+// }, {
 
-watch(
-  () => loginStore.login,
-  (newVal) => {
-    if (!newVal) return
-    // handleOrderList()
-    assetLibrary()
-  },
-  {
-    deep: true,
-    immediate: true
-  }
-)
+//   deep:true
+// })
 </script>
 
 <style lang="scss" scoped>
@@ -157,11 +150,6 @@ watch(
   box-shadow: none !important;
   color: white;
   font-size: 12px;
-  // border-radius: 100px;
-  // @include bordergradientMY(
-  //   linear-gradient(180deg, rgba(156, 104, 167, 1) 0%, rgba(89, 111, 226, 1) 100%),
-  //   linear-gradient(180deg, rgba(18, 39, 67, 1) 0%, rgba(3, 13, 21, 1) 100%)
-  // );
 }
 
 /* 去除边框 */
@@ -175,10 +163,9 @@ watch(
   box-shadow: none !important;
 }
 
-.missingWakeupPage {
-  // width: 100%;
-  padding-bottom: 40px;
-}
+// .missingWakeupPage {
+//   width: 100%;
+// }
 @import "@/styles/other/paginations.scss";
 @import "./index.scss";
 </style>
