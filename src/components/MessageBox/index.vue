@@ -6,7 +6,7 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from "vue"
 const props = defineProps({
-  title: { type: String, required: true }
+  title: { type: String || undefined, required: true }
 })
 const hidenow = ref(false)
 onMounted(() => {
@@ -23,8 +23,9 @@ onUnmounted(() => {
   left: 50%;
   z-index: 99999;
   transform: translateX(-50%);
-  width: 324px;
+  min-width: 324px;
   height: 58px;
+  padding: 0 10px;
   border-radius: 8px;
   border: 1px solid transparent;
   background-clip: padding-box, border-box;

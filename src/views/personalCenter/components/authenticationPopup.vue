@@ -40,13 +40,13 @@
       <div class="confirmPopup">
         <div class="content2"></div>
       </div>
-      <authenticationConFirmPopup :info="passwordEdit" />
+      <authenticationConFirmPopup :cretnode="passwordEdit.certNo" :info="passwordEdit" />
     </div>
   </transition>
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { ref, watch } from "vue"
 import { useStore } from "@/pinia/index.js"
 import authenticationConFirmPopup from "../components/authenticationConfirmPopup.vue"
 import MessageBoxVue from "@/components/MessageBox/index.js"
@@ -75,12 +75,22 @@ const handleEmpowerShow = async () => {
   useUsersStore.passwordEdit.certNo = passwordEdit.value.certNo
   useUsersStore.passwordEdit.username = passwordEdit.value.username
   useUsersStore.authenticationConFirmPopup = true
+  // passwordEdit.value.certNo = ""
+  // passwordEdit.value.username = ""
 }
 const handleClose = () => {
   passwordEdit.value.certNo = ""
   passwordEdit.value.username = ""
   useUsersStore.authenticationPopup = false
 }
+watch(
+  () => useUsersStore.authenticationPopup,
+  () => {
+    if (useUsersStore.authenticationPopup) return
+    passwordEdit.value.certNo = ""
+    passwordEdit.value.username = ""
+  }
+)
 </script>
 
 <style lang="scss" scoped>

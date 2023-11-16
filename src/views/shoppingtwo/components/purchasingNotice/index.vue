@@ -10,6 +10,7 @@
 </template>
 <script setup>
 import { shopbuynotice } from "@/network/shoppingCentre/shoppingtwo"
+
 import { ref } from "vue"
 //shop/buy-notice
 const aaa = ref()
@@ -32,6 +33,7 @@ init()
   border-radius: 4px;
   @include bordergradientMY();
   .setction {
+    min-height: 600px;
     padding: 25px;
     width: 100%;
     // overflow: auto;
@@ -46,9 +48,5 @@ init()
     background: linear-gradient(180deg, #de01ca 0%, #3340fe 100%);
     // opacity: 0.5;
   }
-}
-img {
-  width: 300px;
-  height: 300px;
 }
 </style>

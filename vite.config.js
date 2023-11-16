@@ -108,7 +108,7 @@ export default defineConfig((mode) => {
 
     },
 
-    base: './',
+    base: '/',
     resolve: {
       // 设置路径别名
       alias: {

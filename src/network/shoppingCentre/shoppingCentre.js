@@ -81,3 +81,12 @@ export function shopbulletcommencommentt (params) {
     params
   })
 }
+
+// 作品介绍
+export function shopproducintroduction (params) {
+  return service({
+    url: '/shop/product-introduction',
+    method: 'get',
+    params
+  })
+}

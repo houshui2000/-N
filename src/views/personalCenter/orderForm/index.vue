@@ -29,7 +29,7 @@
             <el-date-picker
               class="PayDateTimePicker"
               popper-class="CreateDateTimePickerKuang_CreationTime_retrieval"
-              v-model="payTime"
+              v-model="payTimes"
               type="datetimerange"
               start-placeholder="支付时间"
               end-placeholder="结束时间"
@@ -117,7 +117,7 @@
                       </div>
                       <div class="contentTextBox" v-if="item.payStatus === -1">
                         <div class="label">取消时间</div>
-                        <div class="dataValue">{{ item.currentStatusTime }}</div>
+                        <div class="dataValue">{{ item.cancelTime }}</div>
                       </div>
                       <div
                         class="contentTextBox"
@@ -233,8 +233,10 @@ let orderInfo = ref({
 })
 let total = ref(0)
 let createTime = ref("")
-let payTime = ref("")
+let payTimes = ref("")
 let indexDetail = ref(-1)
+// let indexDetail = ref(0)
+
 const mounchRef = ref("")
 
 /**
@@ -303,14 +305,15 @@ const handleSelectValue = (val) => {
   handleOrderList()
 }
 const handleOrderList = async () => {
-  orderInfo.value.payTimes = orderInfo.value.payTime
-  orderInfo.value.payTime = null
+  // orderInfo.value.payTimes = orderInfo.value.payTime
+  // orderInfo.value.payTime = null
 
   let res = await GetorderList(orderInfo.value)
 
   let data = res.data.records
   if (res.code === 200) {
     orderList.value = data
+    // orderList.value = [{}, {}]
     total.value = res.data.total
   }
 }
@@ -338,15 +341,16 @@ const handleCreateDateTime = () => {
   handleOrderList()
 }
 const handlePayTime = () => {
-  if (!payTime.value) {
-    payTime.value.createTimes = null
+  if (!payTimes.value) {
+    orderInfo.value.createTimes = null
   } else {
     let str = ""
-    for (let i = 0; i < payTime.value.length; i++) {
-      str += timeZhuan(payTime.value[i]) + ","
+    for (let i = 0; i < payTimes.value.length; i++) {
+      str += timeZhuan(payTimes.value[i]) + ","
     }
-    orderInfo.value.payTime = str.slice(0, -1)
+    orderInfo.value.payTimes = str.slice(0, -1)
   }
+
   handleOrderList()
 }
 const handleCurrentChange = (val) => {
@@ -368,6 +372,7 @@ const handlePayClose = async (orderNo) => {
 const goPay = async (orderNo) => {
   const res = await shopbuyPay({ orderNo })
   if (res.code === 200) {
+    window.location.href = res.data
     await handleOrderList()
     MessageBoxVue({
       title: "支付成功"
@@ -376,10 +381,14 @@ const goPay = async (orderNo) => {
 }
 //待支付弹窗
 const handlePayShow = async (item) => {
-  const res = await shopbuyPay({
-    orderNo: item.orderNo
-  })
-  window.location.href = res.data
+  try {
+    const res = await shopbuyPay({
+      orderNo: item.orderNo
+    })
+    window.location.href = res.data
+  } catch (err) {
+    handleOrderList()
+  }
 }
 
 onMounted(() => {

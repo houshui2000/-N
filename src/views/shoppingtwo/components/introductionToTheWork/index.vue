@@ -3,20 +3,59 @@
     <div class="setction scrollStyle">
       <!-- 作品介绍 -->
       <div class="center_bottom_dv">
-        <div class="ql-editor" v-html="creatData.productIntroduction"></div>
+        <div class="ql-editor" v-html="creatDataFuWenBen"></div>
       </div>
-      <img :src="item" v-for="(item, index) in IMgURl" :key="index" alt="" />
+      <div class="img">
+        <img :src="item" v-for="(item, index) in IMgURl" :key="index" alt="" />
+      </div>
     </div>
   </div>
 </template>
 <script setup>
-import { inject, computed } from "vue"
+import { ref, inject, nextTick, computed, onMounted } from "vue"
 // import { useStore } from "@/pinia/index"
+import { useRoute } from "vue-router"
+
+import { shopproducintroduction } from "@/network/shoppingCentre/shoppingCentre"
 const creatData = inject("creatData")
+const creatDataFuWenBen = ref("")
+const route = useRoute()
+const init = async () => {
+  const res = await shopproducintroduction({
+    vaultId: route.query.vaultId
+  })
+
+  creatDataFuWenBen.value = res.data
+
+  nextTick(() => {
+    let p = document.querySelectorAll(".center_bottom_dv p")
+
+    if (p) {
+      p.forEach((item) => {
+        item.style.width = "100%"
+        item.style.display = "flex"
+        item.style.justifyContent = "center"
+        item.style.alignItems = "center"
+        item.style.flexDirection = "column"
+      })
+    }
+
+    //
+
+    let img = document.querySelector(".center_bottom_dv img")
+
+    if (!img) return
+    img.style.maxWidth = "80%"
+  })
+}
 // const { loginStore } = useStore()
 // let url =loginStore.cossUrl +
 const IMgURl = computed(() => {
   return JSON.parse(creatData.value.imgTextUrl).map((item) => item)
+})
+
+onMounted(() => {
+  init()
 })
 </script>
 <style lang="scss" scoped>
@@ -32,6 +71,7 @@ const IMgURl = computed(() => {
   border-radius: 4px;
   @include bordergradientMY();
   .setction {
+    min-height: 600px;
     padding: 25px;
     width: 100%;
     // overflow: auto;
@@ -48,7 +88,12 @@ const IMgURl = computed(() => {
   }
 }
 img {
-  width: 247px;
-  height: 349px;
+  width: 50%;
+  // height: 349px;
+  // margin-right: 10px;
+}
+.img {
+  @include Myflex(center);
+  flex-direction: column;
 }
 </style>

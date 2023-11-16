@@ -31,6 +31,9 @@
         <div style="border: 0" class="tiaozhuan">资讯信息</div>
       </Router-link> -->
     </div>
+    <a href="https://beian.miit.gov.cn/#/Integrated/index">
+      <div class="beian">备案号: 鲁ICP20230363926</div>
+    </a>
   </footer>
 </template>
 <script setup>
@@ -45,6 +48,7 @@ footer {
   height: 230px;
   background: #070d13;
   @include Myflex();
+  flex-direction: column;
   .footer_top {
     // width: ;
     @include Myflex();
@@ -83,8 +87,17 @@ footer {
       // margin-right: 20px;
       border-right: 1px solid rgba(255, 255, 255, 0.5);
       font: normal normal 400 12px "PingFang SC";
-      color: white;
+      // color: white;
+      color: rgba(202, 202, 245, 0.9);
+      &:hover {
+        color: white;
+      }
     }
+  }
+  .beian {
+    font: normal normal 400 12px "PingFang SC";
+    color: rgba(202, 202, 245, 0.5);
+    margin-top: 40px;
   }
 }
 </style>

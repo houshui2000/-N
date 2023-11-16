@@ -41,13 +41,16 @@
           <div>
             <input class="inputSumnickName" v-model="admin.authentication" disabled />
           </div>
-
-          <div class="inputBtn" v-if="useUsersStore.userInfo.tradePermission <= 0">
+          <!--     -->
+          <div
+            v-if="useUsersStore.userInfo.tradePermission <= 0 && useUsersStore.userInfo.tradePermission !== -2"
+            class="inputBtn"
+          >
             <div class="inputBtn2" @click="handleAuthenticationPopupShow">去实名</div>
           </div>
         </div>
         <div class="inputBox">
-          <div class="label">添加银行卡</div>
+          <div class="label">银行卡管理</div>
           <div></div>
           <div class="inputBtn">
             <div class="inputBtn2" @click="handleBankCardPopupShow">编辑</div>
@@ -152,6 +155,7 @@ import SvgIcon from "@/components/SvgIcon/index.vue"
 import BankCardPopup from "@/views/personalCenter/components/bankCardPopup.vue"
 import BankCardUnBindingPopup from "@/views/personalCenter/components/bankCardUnBindingPopup.vue"
 import BankCardBindingPopup from "@/views/personalCenter/components/bankCardBindingPopup.vue"
+
 import BankCardBindingCodePopup from "@/views/personalCenter/components/bankCardBindingCodePopup.vue"
 const { useUsersStore } = useStore()
 let bankCardShow = ref(false) //控制绑定银行卡列表弹窗

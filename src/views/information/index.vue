@@ -85,14 +85,16 @@ const init = async () => {
   listOfInformation()
 }
 init()
-
 const xin_xi_tiao = (item) => {
+  const res = listArr.value.find((itemFin) => itemFin.id == nameRef.value)
+
   sessionStoragesetItem("categoryId", nameRef.value)
   // router.push(`/informationTwo/${item.id}`)
   router.push({
     path: "/informationTwo",
     query: {
-      id: item.id
+      id: item.id,
+      name: res.name
     }
   })
 }
@@ -164,16 +166,20 @@ watch(
         display: inline-block;
         height: 100%;
         // opacity: ;
-        margin-right: 80px;
+        // margin-right: 80px;
         padding: 0px 12px;
+        height: 25px;
         @include Myflex();
         margin-right: 100px;
+        &:last-child {
+          margin-right: 0;
+        }
         span {
           transition: all 1s;
           display: inline-block;
           position: absolute;
           left: 50%;
-          bottom: -5px;
+          bottom: -10px;
           transform: translateX(-50%);
           width: 50%;
           height: 2px;

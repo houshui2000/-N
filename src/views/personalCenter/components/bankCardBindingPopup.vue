@@ -29,7 +29,10 @@
                   <input v-model="cardBankInfo.bankName" placeholder="请选择银行" @input="handleBankNameClick" />
                 </div>
                 <div class="arrowBox" @click="handleSelectList">
-                  <div class="icon" :class="{ active: selectShow }"></div>
+                  <div class="icon" :class="{ active: !selectShow }">
+                    <el-icon><ArrowUpBold /></el-icon>
+                  </div>
+                  <!-- <div class="icon" :class="{ active: selectShow }"></div> -->
                 </div>
                 <div
                   class="listBox"
@@ -83,6 +86,7 @@
 import { ref, onMounted } from "vue"
 import { GET_BankIdList, POST_bankCardBinding } from "@/network/personalCenter.js"
 import MessageBoxVue from "@/components/MessageBox/index.js"
+import { ArrowUpBold } from "@element-plus/icons-vue"
 
 const props = defineProps(["bankCardBindingShow"])
 const emit = defineEmits(["handleBankCardBindingCloseEmit", "handleBankCardBindingConfirm"])
@@ -146,7 +150,11 @@ const handleBankCardBindingConfirm = async () => {
     MessageBoxVue({
       title: "修改成功"
     })
+    //
     emit("handleBankCardBindingConfirm", result.data)
+    setTimeout(() => {
+      stuckInTheAir(cardBankInfo.value)
+    }, 200)
   }
 }
 /**滞空数据 */
@@ -188,9 +196,10 @@ const handleSelectValue = (val) => {
   selectShow.value = false
 }
 onMounted(async () => {
-  let result = await GET_BankIdList({ name: "中国" })
+  let result = await GET_BankIdList({ name: null })
   if (result.code) {
     selectList.value = result.data
+    // selectList.value = [...result.data, ...result.data, ...result.data]
   }
 })
 </script>
@@ -213,7 +222,7 @@ onMounted(async () => {
 
   .content {
     width: 554px;
-    height: 647px;
+    height: 547px;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
     border: 1px solid transparent;
@@ -224,7 +233,7 @@ onMounted(async () => {
         rgba(126, 172, 186, 0.5) 48.67%,
         rgba(99, 149, 231, 0.5) 96.71%
       );
-    overflow: hidden;
+    // overflow: hidden;
     border-radius: 6px;
     backdrop-filter: blur(10px);
     position: relative;
@@ -274,6 +283,7 @@ onMounted(async () => {
         .label {
           width: 107px;
           height: 40px;
+          font: normal normal 400 14px "PingFang SC";
           line-height: 40px;
           text-align: right;
         }
@@ -308,10 +318,11 @@ onMounted(async () => {
               .icon {
                 width: 10px;
                 height: 6px;
-                background: url($gxsBankCardArrow) no-repeat center;
+                // background: url($gxsBankCardArrow) no-repeat center;
                 background-size: contain;
                 transform: rotateZ(0deg);
                 transition: transform 0.3s;
+                @include Myflex();
 
                 &.active {
                   transform: rotateZ(180deg);
@@ -321,25 +332,41 @@ onMounted(async () => {
             .listBox {
               width: 361px;
               height: auto;
+              max-height: 300px;
+
               position: absolute;
               left: 0;
-              top: 40px;
+              top: 38px;
               border-bottom-left-radius: 6px;
               border-bottom-right-radius: 6px;
-              overflow: hidden;
-              box-shadow: 0px 0px 10px #000;
+              overflow-x: hidden;
+              overflow-y: hidden;
+              &:hover {
+                overflow-y: auto;
+              }
+              // box-shadow: 0px 0px 10px #000;
+              // background-color: saddlebrown;
+              @include bordergradientMY(
+                linear-gradient(180deg, rgba(99, 70, 147, 0.8) 0%, rgba(59, 91, 140, 0.8) 100%),
+                linear-gradient(180deg, rgba(10, 23, 40, 1) 0%, rgba(10, 23, 40, 1) 100%)
+              );
               transition: height 0.3s;
               &.active {
                 height: 0;
+                border: 0;
               }
               .listDom {
                 width: 361px;
                 height: 40px;
                 line-height: 40px;
+                color: rgba(255, 255, 255, 0.8);
                 padding-left: 13px;
-                background-color: #122743;
-                border-bottom: 1px solid rgba(#fff, 0.6);
+                // background-color: #122743;
+                border-bottom: 1px solid #414971;
                 cursor: pointer;
+                &:hover {
+                  color: white;
+                }
                 &:last-child {
                   border-bottom: 0;
                 }
@@ -352,7 +379,7 @@ onMounted(async () => {
             padding-left: 13px;
             color: #fff;
             &::placeholder {
-              color: rgba(#fff, 0.6);
+              color: rgba(#ececec, 0.6);
             }
           }
         }
@@ -370,14 +397,22 @@ onMounted(async () => {
       .btnBox-close {
         width: 100px;
         height: 34px;
-        line-height: 34px;
-        text-align: center;
-        background: url($gxsauthenticationConfirmPopupBack) no-repeat center;
-        background-size: 100% 100%;
+        // line-height: 34px;
+        // text-align: center;
+        cursor: pointer;
+        @include Myflex();
+        // background: url($gxsauthenticationConfirmPopupBack) no-repeat center;
+        border-radius: 4px;
+        @include bordergradientMY(
+          linear-gradient(90deg, rgba(41, 59, 230, 1) 0%, rgba(201, 2, 182, 1) 100%),
+          linear-gradient(180deg, #070d13 -1.45%, #070d13 100%)
+        );
+        // background-size: 100% 100%;
       }
 
       .btnBox-confirm {
         width: 100px;
+        cursor: pointer;
         height: 34px;
         line-height: 34px;
         text-align: center;

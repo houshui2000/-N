@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref } from "vue"
 import { POST_bankCardBindingCode } from "@/network/personalCenter.js"
 
 let codeInfo = ref({
@@ -36,12 +36,18 @@ let codeInfo = ref({
 const props = defineProps(["bankCardBindingCodeShow", "ids"])
 const emit = defineEmits(["handleBankCardBindingCodeCloseEmit"])
 const handelClose = () => {
+  codeInfo.value.orderId = ""
+  codeInfo.value.code = ""
+  console.log(codeInfo.value)
+
   emit("handleBankCardBindingCodeCloseEmit")
 }
 const handleBtn = async () => {
   codeInfo.value.orderId = props.ids
   let result = await POST_bankCardBindingCode(codeInfo.value)
   if (result.code === 200) {
+    codeInfo.value.orderId = ""
+    codeInfo.value.code = ""
     emit("handleBankCardBindingCodeCloseEmit")
   }
 }
@@ -164,8 +170,12 @@ const handleBtn = async () => {
         height: 34px;
         line-height: 34px;
         text-align: center;
-        background: url($gxsauthenticationConfirmPopupBack) no-repeat center;
-        background-size: 100% 100%;
+        // background: url($gxsauthenticationConfirmPopupBack) no-repeat center;
+        border-radius: 4px; // background-size: 100% 100%;
+        @include bordergradientMY(
+          linear-gradient(90deg, rgba(41, 59, 231, 1) 0%, rgba(201, 1, 182, 1) 100%),
+          linear-gradient(180deg, #241328 0%, #000c2c 100%)
+        );
         cursor: pointer;
       }
 

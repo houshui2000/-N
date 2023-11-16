@@ -29,7 +29,7 @@
                 </div>
               </div>
             </div>
-            <div class="nickName">{{ useUsersStore.userInfo.nickname }}</div>
+            <div class="nickName">{{ useUsersStore?.userInfo.nickname }}</div>
             <div class="tabs">
               <div class="bg">
                 <div class="tabsText">
@@ -106,11 +106,13 @@ let tabList = reactive([
 const handleTabShow = (item, index) => {
   if (index !== -1) {
     if (index === indexActive.value) return
-    if (index === 2) {
-      nextTick(() => {
-        useUsersStore.handleUserInfo()
-      })
-    }
+    // if (index === 2) {
+    //   console.log(555555)
+
+    //   nextTick(() => {
+    //     // useUsersStore.handleUserInfo()
+    //   })
+    // }
     indexActive.value = index
     router.push(item.pushLink)
   }
@@ -158,7 +160,7 @@ const handleAvatarSuccess = (response, uploadFile) => {
 }
 
 onMounted(() => {
-  useUsersStore.handleUserInfo()
+  // useUsersStore.handleUserInfo()
 })
 //退出登录
 const handleLoginExit = async () => {
@@ -180,6 +182,7 @@ const uploadHttpRequest = async (params) => {
   formData.set("file", _file)
   await uploadavatar(formData)
   MessageBoxVue({ title: "修改成功!" })
+
   await useUsersStore.handleUserInfo()
 }
 const beforeAvatarUpload = (rawFile) => {

@@ -52,13 +52,11 @@
         <!--       用户协议       -->
         <div class="checkboxBox" style="font-size: 12px">
           <el-checkbox v-model="agreement" class="checkboxBox-checkbox"></el-checkbox>
-          <div>
-            <span>本人已满18周岁且具备完全行动能力，支付即代表阅</span>
-            <span>读并同意</span>
-            <span style="color: #42bbff; font-size: 12px">《购买须知》</span>
-            和
-            <span style="color: #42bbff; font-size: 12px">《用户协议》</span>
-          </div>
+          <span>本人已满18周岁且具备完全行动能力，支付即代表阅</span>
+          <span>读并同意</span>
+          <span style="color: #42bbff; font-size: 12px">《购买须知》</span>
+          和
+          <span style="color: #42bbff; font-size: 12px">《用户协议》</span>
         </div>
       </section>
       <template #footer>
@@ -350,7 +348,7 @@ section {
   margin-top: 0px;
   font-size: 12px;
   @include Myflex(flex-start); // align-items: center;
-  // flex-wrap: wrap;
+  flex-wrap: wrap;
   word-wrap: break-word;
   // padding-left: 49px;
   word-break: normal;

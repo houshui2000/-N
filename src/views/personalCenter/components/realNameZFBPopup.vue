@@ -40,8 +40,40 @@ const handleRealName = async () => {
   })
   setTimeout(() => {
     getTime.value = setInterval(async () => {
-      const res = await getRealName(useUsersStore.passwordEdit)
-      if (res.code === 200) {
+      // const res = await getRealName(useUsersStore.passwordEdit)
+      // // const res = { code: 500 }
+
+      // console.log(res)
+
+      // if (res.code === 200) {
+      //   if (res.data === "T") {
+      //     await useUsersStore.handleUserInfo()
+      //     useUsersStore.realNameZFBPopup = false
+      //     MessageBoxVue({
+      //       title: "认证成功"
+      //     })
+      //     clearInterval(getTime.value)
+      //   }
+      //   // else if (res.data === "F") {
+      //   //   useUsersStore.realNameZFBPopup = false
+      //   //   MessageBoxVue({
+      //   //     title: "认证失败"
+      //   //   })
+      //   //   clearInterval(getTime.value)
+      //   // }
+      // } else {
+      //   console.log(62625165)
+
+      //   useUsersStore.realNameZFBPopup = false
+      //   clearInterval(getTime.value)
+
+      //   // 关闭弹框
+      //   // MessageBoxVue({
+      //   //     title: "认证成功"
+      //   //   })
+      let res
+      try {
+        res = await getRealName(useUsersStore.passwordEdit)
         if (res.data === "T") {
           await useUsersStore.handleUserInfo()
           useUsersStore.realNameZFBPopup = false
@@ -50,9 +82,12 @@ const handleRealName = async () => {
           })
           clearInterval(getTime.value)
         }
+      } catch (err) {
+        useUsersStore.realNameZFBPopup = false
+        clearInterval(getTime.value)
       }
     }, 2000)
-  }, 1000);
+  }, 1000)
 }
 onMounted(() => {
   nextTick(() => {

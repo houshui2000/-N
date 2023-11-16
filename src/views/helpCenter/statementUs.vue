@@ -62,7 +62,7 @@ goAboutUs()
     border-radius: 8px;
     @include bordergradientMY(
       linear-gradient(180deg, rgba(44, 34, 68, 1) 0%, rgba(33, 44, 67, 0.9) 100%),
-      linear-gradient(180deg, #241328 0%, #000c2c 100%)
+      linear-gradient(180deg, #070d13 0%, #070d13 100%)
     );
   }
 }

@@ -23,7 +23,7 @@ import { useStore } from "@/pinia/index.js"
 // import { codeloginmobile } from '@/network/user.js'
 import { realNamePost } from "@/network/personalCenter.js"
 // import { removeItem } from '@/utils/storage.js'
-// import MessageBoxVue from "@/components/MessageBox/index.js"
+import MessageBoxVue from "@/components/MessageBox/index.js"
 
 const { useUsersStore } = useStore()
 const props = defineProps({
@@ -36,6 +36,12 @@ const props = defineProps({
 })
 const handleRealName = async () => {
   const res = await realNamePost(props.info)
+  if (res.code === 204) {
+    MessageBoxVue({
+      title: "认证年龄请在18-60之间,请重新认证"
+    })
+    return
+  }
   if (res.code === 200) {
     useUsersStore.realNameQRCode = res.data
   }

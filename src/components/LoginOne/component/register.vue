@@ -38,6 +38,7 @@
 import { ref } from "vue"
 import { useStore } from "@/pinia"
 import { registermobile, registernormal, resetpassword } from "@/network/user.js"
+import MessageBoxVue from "@/components/MessageBox/index.js"
 
 const { loginStore } = useStore()
 let agreement = ref(false) //用户协议选择
@@ -56,6 +57,12 @@ const handleCodeTime60 = () => {
     setTimeout(handleCodeTime60, 1000)
   }
 }
+/**验证码发送 */
+const fasong = () => {
+  MessageBoxVue({
+    title: "发送成功"
+  })
+}
 //验证码组件
 const handleCodeTime = async () => {
   //手机号登录
@@ -66,9 +73,11 @@ const handleCodeTime = async () => {
     }
     if (loginStore.registerState === "register") {
       let result = await registermobile({ mobile: phone.value })
+      fasong()
     }
     if (loginStore.registerState === "retrievePassword") {
       let result = await resetpassword({ mobile: phone.value })
+      fasong()
     }
 
     codeTime.value = 60

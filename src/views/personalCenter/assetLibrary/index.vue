@@ -30,10 +30,12 @@
                 </div> -->
                 <img :src="item.productUrl" alt="" />
               </div>
-              <div class="text">{{ item.productName }}</div>
+              <el-tooltip class="box-item" effect="dark" :content="item.productName" placement="top-start">
+                <div class="text danyi">{{ item.productName }}</div>
+              </el-tooltip>
               <div class="cardIdBox">
                 <div class="cardIdIcon">
-                  <SvgIcon size="25px" Height="25px" icon-class="bianhao" />
+                  <SvgIcon size="20px" Height="20px" icon-class="bianhao" />
                 </div>
                 <el-tooltip class="box-item" effect="dark" :content="item.cardNo" placement="top-start">
                   <div class="cardIdText" :title="item.cardNo">{{ item.cardNo }}</div>
@@ -110,7 +112,7 @@ const arrayValue = reactive({
 const handleSelectValue = (val) => {
   arrayValue.label = val.label
   arrayValue.values = val.values
-  // assetInfo.value.direction = arrayValue.values
+  assetInfo.value.direction = arrayValue.values
   assetLibrary()
 }
 const assetLibrary = async () => {

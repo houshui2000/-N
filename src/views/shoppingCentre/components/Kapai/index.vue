@@ -2,9 +2,13 @@
   <div class="kapai">
     <div v-if="props.KaParVueitem.hotPushStatus" class="hot">HOT</div>
     <div class="xiaoxingxing"></div>
-    <div class="chinaKexo">中国可信NFT</div>
+    <div class="chinaKexo">可信版权资产</div>
     <div class="img">
-      <div class="voice" v-if="props.KaParVueitem.hasAudio">
+      <div v-if="!props.KaParVueitem?.canBuy" class="time">
+        {{ props.KaParVueitem?.publishTime.slice(5, props.KaParVueitem?.publishTime.length) }} 开售
+      </div>
+      <!-- -->
+      <div v-if="props.KaParVueitem.hasAudio" class="voice">
         <SvgIcon size="18px" Height="18px" icon-class="voiceShang" />
       </div>
       <img class="equalProportions" :src="props.KaParVueitem.productUrl" alt="" />
@@ -41,24 +45,13 @@
 <script setup>
 import SvgIcon from "@/components/SvgIcon/index.vue"
 const props = defineProps({
-  title: {
-    type: String,
-    default: "啊大叔大叔大大爱上打爱上打打打萨达爱上打打打多少撒大厦多少"
-  },
   KaParVueitem: {
     type: Object,
     required: true
-  },
-  shoppingCentre: {
-    type: Object,
-    default: () => {
-      return {}
-    }
   }
 })
 </script>
 <style lang="scss" scoped>
-// 111
 .kapai {
   cursor: pointer;
   position: relative;
@@ -103,7 +96,6 @@ const props = defineProps({
 
     background: none;
   }
-
   .img {
     position: relative;
     width: 100%;
@@ -117,10 +109,30 @@ const props = defineProps({
     }
     .voice {
       position: absolute;
-      right: 11px;
-      bottom: 11px;
+      right: 20px;
+      bottom: 15px;
       width: 18px;
       height: 18px;
+    }
+
+    .time {
+      color: white;
+      position: absolute;
+      left: 0;
+      bottom: 10px;
+      display: flex;
+      height: 28px;
+      padding: 12px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0px 4px 4px 0px;
+      color: #31fca4;
+      font: normal normal 500 12px "PingFang SC";
+      background: rgba(0, 0, 0, 0.7);
+      // background-image: linear-gradient(#3dff02, #c43312);
+      // background-clip: text;
+      // -webkit-background-clip: text;
+      // -webkit-text-fill-color: transparent;
     }
   }
   .kapai_bottom {

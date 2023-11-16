@@ -12,7 +12,7 @@
           <div class="numberText">002-2023-A20-01</div>
         </div>
         <div class="btnBox">
-          <div class="close">取消支付</div>
+          <div @click="Deactivepayment" class="close">取消支付</div>
           <div class="payBtn">去支付</div>
         </div>
         <div class="border"></div>
@@ -39,7 +39,10 @@
   </transition>
 </template>
 
-<script setup></script>
+<script setup>
+/**取消支付 */
+const Deactivepayment = () => {}
+</script>
 
 <style lang="scss" scoped>
 #orderDetailsPopup {

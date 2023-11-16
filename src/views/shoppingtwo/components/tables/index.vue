@@ -46,7 +46,17 @@
               <!-- payStatus : 0 买入 || 1 : 支付中 -->
 
               <div @click="PayFun(item)" v-if="item.payStatus" class="zhiFU_one">{{ item.status }}支付中</div>
-              <div @click="PayFun(item)" v-else class="zhiFU_one_mai">{{ item.status }}买入</div>
+              <div
+                @click="onePieceBuyin(route, null)"
+                :class="{
+                  zhiFU_one_mai_time: !creatData.canBuy
+                }"
+                id="zhiFU_one_mai"
+                v-else
+                class="zhiFU_one_mai"
+              >
+                买入
+              </div>
             </div>
           </td>
         </tr>
@@ -59,29 +69,40 @@
       <MissWakeupPage :title="'暂无数据'" v-if="drops.records?.length == 0" titleTwo="" />
     </div>
     <!-- <detailVue v-model:errDialoVueUpdate="errDialoVueUpdate" :errDialoVueXinagqing="errDialoVueXinagqing" /> -->
+    <payVue v-if="Gethelowestprice" :creatDataAll="Gethelowestprice" v-model:dialogVisiblePay="dialogVisiblePay" />
   </div>
 </template>
 <script setup name="tablesasdsa">
 import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
-
+import { inject } from "vue"
+import payVue from "../pay/index.vue"
+import { useRoute } from "vue-router"
 import SvgIcon from "@/components/SvgIcon/index.vue"
-// import { ref } from 'vue'
 import MessageBoxVue from "@/components/MessageBox/index.js"
-import { shopquickbuy } from "@/network/shoppingCentre/shoppingtwo"
+// import { shopquickbuy } from "@/network/shoppingCentre/shoppingtwo"
+// import { buyminxpricecard } from "@/network/shoppingCentre/shoppingtwo.js"
+import { Gethelowestprice, dialogVisiblePay, onePieceBuyin } from "@/views/shoppingtwo/components/pay/index.js"
+// import { useStore } from "@/pinia"
+const creatData = inject("creatData")
+const route = useRoute()
+// const { loginStore } = useStore()
+// import { useRoute } from "vue-router"
 
-// import detailVue from '../detail/index.vue'
 const drops = defineProps({
   records: { type: Array, required: true }
 })
-
-// const errDialoVueUpdate = ref(false) //详情弹框
-// const errDialoVueXinagqing = ref({}) //详情弹框
 const $emit = defineEmits(["PayFun"])
 /**
  * 表格操作按钮
  * status : true 买入 || false : 支付中
  */
 const PayFun = async (item) => {
+  // if (true) {
+  //   MessageBoxVue({
+  //     title: "别忘了加事件 -- 即将开售"
+  //   })
+  //   return
+  // }
   if (item.payStatus) {
     MessageBoxVue({
       title: "该卡牌在支付中，请选择可买入的卡牌叭~"
@@ -90,20 +111,68 @@ const PayFun = async (item) => {
     return
   }
   //
-  const res = await shopquickbuy({
-    cardId: item.cardId, // 跳转页面的id 1
-    payChanelId: 3 // 支付通道 1 是支付宝
-  })
+  // const res = await shopquickbuy({
+  //   cardId: item.cardId, // 跳转页面的id 1
+  //   payChanelId: 3 // 支付通道 1 是支付宝
+  // })
 
-  if (!res.data) {
-    MessageBoxVue({
-      title: "此卡牌已售出"
-    })
-    $emit("PayFun")
-    return
-  }
-  window.location.href = res.data
+  // if (!res.data) {
+  //   MessageBoxVue({
+  //     title: "此卡牌已售出"
+  //   })
+  //   $emit("PayFun")
+  //   return
+  // }
+
+  // window.location.href = res.data
 }
+
+// const Gethelowestprice = ref({}) // 支付弹框 获取最低价
+// const dialogVisiblePay = ref(false) // 支付弹框弹出
+
+// /**购买信息 -- 知道商品还能不能购买 */
+// const initminimumPice = async () => {
+//   const res = await buyminxpricecard({ vaultId: route.query.vaultId })
+//   Gethelowestprice.value = res.data
+// }
+// /**一件买入 */
+// const onePieceBuyin = async (item) => {
+//   console.log(item.onSellingCount)
+
+//   await initminimumPice()
+
+//   const Mymap = new Map([
+//     [
+//       !loginStore.token,
+//       () => {
+//         MessageBoxVue({
+//           title: "请先登录"
+//         })
+//         loginStore.login = true
+//       }
+//     ],
+
+//     [
+//       !Gethelowestprice.value,
+//       () => {
+//         MessageBoxVue({
+//           title: "没有找到最低价"
+//         })
+//       }
+//     ]
+//   ])
+//   let Myreturn = false
+//   for (let [key, value] of Mymap) {
+//     if (key) {
+//       Myreturn = true
+//       value()
+//     }
+//   }
+
+//   if (Myreturn) return
+
+//   dialogVisiblePay.value = true
+// }
 </script>
 <style lang="scss" scoped>
 table {
@@ -239,10 +308,14 @@ table {
             border-radius: 2px;
             background: linear-gradient(90deg, #2d42ff 0%, #df00c9 96.64%);
           }
-
+          #zhiFU_one_mai.zhiFU_one_mai_time {
+            cursor: not-allowed !important;
+            &:hover {
+              @include bordergradientMY(linear-gradient(90deg, rgba(46, 65, 255, 0.8) 0%, rgba(223, 1, 201, 0.8) 100%));
+            }
+          }
           .zhiFU_one_mai {
             cursor: pointer;
-
             position: relative;
             border-radius: 2px;
             transition: all 1s;

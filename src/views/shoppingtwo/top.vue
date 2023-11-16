@@ -44,9 +44,16 @@
             <span>{{ props.creatData.buyRestrict }}</span>
             份
           </p>
-          <div @click="onePieceBuyin" class="maifu">
+          <div
+            v-if="props.creatData.canBuy"
+            :style="{ cursor: props.creatData.onSellingCount !== 0 ? 'pointer' : 'not-allowed' }"
+            @click="onePieceBuyin"
+            class="maifu"
+          >
             {{ props.creatData.onSellingCount === 0 ? "已售罄" : "一键买入" }}
           </div>
+          <!-- props.creatData.canBuy fanlse 不能买 true 能买 -->
+          <div v-else @click="onSale" style="" class="maifu kaishou">{{ props.creatData.publishTime }} 即将开售</div>
         </div>
       </div>
     </div>
@@ -130,6 +137,13 @@ const Gethelowestprice = ref({})
 const initminimumPice = async () => {
   const res = await buyminxpricecard({ vaultId: route.query.vaultId })
   Gethelowestprice.value = res.data
+}
+
+/**即将开售 */
+const onSale = () => {
+  MessageBoxVue({
+    title: "即将开售"
+  })
 }
 /**一件买入 */
 const onePieceBuyin = async () => {
@@ -324,6 +338,11 @@ const onePieceBuyin = async () => {
           color: white;
         }
       }
+      .kaishou {
+        background: linear-gradient(269deg, #32ff9c 0%, #32e7fd 100%) !important;
+        color: #000 !important;
+        cursor: not-allowed !important;
+      }
       .maifu {
         cursor: pointer;
         margin-top: 17px;
@@ -333,7 +352,7 @@ const onePieceBuyin = async () => {
         @include Myflex();
         font: normal normal 600 14px "PingFang SC";
         border-radius: 5.36px;
-        background: linear-gradient(-45deg, #1615f2 15.76%, #b8009a 79.59%);
+        background: linear-gradient(90deg, #1615f2 15.76%, #b8009a 79.59%);
       }
     }
   }

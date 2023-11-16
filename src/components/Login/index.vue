@@ -60,7 +60,6 @@ import { useStore } from "@/pinia"
 import { ref } from "vue"
 import { codeloginmobile, logincode, loginmobile } from "@/network/user.js"
 import { setItem } from "@/utils/storage.js"
-// import { registermobile } from "@/network/userInterface.js"
 // import MessageBoxVue from "@/components/MessageBox/index.js"
 const { loginStore, useUsersStore } = useStore()
 let state = ref(false) //切换按钮 false手机号 、true密码账号

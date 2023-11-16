@@ -27,6 +27,7 @@ const creat = async () => {
   }
 }
 const banner = (item) => {
+  if (!item.pcRedirectUrl) return
   if (item.pcType == 1) {
     window.open(item.pcRedirectUrl)
   } else router.push("informationTwo?id=" + item.pcNewsId)

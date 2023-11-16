@@ -2,8 +2,8 @@
   <div class="informationTwo">
     <CrumbsVue
       :arr="[
-        { name: '咨询', path: '/information' },
-        { name: '咨询详情', path: route.params.id }
+        { name: '首页', path: '/information' },
+        { name: route.query.name || '咨询详情', path: route.params.id }
       ]"
     />
     <!-- -->
@@ -31,11 +31,11 @@ import { onMounted, nextTick } from "vue"
 import { useRouter, useRoute } from "vue-router"
 import { ref } from "vue"
 const route = useRoute()
+
 const router = useRouter()
-onMounted(() => {
-  // let img = document.querySelector(".center_bottom img")
-  // (img)
-})
+onMounted(() => {})
+console.log(route.query.name)
+
 const asd = ref("")
 const init = async () => {
   if (!route.query.id) {

@@ -35,12 +35,13 @@
                     <div class="verification">{{ passwordInfoVerificationAdmin }}</div>
                   </div>
                   <div class="inputBox marginTop18">
+                    <!--  onkeyup="value=value.replace(/[\W]/g,'')" -->
                     <input
                       v-model="passwordInfo.password"
                       type="password"
                       placeholder="请输入密码"
                       maxlength="16"
-                      onkeyup="value=value.replace(/[\W]/g,'')"
+                      onkeyup="value=value.replace(/^\S*(?=\S{6,})(?=\S*\d)(?=\S*[A-Z])(?=\S*[a-z])(?=\S*[!@#$%^&*? ])\S*$/g,'')"
                       @blur="handlePasswordInfoPasswordBlur"
                     />
                     <div class="verification">{{ passwordInfoVerificationPassword }}</div>
@@ -253,6 +254,7 @@ const handleStateBtn = (res) => {
   stateBtn.value = res
   handleLoginShowInit()
 }
+
 const route = useRoute()
 let otherBtn = ref("other")
 let codeTime = ref(-1)
@@ -472,6 +474,12 @@ const handleResettingCodeTime60 = () => {
     setTimeout(handleResettingCodeTime60, 1000)
   }
 }
+/**验证码发送 */
+const fasong = () => {
+  MessageBoxVue({
+    title: "发送成功"
+  })
+}
 //验证码组件
 const handleCodeTime = async () => {
   if (stateBtn.value === 2 && otherBtn.value === "other") {
@@ -485,11 +493,14 @@ const handleCodeTime = async () => {
       })
       return
     }
+    console.log(58888)
+
     if (phoneRegex.test(mobileInfo.mobile)) {
       if (codeTime.value >= 0) {
         return
       }
       codeloginmobile({ mobile: mobileInfo.mobile })
+      fasong()
       codeTime.value = 60
       setTimeout(handleCodeTime60, 1000)
     }
@@ -500,6 +511,8 @@ const handleCodeTime = async () => {
         return
       }
       registermobile({ mobile: registerInfo.mobile })
+      fasong()
+
       registerCodeTime.value = 60
       setTimeout(handleRegisterCodeTime60, 1000)
     }
@@ -510,6 +523,8 @@ const handleCodeTime = async () => {
         return
       }
       resetpassword({ mobile: resettingInfo.mobile })
+      fasong()
+
       resettingCodeTime.value = 60
       setTimeout(handleResettingCodeTime60, 1000)
     }

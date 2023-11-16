@@ -512,8 +512,10 @@
                 .border {
                   width: 268px;
                   height: 2px;
-                  background: url($gxsorderDetailsborder) no-repeat center;
-                  background-size: contain;
+                  // background: url($gxsorderDetailsborder) no-repeat center;
+                  // background-color: saddlebrown;
+                  border-top: 1px solid #2d2953;
+                  // background-size: contain;
                   margin-top: 28px;
                 }
 
@@ -555,11 +557,14 @@
                     .label {
                       width: 61px;
                       font-size: 12px;
-                      color: #B8B8B8;
+                      font-weight: 400;
+                      color: rgba(255, 255, 255, 0.5);
                     }
 
                     .dataValue {
                       width: 137px;
+                      color: white;
+                      font-weight: 400;
                       font-size: 12px;
                     }
                   }
@@ -582,7 +587,7 @@
 
             .number {
               height: 28px;
-              margin-top: 33px;
+              margin-top: 25px;
               display: flex;
               position: relative;
 
@@ -621,13 +626,13 @@
           }
 
           .payment {
-            margin-left: 118px;
+            margin-left: 110px;
             width: 100px;
             text-align: center;
           }
 
           .createTime {
-            margin-left: 70px;
+            margin-left: 82px;
             width: 180px;
             text-align: center;
           }
@@ -639,7 +644,7 @@
           }
 
           .payBox {
-            width: 70px;
+            width: 50px;
             margin-left: 98px;
             text-align: center;
             display: flex;
