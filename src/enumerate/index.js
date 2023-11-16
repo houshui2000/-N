@@ -48,7 +48,7 @@ export const mallHomepage = [
 export const personalcenterPay = [
   {
     value: 0,
-    name: '银联',
+    name: '汇付银联',
   },
 
 ]
