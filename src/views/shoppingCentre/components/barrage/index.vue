@@ -20,7 +20,7 @@
             <div class="avatar">
               <img :src="danmu.avatar" alt="" />
             </div>
-            <div class="name danyi">{{ danmu.nickname }}</div>
+            <div class="name danyi">{{ danmu.nickname }}获得</div>
             <div class="card">
               <img class="" :src="danmu.productImgUrl" alt="" />
             </div>

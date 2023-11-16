@@ -86,15 +86,13 @@ const init = async () => {
 }
 init()
 const xin_xi_tiao = (item) => {
-  const res = listArr.value.find((itemFin) => itemFin.id == nameRef.value)
 
   sessionStoragesetItem("categoryId", nameRef.value)
   // router.push(`/informationTwo/${item.id}`)
   router.push({
     path: "/informationTwo",
     query: {
-      id: item.id,
-      name: res.name
+      id: item.id
     }
   })
 }

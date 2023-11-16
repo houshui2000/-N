@@ -89,6 +89,7 @@ const props = defineProps({
 // const errDialoVueUpdate = ref(false) //支付成功弹框
 let agreement = ref(false) //是否同意协议
 const { dialogVisiblePay, creatDataAll } = toRefs(props)
+
 const $emit = defineEmits(["update:dialogVisiblePay"])
 
 const payArrAdilo = ref()
@@ -114,6 +115,8 @@ const shopquickbuyPay = async () => {
 const listOfBanks = ref([]) // 支付列表
 // const creatDataAll = ref({})
 const init = async () => {
+  console.log(creatDataAll.value)
+
   // const res = await buyminxpricecard({ vaultId: route.query.vaultId })
   // creatDataAll.value = res.data
   const shoppaychannelRes = await shoppaychannel()

@@ -171,7 +171,7 @@ const onePieceBuyin = async () => {
       !Gethelowestprice.value,
       () => {
         MessageBoxVue({
-          title: "没有找到最低价"
+          title: "当前暂无可购买资产"
         })
       }
     ]

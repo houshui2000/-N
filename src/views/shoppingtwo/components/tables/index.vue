@@ -47,7 +47,7 @@
 
               <div @click="PayFun(item)" v-if="item.payStatus" class="zhiFU_one">{{ item.status }}支付中</div>
               <div
-                @click="onePieceBuyin(route, null)"
+                @click="onePieceBuyin(item)"
                 :class="{
                   zhiFU_one_mai_time: !creatData.canBuy
                 }"
@@ -74,19 +74,13 @@
 </template>
 <script setup name="tablesasdsa">
 import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
-import { inject } from "vue"
+import { inject, ref } from "vue"
 import payVue from "../pay/index.vue"
-import { useRoute } from "vue-router"
 import SvgIcon from "@/components/SvgIcon/index.vue"
 import MessageBoxVue from "@/components/MessageBox/index.js"
-// import { shopquickbuy } from "@/network/shoppingCentre/shoppingtwo"
-// import { buyminxpricecard } from "@/network/shoppingCentre/shoppingtwo.js"
-import { Gethelowestprice, dialogVisiblePay, onePieceBuyin } from "@/views/shoppingtwo/components/pay/index.js"
-// import { useStore } from "@/pinia"
+import { useStore } from "@/pinia"
 const creatData = inject("creatData")
-const route = useRoute()
-// const { loginStore } = useStore()
-// import { useRoute } from "vue-router"
+const { loginStore } = useStore()
 
 const drops = defineProps({
   records: { type: Array, required: true }
@@ -127,52 +121,46 @@ const PayFun = async (item) => {
   // window.location.href = res.data
 }
 
-// const Gethelowestprice = ref({}) // 支付弹框 获取最低价
-// const dialogVisiblePay = ref(false) // 支付弹框弹出
+const Gethelowestprice = ref({}) // 支付弹框 获取最低价
+const dialogVisiblePay = ref(false) // 支付弹框弹出
 
-// /**购买信息 -- 知道商品还能不能购买 */
-// const initminimumPice = async () => {
-//   const res = await buyminxpricecard({ vaultId: route.query.vaultId })
-//   Gethelowestprice.value = res.data
-// }
-// /**一件买入 */
-// const onePieceBuyin = async (item) => {
-//   console.log(item.onSellingCount)
+/**一件买入 */
+const onePieceBuyin = async (item) => {
+  Gethelowestprice.value = item
 
-//   await initminimumPice()
+  const Mymap = new Map([
+    [
+      !loginStore.token,
+      () => {
+        MessageBoxVue({
+          title: "请先登录"
+        })
+        loginStore.login = true
+      }
+    ],
 
-//   const Mymap = new Map([
-//     [
-//       !loginStore.token,
-//       () => {
-//         MessageBoxVue({
-//           title: "请先登录"
-//         })
-//         loginStore.login = true
-//       }
-//     ],
+    [
+      !Gethelowestprice.value,
+      () => {
+        MessageBoxVue({
+          title: "当前暂无可购买资产"
+        })
+      }
+    ]
+  ])
+  let Myreturn = false
+  for (let [key, value] of Mymap) {
+    if (key) {
+      $emit("PayFun")
 
-//     [
-//       !Gethelowestprice.value,
-//       () => {
-//         MessageBoxVue({
-//           title: "没有找到最低价"
-//         })
-//       }
-//     ]
-//   ])
-//   let Myreturn = false
-//   for (let [key, value] of Mymap) {
-//     if (key) {
-//       Myreturn = true
-//       value()
-//     }
-//   }
+      Myreturn = true
+      value()
+    }
+  }
 
-//   if (Myreturn) return
-
-//   dialogVisiblePay.value = true
-// }
+  if (Myreturn) return
+  dialogVisiblePay.value = true
+}
 </script>
 <style lang="scss" scoped>
 table {

@@ -31,8 +31,8 @@
         <div style="border: 0" class="tiaozhuan">资讯信息</div>
       </Router-link> -->
     </div>
-    <a href="https://beian.miit.gov.cn/#/Integrated/index">
-      <div class="beian">备案号: 鲁ICP20230363926</div>
+    <a target="_blank" href="https://beian.miit.gov.cn/#/Integrated/index">
+      <div class="beian">备案号: 鲁ICP备2023033925号-1</div>
     </a>
   </footer>
 </template>

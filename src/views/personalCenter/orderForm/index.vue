@@ -370,13 +370,19 @@ const handlePayClose = async (orderNo) => {
 
 //去支付
 const goPay = async (orderNo) => {
-  const res = await shopbuyPay({ orderNo })
-  if (res.code === 200) {
+  // const res = await shopbuyPay({ orderNo })
+  // if (res.code === 200) {
+  //   window.location.href = res.data
+  //   await handleOrderList()
+  //   MessageBoxVue({
+  //     title: "支付成功"
+  //   })
+  // }
+  try {
+    const res = await shopbuyPay({ orderNo })
     window.location.href = res.data
-    await handleOrderList()
-    MessageBoxVue({
-      title: "支付成功"
-    })
+  } catch (err) {
+    handleOrderList()
   }
 }
 //待支付弹窗
@@ -409,15 +415,20 @@ watch(
 watch(
   route,
   async () => {
+    console.log(route.query)
+
     if (!route.query.orderNo) return
     const res = await shoporderdetai({
       orderNo: route.query.orderNo
     })
+    console.log(res, "res")
+
     if (res.data?.payStatus > 0) {
       errDialoVueUpdate.value = true
       mounchRef.value = route.query.payAmount
     }
     // http://172.16.0.166/orderForm?orderNo=1723984511501926400&payAmount=1.00
+    // http://test.card.cardesport.com/orderForm?orderNo=1725038428381839360&payAmount=28.00
   },
   {
     deep: true,

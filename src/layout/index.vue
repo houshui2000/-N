@@ -26,7 +26,7 @@ const route = useRoute()
 
 .center {
   position: relative;
-  min-height: 1500px;
+  // min-height: 1500px;
   padding-bottom: 102px;
   padding-top: 70px;
 }

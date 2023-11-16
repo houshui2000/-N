@@ -48,7 +48,9 @@
       </div>
     </div>
     <div class="bottom">
-      <tablesVue v-show="classify.index === 0" @PayFun="init()" :records="creatData.records">
+      <tablesVue v-show="classify.index === 0"
+
+      @PayFun="init()" :records="creatData.records">
         <div class="fenye">
           <div class="fen_xi">
             <el-pagination

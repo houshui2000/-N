@@ -20,7 +20,7 @@
     </div>
     <!-- 文字展示 -->
     <div v-if="!audioIsPlay && audioStart !== durationTime" class="wenzi">
-      {{ auditText }}阿思思达打车阿思达打车阿思思达打车阿思达打车
+      {{ auditText }}
     </div>
   </div>
 </template>

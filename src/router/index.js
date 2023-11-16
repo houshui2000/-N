@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import { childrenCase } from './modules/case/index.js'
 import shoppingCentrechildren from './modules/shoppingCentre'
 import gxsChildrenRouter from './modules/gxsChildrenRouter/index.js'
@@ -48,7 +48,7 @@ export const routes = [{
 ]
 
 export const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
   scrollBehavior () {
     return { top: 0 }

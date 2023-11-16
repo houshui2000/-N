@@ -1,11 +1,15 @@
 <template>
   <div class="informationTwo">
-    <CrumbsVue
-      :arr="[
-        { name: '首页', path: '/information' },
-        { name: route.query.name || '咨询详情', path: route.params.id }
-      ]"
-    />
+    <div class="mianbao">
+      <CrumbsVue
+        :arr="[
+          { name: '首页', path: '/information' },
+          { name: asd.categoryName || '咨询详情', path: route.params.id },
+          { name: asd.title, path: route.params.id }
+        ]"
+      />
+      <!-- {{ asd.title }} -->
+    </div>
     <!-- -->
     <div class="center">
       <div class="center_top">
@@ -34,7 +38,6 @@ const route = useRoute()
 
 const router = useRouter()
 onMounted(() => {})
-console.log(route.query.name)
 
 const asd = ref("")
 const init = async () => {
@@ -70,6 +73,9 @@ init()
   color: white;
   // height: 2000px;
   width: 1470px;
+  .mianbao {
+    @include Myflex(flex-start);
+  }
   .center {
     margin-top: 12px;
     min-height: 300px;
@@ -104,6 +110,7 @@ init()
     }
     .center_bottom {
       margin-top: 30px;
+      min-height: 600px;
     }
   }
 }
