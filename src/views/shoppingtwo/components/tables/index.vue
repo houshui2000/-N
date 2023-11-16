@@ -69,7 +69,12 @@
       <MissWakeupPage :title="'暂无数据'" v-if="drops.records?.length == 0" titleTwo="" />
     </div>
     <!-- <detailVue v-model:errDialoVueUpdate="errDialoVueUpdate" :errDialoVueXinagqing="errDialoVueXinagqing" /> -->
-    <payVue v-if="Gethelowestprice" :creatDataAll="Gethelowestprice" v-model:dialogVisiblePay="dialogVisiblePay" />
+    <payVue
+      v-if="Gethelowestprice"
+      :payFun="payFun"
+      :creatDataAll="Gethelowestprice"
+      v-model:dialogVisiblePay="dialogVisiblePay"
+    />
   </div>
 </template>
 <script setup name="tablesasdsa">
@@ -79,6 +84,8 @@ import payVue from "../pay/index.vue"
 import SvgIcon from "@/components/SvgIcon/index.vue"
 import MessageBoxVue from "@/components/MessageBox/index.js"
 import { useStore } from "@/pinia"
+import { shopquickbuy } from "@/network/shoppingCentre/shoppingtwo.js"
+
 const creatData = inject("creatData")
 const { loginStore } = useStore()
 
@@ -138,7 +145,14 @@ const onePieceBuyin = async (item) => {
         loginStore.login = true
       }
     ],
-
+    [
+      !creatData.value.canBuy,
+      () => {
+        MessageBoxVue({
+          title: creatData.value.publishTime + "即将开售"
+        })
+      }
+    ],
     [
       !Gethelowestprice.value,
       () => {
@@ -160,6 +174,19 @@ const onePieceBuyin = async (item) => {
 
   if (Myreturn) return
   dialogVisiblePay.value = true
+}
+
+/**
+ * 支付
+ * @param {*} payId
+ */
+const payFun = async (payId) => {
+  const res = await shopquickbuy({
+    cardId: Gethelowestprice.value.cardId, // 跳转页面的id 1
+    payChanelId: payId // 支付通道 1 是支付宝
+  })
+
+  window.location.href = res.data
 }
 </script>
 <style lang="scss" scoped>

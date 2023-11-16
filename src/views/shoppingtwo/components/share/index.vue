@@ -29,7 +29,9 @@
 
             <div class="cardJ">
               <div class="cardJ_top">
-                <SvgIcon size="58px" Height="40px" icon-class="logo" />
+                <!-- <SvgIcon size="58px" Height="40px" icon-class="logo" /> -->
+                <!-- 阿思达达 -->
+                <img class="equalProportions" src="@/assets/images/login/logo.png" alt="" />
               </div>
               <div class="cardJ_foter">中国可信数字版权资产卡交易平台</div>
             </div>
@@ -46,7 +48,7 @@
   </div>
 </template>
 <script setup name="uploadXia">
-import SvgIcon from "@/components/SvgIcon/index.vue"
+// import SvgIcon from "@/components/SvgIcon/index.vue"
 
 import { toRefs, watch, ref, nextTick } from "vue"
 import html2canvas from "html2canvas"

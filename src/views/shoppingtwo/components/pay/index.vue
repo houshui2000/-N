@@ -55,9 +55,9 @@
           <div>
             <span>本人已满18周岁且具备完全行动能力，支付即代表阅</span>
             <span>读并同意</span>
-            <span style="color: #42bbff; font-size: 12px">《购买须知》</span>
+            <span style="font-size: 12px">《购买须知》</span>
             和
-            <span style="color: #42bbff; font-size: 12px">《用户协议》</span>
+            <span style="font-size: 12px">《用户协议》</span>
           </div>
         </div>
       </section>
@@ -76,7 +76,7 @@ import { toRefs, ref, watch } from "vue"
 import SvgIcon from "@/components/SvgIcon/index.vue"
 // import errDialoVue from "../errdialo/index.vue"
 // import { useRoute } from "vue-router"
-import { shopquickbuy } from "@/network/shoppingCentre/shoppingtwo.js"
+// import { shopquickbuy } from "@/network/shoppingCentre/shoppingtwo.js"
 import { shoppaychannel } from "@/network/pay.js"
 // import { useStore } from '@/pinia'
 // const route = useRoute()
@@ -84,11 +84,23 @@ import { shoppaychannel } from "@/network/pay.js"
 
 const props = defineProps({
   dialogVisiblePay: { type: Boolean, required: true },
-  creatDataAll: { type: Object, required: true }
+  creatDataAll: { type: Object, required: true },
+  payFun: {
+    type: Function,
+    required: true
+    // default: async () => {
+    //   const res = await shopquickbuy({
+    //     cardId: creatDataAll.value.cardId, // 跳转页面的id 1
+    //     payChanelId: payArrAdilo.value.payId // 支付通道 1 是支付宝
+    //   })
+
+    //   window.location.href = res.data
+    // }
+  }
 })
 // const errDialoVueUpdate = ref(false) //支付成功弹框
 let agreement = ref(false) //是否同意协议
-const { dialogVisiblePay, creatDataAll } = toRefs(props)
+const { dialogVisiblePay, creatDataAll, payFun } = toRefs(props)
 
 const $emit = defineEmits(["update:dialogVisiblePay"])
 
@@ -105,18 +117,11 @@ const shopquickbuyPay = async () => {
     }, 820)
     return true
   }
-  const res = await shopquickbuy({
-    cardId: creatDataAll.value.cardId, // 跳转页面的id 1
-    payChanelId: payArrAdilo.value.payId // 支付通道 1 是支付宝
-  })
-
-  window.location.href = res.data
+  payFun.value(payArrAdilo.value.payId)
 }
 const listOfBanks = ref([]) // 支付列表
 // const creatDataAll = ref({})
 const init = async () => {
-  console.log(creatDataAll.value)
-
   // const res = await buyminxpricecard({ vaultId: route.query.vaultId })
   // creatDataAll.value = res.data
   const shoppaychannelRes = await shoppaychannel()

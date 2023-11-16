@@ -101,9 +101,10 @@
                         {{ item.cardNo }}
                       </div>
                     </div>
+                    <!-- 鼠标滑动去支付 -->
                     <div class="btnBox" v-if="item.payStatus === 0">
                       <div class="close" @click="handlePayClose(item.orderNo)">取消支付</div>
-                      <div class="payBtn" @click="goPay(item.orderNo)">去支付</div>
+                      <div class="payBtn" @click="goPay(item)">去支付</div>
                     </div>
                     <div class="border"></div>
                     <div class="contentText">
@@ -176,6 +177,8 @@
                   <span v-if="item.payStatus === 4">订单完成</span>
                   <!-- <span v-if="item.payStatus === 0">去支付</span> -->
                 </div>
+                <!-- 页面显示去支付 -->
+
                 <div class="btn" v-if="item.payStatus === 0" @click="handlePayShow(item)">去支付</div>
               </div>
             </div>
@@ -199,6 +202,13 @@
       </div>
       <union-pay-popup></union-pay-popup>
       <errDialoVue :mounchRef="mounchRef" v-model:errDialoVueUpdate="errDialoVueUpdate" />
+      <!-- <payVue /> -->
+      <payVue
+        v-if="Gethelowestprice"
+        :payFun="payFun"
+        :creatDataAll="Gethelowestprice"
+        v-model:dialogVisiblePay="dialogVisiblePay"
+      />
     </div>
   </transition>
 </template>
@@ -206,13 +216,11 @@
 <script setup name="orderFrom">
 import { reactive, ref, watch, onMounted } from "vue"
 import errDialoVue from "./component/errdialo/index.vue"
-// import { ElMessage } from "element-plus"
 import gxsSelect from "../components/gxsSelect.vue"
 import { useRoute } from "vue-router"
-// import orderDetailsPopup from "../components/orderDetailsPopup.vue"
+import payVue from "@/views/shoppingtwo/components/pay/index.vue"
 import { GetorderList, shoporderdetai, orderCancel, shopbuyPay } from "@/network/personalCenter.js"
 import MessageBoxVue from "@/components/MessageBox/index.js"
-// import { useStore } from "@/pinia/index.js"
 import { personalcenterPay } from "@/enumerate"
 import UnionPayPopup from "@/views/personalCenter/components/unionPayPopup.vue"
 import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
@@ -231,6 +239,10 @@ let orderInfo = ref({
   key: null,
   payStatus: null
 })
+
+const Gethelowestprice = ref({}) // 支付弹框 获取最低价
+const dialogVisiblePay = ref(false) // 支付弹框弹出
+
 let total = ref(0)
 let createTime = ref("")
 let payTimes = ref("")
@@ -369,7 +381,7 @@ const handlePayClose = async (orderNo) => {
 }
 
 //去支付
-const goPay = async (orderNo) => {
+const goPay = async (item) => {
   // const res = await shopbuyPay({ orderNo })
   // if (res.code === 200) {
   //   window.location.href = res.data
@@ -379,17 +391,39 @@ const goPay = async (orderNo) => {
   //   })
   // }
   try {
-    const res = await shopbuyPay({ orderNo })
-    window.location.href = res.data
+    // const res = await shopbuyPay({ orderNo })
+    // window.location.href = res.data
+    dialogVisiblePay.value = true
+    Gethelowestprice.value = item
   } catch (err) {
     handleOrderList()
   }
 }
 //待支付弹窗
 const handlePayShow = async (item) => {
+  console.log(item)
+
+  try {
+    dialogVisiblePay.value = true
+    Gethelowestprice.value = item
+    // const res = await shopbuyPay({
+    //   orderNo: item.orderNo
+    // })
+    // window.location.href = res.data
+  } catch (err) {
+    handleOrderList()
+  }
+}
+
+/**
+ * 支付
+ * @param {*} payId
+ */
+const payFun = async (payId) => {
   try {
     const res = await shopbuyPay({
-      orderNo: item.orderNo
+      orderNo: Gethelowestprice.value.orderNo, // 跳转页面的id 1
+      payChanelId: payId // 支付通道 1 是支付宝
     })
     window.location.href = res.data
   } catch (err) {

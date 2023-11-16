@@ -32,7 +32,7 @@
                 <span v-if="item.top">置顶</span>
                 {{ item.title }}
               </div>
-              <div class="center_right_top">{{ item.introduction }}</div>
+              <div class="">{{ item.introduction }}</div>
             </div>
             <div class="xinix">{{ item.publishTime }}</div>
           </div>
@@ -86,7 +86,6 @@ const init = async () => {
 }
 init()
 const xin_xi_tiao = (item) => {
-
   sessionStoragesetItem("categoryId", nameRef.value)
   // router.push(`/informationTwo/${item.id}`)
   router.push({

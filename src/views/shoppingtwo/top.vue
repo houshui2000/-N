@@ -105,7 +105,12 @@
       </div>
     </div>
     <!--  :creatDataAll="creatDataAll"  -->
-    <payVue v-if="Gethelowestprice" :creatDataAll="Gethelowestprice" v-model:dialogVisiblePay="dialogVisiblePay" />
+    <payVue
+      v-if="Gethelowestprice"
+      :creatDataAll="Gethelowestprice"
+      :payFun="payFun"
+      v-model:dialogVisiblePay="dialogVisiblePay"
+    />
     <ShareVue :creatData="creatData" v-model:dialogVisiblePay="fenxiangdialog" />
   </div>
 </template>
@@ -116,6 +121,7 @@ import SvgIcon from "@/components/SvgIcon/index.vue"
 import { useRoute, useRouter } from "vue-router"
 import MessageBoxVue from "@/components/MessageBox/index.js"
 import { buyminxpricecard } from "@/network/shoppingCentre/shoppingtwo.js"
+import { shopquickbuy } from "@/network/shoppingCentre/shoppingtwo.js"
 // import FloatingMusicWidgetVue from "@/components/FloatingMusicWidget/index.vue"
 import { ref } from "vue"
 import { useStore } from "@/pinia"
@@ -206,6 +212,19 @@ const onePieceBuyin = async () => {
   //   })
   //   return
   // }
+}
+
+/**
+ * 支付
+ * @param {*} payId
+ */
+const payFun = async (payId) => {
+  const res = await shopquickbuy({
+    cardId: Gethelowestprice.value.cardId, // 跳转页面的id 1
+    payChanelId: payId // 支付通道 1 是支付宝
+  })
+
+  window.location.href = res.data
 }
 </script>
 <style lang="scss" scoped>
