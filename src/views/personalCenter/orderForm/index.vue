@@ -53,6 +53,7 @@
           <div class="text">支付方式</div>
           <div class="text">创建时间</div>
           <div class="text">支付时间</div>
+          <!-- <div v-if="arrayValue.values === 4" class="text">完成时间</div> -->
           <div class="text">状态</div>
         </div>
         <div class="borderFrame"></div>
@@ -121,9 +122,13 @@
                       </div>
                       <div
                         class="contentTextBox"
-                        v-if="item.payTime === 1 || item.payTime === 2 || item.payTime === -2"
+                        v-if="item.payStatus === 1 || item.payStatus === 2 || item.payStatus === -2"
                       >
                         <div class="label">支付时间</div>
+                        <div class="dataValue">{{ item.payTime }}</div>
+                      </div>
+                      <div class="contentTextBox" v-if="item.payStatus === 4">
+                        <div class="label">完成时间</div>
                         <div class="dataValue">{{ item.currentStatusTime }}</div>
                       </div>
                       <div class="contentTextBox" v-if="item.payStatus === -2">
@@ -164,8 +169,9 @@
               </div>
               <div class="money">￥{{ item.payAmount }}</div>
               <div class="payment">{{ payway(item) }}</div>
-
+              
               <div class="createTime">{{ item.createTime }}</div>
+              <!-- <div v-if="item.payStatus === 4" class="createTime">{{ item.currentStatusTime }}</div> -->
               <div class="payTime">{{ item.payTime ? item.payTime : "-" }}</div>
               <div class="payBox">
                 <div class="state">

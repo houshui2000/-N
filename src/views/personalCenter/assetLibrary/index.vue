@@ -134,6 +134,7 @@ const handleCurrentChange = (val) => {
 //跳转thereJS
 const handleThereJSShow = (item) => {
   window.open(`/cardDetail3D?id=${item.qrCodeId}`)
+  // window.open('https://www.baidu.com/' + item)
 }
 onMounted(() => {
   assetLibrary()

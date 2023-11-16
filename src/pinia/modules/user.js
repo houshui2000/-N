@@ -32,7 +32,7 @@ export const userDataInfo = defineStore('userData', {
       },
       passwordPopup: false,
       authenticationPopup: false,
-      authenticationConFirmPopup: true,
+      authenticationConFirmPopup: false,
       realNameZFBPopup: false,
       passwordEdit: {
         'certNo': '',
