@@ -51,7 +51,17 @@ export const helpCenterArr = [
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
       scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
     }
-  },
+  }, {
+    path: 'purchaseagreement',
+    name: 'purchaseagreement',
+    component: () => import('@/views/helpCenter/purchaseagreement.vue'),
+    meta: {
+      name: '购买协议',
+      immediate: false, // 路由显示
+      gundong: true, // 实时左侧滚动组件false 开启，true关闭
+      scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
+    }
+  }
 ]
 
 export const childrenCase = [

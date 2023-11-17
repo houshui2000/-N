@@ -170,7 +170,7 @@
               </div>
               <div class="money">￥{{ item.payAmount }}</div>
               <div class="payment">{{ payway(item) }}</div>
-              
+
               <div class="createTime">{{ item.createTime }}</div>
               <!-- <div v-if="item.payStatus === 4" class="createTime">{{ item.currentStatusTime }}</div> -->
               <div class="payTime">{{ item.payTime ? item.payTime : "-" }}</div>
@@ -322,6 +322,7 @@ const handleSelectValue = (val) => {
   orderInfo.value.payStatus = val.values
   handleOrderList()
 }
+/**初始化接口 */
 const handleOrderList = async () => {
   // orderInfo.value.payTimes = orderInfo.value.payTime
   // orderInfo.value.payTime = null
@@ -397,8 +398,6 @@ const goPay = async (item) => {
   //   })
   // }
   try {
-    // const res = await shopbuyPay({ orderNo })
-    // window.location.href = res.data
     dialogVisiblePay.value = true
     Gethelowestprice.value = item
   } catch (err) {
@@ -443,20 +442,16 @@ onMounted(() => {
 watch(
   () => loginStore.login,
   (newVal) => {
-    if (!newVal) return
+    if (newVal) return
     handleOrderList()
   },
   {
-    deep: true,
-    immediate: true
+    deep: true
   }
 )
-
 watch(
   route,
   async () => {
-    console.log(route.query)
-
     if (!route.query.orderNo) return
     const res = await shoporderdetai({
       orderNo: route.query.orderNo

@@ -32,7 +32,7 @@
                 <span v-if="item.top">置顶</span>
                 {{ item.title }}
               </div>
-              <div class="">{{ item.introduction }}</div>
+              <div class="wenzi">{{ item.introduction }}</div>
             </div>
             <div class="xinix">{{ item.publishTime }}</div>
           </div>
@@ -70,7 +70,7 @@ const router = useRouter()
 const nameRef = ref("")
 const Fenye = ref({
   currentPage: 1,
-  size: 10, // 一页多少条
+  size: 5, // 一页多少条
   total: 0 // 总数
 })
 const listArr = ref({})
@@ -236,6 +236,7 @@ watch(
             width: calc(100% - 160px);
             padding-left: 32px;
             height: 166px;
+            color: white;
             // @include Myflex(flex-start); // background-color: sandybrown;
             .top {
               font: normal normal 500 18px "PingFang SC";
@@ -245,17 +246,23 @@ watch(
               span {
                 padding: 4px;
                 border-radius: 4px;
-                font: normal normal 400 12px "PingFang SC";
+                font: normal normal 400 14px "PingFang SC";
                 background: #ed614c;
                 margin-right: 10px;
               }
             }
-            .center_right_top {
-              height: calc(100% - 35px);
-              font: normal normal 400 14px "PingFang SC";
+            .wenzi {
+              font: normal normal 400 12px "PingFang SC";
+              height: calc(100% - 65px);
+              // -webkit-line-clamp: 6;
               overflow: hidden;
-              color: rgba(255, 255, 255, 0.8);
             }
+            // .center_right_top {
+            //   height: calc(100% - 35px);
+            //   font: normal normal 400 14px "PingFang SC";
+            //   overflow: hidden;
+            //   color: rgba(255, 255, 255, 0.8);
+            // }
           }
         }
         .xinix {

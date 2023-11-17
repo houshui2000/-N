@@ -14,6 +14,17 @@ export const ToLogin = [
       name: 'app下载页',
       scrollTheSubtitles: true // 滚动字幕开启，关闭
     },
+  }, {
+    path: '/pptiform',//3D
+    name: 'pptiform',
+    component: () => import('@/views/pptiform/index.vue'),
+    props: true,
+    meta: {
+      immediate: false, // 路由显示
+      name: 'pptiform',
+      rightDao: true, // 右侧菜单栏 true 关闭 false 开启
+      scrollTheSubtitles: true // 滚动字幕开启，关闭
+    },
   },
 
   ...gxsChildrenRouter

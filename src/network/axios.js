@@ -84,6 +84,12 @@ service.interceptors.response.use((res) => {
   return Promise.reject(err)
 }
 )
+
+
+
+/**
+ * 返回 401 清理token 跳出弹框
+ */
 const initialize = () => {
 
   const { loginStore, useUsersStore } = useStore()

@@ -61,6 +61,16 @@ export const tutorial = (params) => {
 }
 
 /**
+ * 购买协议
+*/
+export function shopbuyagreement (params) {
+  return service({
+    url: '/other/buy-agreement',
+    method: 'get',
+    params
+  })
+}
+/**
  * 常见问题列表
 */
 export const statement = (params) => {

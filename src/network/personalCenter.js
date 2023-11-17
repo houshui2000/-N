@@ -140,3 +140,17 @@ export function shoporderdetai (params) {
   })
 }
 // url orderNo  订单详情   payStatus 》 0
+
+//
+
+
+/**
+ * 是否查看
+ */
+export function assetview (params) {
+  return service({
+    url: '/asset/view',
+    method: 'GET',
+    params
+  })
+}

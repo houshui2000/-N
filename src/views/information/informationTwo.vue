@@ -4,7 +4,7 @@
       <CrumbsVue
         :arr="[
           { name: '首页', path: '/information' },
-          { name: asd.categoryName || '咨询详情', path: route.params.id },
+          { name: asd.categoryName || '资讯详情', path: route.params.id },
           { name: asd.title, path: route.params.id }
         ]"
       />

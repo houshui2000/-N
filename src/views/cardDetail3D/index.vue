@@ -2,18 +2,21 @@
   <div v-if="ZiChanCha.productNumber !== undefined" class="cardDetail3D">
     <!-- v-if="ZiChanCha.productNumber !== undefined"  -->
     <div class="anniu">
-      <div @click="dialoVue = { title: '查证', dialo: true }" class="cha">查证</div>
-      <div @click="dialoVue = { title: '证书', dialo: true }" class="zhengshu">证书</div>
+      <div v-copy="'cha_zheng'" @click="open('https://www.licenseinfo.cn/cerDetail.html')" class="cha">
+        复制去查证
+        <div style="display: none" id="cha_zheng" class="cha_zheng">{{ ZiChanCha.productNumber }}</div>
+      </div>
+      <div @click="open('/pptiform?id=' + route.query.id)" class="zhengshu">查看证书</div>
     </div>
     <div class="xinix">
       <p class="title">
-        {{ ZiChanCha.productName }}
+        {{ ZiChanCha.productVersion }}
       </p>
       <div class="bian">
         <SvgIcon size="30px" Height="30px" icon-class="bianhao" />
         <p>{{ ZiChanCha.productNumber }}</p>
       </div>
-      <div class="time">时间：{{ ZiChanCha.releaseYear }}</div>
+      <div class="time">获得时间：{{ route.query.time }}</div>
     </div>
     <div v-if="ThreeDKa.audio" class="FloatingMusicWidget">
       <FloatingMusicWidgetVue :auditText="ThreeDKa.auditText" :fileurl="ThreeDKa.audio" />
@@ -21,12 +24,12 @@
     <div class="cardDetail3D_cavas">
       <ThreeDVue :ThreeDKa="ThreeDKa" />
     </div>
-    <assetLibraryDetailVue
+    <!-- <assetLibraryDetailVue
       v-model:errDialoVueUpdate="dialoVue.dialo"
       :img="Myimg"
       :detail="ZiChanCha"
       :title="dialoVue.title"
-    />
+    /> -->
   </div>
   <div v-else class="wuxinxi">
     <MissWakeupPage :title="'正在加载中，请等候...'" titleTwo="" />
@@ -47,19 +50,14 @@
 // },
 import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
 import FloatingMusicWidgetVue from "./components/FloatingMusicWidget/index.vue"
-import assetLibraryDetailVue from "./components/assetLibraryDetail.vue"
+// import assetLibraryDetailVue from "./components/assetLibraryDetail.vue"
 import SvgIcon from "@/components/SvgIcon/index.vue"
 import ThreeDVue from "./thereD.vue"
 import { ref } from "vue"
 import { useRoute } from "vue-router"
-import { assetcheck, asset3d, assetcert } from "@/network/shoppingCentre/shoppingCentre"
+import { assetcheck, asset3d } from "@/network/shoppingCentre/shoppingCentre"
 const route = useRoute()
-// const music = ref(new URL(`../../assets/sadsa.mp3`, import.meta.url).href)
 
-const dialoVue = ref({
-  dialo: false,
-  title: "证书"
-})
 const ThreeDKa = ref({
   // productFrontUrl: new URL('@/assets/images/ka/zheng.png', import.meta.url).href, // 正
   // productOppositeUrl: new URL('@/assets/images/ka/bottom.png', import.meta.url).href // 正
@@ -69,7 +67,8 @@ const ThreeDKa = ref({
   auditText: ""
 })
 const ZiChanCha = ref({})
-const Myimg = ref("")
+// const Myimg = ref("")
+
 const init = async () => {
   const assetcheckRes = await assetcheck({
     qrCodeId: route.query.id
@@ -81,27 +80,19 @@ const init = async () => {
 
   const asset3dRes = await asset3d({ cardNo: ZiChanCha.value.productNumber })
   ThreeDKa.value = asset3dRes.data
-  //获取证书
-  const assetcertRes = await assetcert({
-    qrCodeId: route.query.id
-  })
 
-  Myimg.value = assetcertRes.data
-
-  // Promise.allSettled([
-  //   assetcheck({
-  //     qrCodeId: route.query.id
-  //   }),
-  //   assetcert({
-  //     qrCodeId: route.query.id
-  //   })
-  // ]).then((res) => {
-  //   if (res[0].status !== 'fulfilled' && res[1].status !== 'fulfilled') return
-  //   ZiChanCha.value = res[0].value.data || {}
+  // const assetcertRes = await assetcert({
+  //   qrCodeId: route.query.id
   // })
+  // console.log(assetcertRes)
 }
 
 init()
+const open = (item) => {
+  setTimeout(() => {
+    window.open(item)
+  }, 500)
+}
 </script>
 <style lang="scss" scoped>
 .wuxinxi {

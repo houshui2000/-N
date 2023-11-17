@@ -3,6 +3,11 @@
     <div v-if="props.KaParVueitem.hotPushStatus" class="hot">HOT</div>
     <div class="xiaoxingxing"></div>
     <div class="chinaKexo">可信版权资产</div>
+    <!-- 优先购 -->
+    <div class="youxiangou">
+      <!-- <SvgIcon size="60px" Height="60px" icon-class="emptive" /> -->
+    </div>
+    <!-- 优先购 end-->
     <div class="img">
       <div v-if="!props.KaParVueitem?.canBuy" class="time">
         {{ props.KaParVueitem?.publishTime.slice(5, props.KaParVueitem?.publishTime.length) }} 开售
@@ -85,6 +90,19 @@ const props = defineProps({
     font: normal normal 600 12px "PingFang SC";
     background: linear-gradient(96deg, #c4fbfe 0%, #99d2ff 31.55%, #fff 63.3%, #f295ff 103.92%);
   }
+
+  //优先购
+
+  .youxiangou {
+    width: 69px;
+    height: 72px;
+    position: absolute;
+    left: -2px;
+    top: 0px;
+    z-index: 2;
+  }
+  //优先购end
+
   .xiaoxingxing {
     position: absolute;
     left: 0;

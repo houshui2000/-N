@@ -22,7 +22,6 @@ export const routes = [{
 
   ]
 }, {
-  // :id
   path: '/cardDetail3D',//3D
   name: 'cardDetail3D',
   component: () => import('@/views/cardDetail3D/index.vue'),
@@ -30,6 +29,17 @@ export const routes = [{
   meta: {
     immediate: false, // 路由显示
     name: '3D',
+    rightDao: true, // 右侧菜单栏 true 关闭 false 开启
+    scrollTheSubtitles: true // 滚动字幕开启，关闭
+  },
+}, {
+  path: '/pptiform',//3D
+  name: 'pptiform',
+  component: () => import('@/views/pptiform/index.vue'),
+  props: true,
+  meta: {
+    immediate: false, // 路由显示
+    name: 'pptiform',
     rightDao: true, // 右侧菜单栏 true 关闭 false 开启
     scrollTheSubtitles: true // 滚动字幕开启，关闭
   },
@@ -49,6 +59,7 @@ export const routes = [{
 
 export const router = createRouter({
   history: createWebHistory(),
+  // history: createWebHashHistory(),
   routes,
   scrollBehavior () {
     return { top: 0 }

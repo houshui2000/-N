@@ -42,7 +42,7 @@
                     <div class="TabName" @click="handleTabShow(item, index)">
                       {{ item.name }}
                     </div>
-                    <!-- <div class="icon" v-if="item.id === 1"></div> -->
+                    <div class="icon" v-if="loginStore.hasNew"></div>
                   </div>
                 </div>
               </div>
@@ -70,6 +70,7 @@ import { router } from "@/router/index.js"
 import { useStore } from "@/pinia/index.js"
 import { removeItem } from "@/utils/storage.js"
 import passwordPopup from "./components/passwordPopup.vue"
+
 import authenticationPopup from "./components/authenticationPopup.vue"
 import realNameZFBPopup from "./components/realNameZFBPopup.vue"
 import { userlogout } from "@/network/userInterface.js"

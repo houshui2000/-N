@@ -19,7 +19,7 @@ const emit = defineEmits(["handleEdit"])
 let showState = ref(false)
 const props = defineProps(["options", "arrayValue"])
 const handleShow = () => {
-  showState.value = true
+  showState.value = !showState.value
 }
 
 const handleClick = (item) => {

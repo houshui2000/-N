@@ -194,22 +194,18 @@ section {
   position: relative;
   color: white;
   height: 546px;
-
   border: 3px solid #561895;
-  // @include bordergradientMY();
   border-radius: 15px;
   background-color: transparent;
   overflow: hidden;
-  // background: linear-gradient(180deg, #122743 -1.45%, #030d15 100%);
   flex-direction: column;
   @include Myflex(flex-start);
   padding: 0 51px;
 
   > .img {
     position: absolute;
-    left: -3px;
+    left: 0px;
     top: 0px;
-    // background: linear-gradient(180deg, #122743 -1.45%, #030d15 100%);
     background-color: transparent;
     width: 390px;
     height: 565px;
@@ -226,7 +222,6 @@ section {
     bottom: 0;
     z-index: 2;
     height: 176px;
-    // background-color: rgba(0, 0, 0, 0.5);
     background: linear-gradient(141deg, rgba(36, 19, 40, 1) 15.76%, rgba(0, 12, 44, 0.8) 79.59%);
 
     backdrop-filter: blur(2px);
@@ -243,7 +238,6 @@ section {
         font: normal normal 400 14px "PingFang SC";
       }
       .cardJ {
-        // background-color: salmon;
         background: linear-gradient(141deg, #b8009a 15.76%, #1615f2 79.59%);
         border-radius: 4px;
         width: 201px;

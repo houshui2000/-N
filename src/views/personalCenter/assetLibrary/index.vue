@@ -23,8 +23,23 @@
               <!-- 空投 -->
               <!-- <div class="aiDrop">空投</div> -->
               <!-- 空投 end-->
-
+              <!-- 是否查看 -->
+              <div v-if="item.firstView" class="icon">新</div>
               <div class="cardImg">
+                <!-- 确权 -->
+                <!-- 0 已经确权 1 确权中 -->
+                <div v-if="item.isChange == 1" class="quequan">确权中</div>
+
+                <!-- 倒计时 -->
+                <div v-if="item.lockExpireTime && item.isChange !== 1" class="dao_time">
+                  <div class="back">
+                    <p>冷却结束时间</p>
+                  </div>
+                  <div class="back">
+                    <p>{{ item.lockExpireTime }}</p>
+                  </div>
+                </div>
+
                 <!-- <div v-if="item.hasAudio" class="music">
                   <SvgIcon size="18px" Height="18px" icon-class="voiceShang" />
                 </div> -->
@@ -35,10 +50,10 @@
               </el-tooltip>
               <div class="cardIdBox">
                 <div class="cardIdIcon">
-                  <SvgIcon size="20px" Height="20px" icon-class="bianhao" />
+                  <SvgIcon size="23px" Height="23px" icon-class="bianhao" />
                 </div>
                 <el-tooltip class="box-item" effect="dark" :content="item.cardNo" placement="top-start">
-                  <div class="cardIdText" :title="item.cardNo">{{ item.cardNo }}</div>
+                  <div class="cardIdText danyi" :title="item.cardNo">{{ item.cardNo }}</div>
                 </el-tooltip>
               </div>
             </div>
@@ -74,20 +89,22 @@
 
 <script setup name="Assetlist">
 import SvgIcon from "@/components/SvgIcon/index.vue"
-
+// import {  } from "@/network/personalCenter"
 import missingWakeupPageVue from "@/components/missingWakeupPage/index.vue"
-import { ref, reactive, onMounted } from "vue"
+import { ref, watch, reactive, onMounted } from "vue"
+import { useStore } from "@/pinia/index"
 // import assetLibraryDetail from '../components/assetLibraryDetail.vue'
 import assetgrameRulePopup from "../components/assetgrameRulePopup.vue"
 import gxsSelect from "../components/gxsSelect.vue"
-import { getAssetList } from "@/network/personalCenter.js"
+import { getAssetList, assetview } from "@/network/personalCenter.js"
 // import { router } from "@/router/index.js"
+const { loginStore } = useStore()
 
 // const errDialoVueUpdate = ref(false)
 // const value = ref("卡牌编号正序")
 const options = ref([
-  { values: "desc", label: "时间倒序排序" },
-  { values: "asc", label: "时间正序排序" }
+  { values: "desc", label: "时间正序排序" },
+  { values: "asc", label: "时间倒序排序" }
 ])
 const assetInfo = ref({
   currentPage: 1,
@@ -115,12 +132,14 @@ const handleSelectValue = (val) => {
   assetInfo.value.direction = arrayValue.values
   assetLibrary()
 }
+/**初始化接口 */
 const assetLibrary = async () => {
   let result = await getAssetList(assetInfo.value)
+
   if (result.code === 200) {
     assetList.value = result.data?.records || []
     // assetList.value = [{}]
-
+    loginStore.firstView = result.data
     total.value = result.data?.total || 0
   }
 }
@@ -134,18 +153,26 @@ const handleCurrentChange = (val) => {
 //   assetPlay.value = true
 // }
 //跳转thereJS
-const handleThereJSShow = (item) => {
-  window.open(`/cardDetail3D?id=${item.qrCodeId}`)
+const handleThereJSShow = async (item) => {
+  if (item.isChange == 1) return
+  await assetview({ cardNo: item.isChange })
+  window.open(`/cardDetail3D?id=${item.qrCodeId}&time=${item.time}`)
   // window.open('https://www.baidu.com/' + item)
 }
 onMounted(() => {
   assetLibrary()
 })
-// watch(() => {
-// }, {
 
-//   deep:true
-// })
+watch(
+  () => loginStore.login,
+  (newVal) => {
+    if (newVal) return
+    assetLibrary()
+  },
+  {
+    deep: true
+  }
+)
 </script>
 
 <style lang="scss" scoped>

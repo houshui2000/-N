@@ -33,7 +33,11 @@
                 <!-- <img :src="item.avatar" alt="" /> -->
                 <img src="@/assets/images/all/defaultavatar.png" alt="" />
               </span>
-              <span>{{ item.nickname ? item.nickname : "---" }}</span>
+              <el-tooltip class="box-item" effect="dark" :content="item.nickname" placement="top-start">
+                <span class="name danyi">
+                  {{ item.nickname ? item.nickname : "---" }}
+                </span>
+              </el-tooltip>
             </p>
           </td>
           <td>
@@ -266,8 +270,8 @@ table {
           font: normal normal 400 14px "PingFang SC";
           color: #fefefe;
           height: 100%;
-          width: 70%;
-          padding-left: 70px;
+          width: 100%;
+          padding-left: 10px;
           @include Myflex(center);
           span {
             display: block;
@@ -279,11 +283,14 @@ table {
               height: 20px;
               margin-right: 5px;
               border-radius: 50%;
-              background-color: salmon;
             }
+
             &:last-child {
               text-align: left;
             }
+          }
+          .name {
+            // width: 300px;
           }
         }
         .kapaiming_bina {
@@ -299,7 +306,7 @@ table {
             max-width: 400px;
             padding: 0 5px 0 8px;
             height: 20px;
-            transform: translateX(-2px);
+            transform: translateX(-3px);
             @include Myflex();
             z-index: -1;
             border-radius: 3.256px;

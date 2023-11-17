@@ -18,7 +18,12 @@
       </div>
       <div class="S_L_right">
         <div class="S_L_Top">
-          <p>{{ props.creatData.productName }}</p>
+          <p class="S_L_Top_title">
+            <span class="SvgIcon">
+              <!-- <SvgIcon size="88px" Height="30px" icon-class="emptiveTwo" /> -->
+            </span>
+            <span class="productName">{{ props.creatData.productName }}</span>
+          </p>
           <div class="S_l_center">
             <div>发行方：{{ props.creatData.issueName }}</div>
             <div>发行数：{{ props.creatData.issueNum }}</div>
@@ -121,6 +126,7 @@ import SvgIcon from "@/components/SvgIcon/index.vue"
 import { useRoute, useRouter } from "vue-router"
 import MessageBoxVue from "@/components/MessageBox/index.js"
 import { buyminxpricecard } from "@/network/shoppingCentre/shoppingtwo.js"
+
 import { shopquickbuy } from "@/network/shoppingCentre/shoppingtwo.js"
 // import FloatingMusicWidgetVue from "@/components/FloatingMusicWidget/index.vue"
 import { ref } from "vue"
@@ -223,7 +229,6 @@ const payFun = async (payId) => {
     cardId: Gethelowestprice.value.cardId, // 跳转页面的id 1
     payChanelId: payId // 支付通道 1 是支付宝
   })
-
   window.location.href = res.data
 }
 </script>
@@ -311,9 +316,16 @@ const payFun = async (payId) => {
     box-shadow: 0px 4.85072px 15.76483px 0px rgba(0, 0, 0, 0.43);
     .S_L_Top {
       width: 100%;
+      .S_L_Top_title {
+      }
       > p {
         color: white;
         font: normal normal 700 23px "PingFang SC";
+        position: relative;
+
+        .productName {
+          margin-left: 10px;
+        }
       }
       .S_l_center {
         @include Myflex(flex-start, flex-start);

@@ -55,9 +55,9 @@
           <div>
             <span>本人已满18周岁且具备完全行动能力，支付即代表阅</span>
             <span>读并同意</span>
-            <span style="font-size: 12px">《购买须知》</span>
-            和
-            <span style="font-size: 12px">《用户协议》</span>
+            <span @click="router.push('/helpCenter/purchaseagreement')" style="color: #42bbff; font-size: 12px">
+              《购买协议》
+            </span>
           </div>
         </div>
       </section>
@@ -71,16 +71,17 @@
 </template>
 <script setup name="payLint">
 import MessageBoxVue from "@/components/MessageBox/index.js"
+import { ElLoading } from "element-plus"
 
 import { toRefs, ref, watch } from "vue"
 import SvgIcon from "@/components/SvgIcon/index.vue"
 // import errDialoVue from "../errdialo/index.vue"
-// import { useRoute } from "vue-router"
+import { useRouter } from "vue-router"
 // import { shopquickbuy } from "@/network/shoppingCentre/shoppingtwo.js"
 import { shoppaychannel } from "@/network/pay.js"
 // import { useStore } from '@/pinia'
-// const route = useRoute()
-// const { loginStore } = useStore()
+const router = useRouter()
+// const { loginStore } = useRouter()
 
 const props = defineProps({
   dialogVisiblePay: { type: Boolean, required: true },
@@ -117,6 +118,15 @@ const shopquickbuyPay = async () => {
     }, 820)
     return true
   }
+  // const loading =
+  ElLoading.service({
+    lock: true,
+    text: "Loading",
+    background: "rgba(0, 0, 0, 0.7)"
+  })
+  // if (res.data) {
+  //   loading.close()
+  // }
   payFun.value(payArrAdilo.value.payId)
 }
 const listOfBanks = ref([]) // 支付列表
