@@ -81,7 +81,6 @@ import { useRouter } from "vue-router"
 import { shoppaychannel } from "@/network/pay.js"
 // import { useStore } from '@/pinia'
 const router = useRouter()
-// const { loginStore } = useRouter()
 
 const props = defineProps({
   dialogVisiblePay: { type: Boolean, required: true },
@@ -118,8 +117,8 @@ const shopquickbuyPay = async () => {
     }, 820)
     return true
   }
-  // const loading =
-  ElLoading.service({
+  //
+  const loading = ElLoading.service({
     lock: true,
     text: "Loading",
     background: "rgba(0, 0, 0, 0.7)"
@@ -127,7 +126,12 @@ const shopquickbuyPay = async () => {
   // if (res.data) {
   //   loading.close()
   // }
-  payFun.value(payArrAdilo.value.payId)
+  const res = await payFun.value(payArrAdilo.value.payId)
+  if (!res) {
+    setTimeout(() => {
+      loading.close()
+    }, 1000)
+  }
 }
 const listOfBanks = ref([]) // 支付列表
 // const creatDataAll = ref({})
@@ -138,6 +142,7 @@ const init = async () => {
   listOfBanks.value = shoppaychannelRes.data
   payArrAdilo.value = shoppaychannelRes.data[0]
 }
+
 watch(
   dialogVisiblePay,
   (newVal) => {

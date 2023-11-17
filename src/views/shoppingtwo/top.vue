@@ -160,7 +160,6 @@ const onSale = () => {
 /**一件买入 */
 const onePieceBuyin = async () => {
   await initminimumPice()
-
   const Mymap = new Map([
     [
       !loginStore.token,
@@ -180,7 +179,7 @@ const onePieceBuyin = async () => {
       }
     ],
     [
-      !Gethelowestprice.value,
+      !Gethelowestprice.value?.productUrl,
       () => {
         MessageBoxVue({
           title: "当前暂无可购买资产"
@@ -190,7 +189,7 @@ const onePieceBuyin = async () => {
   ])
   let Myreturn = false
   for (let [key, value] of Mymap) {
-    if (key) {
+    if (key && !Myreturn) {
       Myreturn = true
       value()
     }
@@ -199,25 +198,6 @@ const onePieceBuyin = async () => {
   if (Myreturn) return
 
   dialogVisiblePay.value = true
-  // if (!loginStore.token) {
-  //   MessageBoxVue({
-  //     title: "请先登录"
-  //   })
-  //   loginStore.login = true
-  //   return
-  // }
-  // if (props.creatData.onSellingCount == 0) {
-  //   MessageBoxVue({
-  //     title: "已售罄"
-  //   })
-  //   return
-  // }
-  // if (Gethelowestprice.value == undefined) {
-  //   MessageBoxVue({
-  //     title: "没有找到最低价"
-  //   })
-  //   return
-  // }
 }
 
 /**
@@ -225,11 +205,15 @@ const onePieceBuyin = async () => {
  * @param {*} payId
  */
 const payFun = async (payId) => {
-  const res = await shopquickbuy({
-    cardId: Gethelowestprice.value.cardId, // 跳转页面的id 1
-    payChanelId: payId // 支付通道 1 是支付宝
-  })
-  window.location.href = res.data
+  try {
+    const res = await shopquickbuy({
+      cardId: Gethelowestprice.value.cardId, // 跳转页面的id 1
+      payChanelId: payId // 支付通道 1 是支付宝
+    })
+    window.location.href = res.data
+  } catch (err) {
+    return false
+  }
 }
 </script>
 <style lang="scss" scoped>

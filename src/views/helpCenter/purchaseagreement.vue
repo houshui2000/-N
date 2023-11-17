@@ -17,7 +17,6 @@ import { shopbuyagreement } from "../../network/agreement"
 const tutorialText = ref("")
 const goAboutUs = () => {
   shopbuyagreement().then((res) => {
-    console.log(res)
     tutorialText.value = res.data
   })
 }

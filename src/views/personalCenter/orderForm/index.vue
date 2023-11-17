@@ -406,8 +406,6 @@ const goPay = async (item) => {
 }
 //待支付弹窗
 const handlePayShow = async (item) => {
-  console.log(item)
-
   try {
     dialogVisiblePay.value = true
     Gethelowestprice.value = item
@@ -433,6 +431,7 @@ const payFun = async (payId) => {
     window.location.href = res.data
   } catch (err) {
     handleOrderList()
+    return false
   }
 }
 
@@ -456,7 +455,6 @@ watch(
     const res = await shoporderdetai({
       orderNo: route.query.orderNo
     })
-    console.log(res, "res")
 
     if (res.data?.payStatus > 0) {
       errDialoVueUpdate.value = true
