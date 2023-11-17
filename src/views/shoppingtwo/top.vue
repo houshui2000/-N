@@ -202,6 +202,7 @@ const onePieceBuyin = async () => {
 
 /**
  * 支付
+ *
  * @param {*} payId
  */
 const payFun = async (payId) => {
