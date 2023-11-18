@@ -1,6 +1,6 @@
 <template>
   <transition name="transition05s">
-    <div id="realNameZFBPopup">
+    <div class="realNameZFBPopup-nopx">
       <div class="content">
         <div class="close" @click="useUsersStore.realNameZFBPopup = false"></div>
         <div class="text">
@@ -102,8 +102,7 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@media screen and (min-width: 1px) {
-  #realNameZFBPopup {
+  .realNameZFBPopup-nopx {
     position: fixed;
     top: 0;
     left: 0;
@@ -172,11 +171,11 @@ onUnmounted(() => {
         background: url($gxsborderrealNameqrcode) no-repeat center;
         background-size: contain;
         overflow: hidden;
-        margin-top: 39px;
+        margin-top: 50px;
         display: flex;
         justify-content: center;
         align-items: center;
-
+        transform: scale(1.3);
         .qrcode {
           width: 168px;
           height: 168px;
@@ -192,5 +191,4 @@ onUnmounted(() => {
       }
     }
   }
-}
 </style>

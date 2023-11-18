@@ -20,7 +20,7 @@
         <div class="S_L_Top">
           <p class="S_L_Top_title">
             <span class="SvgIcon">
-              <!-- <SvgIcon size="88px" Height="30px" icon-class="emptiveTwo" /> -->
+              <SvgIcon v-if="props.creatData.preemptionStatus == 1" size="84px" Height="30px" icon-class="emptiveTwo" />
             </span>
             <span class="productName">{{ props.creatData.productName }}</span>
           </p>
@@ -44,9 +44,14 @@
         </div> -->
         <!-- 支付 -->
         <div class="S_L_Zhi">
-          <p v-if="props.creatData?.buyRestrict !== 0 && props.creatData?.buyRestrict">
+          <p v-if="props.creatData?.buyRestrict !== 0 && props.creatData?.buyRestrict && props.creatData?.preemptionStatus == 0">
             * 该系列每人限购
             <span>{{ props.creatData.buyRestrict }}</span>
+            份
+          </p>
+          <p v-if="props.creatData?.preemptionStatus == 1">
+            * 优先购可购买
+            <span>{{ props.creatData.canBuyPreemptionProductCount }}</span>
             份
           </p>
           <div
@@ -129,7 +134,7 @@ import { buyminxpricecard } from "@/network/shoppingCentre/shoppingtwo.js"
 
 import { shopquickbuy } from "@/network/shoppingCentre/shoppingtwo.js"
 // import FloatingMusicWidgetVue from "@/components/FloatingMusicWidget/index.vue"
-import { ref } from "vue"
+import { ref, watch } from "vue"
 import { useStore } from "@/pinia"
 const { loginStore } = useStore()
 const route = useRoute()
@@ -302,6 +307,7 @@ const payFun = async (payId) => {
     .S_L_Top {
       width: 100%;
       .S_L_Top_title {
+        display: flex;
       }
       > p {
         color: white;

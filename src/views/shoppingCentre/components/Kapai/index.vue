@@ -4,8 +4,8 @@
     <div class="xiaoxingxing"></div>
     <div class="chinaKexo">可信版权资产</div>
     <!-- 优先购 -->
-    <div class="youxiangou">
-      <!-- <SvgIcon size="60px" Height="60px" icon-class="emptive" /> -->
+    <div class="youxiangou" v-if="props.KaParVueitem?.preemptionStatus == 1">
+      <SvgIcon size="60px" Height="60px" icon-class="emptive" />
     </div>
     <!-- 优先购 end-->
     <div class="img">
