@@ -20,7 +20,7 @@
         <div class="S_L_Top">
           <p class="S_L_Top_title">
             <span class="SvgIcon">
-              <!-- <SvgIcon size="88px" Height="30px" icon-class="emptiveTwo" /> -->
+              <SvgIcon size="88px" Height="30px" icon-class="emptiveTwo" />
             </span>
             <span class="productName">{{ props.creatData.productName }}</span>
           </p>
@@ -302,6 +302,7 @@ const payFun = async (payId) => {
     .S_L_Top {
       width: 100%;
       .S_L_Top_title {
+        display: flex;
       }
       > p {
         color: white;
