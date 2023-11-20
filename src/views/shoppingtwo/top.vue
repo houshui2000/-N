@@ -50,7 +50,7 @@
             份
           </p>
           <p v-if="props.creatData?.preemptionStatus == 1">
-            * 优先购可购买
+            * 可优先购买
             <span>{{ props.creatData.canBuyPreemptionProductCount }}</span>
             份
           </p>

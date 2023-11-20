@@ -8,7 +8,7 @@
       :lock-scroll="false"
       :close-on-click-modal="false"
       :showClose="false"
-      @close="$emit('update:dialogVisiblePay', false)"
+      @close="close"
     >
       <template #header>
         <div class="top">
@@ -103,7 +103,10 @@ let agreement = ref(false) //是否同意协议
 const { dialogVisiblePay, creatDataAll, payFun } = toRefs(props)
 
 const $emit = defineEmits(["update:dialogVisiblePay"])
-
+const close = () => {
+  $emit('update:dialogVisiblePay', false)
+  agreement.value = false
+}
 const payArrAdilo = ref()
 /**支付 */
 const shopquickbuyPay = async () => {

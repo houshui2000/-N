@@ -1,6 +1,6 @@
 <template>
   <div class="kapai">
-    <div v-if="props.KaParVueitem.hotPushStatus" class="hot">HOT</div>
+    <div v-if="props.KaParVueitem.hotPushStatus && props.KaParVueitem?.preemptionStatus != 1" class="hot">HOT</div>
     <div class="xiaoxingxing"></div>
     <div class="chinaKexo">可信版权资产</div>
     <!-- 优先购 -->
