@@ -20,12 +20,14 @@
       </div>
     </div>
     <!-- 去实名 -->
-    <!-- <div class="goToRealNames">
+    <div class="goToRealNames">
       <p>体验数字资产需要进行实名认证</p>
-      <p>去实名</p>
-    </div> -->
+      <p @click="GoRealName">去实名</p>
+    </div>
     <!-- 去实名 end-->
   </div>
+  <authenticationPopup />
+
   <div
     ref="xianshi_geng"
     v-show="creatData.records?.length > 0 && creatData.total !== creatData.records?.length"
@@ -37,12 +39,15 @@
 <script setup>
 import Section_left from "./components/sectionLeft/index.vue"
 import section_right from "./components/sectionRight/index.vue"
+import authenticationPopup from "../personalCenter/components/authenticationPopup.vue"
 import MYIntersectionObserver from "@/utils/IntersectionObserver.js"
 import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
 import { ref, onMounted, onUnmounted } from "vue"
 import { shopliscard } from "@/network/shoppingCentre/shoppingCentre"
 import { mallHomepage } from "@/enumerate/index.js"
+import { useStore } from "@/pinia/index.js"
 
+const { useUsersStore } = useStore()
 const xianshi_geng = ref(null)
 const LeftData = ref({
   name: "",
@@ -89,6 +94,14 @@ onMounted(() => {
 
   window.addEventListener("scroll", scrollMy)
 })
+// 去实名
+const GoRealName = () => {
+  console.log("go realname")
+  useUsersStore.authenticationPopup = true
+  useUsersStore.certNo = ""
+  useUsersStore.username = ""
+}
+
 const creatData = ref({})
 const init = async () => {
   // 排序方式 修改
@@ -176,7 +189,7 @@ const scrollMy = () => {
   }
 
   .goToRealNames {
-    position: absolute;
+    position: fixed;
     bottom: 20px;
     left: 50%;
     padding-right: 21px;
