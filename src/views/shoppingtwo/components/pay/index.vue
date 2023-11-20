@@ -121,7 +121,7 @@ const shopquickbuyPay = async () => {
   // if (res.data) {
   //   loading.close()
   // }
-  const res = await payFun.value(payArrAdilo.value.payId)
+  const res = await payFun.value(payArrAdilo.value, creatDataAll.value)
   if (!res) {
     setTimeout(() => {
       loading.close()

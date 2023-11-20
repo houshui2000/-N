@@ -89,9 +89,12 @@ import SvgIcon from "@/components/SvgIcon/index.vue"
 import MessageBoxVue from "@/components/MessageBox/index.js"
 import { useStore } from "@/pinia"
 import { shopquickbuy } from "@/network/shoppingCentre/shoppingtwo.js"
+import { shopbuyPay } from "@/network/personalCenter.js"
+import { useRoute } from "vue-router"
 
 const creatData = inject("creatData")
 const { loginStore } = useStore()
+const route = useRoute()
 
 const drops = defineProps({
   records: { type: Array, required: true }
@@ -135,9 +138,21 @@ const PayFun = async (item) => {
 const Gethelowestprice = ref({}) // 支付弹框 获取最低价
 const dialogVisiblePay = ref(false) // 支付弹框弹出
 
+/**购买信息 -- 知道商品还能不能购买 */
+const initminimumPice = async (item) => {
+  const res = await shopquickbuy({
+    cardVaultId: Number(route.query.vaultId), // 系列的id
+    carId: item.cardNo // 订单的id
+  })
+  console.log(res)
+
+  Gethelowestprice.value = res.data
+}
+
 /**一件买入 */
 const onePieceBuyin = async (item) => {
-  Gethelowestprice.value = item
+  // Gethelowestprice.value = item
+  await initminimumPice(item)
 
   const Mymap = new Map([
     [
@@ -184,11 +199,15 @@ const onePieceBuyin = async (item) => {
  * 支付
  * @param {*} payId
  */
-const payFun = async (payId) => {
+const payFun = async (payId, creatDataAll) => {
   try {
-    const res = await shopquickbuy({
-      cardId: Gethelowestprice.value.cardId, // 跳转页面的id 1
-      payChanelId: payId // 支付通道 1 是支付宝
+    // const res = await shopquickbuy({
+    //   cardId: Gethelowestprice.value.cardId, // 跳转页面的id 1
+    //   payChanelId: payId // 支付通道 1 是支付宝
+    // })
+    const res = await shopbuyPay({
+      orderNo: creatDataAll.cardId, // 订单列表
+      payChanelId: payId.payId // 支付的编号
     })
     window.location.href = res.data
   } catch (err) {

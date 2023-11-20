@@ -136,7 +136,7 @@ import ShareVue from "./components/share/index.vue"
 import SvgIcon from "@/components/SvgIcon/index.vue"
 import { useRoute, useRouter } from "vue-router"
 import MessageBoxVue from "@/components/MessageBox/index.js"
-import { buyminxpricecard } from "@/network/shoppingCentre/shoppingtwo.js"
+import { shopbuyPay } from "@/network/personalCenter.js"
 
 import { shopquickbuy } from "@/network/shoppingCentre/shoppingtwo.js"
 // import FloatingMusicWidgetVue from "@/components/FloatingMusicWidget/index.vue"
@@ -153,17 +153,14 @@ const props = defineProps({
 })
 const dialogVisiblePay = ref(false) //支付弹框
 const fenxiangdialog = ref(false) // 分享弹框
-// 获取最低价
+// 获取订单的编号
 const Gethelowestprice = ref({})
 
 /**购买信息 -- 知道商品还能不能购买 */
 const initminimumPice = async () => {
-  // const res = await buyminxpricecard({ vaultId: route.query.vaultId })
   const res = await shopquickbuy({
     cardVaultId: Number(route.query.vaultId) // 跳转页面的id 1
-    // cardId: "" // 单个购买的id
   })
-  console.log(res)
 
   Gethelowestprice.value = res.data
 }
@@ -195,15 +192,15 @@ const onePieceBuyin = async () => {
           title: "已售罄"
         })
       }
+    ],
+    [
+      (!Gethelowestprice.value?.productUrl && props.creatData.onSellingCount !== 0,
+      () => {
+        MessageBoxVue({
+          title: "当前暂无可购买资产"
+        })
+      })
     ]
-    // [
-    //   !Gethelowestprice.value?.productUrl && props.creatData.onSellingCount !== 0,
-    //   () => {
-    //     MessageBoxVue({
-    //       title: "当前暂无可购买资产"
-    //     })
-    //   }
-    // ]
   ])
   let Myreturn = false
   for (let [key, value] of Mymap) {
@@ -223,11 +220,11 @@ const onePieceBuyin = async () => {
  *
  * @param {*} payId
  */
-const payFun = async (payId) => {
+const payFun = async (payId, creatDataAll) => {
   try {
-    const res = await shopquickbuy({
-      cardId: Gethelowestprice.value.cardId, // 跳转页面的id 1
-      payChanelId: payId // 支付通道 1 是支付宝
+    const res = await shopbuyPay({
+      orderNo: creatDataAll.orderNo, // 订单列表
+      payChanelId: payId.payId // 支付的编号
     })
     window.location.href = res.data
   } catch (err) {

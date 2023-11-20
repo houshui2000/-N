@@ -102,7 +102,7 @@
                         {{ item.cardNo }}
                       </div>
                     </div>
-                    <!-- 鼠标滑动 去支付 -->
+                    <!-- 鼠标滑动去支付 -->
                     <div class="btnBox" v-if="item.payStatus === 0">
                       <div class="close" @click="handlePayClose(item.orderNo)">取消支付</div>
                       <div class="payBtn" @click="goPay(item)">去支付</div>
@@ -261,16 +261,13 @@ const mounchRef = ref("")
  * 支付方式 展示
  */
 const payway = (item) => {
-  // item.payType
   const res = personalcenterPay.find((personalcenterPayitem) => {
-    // (item.payType, qumo(item.payType, 3), personalcenterPayitem)
-
-    if (item.payType == personalcenterPayitem.value) {
+    if (item.payStatus == personalcenterPayitem.value) {
       return personalcenterPayitem
     }
   })
 
-  return res.name || "未知"
+  return res?.name || "未知"
 }
 /**取模 */
 
@@ -324,9 +321,6 @@ const handleSelectValue = (val) => {
 }
 /**初始化接口 */
 const handleOrderList = async () => {
-  // orderInfo.value.payTimes = orderInfo.value.payTime
-  // orderInfo.value.payTime = null
-
   let res = await GetorderList(orderInfo.value)
 
   let data = res.data.records
