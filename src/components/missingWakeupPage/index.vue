@@ -1,4 +1,5 @@
 <template>
+  <!-- 空页面 -->
   <div class="missingWakeupPage">
     <div class="svg">
       <!-- <SvgIcon size="316px" Height="654px" icon-class="missingWakeupPage" /> -->

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 面包屑导航 -->
     <div class="crumbs">
       <span
         :style="{ color: index === props.arr.length - 1 ? '#fff' : '#999' }"

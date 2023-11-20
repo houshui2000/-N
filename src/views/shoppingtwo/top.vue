@@ -20,7 +20,7 @@
         <div class="S_L_Top">
           <p class="S_L_Top_title">
             <span class="SvgIcon">
-              <SvgIcon size="88px" Height="30px" icon-class="emptiveTwo" />
+              <!-- <SvgIcon size="88px" Height="30px" icon-class="emptiveTwo" /> -->
             </span>
             <span class="productName">{{ props.creatData.productName }}</span>
           </p>
@@ -44,9 +44,20 @@
         </div> -->
         <!-- 支付 -->
         <div class="S_L_Zhi">
-          <p v-if="props.creatData?.buyRestrict !== 0 && props.creatData?.buyRestrict">
+          <p
+            v-if="
+              props.creatData?.buyRestrict !== 0 &&
+              props.creatData?.buyRestrict &&
+              props.creatData?.preemptionStatus == 0
+            "
+          >
             * 该系列每人限购
             <span>{{ props.creatData.buyRestrict }}</span>
+            份
+          </p>
+          <p v-if="props.creatData?.preemptionStatus == 1">
+            * 可优先购买
+            <span>{{ props.creatData.canBuyPreemptionProductCount }}</span>
             份
           </p>
           <div
@@ -119,7 +130,7 @@
     <ShareVue :creatData="creatData" v-model:dialogVisiblePay="fenxiangdialog" />
   </div>
 </template>
-<script setup>
+<script setup name="shoppTwoTop">
 import payVue from "./components/pay/index.vue"
 import ShareVue from "./components/share/index.vue"
 import SvgIcon from "@/components/SvgIcon/index.vue"
@@ -147,7 +158,13 @@ const Gethelowestprice = ref({})
 
 /**购买信息 -- 知道商品还能不能购买 */
 const initminimumPice = async () => {
-  const res = await buyminxpricecard({ vaultId: route.query.vaultId })
+  // const res = await buyminxpricecard({ vaultId: route.query.vaultId })
+  const res = await shopquickbuy({
+    cardVaultId: Number(route.query.vaultId) // 跳转页面的id 1
+    // cardId: "" // 单个购买的id
+  })
+  console.log(res)
+
   Gethelowestprice.value = res.data
 }
 
@@ -160,6 +177,7 @@ const onSale = () => {
 /**一件买入 */
 const onePieceBuyin = async () => {
   await initminimumPice()
+  console.log(props.creatData.onSellingCount)
   const Mymap = new Map([
     [
       !loginStore.token,
@@ -177,15 +195,15 @@ const onePieceBuyin = async () => {
           title: "已售罄"
         })
       }
-    ],
-    [
-      !Gethelowestprice.value?.productUrl,
-      () => {
-        MessageBoxVue({
-          title: "当前暂无可购买资产"
-        })
-      }
     ]
+    // [
+    //   !Gethelowestprice.value?.productUrl && props.creatData.onSellingCount !== 0,
+    //   () => {
+    //     MessageBoxVue({
+    //       title: "当前暂无可购买资产"
+    //     })
+    //   }
+    // ]
   ])
   let Myreturn = false
   for (let [key, value] of Mymap) {

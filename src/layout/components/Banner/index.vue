@@ -12,7 +12,7 @@
   </div>
 </template>
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from "vue"
 let left = ref(0) //定位位置
 let list = ref([]) //无缝轮播列表
 let bannerScroll = ref(null) //获取bannerScroll的dom
@@ -20,7 +20,7 @@ let count = ref(10) // 显示几个轮播页面
 
 const handleScroll = () => {
   left.value -= 1
-  let computedStyle = getComputedStyle(document.querySelectorAll('.bannerListDom')[0], null)
+  let computedStyle = getComputedStyle(document.querySelectorAll(".bannerListDom")[0], null)
   let FanmianRight = computedStyle.marginRight.slice(0, -2)
   let FanmianWidth = computedStyle.width.slice(0, -2)
   if (left.value <= -((parseFloat(FanmianRight) + parseFloat(FanmianWidth)) * count.value)) {
@@ -30,16 +30,20 @@ const handleScroll = () => {
       list.value.push(Math.random() * 10)
     }
   }
-  bannerScroll.value.style.left = left.value + 'px'
+  bannerScroll.value.style.left = left.value + "px"
 }
-
+let timer
 onMounted(() => {
   for (let i = 0; i < 20; i++) {
     list.value.push({})
   }
-  setInterval(() => {
+  timer = setInterval(() => {
     handleScroll()
   }, 10)
+})
+
+onUnmounted(() => {
+  clearInterval(timer)
 })
 </script>
 

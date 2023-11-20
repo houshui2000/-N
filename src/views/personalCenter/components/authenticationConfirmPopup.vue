@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-// import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 import { useStore } from "@/pinia/index.js"
 // import { codeloginmobile } from '@/network/user.js'
 import { realNamePost } from "@/network/personalCenter.js"
@@ -34,7 +34,11 @@ const props = defineProps({
     }
   }
 })
+const fangdou = ref(true)
+
 const handleRealName = async () => {
+  if(!fangdou.value) return fangdou.value = true
+  fangdou.value = false
   const res = await realNamePost(props.info)
   if (res.code === 204) {
     MessageBoxVue({
@@ -43,6 +47,7 @@ const handleRealName = async () => {
     return
   }
   if (res.code === 200) {
+    fangdou.value = true
     useUsersStore.realNameQRCode = res.data
   }
   useUsersStore.authenticationConFirmPopup = false

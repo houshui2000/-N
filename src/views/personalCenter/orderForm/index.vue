@@ -102,7 +102,7 @@
                         {{ item.cardNo }}
                       </div>
                     </div>
-                    <!-- 鼠标滑动去支付 -->
+                    <!-- 鼠标滑动 去支付 -->
                     <div class="btnBox" v-if="item.payStatus === 0">
                       <div class="close" @click="handlePayClose(item.orderNo)">取消支付</div>
                       <div class="payBtn" @click="goPay(item)">去支付</div>

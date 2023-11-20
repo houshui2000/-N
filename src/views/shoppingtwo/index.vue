@@ -1,13 +1,5 @@
 <template>
   <div class="kapai">
-    <!-- <div class="crumbs">
-      <span @click="router.push('/shoppingCentre')">
-        商城
-        <i>></i>
-      </span>
-
-      <span>资产详情</span>
-    </div> -->
     <CrumbsVue
       :arr="[
         { name: '商城', path: '/shoppingCentre' },
@@ -23,7 +15,7 @@
     </div>
   </div>
 </template>
-<script setup>
+<script name="shoppTwoINdx" setup>
 import TopVue from "./top.vue"
 import CrumbsVue from "@/components/crumbs/index.vue"
 import BOttomVue from "./bottom.vue"
@@ -32,8 +24,12 @@ import { ref, provide, watch } from "vue"
 import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
 import { shopcardxdetail, shopotherproducts } from "@/network/shoppingCentre/shoppingtwo.js"
 // import Me ssageBoxVue from '@/components/MessageBox/index.js'
+import { useStore } from "@/pinia"
+
 const router = useRouter()
 const route = useRoute()
+const { loginStore } = useStore()
+
 // const router = useRouter()
 const creatData = ref({}) // 系列的数据
 const creatDataAll = ref([]) // 系列的所有数据
@@ -53,6 +49,19 @@ const init = async () => {
 
   creatDataAll.value = norId.data
 }
+
+watch(
+  () => loginStore.token,
+  (newVal) => {
+    if (newVal) {
+      init()
+    }
+  },
+  {
+    deep: true
+  }
+)
+
 init()
 provide("creatData", creatData)
 watch(

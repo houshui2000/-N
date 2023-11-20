@@ -191,7 +191,7 @@
                   </div>
                 </div>
                 <div class="otherBtnBox" v-if="stateBtn === 2"></div>
-                <!--      登录        -->
+                <!--      登录 密码登录        -->
                 <div class="loginBtnBox" v-if="otherBtn === 'other'" @click="handleLoginBtn">登 录</div>
                 <div class="registerBtn marginTop31" v-if="otherBtn === 'register'" @click="handleLoginBtn">注 册</div>
                 <div class="resettingBtn marginTop31" v-if="otherBtn === 'resetting'" @click="handleLoginBtn">
@@ -311,6 +311,7 @@ const handleAgreement = () => {
 //登录按钮
 const handleLoginBtn = async () => {
   // 手机密码登录
+
   if (stateBtn.value === 1 && otherBtn.value === "other") {
     if (passwordInfo.mobile === "" || passwordInfo.password === "") {
       MessageBoxVue({

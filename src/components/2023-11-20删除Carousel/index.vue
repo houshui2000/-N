@@ -2,7 +2,7 @@
   <div id="Carousel" :class="{ active: !btnActive }">
     <div class="content">
       <div class="CarouselBoxs" ref="boxRef">
-        <div class="box" v-for="(item, index) in list" @click="handleBannerShow">
+        <div class="box" :key="index" v-for="(item, index) in list" @click="handleBannerShow">
           <!--    正面      -->
           <div class="frontBox">
             <div class="cardImg">

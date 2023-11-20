@@ -1,21 +1,12 @@
 
 export const helpCenterArr = [
-  // {
-  //   path: 'contactUs',
-  //   name: 'contactUs',
-  //   component: () => import('@/views/helpCenter/contactUs.vue'),
-  //   meta: {
-  //     name: '联系我们',
-  //     immediate: false, // 路由显示
-  //     gundong: true, // 实时左侧滚动组件false 开启，true关闭
-  //     scrollTheSubtitles: true // 滚动字幕 false 开启，true关闭
-  //   }
-  // },
+
   {
     path: 'aboutUs',
     name: 'aboutUs',
     component: () => import('@/views/helpCenter/aboutUs.vue'),
     meta: {
+      login: false, // true 需要登录， false 不需要登录
       name: '关于我们',
       immediate: false, // 路由显示
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
@@ -26,6 +17,7 @@ export const helpCenterArr = [
     name: 'userUs',
     component: () => import('@/views/helpCenter/userUs.vue'),
     meta: {
+      login: false, // true 需要登录， false 不需要登录
       name: '用户协议',
       immediate: false, // 路由显示
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
@@ -36,6 +28,7 @@ export const helpCenterArr = [
     name: 'privacyUs',
     component: () => import('@/views/helpCenter/privacyUs.vue'),
     meta: {
+      login: false, // true 需要登录， false 不需要登录
       name: '隐私协议',
       immediate: false, // 路由显示
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
@@ -46,6 +39,7 @@ export const helpCenterArr = [
     name: 'statementUs',
     component: () => import('@/views/helpCenter/statementUs.vue'),
     meta: {
+      login: false, // true 需要登录， false 不需要登录
       name: '常见问题',
       immediate: false, // 路由显示
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
@@ -56,6 +50,7 @@ export const helpCenterArr = [
     name: 'purchaseagreement',
     component: () => import('@/views/helpCenter/purchaseagreement.vue'),
     meta: {
+      login: false, // true 需要登录， false 不需要登录
       name: '购买协议',
       immediate: false, // 路由显示
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
@@ -70,7 +65,8 @@ export const childrenCase = [
   //   name: 'cardgo',
   //   component: () => import('@/views/cardGO/index.vue'),
   //   props: true,
-  //   meta: {
+  //    meta: {
+  // login: false, // true 需要登录， false 不需要登录
   //     name: '卡GO',
   //     immediate: true // 路由显示
   //   }
@@ -80,7 +76,8 @@ export const childrenCase = [
   //   name: 'unboxing',
   //   component: () => import('@/views/unboxing/index.vue'),
   //   props: true,
-  //   meta: {
+  //    meta: {
+  // login: false, // true 需要登录， false 不需要登录
   //     name: '卡GO二级页面',
   //     immediate: true // 路由显示
   //   }
@@ -91,6 +88,7 @@ export const childrenCase = [
     redirect: '/helpCenter/contactUs',
     component: () => import('@/views/helpCenter/index.vue'),
     meta: {
+      login: false, // true 需要登录， false 不需要登录
       name: '帮助中心',
       immediate: false, // 路由显示
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
@@ -106,6 +104,7 @@ export const childrenCase = [
     name: 'information',
     component: () => import('@/views/information/index.vue'),
     meta: {
+      login: false, // true 需要登录， false 不需要登录
       name: '首页',
       immediate: true, // 路由显示
       gundong: true, // 实时左侧滚动组件false 开启，true关闭
@@ -119,6 +118,7 @@ export const childrenCase = [
     component: () => import('@/views/information/informationTwo.vue'),
     props: true,
     meta: {
+      login: false, // true 需要登录， false 不需要登录
       name: '资讯信息二级',
       immediate: false, // 路由显示
       gundong: true, // 实时左侧滚动组件false 开启，true关闭

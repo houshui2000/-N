@@ -94,7 +94,8 @@ import Login from "@/components/Login/index.vue"
 import { useStore } from "@/pinia"
 import { removeItem } from "@/utils/storage.js"
 import { userlogout } from "@/network/userInterface.js"
-import { ToLogin, NoLogin } from "@/router/InputTransfer.js"
+// import { ToLogin, NoLogin } from "@/router/InputTransfer.js"
+import { routes as MyRouter } from "@/router"
 import { useRouter, useRoute } from "vue-router"
 import MessageBoxVue from "@/components/MessageBox/index.js"
 
@@ -110,9 +111,19 @@ const { loginStore, useUsersStore } = useStore()
 //   ...NoLogin,
 //   ...ToLogin
 // ])
+let WhitelistedRouting = ["/"]
+/**数组打平 */
+const tie = (arr) => {
+  arr.forEach((item) => {
+    WhitelistedRouting.push(item)
+    if (item.children?.length > 0) {
+      tie(item.children)
+    }
+  })
+}
 let navList = computed(() => {
-  let rout = [...NoLogin, ...ToLogin]
-  const res = rout.filter((item) => item.meta.immediate)
+  tie(MyRouter)
+  const res = WhitelistedRouting.filter((item) => item?.meta?.immediate)
   return res
 })
 let navIndex = ref("")

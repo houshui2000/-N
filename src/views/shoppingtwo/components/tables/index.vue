@@ -190,7 +190,6 @@ const payFun = async (payId) => {
       cardId: Gethelowestprice.value.cardId, // 跳转页面的id 1
       payChanelId: payId // 支付通道 1 是支付宝
     })
-
     window.location.href = res.data
   } catch (err) {
     return false

@@ -43,7 +43,7 @@ right：弹幕水平间距(px)
 
 <script setup>
 import vueDanmaku from "vue3-danmaku"
-import { onMounted, reactive, ref } from "vue"
+import { onMounted, onUnmounted, reactive, ref } from "vue"
 import { shopbulletcommencommentt } from "@/network/shoppingCentre/shoppingCentre"
 // const { proxy } = getCurrentInstance()
 const danmakuRef = ref(null)
@@ -51,6 +51,8 @@ const danmakuRef = ref(null)
 onMounted(() => {
   danmakuRef.value.play()
 })
+
+let timer = null
 
 // 弹幕
 const getshopbulletcomment = () => {
@@ -62,11 +64,15 @@ const getshopbulletcomment = () => {
 }
 getshopbulletcomment()
 
-setInterval(() => {
+// eslint-disable-next-line no-unused-vars
+timer = setInterval(() => {
   getshopbulletcomment()
-}, 20000)
+}, 20000) // 20000
 const danmus = reactive({
   data: []
+})
+onUnmounted(() => {
+  clearInterval(timer)
 })
 </script>
 <!--

@@ -60,19 +60,7 @@ export function buyminxpricecard (params) {
     method: 'GET', params
   })
 }
-// /**
-//  * 快速购买
-//  *{
-//    cardVaultId: 1, // 跳转页面的id
-//     payChanelId: 1 // 支付通道 1 是支付宝
-// }
-// */
-// export function shopquickbuy (data) {
-//   return service({
-//     url: '/shop/quick-buy',
-//     method: 'POST', data
-//   })
-// }
+
 
 
 /**

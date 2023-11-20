@@ -19,6 +19,12 @@
         <MissWakeupPage :title="'暂无资产'" :titleTwo="'敬请期待!'" />
       </div>
     </div>
+    <!-- 去实名 -->
+    <!-- <div class="goToRealNames">
+      <p>体验数字资产需要进行实名认证</p>
+      <p>去实名</p>
+    </div> -->
+    <!-- 去实名 end-->
   </div>
   <div
     ref="xianshi_geng"
@@ -146,17 +152,11 @@ const scrollMy = () => {
   padding-top: 57px;
   @include Myflex(space-between, flex-start);
   .section_left {
-    // position: sticky;
-    // top: 0px;
-    // left: 0;
     position: relative;
     width: 270px;
     min-height: 600px;
     border-radius: 6px;
     .sticky {
-      // position: fixed;
-      // top: 0px;
-      // left: 0px;
       border-radius: 6px;
       backdrop-filter: blur(2px);
       background: #000819;
@@ -165,9 +165,6 @@ const scrollMy = () => {
       left: 0;
       top: 0;
       width: 270px;
-      // height: 100%;
-      // height: 300px;
-      // background-color: saddlebrown;
     }
   }
   .section_right {
@@ -175,6 +172,32 @@ const scrollMy = () => {
     background-color: transparent;
     .section_right_one {
       width: 100%;
+    }
+  }
+
+  .goToRealNames {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    padding-right: 21px;
+    transform: translateX(-50%);
+    width: 380px;
+    height: 64px;
+    border-radius: 4px;
+    @include bordergradientMY(
+      linear-gradient(180deg, rgba(93, 67, 125, 1) 0%, rgba(53, 83, 132, 1) 100%),
+      linear-gradient(180deg, #070d13 -1.45%, #070d13 100%)
+    );
+    @include Myflex(space-between);
+    > p {
+      padding: 7px 23px;
+      font: normal normal 400 14px "PingFang SC";
+      color: white;
+      &:last-child {
+        cursor: pointer;
+        border-radius: 4px;
+        background: linear-gradient(90deg, #2d42ff 0%, #df00c9 96.64%);
+      }
     }
   }
 }

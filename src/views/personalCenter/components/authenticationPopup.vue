@@ -58,7 +58,7 @@ const { useUsersStore } = useStore()
 let passwordEdit = ref({
   certNo: "",
   username: ""
-})
+}) 
 const handleEmpowerShow = async () => {
   if (!passwordEdit.value.username) {
     MessageBoxVue({

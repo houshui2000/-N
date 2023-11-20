@@ -8,11 +8,16 @@ export const routes = [{
   name: 'container',
   component: () => import('@/layout/index.vue'),
   props: true,
-  // redirect: '/',
+  meta: {
+    immediate: false, // 路由显示
+  },
   children: [
     {
       path: '/',
-      redirect: 'information'
+      redirect: 'information',
+      meta: {
+        immediate: false, // 路由显示
+      },
     },
     // ...ToLogin,
     // ...NoLogin
@@ -27,6 +32,7 @@ export const routes = [{
   component: () => import('@/views/cardDetail3D/index.vue'),
   props: true,
   meta: {
+    login: false, // true 需要登录， false 不需要登录
     immediate: false, // 路由显示
     name: '3D',
     rightDao: true, // 右侧菜单栏 true 关闭 false 开启
@@ -38,6 +44,7 @@ export const routes = [{
   component: () => import('@/views/pptiform/index.vue'),
   props: true,
   meta: {
+    login: false, // true 需要登录， false 不需要登录
     immediate: false, // 路由显示
     name: 'pptiform',
     rightDao: true, // 右侧菜单栏 true 关闭 false 开启
@@ -48,6 +55,7 @@ export const routes = [{
   name: 'app',
   component: () => import('@/views/app/index.vue'),
   meta: {
+    login: false, // true 需要登录， false 不需要登录
     name: 'app下载',
     immediate: false, // 路由显示
     rightDao: true, // 右侧菜单栏 true 关闭 false 开启

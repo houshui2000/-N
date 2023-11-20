@@ -8,7 +8,7 @@
       :lock-scroll="false"
       :close-on-click-modal="false"
       :showClose="false"
-      @close="$emit('update:dialogVisiblePay', false)"
+      @close="close"
     >
       <template #header>
         <div class="top">
@@ -88,14 +88,6 @@ const props = defineProps({
   payFun: {
     type: Function,
     required: true
-    // default: async () => {
-    //   const res = await shopquickbuy({
-    //     cardId: creatDataAll.value.cardId, // 跳转页面的id 1
-    //     payChanelId: payArrAdilo.value.payId // 支付通道 1 是支付宝
-    //   })
-
-    //   window.location.href = res.data
-    // }
   }
 })
 // const errDialoVueUpdate = ref(false) //支付成功弹框
@@ -103,7 +95,10 @@ let agreement = ref(false) //是否同意协议
 const { dialogVisiblePay, creatDataAll, payFun } = toRefs(props)
 
 const $emit = defineEmits(["update:dialogVisiblePay"])
-
+const close = () => {
+  $emit("update:dialogVisiblePay", false)
+  agreement.value = false
+}
 const payArrAdilo = ref()
 /**支付 */
 const shopquickbuyPay = async () => {

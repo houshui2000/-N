@@ -1,18 +1,6 @@
 <template>
   <div class="side">
-    <div
-      v-for="(item, index) in pros.INterOb"
-      @click="
-        router.push({
-          path: '/SCDetail',
-          query: {
-            vaultId: item.id
-          }
-        })
-      "
-      :key="index"
-      class="kapai"
-    >
+    <div v-for="(item, index) in pros.INterOb" @click="TiaoClick(item)" :key="index" class="kapai">
       <KaParVue :KaParVueitem="item" />
     </div>
   </div>
@@ -20,6 +8,10 @@
 <script setup>
 import KaParVue from "../Kapai/index.vue"
 import { useRouter } from "vue-router"
+import MessageBoxVue from "@/components/MessageBox/index.js"
+import { useStore } from "@/pinia"
+const { loginStore } = useStore()
+
 const router = useRouter()
 const pros = defineProps({
   INterOb: {
@@ -27,6 +19,20 @@ const pros = defineProps({
     required: true
   }
 })
+const TiaoClick = (item) => {
+  if (!loginStore.token) {
+    MessageBoxVue({
+      title: "请先登录"
+    })
+    return
+  }
+  router.push({
+    path: "/SCDetail",
+    query: {
+      vaultId: item.id
+    }
+  })
+}
 </script>
 <style lang="scss" scoped>
 .side {
