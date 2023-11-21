@@ -9,9 +9,11 @@
     </div>
     <!-- 优先购 end-->
     <div class="img">
-      <div v-if="!props.KaParVueitem?.canBuy" class="time">
+      <!-- 优先购时间 -->
+      <div v-if="!props.KaParVueitem?.canBuy && props.KaParVueitem?.preemptionStatus !== 1" class="time">
         {{ props.KaParVueitem?.publishTime.slice(5, props.KaParVueitem?.publishTime.length) }} 开售
       </div>
+      <!-- 优先购时间 end-->
       <!-- -->
       <div v-if="props.KaParVueitem.hasAudio" class="voice">
         <SvgIcon size="18px" Height="18px" icon-class="voiceShang" />
@@ -32,12 +34,26 @@
           "
           class="right_bott"
         ></div>
+        <!-- <!== 临时处理 22 ==>
+        <div
+          v-if="props.KaParVueitem.onSellingCount > -11"
+          v-html="
+            props.KaParVueitem.onSellingCount > 0
+              ? `在售<span style='margin-left: 5px;' >${props.KaParVueitem.onSellingCount}</span>`
+              : ` 已售罄`
+          "
+          class="right_bott"
+        ></div>
+        <!==  ==>
+        <div v-else v-html="props.KaParVueitem.onSellingCount > 0 ? `已停售` : ` 已停售`" class="right_bott"></div>
+        <!== 临时处理 22 end ==> -->
         <div
           class="left_bott"
           :class="{
             none: props.KaParVueitem.onSellingCount === 0
           }"
         >
+          <!-- 临时处理 22 把 || props.KaParVueitem.onSellingCount < -11 删除 -->
           <span>￥</span>
           <span class="mounch">{{ props.KaParVueitem.minPrice }}</span>
           <span class="qi">起</span>

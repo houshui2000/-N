@@ -36,19 +36,18 @@
             <div class="inputBtn2" @click="handleEditPassword">修改</div>
           </div>
         </div>
-        <div class="inputBox">
+        <!-- <div class="inputBox">
           <div class="label">实名认证</div>
           <div>
             <input class="inputSumnickName" v-model="admin.authentication" disabled />
           </div>
-          <!--     -->
           <div
             v-if="useUsersStore.userInfo.tradePermission <= 0 && useUsersStore.userInfo.tradePermission !== -2"
             class="inputBtn"
           >
             <div class="inputBtn2" @click="handleAuthenticationPopupShow">去实名</div>
           </div>
-        </div>
+        </div> -->
         <div class="inputBox">
           <div class="label">银行卡管理</div>
           <div></div>
@@ -302,11 +301,11 @@ const handleEditPassword = () => {
   useUsersStore.passwordPopup = true
 }
 /**去实名认证 */
-const handleAuthenticationPopupShow = () => {
-  useUsersStore.authenticationPopup = true
-  useUsersStore.certNo = ""
-  useUsersStore.username = ""
-}
+// const handleAuthenticationPopupShow = () => {
+//   useUsersStore.authenticationPopup = true
+//   useUsersStore.certNo = ""
+//   useUsersStore.username = ""
+// }
 //打开银行卡列表
 const handleBankCardPopupShow = () => {
   bankCardShow.value = true

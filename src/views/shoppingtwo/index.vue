@@ -25,6 +25,7 @@ import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
 import { shopcardxdetail, shopotherproducts } from "@/network/shoppingCentre/shoppingtwo.js"
 // import Me ssageBoxVue from '@/components/MessageBox/index.js'
 import { useStore } from "@/pinia"
+// import MessageBoxVue from "@/components/MessageBox/index.js"
 
 const router = useRouter()
 const route = useRoute()
@@ -34,6 +35,16 @@ const { loginStore } = useStore()
 const creatData = ref({}) // 系列的数据
 const creatDataAll = ref([]) // 系列的所有数据
 const init = async () => {
+  // // 临时处理 22
+  // if (route.query.vaultId == 22) {
+  //   MessageBoxVue({
+  //     title: "已停售"
+  //   })
+  //   router.go(-1)
+  //   return
+  // }
+
+  // // 临时处理 22 end
   if (!route.query.vaultId) {
     router.back()
     return

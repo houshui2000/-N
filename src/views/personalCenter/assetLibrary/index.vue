@@ -35,10 +35,13 @@
                   <div class="back">
                     <p>冷却结束时间</p>
                   </div>
-                  <div class="back">
-                    <p>{{ item.lockExpireTime }}</p>
+                  <div class="back time">
+                    <el-tooltip class="box-item" effect="dark" :content="item.lockExpireTime" placement="top-start">
+                      <p class="danyi">{{ item.lockExpireTime }}</p>
+                    </el-tooltip>
                   </div>
                 </div>
+                <!-- 倒计时 end--d-->
 
                 <!-- <div v-if="item.hasAudio" class="music">
                   <SvgIcon size="18px" Height="18px" icon-class="voiceShang" />

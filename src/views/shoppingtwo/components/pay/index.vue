@@ -41,7 +41,9 @@
             <!-- 订单编号 -->
             <div class="orderReference">
               <p>订单编号:</p>
-              <p>{{ creatDataAll.orderNo }}</p>
+              <el-tooltip class="box-item" effect="dark" :content="creatDataAll.orderNo" placement="top-start">
+                <p class="danyi">{{ creatDataAll.orderNo }}</p>
+              </el-tooltip>
             </div>
           </div>
         </div>
@@ -273,7 +275,16 @@ section {
         margin-top: 19px;
         font: normal normal 400 12px "PingFang SC";
         color: white;
+        width: 100%;
         @include Myflex(space-between);
+        p {
+          &:first-child {
+            width: 80px;
+          }
+          &:last-child {
+            width: calc(100% - 80px);
+          }
+        }
       }
       // 订单编号end'
     }

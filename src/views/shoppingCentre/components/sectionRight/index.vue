@@ -20,6 +20,12 @@ const pros = defineProps({
   }
 })
 const TiaoClick = (item) => {
+  // if (item.id == 22) {
+  //   MessageBoxVue({
+  //     title: "已停售"
+  //   })
+  //   return
+  // }
   // if (!loginStore.token) {
   //   MessageBoxVue({
   //     title: "请先登录"

@@ -42,7 +42,6 @@
     "@vitejs/plugin-vue": "^4.3.4",
     "eslint": "^8.51.0",
     "eslint-plugin-vue": "^9.17.0",
-    "postcss-px-to-viewport": "^1.1.1",
     "prettier": "^3.0.3",
     "px2rem-loader": "^0.1.9",
     "sass": "^1.68.0",
@@ -50,6 +49,7 @@
     "sass-resources-loader": "^2.2.5",
     "unplugin-vue-components": "^0.24.1",
     "vite": "^4.1.0",
+    "vite-plugin-html": "^3.2.0",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue-wxlogin": "^1.0.4"

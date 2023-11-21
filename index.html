@@ -5,7 +5,12 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <!-- <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" /> -->
-  <title>卡竞</title>
+  <!-- <title>卡竞</title> -->
+  <title>
+    <%= VITE_APP_TITLE %>
+  </title>
+  <meta name="keywords"	content="<%= VITE_APP_KEYWORDS %>">
+		<meta name="description" content="<%= VITE_APP_DESCRIPTION %>" />
   <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
   <link href="https://cdn.quilljs.com/1.3.4/quill.snow.css" rel="stylesheet">
 </head>
@@ -14,13 +19,26 @@
   <div id="app"></div>
   <script type="module" src="/src/main.js"></script>
   <script>
-    var _hmt = _hmt || [];
-    (function () {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?a7781c9e7c53d8f630e24cec02bce39f";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
+
+    // var _hmt = _hmt || [];
+    // (function () {
+    //   var hm = document.createElement("script");
+    //   hm.src = "https://hm.baidu.com/hm.js?a7781c9e7c53d8f630e24cec02bce39f";
+    //   var s = document.getElementsByTagName("script")[0];
+    //   s.parentNode.insertBefore(hm, s);
+    // })();
+    let domain = document.domain
+    if (domain) {
+      if (domain == 'cardesport.com') {
+        var _hmt = _hmt || [];
+        (function () {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?a7781c9e7c53d8f630e24cec02bce39f";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    }
   </script>
 </body>
 

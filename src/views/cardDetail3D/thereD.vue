@@ -29,6 +29,7 @@ watch(
       }
       createLeftt()
       createLightRight()
+      renderResize()
     }
   },
   {
@@ -47,7 +48,6 @@ onMounted(() => {
   window.addEventListener("mouseup", () => {
     downUp.value = false
   })
-  renderResize()
 })
 let camera, scene, cube, renderer, materialFan, controls, directionRight, axesHelper, meshBoLI, direction
 const init = () => {
@@ -283,7 +283,7 @@ const createCubeThere = () => {
 const renderResize = () => {
   // 1. 创建适配函数，监听浏览器 resize 事件
   window.addEventListener("resize", () => {
-    renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer?.setSize(window.innerWidth, window.innerHeight)
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
   })

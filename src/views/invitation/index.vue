@@ -9,7 +9,7 @@
       <div class="from_top">
         <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" class="demo-ruleForm" :size="formSize" status-icon>
           <el-form-item label="手机号" prop="mobile">
-            <el-input @keyup.enter="handleCodeTime" placeholder="请输入您的手机号" v-model.trim="ruleForm.mobile" />
+            <el-input @keyup.enter="handleCodeTime()" placeholder="请输入您的手机号" v-model.trim="ruleForm.mobile" />
           </el-form-item>
 
           <el-form-item label="验证码" prop="code">
@@ -112,7 +112,9 @@ const handleCodeTime = async () => {
   //手机号登录
   const phoneRegex = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
   // console.log(phoneRegex.test(ruleForm.mobile))
-
+  if (codeTime.value > 0) {
+    return
+  }
   if (phoneRegex.test(ruleForm.mobile)) {
     await verificationcodereservation({ mobile: ruleForm.mobile })
     MessageBoxVue({
