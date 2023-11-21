@@ -15,7 +15,6 @@
                     <img v-if="useUsersStore.userInfo.avatar" :src="`${useUsersStore.userInfo.avatar}`" />
                   </div>
                   <el-upload
-                    :limit="1"
                     class="avatar-uploader"
                     action="#"
                     :show-file-list="false"
@@ -107,13 +106,7 @@ let tabList = reactive([
 const handleTabShow = (item, index) => {
   if (index !== -1) {
     if (index === indexActive.value) return
-    // if (index === 2) {
-    //   console.log(555555)
 
-    //   nextTick(() => {
-    //     // useUsersStore.handleUserInfo()
-    //   })
-    // }
     indexActive.value = index
     router.push(item.pushLink)
   }
@@ -178,6 +171,8 @@ const handleLoginExit = async () => {
 // }
 
 const uploadHttpRequest = async (params) => {
+  console.log(params)
+
   const _file = params.file
   let formData = new FormData()
   formData.set("file", _file)
@@ -189,7 +184,6 @@ const uploadHttpRequest = async (params) => {
 const beforeAvatarUpload = (rawFile) => {
   if (rawFile.type !== "image/jpeg" && rawFile.type !== "image/png") {
     // ElMessage.error('请上传图片!')
-
     MessageBoxVue({ title: "请上传图片!" })
 
     return false
@@ -203,6 +197,7 @@ const beforeAvatarUpload = (rawFile) => {
 }
 const dianjiUpload = () => {
   let eluploadinput = document.querySelector(".photoBox .el-upload__input")
+
   eluploadinput.click()
 }
 </script>

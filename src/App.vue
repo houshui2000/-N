@@ -31,7 +31,6 @@ const GetRequest = (value) => {
   }
   return object[value]
 }
-
 /**
  * 检测是否是手机  如果是手机 登录的是pc地址  跳转到手机路由 http://172.16.0.166/undefined
  */
@@ -45,13 +44,18 @@ setTimeout(() => {
   } else {
     // 浏览器 跳pc
     nextTick(() => {
+      let href = window.location.href
+      const res = href.includes("/invitation")
+      if (res) {
+        window.location.replace(import.meta.env.VITE_APP_MOBLIC_URL + "/invitation")
+        return
+      }
       let code = GetRequest("code")
       if (GetRequest("code")) {
         sessionStorage.setItem("code", code)
         window.location.replace(import.meta.env.VITE_APP_MOBLIC_URL + "?code=" + code)
       } else {
         // (import.meta.env.VITE_APP_MOBLIC_URL, "sdsad")
-
         window.location.replace(import.meta.env.VITE_APP_MOBLIC_URL)
       }
     })

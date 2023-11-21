@@ -7,8 +7,8 @@
       ]"
     />
     <section v-if="creatData.productName">
-      <TopVue :creatDataAll="creatDataAll" :creatData="creatData" />
-      <BOttomVue />
+      <TopVue :creatDataAll="creatDataAll" @purchaseinformation="purchaseinformation" :creatData="creatData" />
+      <BOttomVue ref="bottomVueMy" @PayFun="init()" />
     </section>
     <div v-else class="quexing">
       <MissWakeupPage :title="'暂无数据'" :titleTwo="'敬请期待!'" />
@@ -50,6 +50,12 @@ const init = async () => {
   creatDataAll.value = norId.data
 }
 
+const bottomVueMy = ref(null)
+/**调用 bottom 组件的初始化函数 */
+const purchaseinformation = () => {
+  init()
+  bottomVueMy.value.init()
+}
 watch(
   () => loginStore.token,
   (newVal) => {

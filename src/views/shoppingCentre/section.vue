@@ -19,8 +19,15 @@
         <MissWakeupPage :title="'暂无资产'" :titleTwo="'敬请期待!'" />
       </div>
     </div>
-    <!-- 去实名 -->
-    <div class="goToRealNames">
+    <!-- 去实名  -->
+    <div
+      v-if="
+        useUsersStore.userInfo?.tradePermission <= 0 &&
+        useUsersStore.userInfo?.tradePermission !== -2 &&
+        loginStore?.token
+      "
+      class="goToRealNames"
+    >
       <p>体验数字资产需要进行实名认证</p>
       <p @click="GoRealName">去实名</p>
     </div>
@@ -47,7 +54,8 @@ import { shopliscard } from "@/network/shoppingCentre/shoppingCentre"
 import { mallHomepage } from "@/enumerate/index.js"
 import { useStore } from "@/pinia/index.js"
 
-const { useUsersStore } = useStore()
+const { useUsersStore, loginStore } = useStore()
+
 const xianshi_geng = ref(null)
 const LeftData = ref({
   name: "",
@@ -190,11 +198,11 @@ const scrollMy = () => {
 
   .goToRealNames {
     position: fixed;
-    bottom: 20px;
+    bottom: 50px;
     left: 50%;
     padding-right: 21px;
     transform: translateX(-50%);
-    width: 380px;
+    // width: 380px;
     height: 64px;
     border-radius: 4px;
     @include bordergradientMY(

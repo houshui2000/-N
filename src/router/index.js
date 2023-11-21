@@ -38,7 +38,8 @@ export const routes = [{
     rightDao: true, // 右侧菜单栏 true 关闭 false 开启
     scrollTheSubtitles: true // 滚动字幕开启，关闭
   },
-}, {
+},
+{
   path: '/pptiform',//3D
   name: 'pptiform',
   component: () => import('@/views/pptiform/index.vue'),
@@ -50,7 +51,22 @@ export const routes = [{
     rightDao: true, // 右侧菜单栏 true 关闭 false 开启
     scrollTheSubtitles: true // 滚动字幕开启，关闭
   },
-}, {
+},
+{
+  path: '/invitation',//预约
+  name: 'invitation',
+  component: () => import('@/views/invitation/index.vue'),
+  props: true,
+  meta: {
+    login: false, // true 需要登录， false 不需要登录
+    immediate: false, // 路由显示
+    name: '预约',
+    rightDao: true, // 右侧菜单栏 true 关闭 false 开启
+    scrollTheSubtitles: true // 滚动字幕开启，关闭
+  },
+},
+
+{
   path: '/app',
   name: 'app',
   component: () => import('@/views/app/index.vue'),

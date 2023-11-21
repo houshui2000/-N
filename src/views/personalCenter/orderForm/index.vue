@@ -262,12 +262,12 @@ const mounchRef = ref("")
  */
 const payway = (item) => {
   const res = personalcenterPay.find((personalcenterPayitem) => {
-    if (item.payStatus == personalcenterPayitem.value) {
+    if (item?.payType == personalcenterPayitem.value) {
       return personalcenterPayitem
     }
   })
 
-  return res?.name || "未知"
+  return res?.name || "汇付银联"
 }
 /**取模 */
 
@@ -420,7 +420,7 @@ const payFun = async (payId) => {
   try {
     const res = await shopbuyPay({
       orderNo: Gethelowestprice.value.orderNo, // 跳转页面的id 1
-      payChanelId: payId // 支付通道 1 是支付宝
+      payChanelId: payId.payId // 支付通道 1 是支付宝
     })
     window.location.href = res.data
   } catch (err) {

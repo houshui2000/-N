@@ -142,16 +142,16 @@ const dialogVisiblePay = ref(false) // 支付弹框弹出
 const initminimumPice = async (item) => {
   const res = await shopquickbuy({
     cardVaultId: Number(route.query.vaultId), // 系列的id
-    carId: item.cardNo // 订单的id
+    cardId: item.cardId // 订单的id
   })
-  console.log(res)
-
   Gethelowestprice.value = res.data
+  $emit("PayFun")
 }
 
 /**一件买入 */
 const onePieceBuyin = async (item) => {
   // Gethelowestprice.value = item
+
   await initminimumPice(item)
 
   const Mymap = new Map([
@@ -205,6 +205,8 @@ const payFun = async (payId, creatDataAll) => {
     //   cardId: Gethelowestprice.value.cardId, // 跳转页面的id 1
     //   payChanelId: payId // 支付通道 1 是支付宝
     // })
+    console.log(creatDataAll)
+
     const res = await shopbuyPay({
       orderNo: creatDataAll.cardId, // 订单列表
       payChanelId: payId.payId // 支付的编号

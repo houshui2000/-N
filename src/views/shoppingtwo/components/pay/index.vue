@@ -38,6 +38,11 @@
                 <span class="">￥{{ creatDataAll.price }}</span>
               </el-tooltip>
             </div>
+            <!-- 订单编号 -->
+            <div class="orderReference">
+              <p>订单编号:</p>
+              <p>{{ creatDataAll.orderNo }}</p>
+            </div>
           </div>
         </div>
         <div class="section_bototm">
@@ -142,6 +147,7 @@ watch(
   dialogVisiblePay,
   (newVal) => {
     if (!newVal) return
+
     init()
   },
   {
@@ -262,6 +268,14 @@ section {
           }
         }
       }
+      // 订单编号
+      .orderReference {
+        margin-top: 19px;
+        font: normal normal 400 12px "PingFang SC";
+        color: white;
+        @include Myflex(space-between);
+      }
+      // 订单编号end'
     }
   }
   .section_bototm {

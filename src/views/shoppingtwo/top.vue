@@ -19,10 +19,17 @@
       <div class="S_L_right">
         <div class="S_L_Top">
           <p class="S_L_Top_title">
-            <span class="SvgIcon">
-              <!-- <SvgIcon size="88px" Height="30px" icon-class="emptiveTwo" /> -->
+            <!-- 优先购 -->
+            <span v-if="props.creatData.preemptionStatus === 1" class="SvgIcon">
+              <SvgIcon size="88px" Height="30px" icon-class="emptiveTwo" />
             </span>
-            <span class="productName">{{ props.creatData.productName }}</span>
+            <!-- 优先购  preemptionStatus == 1 end-->
+
+            <el-tooltip class="box-item" effect="dark" :content="props.creatData.productName" placement="top-start">
+              <span class="productName danyi">
+                {{ props.creatData.productName }}
+              </span>
+            </el-tooltip>
           </p>
           <div class="S_l_center">
             <div>发行方：{{ props.creatData.issueName }}</div>
@@ -140,7 +147,7 @@ import { shopbuyPay } from "@/network/personalCenter.js"
 
 import { shopquickbuy } from "@/network/shoppingCentre/shoppingtwo.js"
 // import FloatingMusicWidgetVue from "@/components/FloatingMusicWidget/index.vue"
-import { ref } from "vue"
+import { ref, provide } from "vue"
 import { useStore } from "@/pinia"
 const { loginStore } = useStore()
 const route = useRoute()
@@ -155,12 +162,14 @@ const dialogVisiblePay = ref(false) //支付弹框
 const fenxiangdialog = ref(false) // 分享弹框
 // 获取订单的编号
 const Gethelowestprice = ref({})
+const $emit = defineEmits(["purchaseinformation"])
 
 /**购买信息 -- 知道商品还能不能购买 */
 const initminimumPice = async () => {
   const res = await shopquickbuy({
     cardVaultId: Number(route.query.vaultId) // 跳转页面的id 1
   })
+  $emit("purchaseinformation")
 
   Gethelowestprice.value = res.data
 }
@@ -174,7 +183,6 @@ const onSale = () => {
 /**一件买入 */
 const onePieceBuyin = async () => {
   await initminimumPice()
-  console.log(props.creatData.onSellingCount)
   const Mymap = new Map([
     [
       !loginStore.token,
@@ -194,14 +202,15 @@ const onePieceBuyin = async () => {
       }
     ],
     [
-      (!Gethelowestprice.value?.productUrl && props.creatData.onSellingCount !== 0,
+      !Gethelowestprice.value && props.creatData.onSellingCount !== 0,
       () => {
         MessageBoxVue({
           title: "当前暂无可购买资产"
         })
-      })
+      }
     ]
   ])
+
   let Myreturn = false
   for (let [key, value] of Mymap) {
     if (key && !Myreturn) {
@@ -214,7 +223,6 @@ const onePieceBuyin = async () => {
 
   dialogVisiblePay.value = true
 }
-
 /**
  * 支付
  *
@@ -231,6 +239,7 @@ const payFun = async (payId, creatDataAll) => {
     return false
   }
 }
+provide("Gethelowestprice", Gethelowestprice)
 </script>
 <style lang="scss" scoped>
 .top_nav {
@@ -323,9 +332,13 @@ const payFun = async (payId, creatDataAll) => {
         color: white;
         font: normal normal 700 23px "PingFang SC";
         position: relative;
+        @include Myflex();
 
         .productName {
+          display: block;
+          width: 100%;
           margin-left: 10px;
+          line-height: 32px;
         }
       }
       .S_l_center {

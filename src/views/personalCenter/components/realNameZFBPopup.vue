@@ -56,8 +56,35 @@ const handleRealName = async () => {
         clearInterval(getTime.value)
       }
     }, 2000)
+    // RenZhengdiGui()
   }, 2000)
 }
+// 后端说要降定时器改成 递归 先不用 2023-11-201934
+// /**认证递归 */
+// const RenZhengdiGui = async () => {
+//   let res
+//   try {
+//     res = await getRealName(useUsersStore.passwordEdit)
+//     if (res.data === "T") {
+//       await useUsersStore.handleUserInfo()
+//       useUsersStore.realNameZFBPopup = false
+//       MessageBoxVue({
+//         title: "认证成功"
+//       })
+//       // clearInterval(getTime.value)
+//       return
+//     } else {
+//       // 进行轮训
+//       RenZhengdiGui()
+//     }
+//   } catch (err) {
+//     useUsersStore.realNameZFBPopup = false
+//     // clearInterval(getTime.value)
+//     return
+//   }
+// }
+// 后端说要降定时器改成 递归 先不用 2023-11-201934 end
+
 onMounted(() => {
   nextTick(() => {
     handleRealName()

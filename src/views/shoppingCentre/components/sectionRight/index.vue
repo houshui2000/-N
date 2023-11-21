@@ -8,9 +8,9 @@
 <script setup>
 import KaParVue from "../Kapai/index.vue"
 import { useRouter } from "vue-router"
-import MessageBoxVue from "@/components/MessageBox/index.js"
-import { useStore } from "@/pinia"
-const { loginStore } = useStore()
+// import MessageBoxVue from "@/components/MessageBox/index.js"
+// import { useStore } from "@/pinia"
+// const { loginStore } = useStore()
 
 const router = useRouter()
 const pros = defineProps({
@@ -20,12 +20,12 @@ const pros = defineProps({
   }
 })
 const TiaoClick = (item) => {
-  if (!loginStore.token) {
-    MessageBoxVue({
-      title: "请先登录"
-    })
-    return
-  }
+  // if (!loginStore.token) {
+  //   MessageBoxVue({
+  //     title: "请先登录"
+  //   })
+  //   return
+  // }
   router.push({
     path: "/SCDetail",
     query: {

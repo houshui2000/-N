@@ -21,7 +21,7 @@ const shoppingCentrechildren = [
     component: () => import('@/views/shoppingtwo/index.vue'),
     props: true,
     meta: {
-      login: true, // true 需要登录， false 不需要登录
+      login: false, // true 需要登录， false 不需要登录
       immediate: false, // 路由显示
       name: '商城二级页',
       gundong: true, // 实时左侧滚动组件false 开启，true关闭

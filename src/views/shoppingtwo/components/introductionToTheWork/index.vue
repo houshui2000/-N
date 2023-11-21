@@ -1,5 +1,5 @@
 <template>
-  <div class="IntroTpTheWorkVue">
+  <div class="IntroTpTheWorkVueJIe">
     <div class="setction scrollStyle">
       <!-- 作品介绍 -->
       <div class="center_bottom_dv">
@@ -18,6 +18,7 @@ import { useRoute } from "vue-router"
 
 import { shopproducintroduction } from "@/network/shoppingCentre/shoppingCentre"
 const creatData = inject("creatData")
+
 const creatDataFuWenBen = ref("")
 const route = useRoute()
 const init = async () => {
@@ -28,7 +29,7 @@ const init = async () => {
   creatDataFuWenBen.value = res.data
 
   nextTick(() => {
-    let p = document.querySelectorAll(".center_bottom_dv p")
+    let p = document.querySelectorAll(".IntroTpTheWorkVueJIe .center_bottom_dv p")
 
     if (p) {
       p.forEach((item) => {
