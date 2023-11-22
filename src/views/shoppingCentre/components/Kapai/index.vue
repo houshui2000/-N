@@ -23,6 +23,7 @@
     <div class="kapai_bottom">
       <p class="txt_cut">
         {{ props.KaParVueitem.productName }}
+        <!--  -->
       </p>
       <!-- 商城卡片 -->
       <div class="shoppingCentre">
