@@ -19,8 +19,7 @@
         <MissWakeupPage :title="'暂无资产'" :titleTwo="'敬请期待!'" />
       </div>
     </div>
-    <!-- 去实名 注释 -->
-    <!-- <div
+    <div
       v-if="
         useUsersStore.userInfo?.tradePermission <= 0 &&
         useUsersStore.userInfo?.tradePermission !== -2 &&
@@ -30,8 +29,7 @@
     >
       <p>体验数字资产需要进行实名认证</p>
       <p @click="GoRealName">去实名</p>
-    </div> -->
-    <!-- 去实名 end-->
+    </div>
   </div>
   <authenticationPopup />
 
@@ -52,9 +50,9 @@ import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
 import { ref, onMounted, onUnmounted } from "vue"
 import { shopliscard } from "@/network/shoppingCentre/shoppingCentre"
 import { mallHomepage } from "@/enumerate/index.js"
-// import { useStore } from "@/pinia/index.js"
-//
-// const { useUsersStore ,loginStore} = useStore()
+import { useStore } from "@/pinia/index.js"
+
+const { useUsersStore, loginStore } = useStore()
 
 const xianshi_geng = ref(null)
 const LeftData = ref({
@@ -103,12 +101,11 @@ onMounted(() => {
   window.addEventListener("scroll", scrollMy)
 })
 // // 去实名
-// const GoRealName = () => {
-//   console.log("go realname")
-//   useUsersStore.authenticationPopup = true
-//   useUsersStore.certNo = ""
-//   useUsersStore.username = ""
-// }
+const GoRealName = () => {
+  useUsersStore.authenticationPopup = true
+  useUsersStore.certNo = ""
+  useUsersStore.username = ""
+}
 
 const creatData = ref({})
 const init = async () => {

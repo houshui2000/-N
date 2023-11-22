@@ -29,7 +29,7 @@
         <div
           v-html="
             props.KaParVueitem.onSellingCount > 0
-              ? `在售<span style='margin-left: 5px;' >${props.KaParVueitem.onSellingCount}</span>`
+              ? `剩余<span style='margin: 5px;' >${props.KaParVueitem.onSellingCount}</span>份`
               : ` 已售罄`
           "
           class="right_bott"

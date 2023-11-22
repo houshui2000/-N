@@ -108,8 +108,9 @@
           <div class="right_one">
             <p>{{ item.productName }}</p>
             <p>
-              在售
+              剩余
               <span>{{ item.onSellingCount }}</span>
+              份
             </p>
             <div
               :style="{
@@ -183,6 +184,7 @@ const onSale = () => {
 /**一件买入 */
 const onePieceBuyin = async () => {
   await initminimumPice()
+
   const Mymap = new Map([
     [
       !loginStore.token,
