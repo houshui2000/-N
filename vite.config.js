@@ -82,10 +82,6 @@ export default defineConfig((mode) => {
         ],
         // plugins: [loder_pxtovw]
       },
-      // postcss: {
-      //   plugins: [loder_pxtovw]
-      // },
-      // },
       preprocessorOptions: {
         scss: {
           additionalData: `@import "@/styles/variables.scss";`

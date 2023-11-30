@@ -69,9 +69,9 @@ const init = () => {
   createCube()
 
   renderer = new THREE.WebGLRenderer({ antialias: true })
-  renderer.setSize(window.innerWidth, window.innerHeight)
   renderer.setClearColor("black", 0.1)
-
+  renderer.setPixelRatio(window.devicePixelRatio)
+  renderer.setSize(window.innerWidth, window.innerHeight)
   function animate() {
     requestAnimationFrame(animate)
     let zhuan = 0.01

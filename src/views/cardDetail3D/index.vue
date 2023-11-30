@@ -18,8 +18,8 @@
       </div>
       <div class="time">获得时间：{{ route.query.time }}</div>
     </div>
-    <div v-if="ThreeDKa.audio" class="FloatingMusicWidget">
-      <FloatingMusicWidgetVue :auditText="ThreeDKa.auditText" :fileurl="ThreeDKa.audio" />
+    <div v-if="ThreeDKa?.audio" class="FloatingMusicWidget">
+      <!-- <FloatingMusicWidgetVue :auditText="ThreeDKa.auditText" :fileurl="ThreeDKa.audio" /> -->
     </div>
     <div class="cardDetail3D_cavas">
       <ThreeDVue :ThreeDKa="ThreeDKa" />
@@ -49,7 +49,7 @@
 //   },
 // },
 import MissWakeupPage from "@/components/missingWakeupPage/index.vue"
-import FloatingMusicWidgetVue from "./components/FloatingMusicWidget/index.vue"
+// import FloatingMusicWidgetVue from "./components/FloatingMusicWidget/index.vue"
 // import assetLibraryDetailVue from "./components/assetLibraryDetail.vue"
 import SvgIcon from "@/components/SvgIcon/index.vue"
 import ThreeDVue from "./thereD.vue"
@@ -73,12 +73,16 @@ const init = async () => {
   const assetcheckRes = await assetcheck({
     qrCodeId: route.query.id
   })
+  console.log(assetcheckRes)
+
   ZiChanCha.value = assetcheckRes.data || {}
 
   //获取正反面
   // const asset3dRes = await asset3d({ cardNo: "080-2023-B06-01-044" })
 
   const asset3dRes = await asset3d({ cardNo: ZiChanCha.value.productNumber })
+  console.log(asset3dRes)
+
   ThreeDKa.value = asset3dRes.data
 
   // const assetcertRes = await assetcert({

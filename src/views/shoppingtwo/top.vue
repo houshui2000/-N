@@ -122,7 +122,7 @@
                 <i>￥</i>
                 {{ item.minPrice }}
               </span>
-              <span class="qi" style="color: rgba(255, 255, 255, 0.7)">起</span>
+              <!-- <span class="qi" style="color: rgba(255, 255, 255, 0.7)">起</span> -->
             </div>
           </div>
         </div>
@@ -234,7 +234,8 @@ const payFun = async (payId, creatDataAll) => {
   try {
     const res = await shopbuyPay({
       orderNo: creatDataAll.orderNo, // 订单列表
-      payChanelId: payId.payId // 支付的编号
+      // payChanelId: payId.payId // 支付的编号
+      payChanelId: 3
     })
     window.location.href = res.data
   } catch (err) {
@@ -542,9 +543,9 @@ provide("Gethelowestprice", Gethelowestprice)
               font: normal normal 600 12px "PingFang SC";
             }
           }
-          .qi {
-            font: normal normal 400 12px "PingFang SC";
-          }
+          // .qi {
+          //   font: normal normal 400 12px "PingFang SC";
+          // }
         }
       }
     }

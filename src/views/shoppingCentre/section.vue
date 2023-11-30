@@ -11,6 +11,7 @@
     </div>
 
     <div class="section_right">
+      <!-- <Transition name="transition05s"> -->
       <div v-if="creatData.records?.length > 0" class="section_right_one">
         <section_right :INterOb="creatData.records" />
       </div>
@@ -18,6 +19,7 @@
       <div class="section_right_one" v-else>
         <MissWakeupPage :title="'暂无资产'" :titleTwo="'敬请期待!'" />
       </div>
+      <!-- </Transition> -->
     </div>
     <div
       v-if="
@@ -75,6 +77,8 @@ onUnmounted(() => {
   window.removeEventListener("scroll", scrollMy)
 })
 onMounted(() => {
+  console.log(6666)
+
   MYIntersectionObserver(xianshi_geng.value, () => {
     FenYe.size += 10
     init()
@@ -121,23 +125,9 @@ const init = async () => {
     name: LeftData.value.name,
     categoryIds: LeftData.value.categoryIds.join(",")
   })
-  // // <!-- 临时处理 22 -->
-  // res.data.records = res.data.records.map((item) => {
-  //   if (item.id == 22) {
-  //     item.onSellingCount = -123
-  //   }
-  //   return item
-  // })
-  // // creatData.value.records = creatData.value.records.map((item) => {
-  // //   if (item.id == 13) {
-  // //     // item.productName = "限时秒杀"
-  // //     item.onSellingCount = -123
-  // //   }
-  // //   return item
-  // // })
-  // // <!-- 临时处理 22 end-->
 
   creatData.value = res.data
+  // console.log(666622222)
 }
 init()
 let time = null

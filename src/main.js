@@ -3,7 +3,6 @@ import App from './App.vue'
 import Config from '@/config/index.js'
 import '@/styles/index.scss' // global css
 import { router } from './router/index.js'
-// import '@/utils/refresh'
 import mDirectives from '@/directives'
 
 import { createPinia } from 'pinia'

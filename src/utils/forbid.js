@@ -30,18 +30,6 @@ if (import.meta.env.MODE !== 'development') {
  * @returns true pc ,false 移动
  */
 export const _isMobile = () => {
-  // let flag = window.navigator.userAgent.match(
-  //   /(phone|pad|pod|iPhone|iPod|iPad|ios|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
-  // );
-  // if (flag) store.commit('phoneModel/saveModel', flag[0] ? flag[0] : null)
-  // (store.state.phoneModel.model)
-  // if (flag == 'iPad,iPad') {
-  //   return true // pc
-  // }
-  // if (flag) {
-  //   return false// 移动
-  // }
-  // return true
   if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
     //判断iPhone|iPad|iPod|iOS
     return false

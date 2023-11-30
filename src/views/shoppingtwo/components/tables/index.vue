@@ -145,6 +145,7 @@ const initminimumPice = async (item) => {
     cardId: item.cardId // 订单的id
   })
   Gethelowestprice.value = res.data
+
   $emit("PayFun")
 }
 
@@ -205,11 +206,10 @@ const payFun = async (payId, creatDataAll) => {
     //   cardId: Gethelowestprice.value.cardId, // 跳转页面的id 1
     //   payChanelId: payId // 支付通道 1 是支付宝
     // })
-    console.log(creatDataAll)
 
     const res = await shopbuyPay({
-      orderNo: creatDataAll.cardId, // 订单列表
-      payChanelId: payId.payId // 支付的编号
+      orderNo: creatDataAll.orderNo, // 订单列表
+      payChanelId: 3 // 支付的编号
     })
     window.location.href = res.data
   } catch (err) {

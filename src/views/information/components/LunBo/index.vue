@@ -27,10 +27,10 @@ const creat = async () => {
   }
 }
 const banner = (item) => {
-  if (!item.pcRedirectUrl) return
-  // console.log(item)
+  console.log(item)
 
   if (item.pcType == 1) {
+    if (!item.pcRedirectUrl) return
     if (item.pcRedirectUrl == "booking") {
       // 跳转预约
       window.open("/invitation")
@@ -38,6 +38,7 @@ const banner = (item) => {
       window.open(item.pcRedirectUrl)
     }
   } else {
+    if (!item.pcNewsId) return
     router.push("informationTwo?id=" + item.pcNewsId)
   }
 }

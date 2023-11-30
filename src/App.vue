@@ -8,16 +8,12 @@
 </template>
 <script setup>
 import LoginOne from "@/components/LoginOne/index.vue"
-import { nextTick } from "vue"
+import { nextTick, watch } from "vue"
 import MenyOnTheRightVue from "@/components/menuOnTheRight/index.vue"
 import { _isMobile } from "@/utils/forbid"
 import { useRoute } from "vue-router"
 const route = useRoute()
 
-// if (_isMobile()) {
-//   // window.location.href = import.meta.env.VITE_APP_PC_URL
-// } else {
-// }
 const GetRequest = (value) => {
   let url = decodeURI(window.location.search) //?id="123456"&name="www";
   let object = {}
@@ -61,6 +57,20 @@ setTimeout(() => {
     })
   }
 }, 100)
+watch(
+  route,
+  () => {
+    let TherreW = window.location.href.includes("://cardesport")
+
+    if (TherreW) {
+      window.location.replace("https://www.cardesport.com")
+    }
+  },
+  {
+    deep: true,
+    immediate: true
+  }
+)
 </script>
 
 <style scoped lang="scss">

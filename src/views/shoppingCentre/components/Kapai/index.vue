@@ -57,7 +57,7 @@
           <!-- 临时处理 22 把 || props.KaParVueitem.onSellingCount < -11 删除 -->
           <span>￥</span>
           <span class="mounch">{{ props.KaParVueitem.minPrice }}</span>
-          <span class="qi">起</span>
+          <!-- <span class="qi">起</span> -->
         </div>
       </div>
       <!-- 商城卡片 end-->
@@ -204,12 +204,12 @@ const props = defineProps({
           font: normal normal 800 16px "PingFang SC";
         }
         .mounch {
-          margin: 0 9px 0 1px;
+          margin: 0 1px 0 1px;
         }
-        .qi {
-          color: rgba(255, 255, 255, 0.8);
-          font: normal normal 400 12px "PingFang SC";
-        }
+        // .qi {
+        //   color: rgba(255, 255, 255, 0.8);
+        //   font: normal normal 400 12px "PingFang SC";
+        // }
       }
       .right_bott {
         color: rgba(255, 255, 255, 0.8);

@@ -82,10 +82,12 @@
               </div>
             </div>
           </div>
+          <!-- {{ "https://cardesport.com?code=" + admin.invitationCode }} -->
+
           <div v-copy="'adminInputinvitationCode'" class="prompt">
             *只可以修改一次
             <span style="display: none" id="adminInputinvitationCode">
-              {{ "https://cardesport.com?code=" + admin.invitationCode }}
+              {{ "https://www.cardesport.com?code=" + admin.invitationCode }}
             </span>
             <div class="text">
               <SvgIcon size="50px" Height="100%" icon-class="personalPromotion" />
