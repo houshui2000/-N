@@ -37,6 +37,7 @@
             <div class="xinix">{{ item.publishTime }}</div>
           </div>
         </div>
+
         <!-- v-if="listOfInformationArr?.records?.length !== Fenye.total" -->
         <div class="fenye">
           <div class="fen_xi">
