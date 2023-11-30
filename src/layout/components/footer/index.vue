@@ -34,6 +34,10 @@
     <a target="_blank" href="https://beian.miit.gov.cn/#/Integrated/index">
       <div class="beian">备案号: 鲁ICP备2023033925号-1</div>
     </a>
+    <a href="https://beian.mps.gov.cn/#/query/webSearch?code=37160202000900" rel="noreferrer" target="_blank" class="anbei">
+      <div class="anbei-img"></div>
+      <div>鲁公网安备37160202000900</div>
+    </a>
   </footer>
 </template>
 <script setup>
@@ -98,6 +102,20 @@ footer {
     font: normal normal 400 12px "PingFang SC";
     color: rgba(202, 202, 245, 0.5);
     margin-top: 40px;
+  }
+  .anbei{
+    font: normal normal 400 12px "PingFang SC";
+    color: rgba(202, 202, 245, 0.5);
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    .anbei-img{
+      width: 14px;
+      height: 18px;
+      margin-right: 10px;
+      background: url(../../../assets/images/navTop/beian.png)no-repeat center;
+      background-size: contain;
+    }
   }
 }
 </style>
