@@ -355,7 +355,7 @@ const handleCreateDateTime = () => {
 }
 const handlePayTime = () => {
   if (!payTimes.value) {
-    orderInfo.value.createTimes = null
+    orderInfo.value.payTimes = null
   } else {
     let str = ""
     for (let i = 0; i < payTimes.value.length; i++) {
