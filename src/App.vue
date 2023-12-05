@@ -25,6 +25,7 @@ const GetRequest = (value) => {
       object[strs[i].split("=")[0]] = strs[i].split("=")[1] //得到{id:'123456',name:'www'}
     }
   }
+
   return object[value]
 }
 /**

@@ -72,18 +72,29 @@
       </div>
     </div>
     <!-- 客服end -->
-    <a target="_blank" href="https://beian.miit.gov.cn/#/Integrated/index">
-      <div class="beian">备案号: 鲁ICP备2023033925号-1</div>
-    </a>
-    <a
-      href="https://beian.mps.gov.cn/#/query/webSearch?code=37160202000900"
-      rel="noreferrer"
-      target="_blank"
-      class="anbei"
-    >
-      <div class="anbei-img"></div>
-      <div>鲁公网安备37160202000900</div>
-    </a>
+
+    <!-- 底部备案号 -->
+    <div class="footer_bebian">
+      <div class="footer_bei_left">
+        <a target="_blank" href="https://beian.miit.gov.cn/#/Integrated/index">
+          <div class="beian">备案号: 鲁ICP备2023033925号-1</div>
+        </a>
+        <a
+          href="https://beian.mps.gov.cn/#/query/webSearch?code=37160202000900"
+          rel="noreferrer"
+          target="_blank"
+          class="anbei"
+        >
+          <div class="anbei-img"></div>
+          <div>鲁公网安备37160202000900</div>
+        </a>
+      </div>
+      <div class="footer_bei_Right">
+        <div class="dibu_top">icp经营许可证编号：鲁B2一20231318</div>
+        <div class="dibu_top">网络文化许可证 鲁网文 {2023} 4539-150号</div>
+      </div>
+    </div>
+    <!-- 底部备案号 end-->
   </footer>
 </template>
 <script setup>
@@ -111,6 +122,9 @@ footer {
   background: #070d13;
   @include Myflex(flex-start, center);
   flex-direction: column;
+  font: normal normal 400 12px "PingFang SC";
+  // color: white;
+  color: rgba(202, 202, 245, 0.5);
 
   .footer_borrom {
     @include Myflex();
@@ -129,24 +143,41 @@ footer {
       }
     }
   }
-  .beian {
-    font: normal normal 400 12px "PingFang SC";
-    color: rgba(202, 202, 245, 0.5);
-  }
-  .anbei {
-    font: normal normal 400 12px "PingFang SC";
-    color: rgba(202, 202, 245, 0.5);
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    .anbei-img {
-      width: 14px;
-      height: 18px;
-      margin-right: 10px;
-      background: url(../../../assets/images/navTop/beian.png) no-repeat center;
-      background-size: contain;
+  // 底部备案号
+  .footer_bebian {
+    @include Myflex();
+
+    .footer_bei_left {
+      margin-right: 20px;
+      .beian {
+        font: normal normal 400 12px "PingFang SC";
+        color: rgba(202, 202, 245, 0.5);
+      }
+      .anbei {
+        font: normal normal 400 12px "PingFang SC";
+        color: rgba(202, 202, 245, 0.5);
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        .anbei-img {
+          width: 14px;
+          height: 18px;
+          margin-right: 10px;
+          background: url(../../../assets/images/navTop/beian.png) no-repeat center;
+          background-size: contain;
+        }
+      }
+    }
+    .footer_bei_Right {
+      .dibu_top {
+        margin-top: 10px;
+        &:first-child {
+          margin-top: 0;
+        }
+      }
     }
   }
+  // 底部备案号end
 }
 // 客服
 .info_out {
