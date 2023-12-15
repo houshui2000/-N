@@ -10,7 +10,7 @@
   </div>
 </template>
 <script setup>
-import kaPaiVue from "@/components/KaPai/index.vue"
+import kaPaiVue from "../KaPai/index"
 // import { ref } from 'vue'
 const { xilie } = defineProps({
   xilie: { type: String, required: true }

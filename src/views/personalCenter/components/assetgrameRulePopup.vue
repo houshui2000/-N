@@ -1,14 +1,14 @@
 <template>
-  <transition name='transition05s'>
-    <div id='assetgrameRulePopup' v-if='show'>
-      <div class='content'>
-        <div class='text'>
+  <transition name="transition05s">
+    <div id="assetgrameRulePopup" v-if="show">
+      <div class="content">
+        <div class="text">
           玩法介绍
-          <div class='border'></div>
+          <div class="border"></div>
         </div>
-        <div class='close' @click='handleClose'></div>
-        <div class='contentText'>
-          <div v-html='textHtml'></div>
+        <div class="close" @click="handleClose"></div>
+        <div class="contentText">
+          <div v-html="textHtml"></div>
         </div>
       </div>
     </div>
@@ -16,27 +16,27 @@
 </template>
 
 <script setup>
-import { defineEmits } from 'vue'
-import { useStore } from '@/pinia/index.js'
-import { codeloginmobile } from '@/network/user.js'
-import { passwordEditCode, realNamePost, updatePassword } from '@/network/personalCenter.js'
-import { removeItem } from '@/utils/storage.js'
+import { defineEmits } from "vue"
+import { useStore } from "@/pinia/index.js"
+import { codeloginmobile } from "@/network/user.js"
+import { passwordEditCode, realNamePost, updatePassword } from "@/network/personalCenter.js"
+import { removeItem } from "@/utils/storage.js"
 
 const { useUsersStore, loginStore } = useStore()
-const emit = defineEmits(['close'])
+const emit = defineEmits(["close"])
 const handleRealName = async () => {
   useUsersStore.authenticationConFirmPopup = false
   useUsersStore.authenticationPopup = false
   useUsersStore.realNameZFBPopup = true
 }
 const handleClose = () => {
-  emit('close')
+  emit("close")
 }
 
-const props = defineProps(['show', 'textHtml'])
+const props = defineProps(["show", "textHtml"])
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #assetgrameRulePopup {
   position: fixed;
   top: 0;

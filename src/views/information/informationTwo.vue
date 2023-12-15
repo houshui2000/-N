@@ -8,17 +8,12 @@
           { name: asd.title, path: route.params.id }
         ]"
       />
-      <!-- {{ asd.title }} -->
     </div>
     <!-- -->
     <div class="center">
       <div class="center_top">
         <p class="top">{{ asd.title }}</p>
         <div class="top_bottom">
-          <!--<p>
-            <!~~ <span>作者：</span> ~~>
-            <!~~ <span>文章来源：</span> ~~>
-          </p>-->
           <p>{{ asd.publishTime }}</p>
         </div>
       </div>

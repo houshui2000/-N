@@ -77,8 +77,6 @@ onUnmounted(() => {
   window.removeEventListener("scroll", scrollMy)
 })
 onMounted(() => {
-  console.log(6666)
-
   MYIntersectionObserver(xianshi_geng.value, () => {
     FenYe.size += 10
     init()
@@ -127,7 +125,6 @@ const init = async () => {
   })
 
   creatData.value = res.data
-  // console.log(666622222)
 }
 init()
 let time = null

@@ -25,6 +25,7 @@ export default (props) => {
   div.appendChild(xtxMeaagecontainerErzi)
 
   const vnode = createVNode(MEssageBox, props) // 获取到 DOM 节点
+
   // vnode.props.fude = true
   render(vnode, xtxMeaagecontainerErzi)
   // setTimeout(() => {

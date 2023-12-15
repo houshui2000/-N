@@ -89,12 +89,10 @@
 import SvgIcon from "@/components/SvgIcon/index.vue"
 
 import { ref, computed, nextTick, onMounted, onUnmounted, watch } from "vue"
-// import SvgIcon from '@/components/SvgIcon/index.vue'
 import Login from "@/components/Login/index.vue"
 import { useStore } from "@/pinia"
 import { removeItem } from "@/utils/storage.js"
 import { userlogout } from "@/network/userInterface.js"
-// import { ToLogin, NoLogin } from "@/router/InputTransfer.js"
 import { routes as MyRouter } from "@/router"
 import { useRouter, useRoute } from "vue-router"
 import MessageBoxVue from "@/components/MessageBox/index.js"
@@ -104,13 +102,6 @@ const route = useRoute()
 
 const { loginStore, useUsersStore } = useStore()
 
-// let navList = reactive([
-//   // { name: '卡GO', push: '' },
-//   // { name: '飞升计划', push: '' },
-//   // { name: '啦啦啦计划', push: '' }
-//   ...NoLogin,
-//   ...ToLogin
-// ])
 let WhitelistedRouting = ["/"]
 /**数组打平 */
 const tie = (arr) => {

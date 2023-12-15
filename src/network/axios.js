@@ -23,10 +23,7 @@ service.interceptors.request.use((config) => {
   // 判断 map 数据是否有无 防抖
   const cancel = debounceTokenCancel.get(tokenKey)
 
-
-  if (cancel) {
-
-
+  if (cancel && config.method.toLowerCase() == 'post') {
     return
   }
   // 没有值的话 在 map 中添加数据

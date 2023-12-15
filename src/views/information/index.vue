@@ -242,8 +242,8 @@ watch(
             .top {
               font: normal normal 500 18px "PingFang SC";
               color: white;
-              height: 35px;
-              @include Myflex(flex-start);
+              height: 40px;
+              @include Myflex(flex-start, flex-start);
               span {
                 padding: 4px;
                 border-radius: 4px;

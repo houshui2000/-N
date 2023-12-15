@@ -13,7 +13,6 @@ import MenyOnTheRightVue from "@/components/menuOnTheRight/index.vue"
 import { _isMobile } from "@/utils/forbid"
 import { useRoute } from "vue-router"
 const route = useRoute()
-
 const GetRequest = (value) => {
   let url = decodeURI(window.location.search) //?id="123456"&name="www";
   let object = {}

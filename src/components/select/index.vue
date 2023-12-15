@@ -27,20 +27,6 @@
     </section>
   </div>
 </template>
-<!--  <selectVue v-model:orderColumn="search.orderColumn" :mallHomepage="mallHomepage">
-          <template #top_icon_true="{ dropdownMenu }">
-            <div class="top_icon">
-              <!~~ {{ dropdownMenu }} ~~>
-              <p v-show="dropdownMenu">
-                <el-icon><ArrowUpBold /></el-icon>
-              </p>
-              <p v-show="!dropdownMenu">
-                <el-icon><ArrowDownBold /></el-icon>
-              </p>
-            </div>
-          </template>
-        </selectVue>-->
-<!-- 传入的是数组 {value:, label:a} -->
 <script setup>
 import { ref, watch, computed, onMounted, onUnmounted } from "vue"
 const props = defineProps({

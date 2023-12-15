@@ -38,7 +38,6 @@ const durationTime = ref("0:00") //音频的总时长，显示的时间格式
 const duration = ref(0) //音频的总时长
 const audioRef = ref(null)
 const currentProgress = ref(0)
-
 onMounted(() => {
   calculateDuration()
 })

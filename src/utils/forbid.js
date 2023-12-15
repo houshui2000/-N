@@ -1,4 +1,6 @@
-
+/**
+ * 不让设备缩放 打开控制台
+ */
 const Myevent = () => {
   window.addEventListener('mousewheel', function (event) {
     if (event.ctrlKey === true || event.metaKey) {
