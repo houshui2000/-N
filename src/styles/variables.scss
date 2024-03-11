@@ -1,0 +1,31 @@
+@import './childrenStyle/config.scss';
+@import './childrenStyle/navTop.scss';
+@import './childrenStyle/gxsStyle.scss';
+$test-color: red;
+
+$App_DaoHeight: 70px;
+
+/** scss 混入 flex*/
+@mixin Myflex($justify-content: center, $align-items: center) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+
+/**
+ scss 混入 边框渐变
+*  @include bordergradientMY(
+            linear-gradient(0deg, rgba(48, 35, 82, 0.9) 0%, rgba(36, 54, 77, 0.9) 100%),
+            linear-gradient(180deg, #070d13 -1.45%, #070d13 100%)
+          );
+*/
+@mixin bordergradientMY($two: linear-gradient(180deg, rgba(83, 56, 119, 0.5) 0%, rgba(53, 81, 125, 0.3) 100%), $one: linear-gradient(149deg, #070d13 45.99%, #070d13 85.48%)) {
+  // @include bordergradientMY();
+  border: 1px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  // background-image: linear-gradient(180deg, $one -1.45%, $two 100%),
+  //   linear-gradient($deg, $four 0%, $five 100%);
+  background-image: $one, $two;
+}
