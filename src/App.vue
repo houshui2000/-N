@@ -1,18 +1,11 @@
 <template>
   <div class="CIjing">
-    <aside></aside>
     <router-view />
-    <LoginOne />
-    <MenyOnTheRightVue v-if="!route.meta?.rightDao" />
   </div>
 </template>
 <script setup>
-import LoginOne from "@/components/LoginOne/index.vue"
-import { nextTick, watch } from "vue"
-import MenyOnTheRightVue from "@/components/menuOnTheRight/index.vue"
+import { nextTick } from "vue"
 import { _isMobile } from "@/utils/forbid"
-import { useRoute } from "vue-router"
-const route = useRoute()
 const GetRequest = (value) => {
   let url = decodeURI(window.location.search) //?id="123456"&name="www";
   let object = {}
@@ -57,20 +50,6 @@ setTimeout(() => {
     })
   }
 }, 100)
-watch(
-  route,
-  () => {
-    let TherreW = window.location.href.includes("://cardesport")
-
-    if (TherreW) {
-      window.location.replace("https://www.cardesport.com")
-    }
-  },
-  {
-    deep: true,
-    immediate: true
-  }
-)
 </script>
 
 <style scoped lang="scss">
@@ -79,22 +58,7 @@ body {
 }
 .CIjing {
   width: 1920px;
-  background: url("@/assets/images/all/bei.png") no-repeat scroll left top/ 100% 100%;
-  // background-color: saddlebrown;
-
-  // background-color: saddlebrown;
   position: relative;
-  background-size: 100% 100%;
-  aside {
-    position: absolute;
-    right: 0;
-    top: 120px;
-    z-index: 0;
-    width: 233px;
-    height: 625px;
-    background: url("@/assets/images/all/aside.png") no-repeat scroll left top/ 100% 100%;
-    // background-color: rgba(255, 255, 255, 0.8);
-  }
 }
 </style>
 <style lang="scss">
@@ -112,23 +76,6 @@ body {
 
     max-height: 500px;
     overflow: auto;
-
-    //滚动条里的小方块
-
-    .box::-webkit-scrollbar-thumb {
-      border-radius: 3px;
-      background-color: gray;
-    }
-
-    //滚动条整体样式
-    .box::-webkit-scrollbar {
-      width: 5px;
-      height: 5px; //高宽分别对应横竖滚动条的尺寸
-    }
-    //滚动条中心部分
-    .box::-webkit-scrollbar-track {
-      background-color: pink;
-    }
   }
 }
 /* 禁止复制代码 */
@@ -156,6 +103,7 @@ body::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
+
 
 // 滚轮样式
 body::-webkit-scrollbar-thumb {

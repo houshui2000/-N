@@ -1,6 +1,8 @@
-import MessageBoxVue from '@/components/MessageBox/index.js'
 
-
+/**
+ * v-copy="'cha_zheng'"
+ *<div style="display: none" id="cha_zheng" class="cha_zheng">{{ ZiChanCha.productNumber }}</div>
+ */
 export default {
 
   mounted (el, binding) {
@@ -12,7 +14,6 @@ export default {
   }
 }
 const selectText = (copy) => {
-
   let copyId = document.querySelector('#' + copy).innerHTML
   const input = document.createElement('input');
   document.body.appendChild(input);
@@ -24,10 +25,7 @@ const selectText = (copy) => {
 
   if (document.execCommand('copy')) {
     document.execCommand('copy');
-    MessageBoxVue({
-      title: '复制成功'
-      // title: Mycopy
-    })
+    console.log('复制成功');
   }
   document.body.removeChild(input);
 }

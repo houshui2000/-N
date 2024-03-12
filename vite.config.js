@@ -84,7 +84,8 @@ export default defineConfig((mode) => {
       },
       preprocessorOptions: {
         scss: {
-          additionalData: `@import "@/styles/variables.scss";`
+          additionalData: `@use "@/styles/variables.scss" as var;`
+
         }
       },
 
@@ -111,14 +112,13 @@ export default defineConfig((mode) => {
           target: env.VITE_APP_API_URL,
           ws: true,
           changeOrigin: true,
-          // rewrite: (path) => path.replace(new RegExp(env.VITE_API_PREFIX, 'i'), '')
           rewrite: (path) => path.replace(/^\/api/, ''),
         }
       }
 
     },
     build: {
-      chunkSizeWarningLimit: 10240,
+      chunkSizeWarningLimit: 1024,
       minify: 'terser',
       terserOptions: {
         compress: {

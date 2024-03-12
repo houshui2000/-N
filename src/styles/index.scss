@@ -1,5 +1,4 @@
 @import './variables.scss';
-@import './childrenStyle/index.scss';
 @import './all.scss';
 
 .transition05s-enter-active,
@@ -12,20 +11,8 @@
   opacity: 0;
 }
 
-.hide {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
 
-input[type="number"] {
-  -moz-appearance: textfield;
-}
 
 /*滚动条样式*/
 div::-webkit-scrollbar {
@@ -47,27 +34,4 @@ div::-webkit-scrollbar-track {
   border-radius: 0;
   background: rgba(0, 0, 0, 0.1);
 
-}
-
-// 滚动条样式
-.scrollStyle {
-
-  &::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  // 滚轮样式
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(180deg, #de01ca 0%, #3340fe 100%);
-  }
-
-  // 滚轮背景
-  &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-    border-radius: 0;
-    // background: rgba(0, 0, 0, 0.1);
-    background-color: #282a52;
-  }
 }

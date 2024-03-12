@@ -1,33 +1,21 @@
 <template>
   <div id="homePC">
-    <NavVue />
-    <!-- <Carousel v-if="!route.meta.gundong" /> -->
-    <ScrollZiMuVue v-if="!route.meta.scrollTheSubtitles" />
+    <h1>layout</h1>
     <div class="center">
       <router-view />
     </div>
-    <FooterVue />
   </div>
 </template>
-<script setup name="layout">
-import NavVue from "./components/top/index.vue"
-import FooterVue from "./components/footer/index.vue"
-import { useRoute } from "vue-router"
-import ScrollZiMuVue from "./components/scrollZiMu/index.vue"
-
-const route = useRoute()
-</script>
+<script setup name="layout"></script>
 <style lang="scss" scoped>
 #homePC {
   width: 100%;
   margin: auto;
   overflow: hidden;
+  background-color: rgb(116, 182, 17);
 }
 
 .center {
   position: relative;
-  // min-height: 1500px;
-  padding-bottom: 102px;
-  padding-top: 70px;
 }
 </style>

@@ -15,7 +15,7 @@ import './utils/forbid.js'
 // 引入字体样式文件
 import './assets/fonts/font.css'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
-import componentPligin from "@/components/index"
+import componentPligin from "@/components/allcomponents/index"
 const app = createApp(App);
 const pinia = createPinia()
 // app.config.globalProperties.$config = Config // 公共过滤器方法
