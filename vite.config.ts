@@ -1,51 +1,22 @@
-/*import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [vue()],
-})
-*/
 import { UserConfig, ConfigEnv, loadEnv, defineConfig } from "vite";
 
 import vue from '@vitejs/plugin-vue'
 // import importToCDN from 'vite-plugin-cdn-import'
 import { createHtmlPlugin } from 'vite-plugin-html'
 
-
 import path from 'path'
-// elementc
-// import AutoImport from 'unplugin-auto-import/vite'
-// import Components from 'unplugin-vue-components/vite'
-// import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // 配置name
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 //  svg
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 // 解决 vite + element 警告
-import fs from 'fs';
 // import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
-// import postCssPxToRem from 'postcss-pxtorem'
+import postCssPxToRem from 'postcss-pxtorem'
 
 // export default
 const NodeVersionControl = () => {
   return defineConfig(({ mode }: ConfigEnv): UserConfig => {
-    //   // 解决 vite + element 警告
-    //   const optimizeDepsElementPlusIncludes = ["element-plus/es", '@vuemap/vue-amap/es']
-    //   fs.readdirSync("node_modules/element-plus/es/components").map((dirname) => {
-    //     fs.access(
-    //       `node_modules/element-plus/es/components/${dirname}/style/css.mjs`,
-    //       (err) => {
-    //         if (!err) {
-    //           optimizeDepsElementPlusIncludes.push(
-    //             `element-plus/es/components/${dirname}/style/css`
-    //           )
-    //         }
-    //       }
-    //     )
-    //   })
-    // 解决 vite + element 警告 end
-
     const env = loadEnv(mode, process.cwd())
     return {
       plugins: [
@@ -53,20 +24,6 @@ const NodeVersionControl = () => {
         vue(),
         // 配置name
         vueSetupExtend(),
-        // AutoImport({
-        //   eslintrc: {
-        //     enabled: false, //  Default `false`
-        //     filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
-        //     globalsPropValue: true // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
-        //   },
-        //   resolvers: [ElementPlusResolver()],
-        //   vueTemplate: true, // 是否在 vue 模板中自动导入
-        // }),
-        // unplugin-vue-components 警告解决
-        // Components({
-        //   directoryAsNamespace: true,
-        //   resolvers: [ElementPlusResolver(), AntDesignVueResolver()],
-        // }),
         createHtmlPlugin({
           /**
            * 需要注入 index.html ejs 模版的数据
@@ -89,24 +46,21 @@ const NodeVersionControl = () => {
       css: {
         postcss: {
           plugins: [
-            // postCssPxToRem({
-            //   rootValue: 10,
-            //   unitPrecision: 5,
-            //   propList: ['*'],
-            //   minPixelValue: 1,
-            //   mediaQuery: false,
-            //   selectorBlackList: ['-nopx'], // 过滤掉-nopx结尾的class，不进行rem转换
-            //   // exclude: ['node_modules']
-            // })
+            postCssPxToRem({
+              rootValue: 10,
+              unitPrecision: 5,
+              propList: ['*'],
+              minPixelValue: 1,
+              mediaQuery: false,
+              selectorBlackList: ['-nopx'], // 过滤掉-nopx结尾的class，不进行rem转换
+              // exclude: ['node_modules']
+            })
           ],
         },
-        // postcss: {
-        //   plugins: [postcssPresetEnv()]
-        // },
         // devSourcemap: true, // 将代码不会被压缩，将源代码赋值到打包目录
         preprocessorOptions: {
           scss: {
-            additionalData: `@use "@/styles/variables.scss" as *;`
+            additionalData: `@use "@/styles/variables.scss" as app;`
           }
         },
       },
@@ -115,10 +69,9 @@ const NodeVersionControl = () => {
       resolve: {
         // 设置路径别名
         alias: {
-          // eslint-disable-next-line no-undef
           '@': path.resolve(__dirname, './src'),
         },
-        extensions: ['.js', '.vue', '.json'] //自动添加后缀
+        extensions: ['.ts', '.js', '.vue', '.json'] //自动添加后缀
       },
       server: {
         host: '0.0.0.0',

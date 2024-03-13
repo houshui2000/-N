@@ -1,7 +1,19 @@
 import { createApp } from 'vue'
-import './style.css'
+import './styles/index.scss'
+import { createPinia } from 'pinia'
 import App from './App.vue'
-import components from '@/components/index.ts' //导入全局注册的组件
+import 'virtual:svg-icons-register'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import './utils/rem.ts'
+import './utils/forbid.ts'
+import { router } from "@/router/index.ts";
+import componentPligin from "@/components/allcomponents/index.ts"
+const pinia = createPinia()
 
-
-createApp(App).use(components).mount('#app')
+const app = createApp(App)
+app.use(componentPligin)
+app.use(ElementPlus)
+app.use(pinia); // 注册 pinia
+app.use(router)
+app.mount('#app')

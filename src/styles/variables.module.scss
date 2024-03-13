@@ -1,0 +1,4 @@
+// variables.module.scss -- 必须以module.scss 的名字起名传出 变量
+:export {
+  testColor: app.$test-color
+}

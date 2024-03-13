@@ -26,14 +26,12 @@
 
 body {
   font-family: "PingFang SC";
-  background-color: #070d13;
   color: #333;
   margin: 0;
 }
 
 
 /*单行溢出*/
-
 .one_txt_cut,
 .danyi {
   overflow: hidden;
@@ -43,7 +41,6 @@ body {
 
 
 /*多行溢出*/
-
 .txt_cut,
 .duoyi {
   overflow: hidden;
@@ -54,7 +51,6 @@ body {
 }
 
 /*去除边框*/
-
 input,
 button,
 textarea {

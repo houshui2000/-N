@@ -17,6 +17,7 @@ interface ImportMetaEnv {
   VITE_APP_MOBLIC_URL: string;
   VITE_APP_PC_URL: string;
   VITE_APP_KEYWORDS: string;
+  globEager: any;
   VITE_APP_DESCRIPTION: string;
   VITE_APP_TITLE: string;
   VITE_PORT: number;

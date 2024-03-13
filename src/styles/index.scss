@@ -1,53 +1,24 @@
 @import './variables.scss';
 @import './all.scss';
 
-.transition05s-enter-active,
-.transition05s-leave-active {
-  transition: opacity 0.5s ease;
+/** vue v-if 动画 */
+/* fade-transform */
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all .5s;
 }
 
-.transition05s-enter-from,
-.transition05s-leave-to {
+.fade-transform-enter {
   opacity: 0;
+  transform: translateX(-30px);
 }
 
-.hide {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-/*滚动条样式*/
-div::-webkit-scrollbar {
-  height: 4px;
-  width: 4px;
-}
-
-// 滚轮样式
-div::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  // background-color: rgba($color: #fff, $alpha: .6) !important;
-  background: linear-gradient(180deg, #de01ca 0%, #3340fe 100%);
-
-}
-
-// 滚轮背景
-div::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  border-radius: 0;
-  background: rgba(0, 0, 0, 0.1);
-
-}
+/** vue v-if 动画 end */
 
 // 滚动条样式
 .scrollStyle {

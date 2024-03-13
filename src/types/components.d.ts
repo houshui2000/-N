@@ -1,9 +1,13 @@
-import one from '@/components/HelloWorld.vue'
 
-// declare module 'vue' works for vue2 + vue 3
+/**
+ * 组件进行实例化，进行ts 标注
+ */
+
+import SvgIcon from '@/components/SvgIcon/index.vue'
+
 declare module 'vue' {
   export interface GlobalComponents {
-    one: typeof one
+    SvgIcon: typeof SvgIcon
   }
 }
 

@@ -1,0 +1,65 @@
+{
+    "root": true,   // 表示这是项目根目录中的主要ESLint配置文件
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:vue/vue3-essential"
+    ],
+    "parserOptions": { // 设置解析器选项能帮助 ESLint 确定什么是解析错误，所有语言选项默认都是 false
+        "ecmaVersion": "latest", // 支持es6语法，但并不意味着同时支持新的 ES6 全局变量或类型（比如 Set 等新类型）
+        "parser": "@typescript-eslint/parser",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "vue"
+    ],
+
+    "overrides": [
+      {
+        "files": "*.html",
+        "processor": "vue/.vue"
+      }
+    ],
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [
+            ".js",
+            ".jsx",
+            ".ts",
+            ".tsx"
+          ]
+        }
+      }
+    },
+    "rules": {
+      "no-debugger":"error",
+      // 和 vite.config.ts 一样解决 props 父子传参结构的 eslint 报错问题
+      "vue/no-setup-props-destructure": "off",
+      "vue/no-setup-props-reactivity-loss": "off",
+      "vue/multi-word-component-names": "off",
+      "import/no-unresolved": "off",
+      "import/extensions": "off",
+      "no-console": "warn", //不允许出现console语句
+      "consistent-return": "off", //无论有没有返回值都强制要求return语句返回一个值
+      "no-param-reassign": "off", //不允许重新分配函数参数"no-proto": 2, //不允许使用__proto__属性
+      "new-cap": "off", //构造函数名字首字母要大写
+      "no-shadow": "off", //外部作用域中的变量不能与它所包含的作用域中的变量或参数同名
+      "no-underscore-dangle": "off", //不允许标识符以下划线开头
+      "vue/no-v-html": "off",
+      "no-restricted-syntax": "off",
+      "guard-for-in": "off", //监视for in循环，防止出现不可预料的情况
+      "@typescript-eslint/no-explicit-any": "off",
+      "import/prefer-default-export": "off",
+      "eqeqeq": [ //比较的时候使用严格等于
+        "off"
+      ],
+      "no-use-before-define": "off", //不允许在未定义之前就使用变量"indent": 2, //强制一致的缩进风格
+      "no-return-await": 2 // 禁用不必要的 return await
+    }
+}
